@@ -3,4 +3,4 @@ Coding Projects
 
 
 
-I make garbage programs with any languages I know
+I make garbage projects with any languages I know or will use.
