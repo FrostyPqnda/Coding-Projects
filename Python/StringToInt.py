@@ -7,7 +7,7 @@ Created on Nov 23, 2019
 This is a Python program that
 checks if there is number inside
 of a string, and converts into 
-and int. 
+an int. 
 """
 def safe_int(word):
     # Checks if there is an integer in a string.
