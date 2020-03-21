@@ -8,7 +8,7 @@ public class AltCase
 	/*
 	 * This is a static string method
 	 * that changes alternates the casing
-	 * of a word/sentence you input/
+	 * of a word/sentence you input
 	 */
 	public static String altCase(String text)
 	{
