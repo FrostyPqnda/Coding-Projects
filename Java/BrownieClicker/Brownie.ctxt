@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Brownie
+comment0.text=\n\ Class\ Brownie\ controls\ the\ behavior\ of\ the\ Brownie\ on\ the\ game\n\ screen\n\ \n\ @author\ Brian\ P.\ \n\ @version\ 18\ March\ 2020\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\n\ Act\ -\ do\ whatever\ the\ Brownie\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment2.params=
+comment2.target=void\ addPoint()
+comment2.text=\n\ Method\ addPoint\ adds\ a\ point\ for\ each\ click\ on\ the\ cookie\n
+comment3.params=
+comment3.target=void\ generateBrownies()
+comment3.text=\n\ Method\ generateCookies\ will\ generate\ mini\ cookies\ for\ each\ click\n
+comment4.params=
+comment4.target=int\ getPoint()
+comment4.text=\n\ Method\ getPoint\ returns\ the\ score;\n
+comment5.params=
+comment5.target=BrownieWorld\ getWorld()
+comment5.text=\n\ Method\ getWorld\ returns\ the\ actor's\ world\ as\ a\ BrownieWorld\n
+numComments=6

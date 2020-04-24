@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=FactoryBtn
+comment0.text=\n\ Class\ FactoryBtn\ controls\ the\ timer\ and\ score\ counter\ of\ the\ Factory\n\ upgrade\n\ \n\ @author\ Brian\ P.\n\ @version\ 18\ March\ 2020\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\n\ Act\ -\ do\ whatever\ the\ FactoryBtn\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment2.params=
+comment2.target=void\ checkBuy()
+comment2.text=\n\ Method\ checkBuy\ subtracts\ from\ points\ after\ purchase\n
+comment3.params=
+comment3.target=void\ futureValue()
+comment3.text=\n\ Method\ futureValue\ will\ change\ value\ after\ purchase\n
+comment4.params=
+comment4.target=void\ updateFactoryCounter()
+comment4.text=\n\ Method\ updateFactoryCounter\ keeps\ track\ of\ upgrades\ bought\n
+comment5.params=
+comment5.target=BrownieWorld\ getWorld()
+comment5.text=\n\ Method\ getWorld\ returns\ the\ actor's\ world\ as\ a\ BrownieWorld\n
+numComments=6

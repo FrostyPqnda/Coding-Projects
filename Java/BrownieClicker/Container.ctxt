@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Container
+comment0.text=\n\ Class\ Container\ sets\ the\ size\ of\ the\ upgrade\ container\ boxes\ that\ all\ \n\ upgrade\ icons\ are\ placed\ in\n\ \n\ @author\ Brian\ P.\n\ @version\ 18\ March\ 2020\n
+comment1.params=
+comment1.target=Container()
+numComments=2
