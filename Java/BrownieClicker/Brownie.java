@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Brownie extends Actor
 {
+    GreenfootSound clickPoint = new GreenfootSound("clickb7.wav");
     private int score = 0; // The score variable
     /**
      * Act - do whatever the Brownie wants to do. This method is called whenever
@@ -29,7 +30,7 @@ public class Brownie extends Actor
     {
         if(Greenfoot.mouseClicked(this))
         {
-            Greenfoot.playSound("clickb7.wav");
+            clickPoint.play();
             Score point = getWorld().getScore();
             point.addPoint(1);
             generateBrownies();

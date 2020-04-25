@@ -8,5 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SaveBtn extends Actor
 {
-    
+    /**
+     * Act - do whatever the SaveBtn wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act() 
+    {
+        if(getWorld().isPaused == false)
+        {
+            setLocation(getWorld().getWidth() / 2, 364);
+        }
+    }
+    /**
+     * Method getWorld returns the actor's world as a BrownieWorld
+     */
+    public BrownieWorld getWorld()
+    {
+        return (BrownieWorld)(super.getWorld());
+    }
 }

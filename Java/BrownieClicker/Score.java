@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Score extends Actor
 {
    private int target = 0;
-   private int rank = 0;
+   private int playerUpgrade = 0;
    Font font = new Font("Poetsen One", 28);
    Color color = new Color(238, 238, 238);
    /**
@@ -50,7 +50,7 @@ public class Score extends Actor
        
        upgradeImage.setColor(color);
        upgradeImage.drawString("" + upgrade, 144, 35);
-       rank = upgrade;
+       playerUpgrade = upgrade;
        setImage(upgradeImage);
    }
    /**
@@ -84,7 +84,7 @@ public class Score extends Actor
    }
    public int getPlayerUpgrade()
    {
-       return rank;
+       return playerUpgrade;
    }
    /**
     * Method getWorld returns the actor's world as a BrownieWorld

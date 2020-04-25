@@ -1,12 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Class BrownieWorld contains all of the objects of the actor class
- * and controls the game
- * 
- * @author Brian P. 
- * @version 18 March 2020
- */
+* Class BrownieWorld contains all of the objects of the actor class
+* and controls the game
+* 
+* @author Brian P. 
+* @version 18 March 2020
+*/
 public class BrownieWorld extends World
 {
     private Score scoreObj; // How many brownies clicked
@@ -29,7 +29,7 @@ public class BrownieWorld extends World
     Start startBtn = null; // Start btn object
     Title screen = null; // Screen object
     /**
-     * Constructor for objects of class BrownieWorld.
+    * Constructor for objects of class BrownieWorld.
      * 
      */
     public BrownieWorld()
@@ -65,12 +65,14 @@ public class BrownieWorld extends World
             scoreInfo.getMyInfo();
             startPressed = true;
             isPaused = false;
-            addObject(save, getWidth() / 2, 365);
+            addObject(save, getWidth() / 2, 364);
         }  
         if(Greenfoot.mouseClicked(save))
         {
             saveScore();
             //saveGScore();
+            //saveFScore();
+            //saveCScore();
         }
         try
         {
@@ -78,7 +80,9 @@ public class BrownieWorld extends World
         }
         catch(java.lang.NullPointerException exception)
         {
-            System.out.println("L");
+            System.out.println("======================");
+            System.out.println("Press the save button\nthen the 'R' key to\nreload your score");
+            System.out.println("======================");
         }
         endSimulation();
     }
@@ -103,7 +107,7 @@ public class BrownieWorld extends World
         {
             Greenfoot.playSound("Complete.wav");
             Greenfoot.setWorld(new EndCard());
-            Greenfoot.stop();
+            scoreObj.setScore(0);
         }
     }
     /**
@@ -190,6 +194,30 @@ public class BrownieWorld extends World
             {
                 gInfo.setScore(grandmaCounter.getPlayerUpgrade());
                 gInfo.store();
+            }
+        }
+    }
+    public void saveFScore()
+    {
+        if(UserInfo.isStorageAvailable())
+        {
+            fInfo = UserInfo.getMyInfo();
+            if(factoryCounter.getPlayerUpgrade() > fInfo.getScore())
+            {
+                fInfo.setScore(factoryCounter.getPlayerUpgrade());
+                fInfo.store();
+            }
+        }
+    }
+    public void saveCScore()
+    {
+        if(UserInfo.isStorageAvailable())
+        {
+            cInfo = UserInfo.getMyInfo();
+            if(autoclickCounter.getPlayerUpgrade() > cInfo.getScore())
+            {
+                cInfo.setScore(autoclickCounter.getPlayerUpgrade());
+                cInfo.store();
             }
         }
     }
