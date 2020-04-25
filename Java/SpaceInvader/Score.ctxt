@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Score
+comment0.text=\n\ Class\ Score\ contains\ the\ score\ and\ lives\n\ object\n\ \n\ @author\ Brian\ \n\ @version\ 9\ February\ 2020\n
+comment1.params=
+comment1.target=Score()
+comment1.text=\n\ Constructor\ for\ the\ Score\ object\n
+comment2.params=score
+comment2.target=void\ setScore(int)
+comment2.text=\n\ Method\ setScore\ creates\ the\n\ score\ object\n
+comment3.params=life
+comment3.target=void\ setLives(int)
+comment3.text=\n\ Method\ setLives\ creates\ the\n\ lives\ object\n
+comment4.params=
+comment4.target=InvasionWorld\ getWorld()
+comment4.text=\n\ Method\ getWorld()\ returns\ the\ actor's\ world\ as\ an\ InvasionWorld\n
+numComments=5
