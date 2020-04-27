@@ -7,7 +7,6 @@ Created on Nov 23, 2019
 Python program that asks user to input a word
 and index to to replace the letter with another
 letter.
-(Yes, this was clearly copied from my CodeHS work)
 """
 # This function gets the index of the word
 def get_index(Inital_Word1):
