@@ -50,7 +50,7 @@ public class GrandmaBtn extends Button
      */
     public void futureValue()
     {
-        grannyPrice = grannyPrice + ((3^(GN+1))*GN) + (1+(3^GN)*(GN));
+        grannyPrice += ((3^(GN+1))*GN) + (1+(3^GN)*(GN));
     }
     /**
      * Method updateGrannyCounter keeps track of upgrades bought

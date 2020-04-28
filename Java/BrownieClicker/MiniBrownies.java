@@ -15,7 +15,7 @@ public class MiniBrownies extends Actor
      */
     public void act() 
     {
-        move(4);
+        move(5);
         if(getY() >= getWorld().getHeight() - 2)
         {
             getWorld().removeObject(this);

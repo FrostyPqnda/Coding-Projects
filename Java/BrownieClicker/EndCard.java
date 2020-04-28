@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EndCard here.
+ * Class EndCard displays an end card world after the player wins the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brian P.
+ * @version 18 March 2020
  */
 public class EndCard extends World
 {
@@ -17,9 +17,12 @@ public class EndCard extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
     }
+    /**
+     * Sets the game to a new BrownieWorld if 'N'
+     * is pressed
+     */
     public void act()
     {
-        
         if(Greenfoot.isKeyDown("N"))
         {
             Greenfoot.setWorld(new BrownieWorld());

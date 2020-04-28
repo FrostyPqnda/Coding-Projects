@@ -18,7 +18,7 @@ public class Grandma extends Actor
         bakeBrownies();
     }   
     /**
-     * Method bakeCookies bakes a batch of cookies
+     * Method bakeCookies bakes a batch of brownies
      */
     public void bakeBrownies()
     {

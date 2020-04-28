@@ -70,9 +70,9 @@ public class BrownieWorld extends World
         if(Greenfoot.mouseClicked(save))
         {
             saveScore();
-            //saveGScore();
-            //saveFScore();
-            //saveCScore();
+            saveGScore();
+            saveFScore();
+            saveCScore();
         }
         try
         {
@@ -83,6 +83,7 @@ public class BrownieWorld extends World
             System.out.println("======================");
             System.out.println("Press the save button\nthen the 'R' key to\nreload your score");
             System.out.println("======================");
+            System.out.println("NullPointerException: \n" + exception.getMessage());
         }
         endSimulation();
     }
@@ -93,9 +94,19 @@ public class BrownieWorld extends World
     {
         if(Greenfoot.isKeyDown("r"))
         {
+            // Score
             score = scoreInfo.getScore();
             scoreObj.setScore(score);
-        }
+            // Granny
+            gCount = gInfo.getScore();
+            grandmaCounter.setUpgrade(gCount);
+            // Factory
+            fCount = fInfo.getScore();
+            factoryCounter.setUpgrade(fCount);
+            // Autoclicker
+            cCount = cInfo.getScore();
+            autoclickCounter.setUpgrade(cCount);
+        }  
     }
     /**
      * Method endSimulation will end the game once the player has reach

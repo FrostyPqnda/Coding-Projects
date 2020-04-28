@@ -1,9 +1,10 @@
 #BlueJ class context
 comment0.target=EndCard
-comment0.text=\n\ Write\ a\ description\ of\ class\ EndCard\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\n\ Class\ EndCard\ displays\ an\ end\ card\ world\ after\ the\ player\ wins\ the\ game\n\ \n\ @author\ Brian\ P.\n\ @version\ 18\ March\ 2020\n
 comment1.params=
 comment1.target=EndCard()
 comment1.text=\n\ Constructor\ for\ objects\ of\ class\ EndCard.\n\ \n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\n\ Sets\ the\ game\ to\ a\ new\ BrownieWorld\ if\ 'N'\n\ is\ pressed\n
 numComments=3

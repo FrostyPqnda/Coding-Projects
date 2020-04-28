@@ -51,7 +51,7 @@ public class ClickBtn extends Button
      */
     public void futureValue()
     {
-        autoclick = autoclick + ((7^(AN+1))*(AN+1) + (1+(7^AN)*(AN)));
+        autoclick += ((7^(AN+1))*(AN+1) + (1+(7^AN)*(AN)));
     }
     /**
      * Method updateFactoryCounter keeps track of upgrades bought

@@ -50,7 +50,7 @@ public class FactoryBtn extends Button
      */
     public void futureValue()
     {
-        factoryPrice = factoryPrice + ((5^(TN+1))*(TN+1) + (1+(3^TN)*(TN)));
+        factoryPrice += ((5^(TN+1))*(TN+1) + (1+(3^TN)*(TN)));
     }
     /**
      * Method updateFactoryCounter keeps track of upgrades bought
