@@ -1,4 +1,3 @@
-package Double_Vowel;
 import java.util.Scanner;
 
 public class DoubleVowelConsole extends Double_Vowel

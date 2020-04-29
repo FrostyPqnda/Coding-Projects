@@ -1,4 +1,3 @@
-package Double_Vowel;
 /*
  * This is a Java program that will add an extra vowel for any vowel in the user's
  * input.
