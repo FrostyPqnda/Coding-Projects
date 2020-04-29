@@ -1,5 +1,3 @@
-package FindMedian;
-
 public class FindMedianConsole extends FindMedian
 {
 

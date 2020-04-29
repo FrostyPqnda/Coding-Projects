@@ -1,5 +1,3 @@
-package FindMedian;
-
 /*
  * This is a Java program that finds the median number in an array
  */
