@@ -1,6 +1,4 @@
-package WordCount;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class WordCountConsole extends WordCount
 {
