@@ -1,10 +1,12 @@
 import java.util.*;
 import java.io.*;
+
 /**
  * 
  * @author brian
  *
- * FileEditor is a simple txt file writer	
+ * FileEditor is a simple txt file writer 
+ * that users can write to
  */
 public class FileEditor 
 {
@@ -12,12 +14,12 @@ public class FileEditor
 	{
 		try
 		{
-			FileWriter funtest = new FileWriter("UserFile.txt");
+			FileWriter user_file = new FileWriter("UserFile.txt");
 			Scanner input = new Scanner(System.in);
 			System.out.println("Type out what you want on your txt file: ");
 			String text = input.nextLine();
-			funtest.write(text);
-			funtest.close();
+			user_file.write(text);
+			user_file.close();
 			input.close();
 			System.out.println("Successfully wrote to the file.");
 		}
