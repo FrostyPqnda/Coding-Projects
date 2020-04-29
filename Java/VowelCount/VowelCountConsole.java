@@ -1,4 +1,3 @@
-package VowelCount;
 import java.util.Scanner;
 
 public class VowelCountConsole extends VowelCount

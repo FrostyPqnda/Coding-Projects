@@ -1,4 +1,11 @@
-package VowelCount;
+/**
+ * 
+ * @author brian
+ * 
+ * VowelCount is a java program that will 
+ * count the number of times a vowel will
+ * appear in a text
+ */
 public class VowelCount 
 {
 	public static int countVowel(String sentence, char vowel)
