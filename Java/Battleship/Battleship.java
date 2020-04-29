@@ -1,13 +1,15 @@
 import java.util.*;
 
-public class Battleship {
+public class Battleship 
+{
 	private static final int MAX_COL = 10;
     private static final char MAX_ROW = 'J';
     
     private static final int HORIZONTAL = 0;
     private static final int VERTICAL = 1;
     
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		System.out.println("=======================\nWelcome to Battle Ship\n=======================");
         
         Player human = new Player();
