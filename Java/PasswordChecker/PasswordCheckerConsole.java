@@ -1,4 +1,3 @@
-package PasswordChecker;
 import java.util.Scanner;
 
 public class PasswordCheckerConsole extends PasswordChecker

@@ -1,4 +1,3 @@
-package PasswordChecker;
 /*
  * This is a Java program that checks if the user's
  * password is long enough.
