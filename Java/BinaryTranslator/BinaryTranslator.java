@@ -1,4 +1,3 @@
-package BinaryTranslator;
 /*
  * This is a Java program that takes in a string of binary numbers
  * and convert it into a string or number.
