@@ -1,4 +1,3 @@
-package VideoGame;
 import java.util.Scanner;
 
 public class GameTester
@@ -16,7 +15,7 @@ public class GameTester
 		System.out.print("Enter name of protagonist: ");
 		String hero = savior.nextLine();
 		
-		// Asks user for the villian of their game
+		// Asks user for the villain of their game
 		Scanner badGuy = new Scanner(System.in);
 		System.out.print("Enter name of antagonist: ");
 		String villian = badGuy.nextLine();

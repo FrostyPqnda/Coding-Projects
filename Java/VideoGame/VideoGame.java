@@ -1,5 +1,9 @@
-package VideoGame;
-
+/**
+ * 
+ * @author brian
+ * 
+ * Generates some rpg style story for a game
+ */
 public class VideoGame
 {
     // Class variables go here:
@@ -12,7 +16,6 @@ public class VideoGame
     int score;
     
     // Constructor for class VideoGame
-    // You will need to add parameters to it
     public VideoGame(String title, String protagonist, String enemy, String area)
     {
         gameName = title;
