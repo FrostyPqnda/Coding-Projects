@@ -1,5 +1,3 @@
-package Battleship;
-
 public class Ship
 {
     public static final int UNSET = -1;

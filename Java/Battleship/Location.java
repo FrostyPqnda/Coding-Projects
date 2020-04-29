@@ -1,5 +1,3 @@
-package Battleship;
-
 public class Location
 {
     public static final int UNGUESSED = 0;

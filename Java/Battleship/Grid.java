@@ -1,5 +1,3 @@
-package Battleship;
-
 public class Grid
 {
     // Static constants for the grid class
