@@ -1,4 +1,3 @@
-package AltCase;
 import java.util.Scanner;
 
 public class AltCaseConsole extends AltCase

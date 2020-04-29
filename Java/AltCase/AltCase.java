@@ -1,4 +1,3 @@
-package AltCase;
 /*
  * This is a Java program that will alternate the letter casing
  * of the user's string input.
@@ -8,7 +7,7 @@ public class AltCase
 	/*
 	 * This is a static string method
 	 * that changes alternates the casing
-	 * of a word/sentence you input
+	 * of a word/sentence you input/
 	 */
 	public static String altCase(String text)
 	{
@@ -18,11 +17,11 @@ public class AltCase
 	        char curCase = text.charAt(i);
 	        if(i % 2 == 0)
 	        {
-	            returnAltCase = returnAltCase + Character.toUpperCase(curCase);
+	            returnAltCase += Character.toUpperCase(curCase);
 	        }
 	        else
 	        {
-	            returnAltCase = returnAltCase + Character.toLowerCase(curCase);
+	            returnAltCase += Character.toLowerCase(curCase);
 	        }
 	    }
 	    return returnAltCase;
