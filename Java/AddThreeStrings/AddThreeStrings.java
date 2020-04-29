@@ -1,11 +1,10 @@
-package AddThreeStrings;
 import java.util.*;
 /**
  * 
  * @author FrostyPqnda
  * 
  * AddThreeStrings is a Java program that adds three strings assuming
- * that is a number value
+ * that it is a number value
  *
  */
 public class AddThreeStrings extends AddStrings

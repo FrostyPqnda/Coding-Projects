@@ -1,5 +1,3 @@
-package AddThreeStrings;
-
 public class AddStrings 
 {
 	/*
@@ -20,7 +18,7 @@ public class AddStrings
 	    // Catches any value that is not a number
 	    catch (NumberFormatException nfe)
 	    {
-	      System.out.println("NumberFormatException: " + "\n" + nfe.getMessage());
+	      System.out.println("NumberFormatException: \n" + nfe.getMessage());
 	    }
 	    
 	    return 0;
