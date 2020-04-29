@@ -1,4 +1,3 @@
-package ReplaceLetter;
 import java.util.Scanner;
 
 public class ReplaceLetterConsole extends ReplaceLetter

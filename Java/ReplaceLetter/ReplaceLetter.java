@@ -1,4 +1,10 @@
-package ReplaceLetter;
+/**
+ * 
+ * @author brian
+ *
+ * ReplaceLetter is a java program that will replace a letter
+ * from a word with another letter
+ */
 public class ReplaceLetter 
 {
 	public static String replaceLetter(String word, char letterToReplace, char replacingLetter)
