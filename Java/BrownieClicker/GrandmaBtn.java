@@ -18,7 +18,7 @@ public class GrandmaBtn extends Button
      */
     public void act() 
     {
-        if(getWorld().isPaused == false && getWorld().startPressed == true)
+        if(getWorld().isPaused == false)
         {
             setLocation(50, 48);
             checkBuy();

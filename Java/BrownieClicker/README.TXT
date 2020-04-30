@@ -9,4 +9,4 @@ PURPOSE OF PROJECT: A game designed to click and obtain as much brownies possibl
 VERSION or DATE: 18 March 2020
 HOW TO START THIS PROJECT: Open the project.grenfoot file to launch the game (REQUIRES THE GREENFOOT SOFTWARE TO OPEN AND PLAY);
 AUTHORS: Brian Pham 
-USER INSTRUCTIONS: Press start to begin the game and click the large brownie to obtain brownies. To reload score, press the save button then the 'R' key to reload it.
+USER INSTRUCTIONS: Press start to begin the game and click the large brownie to obtain brownies.

@@ -18,7 +18,7 @@ public class FactoryBtn extends Button
      */
     public void act() 
     {
-        if(getWorld().isPaused == false && getWorld().startPressed == true)
+        if(getWorld().isPaused == false)
         {
             setLocation(50, 150);
             checkBuy();

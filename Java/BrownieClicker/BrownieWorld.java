@@ -1,12 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
-* Class BrownieWorld contains all of the objects of the actor class
-* and controls the game
-* 
-* @author Brian P. 
-* @version 18 March 2020
-*/
+ * Class BrownieWorld contains all of the objects of the actor class
+ * and controls the game
+ * 
+ * @author Brian P. 
+ * @version 18 March 2020
+ */
 public class BrownieWorld extends World
 {
     private Score scoreObj; // How many brownies clicked
@@ -28,6 +28,7 @@ public class BrownieWorld extends World
     boolean isPaused = true; // Game paused
     Start startBtn = null; // Start btn object
     Title screen = null; // Screen object
+    Instruction step = new Instruction(); // Instruction screen
     /**
     * Constructor for objects of class BrownieWorld.
      * 
@@ -62,11 +63,16 @@ public class BrownieWorld extends World
         {
             removeObject(startBtn);
             removeObject(screen);
-            scoreInfo.getMyInfo();
+            addObject(step, getWidth() / 2, getHeight() / 2);
             startPressed = true;
+        }
+        if(Greenfoot.isKeyDown("P") && startPressed == true)
+        {
+            removeObject(step);
+            scoreInfo.getMyInfo();
             isPaused = false;
             addObject(save, getWidth() / 2, 364);
-        }  
+        } 
         if(Greenfoot.mouseClicked(save))
         {
             saveScore();
@@ -80,10 +86,7 @@ public class BrownieWorld extends World
         }
         catch(java.lang.NullPointerException exception)
         {
-            System.out.println("======================");
-            System.out.println("Press the save button\nthen the 'R' key to\nreload your score");
-            System.out.println("======================");
-            System.out.println("NullPointerException: \n" + exception.getMessage());
+            System.out.println("ERROR!");
         }
         endSimulation();
     }

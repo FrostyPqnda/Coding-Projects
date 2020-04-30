@@ -1,4 +1,3 @@
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -19,7 +18,7 @@ public class ClickBtn extends Button
      */
     public void act() 
     {
-        if(getWorld().isPaused == false && getWorld().startPressed == true)
+        if(getWorld().isPaused == false)
         {
             setLocation(50, 250);
             checkBuy();
