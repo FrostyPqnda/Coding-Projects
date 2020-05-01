@@ -28,9 +28,11 @@ public class BrownieWorld extends World
     boolean isPaused = true; // Game paused
     Start startBtn = null; // Start btn object
     Title screen = null; // Screen object
+    InfoBtn info = null; // Info button
+    BackBtn back = new BackBtn();
     Instruction step = new Instruction(); // Instruction screen
     /**
-    * Constructor for objects of class BrownieWorld.
+     * Constructor for objects of class BrownieWorld
      * 
      */
     public BrownieWorld()
@@ -46,12 +48,7 @@ public class BrownieWorld extends World
         scoreObj.setScore(score);
         addObject(scoreObj, getWidth() / 2 , 30);
         addButtons(); // Buttons
-        // Title Screen
-        screen = new Title();
-        addObject(screen, getWidth() / 2, getHeight() / 2);
-        // Start button
-        startBtn = new Start();
-        addObject(startBtn, getWidth() / 2, getHeight() / 2);
+        titleScreen(); // Title Screen
     }
     /**
      * Act - do whatever the BrownieWorld wants to do. This method is called whenever
@@ -59,20 +56,31 @@ public class BrownieWorld extends World
      */
     public void act()
     {
-        if(Greenfoot.mouseClicked(startBtn))
+        if(Greenfoot.mouseClicked(info))
         {
+            removeObject(info);
             removeObject(startBtn);
             removeObject(screen);
             addObject(step, getWidth() / 2, getHeight() / 2);
-            startPressed = true;
+            addObject(back, getWidth() / 2, (getHeight() / 2) + 150);
         }
-        if(Greenfoot.isKeyDown("P") && startPressed == true)
+        if(Greenfoot.mouseClicked(back))
         {
             removeObject(step);
-            scoreInfo.getMyInfo();
+            removeObject(back);
+            titleScreen();
+        }
+        if(Greenfoot.mouseClicked(startBtn))
+        {
+            removeObject(startBtn);
+            removeObject(info);
+            removeObject(screen);
+            startPressed = true;
             isPaused = false;
+            removeObject(step);
+            scoreInfo.getMyInfo();
             addObject(save, getWidth() / 2, 364);
-        } 
+        }
         if(Greenfoot.mouseClicked(save))
         {
             saveScore();
@@ -89,6 +97,22 @@ public class BrownieWorld extends World
             System.out.println("ERROR!");
         }
         endSimulation();
+    }
+    /**
+     * Method titleScreen displays what the user will
+     * see when they open up the game;
+     */
+    private void titleScreen()
+    {
+        // Title Screen
+        screen = new Title();
+        addObject(screen, getWidth() / 2, getHeight() / 2);
+        // Start button
+        startBtn = new Start();
+        addObject(startBtn, getWidth() / 2, getHeight() / 2);
+        // Info button
+        info = new InfoBtn();
+        addObject(info, getWidth() / 2, (getHeight() / 2) + 80);
     }
     /**
      * Method reloadScore sets the current score to player score

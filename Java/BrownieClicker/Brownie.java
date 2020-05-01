@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Brownie extends Actor
 {
-    GreenfootSound clickPoint = new GreenfootSound("clickb7.wav");
+    private GreenfootSound clickPoint = new GreenfootSound("clickb7.wav");
     /**
      * Act - do whatever the Brownie wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
