@@ -30,6 +30,7 @@ public class BrownieWorld extends World
     Title screen = null; // Screen object
     InfoBtn info = null; // Info button
     BackBtn back = new BackBtn();
+    BackToMenu backMenu = new BackToMenu();
     Instruction step = new Instruction(); // Instruction screen
     /**
      * Constructor for objects of class BrownieWorld
@@ -64,11 +65,9 @@ public class BrownieWorld extends World
             addObject(step, getWidth() / 2, getHeight() / 2);
             addObject(back, getWidth() / 2, (getHeight() / 2) + 150);
         }
-        if(Greenfoot.mouseClicked(back))
+        if(Greenfoot.mouseClicked(back) || Greenfoot.mouseClicked(backMenu))
         {
-            removeObject(step);
-            removeObject(back);
-            titleScreen();
+            Greenfoot.setWorld(new BrownieWorld());
         }
         if(Greenfoot.mouseClicked(startBtn))
         {
@@ -80,6 +79,7 @@ public class BrownieWorld extends World
             removeObject(step);
             scoreInfo.getMyInfo();
             addObject(save, getWidth() / 2, 364);
+            addObject(backMenu, (getWidth() / 2) - 250, 364);
         }
         if(Greenfoot.mouseClicked(save))
         {

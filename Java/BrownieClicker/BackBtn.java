@@ -1,19 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BackBtn here.
+ * Class BackBtn only exists to store the back button image
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Brian P. 
+ * @version 1 May 2020
  */
 public class BackBtn extends Actor
-{
-    /**
-     * Act - do whatever the BackBtn wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        
-    }    
+{   
 }
