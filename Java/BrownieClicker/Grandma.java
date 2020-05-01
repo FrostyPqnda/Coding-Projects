@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Brian P.
  * @version 18 March 2020
  */
-public class Grandma extends Actor
+public class Grandma extends GrandmaBtn
 {
     private int timer = 1000;
     /**

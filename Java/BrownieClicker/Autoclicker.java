@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Brian P.
  * @version 18 March 2020
  */
-public class Autoclicker extends Actor
+public class Autoclicker extends ClickBtn
 {
     private int timer = 50;
     /**

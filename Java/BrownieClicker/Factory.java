@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Brian P. 
  * @version 18 March 2020
  */
-public class Factory extends Actor
+public class Factory extends FactoryBtn
 {
     private int timer = 100;
     /**
