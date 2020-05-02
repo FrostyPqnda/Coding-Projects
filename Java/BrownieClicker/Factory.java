@@ -30,6 +30,7 @@ public class Factory extends FactoryBtn
         {
             Score timeCounter = getWorld().getScore();
             timeCounter.addPoint(1);
+            getWorld().getBrownie().generateBrownies();
             timer = 100;
         }
     }

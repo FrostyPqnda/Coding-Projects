@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Brownie extends Actor
 {
-    private GreenfootSound clickPoint = new GreenfootSound("clickb7.wav");
+    private GreenfootSound clickPoint = new GreenfootSound("ClickableBrownie.wav");
     /**
      * Act - do whatever the Brownie wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -41,7 +41,7 @@ public class Brownie extends Actor
     public void generateBrownies()
     {
         MiniBrownies mini = new MiniBrownies();
-        getWorld().addObject(mini, Greenfoot.getRandomNumber(getWorld().getWidth()), 240);
+        getWorld().addObject(mini, Greenfoot.getRandomNumber(getWorld().getWidth()), 0);
     }
     /**
      * Method getWorld returns the actor's world as a BrownieWorld

@@ -30,6 +30,7 @@ public class Grandma extends GrandmaBtn
         {
             Score timeCounter = getWorld().getScore();
             timeCounter.addPoint(1);
+            getWorld().getBrownie().generateBrownies();
             timer = 1000;
         }
     }

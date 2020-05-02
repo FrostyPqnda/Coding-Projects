@@ -30,6 +30,7 @@ public class Autoclicker extends ClickBtn
         {
             Score timeCounter = getWorld().getScore();
             timeCounter.addPoint(1);
+            getWorld().getBrownie().generateBrownies();
             timer = 50;
         }
     }

@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GrandmaBtn extends Button
 {
-    public int grannyPrice = 25; // Starting price for granny upgrade
+    public int grannyPrice = 25; // Starting price of granny upgrade
     private int GN = 0; // Used to calculate future price
     /**
      * Act - do whatever the GrandmaBtn wants to do. This method is called whenever
@@ -35,7 +35,7 @@ public class GrandmaBtn extends Button
             if(Greenfoot.mouseClicked(this))
             {
                 buyGranny();
-                Greenfoot.playSound("buy4.wav");
+                Greenfoot.playSound("Upgrade.wav");
                 grannyCost.subtractPoint(grannyPrice);
                 GN++;
                 updateGrannyCounter();

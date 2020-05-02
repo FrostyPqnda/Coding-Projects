@@ -26,12 +26,13 @@ public class BrownieWorld extends World
     private int gCount, fCount, cCount = 0; // The starting value of the upgrades
     boolean startPressed = false; // Game start
     boolean isPaused = true; // Game paused
+    boolean pressedSave = false;
     Start startBtn = null; // Start btn object
     Title screen = null; // Screen object
     InfoBtn info = null; // Info button
-    BackBtn back = new BackBtn();
-    BackToMenu backMenu = new BackToMenu();
-    Instruction step = new Instruction(); // Instruction screen
+    BackBtn back = new BackBtn(); // Back button
+    BackToMenu backMenu = new BackToMenu(); // Back to menu button
+    Instruction step = new Instruction(); // Instruction scree
     /**
      * Constructor for objects of class BrownieWorld
      * 
@@ -41,6 +42,7 @@ public class BrownieWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
         Greenfoot.start();
+        setPaintOrder(BrownieWorld.class, Start.class, InfoBtn.class, Title.class, BackBtn.class, Instruction.class, Score.class, Brownie.class, Button.class, Container.class, BackToMenu.class, SaveBtn.class, MiniBrownies.class);
         // Brownie
         clickableBrownie = new Brownie();
         addObject(clickableBrownie, getWidth() / 2, getHeight() / 2);
@@ -57,6 +59,7 @@ public class BrownieWorld extends World
      */
     public void act()
     {
+        // Takes players to the info screen
         if(Greenfoot.mouseClicked(info))
         {
             removeObject(info);
@@ -65,10 +68,12 @@ public class BrownieWorld extends World
             addObject(step, getWidth() / 2, getHeight() / 2);
             addObject(back, getWidth() / 2, (getHeight() / 2) + 150);
         }
+        // Takes players back to the menu screen
         if(Greenfoot.mouseClicked(back) || Greenfoot.mouseClicked(backMenu))
         {
             Greenfoot.setWorld(new BrownieWorld());
         }
+        // Removes the start button and starts the game
         if(Greenfoot.mouseClicked(startBtn))
         {
             removeObject(startBtn);
@@ -79,8 +84,9 @@ public class BrownieWorld extends World
             removeObject(step);
             scoreInfo.getMyInfo();
             addObject(save, getWidth() / 2, 364);
-            addObject(backMenu, (getWidth() / 2) - 250, 364);
+            addObject(backMenu, (getWidth() / 2) - 270, 370);
         }
+        // Saves the player's score
         if(Greenfoot.mouseClicked(save))
         {
             saveScore();
@@ -96,11 +102,15 @@ public class BrownieWorld extends World
         {
             System.out.println("ERROR!");
         }
+        if(Greenfoot.mouseClicked(backMenu))
+        {
+            antiCheatScore();
+        }
         endSimulation();
     }
     /**
      * Method titleScreen displays what the user will
-     * see when they open up the game;
+     * see when they open up the game
      */
     private void titleScreen()
     {
@@ -119,8 +129,9 @@ public class BrownieWorld extends World
      */
     public void reloadScore()
     {
-        if(Greenfoot.isKeyDown("r"))
+        if(Greenfoot.isKeyDown("r") && pressedSave == false)
         {
+            pressedSave = true;
             // Score
             score = scoreInfo.getScore();
             scoreObj.setScore(score);
@@ -133,7 +144,13 @@ public class BrownieWorld extends World
             // Autoclicker
             cCount = cInfo.getScore();
             autoclickCounter.setUpgrade(cCount);
-        }  
+        } 
+        // Prevents players from accidentally resetting their score
+        // to the original save
+        if(Greenfoot.isKeyDown("r") && pressedSave == true)
+        {
+            antiCheatScore();
+        }
     }
     /**
      * Method endSimulation will end the game once the player has reach
@@ -156,7 +173,7 @@ public class BrownieWorld extends World
     {
         // Container
         Container box1 = new Container();
-        addObject(box1, 65, 99);
+        addObject(box1, 65, 95);
         // Grandma button
         grannyBtn = new GrandmaBtn();
         addObject(grannyBtn, 50, 48);
@@ -190,7 +207,7 @@ public class BrownieWorld extends World
     {   
         // Container
         Container box3 = new Container();
-        addObject(box3, 65, 295);
+        addObject(box3, 65, 297);
         // Autoclicker button
         autoclick = new ClickBtn();
         addObject(autoclick, 50, 247);
@@ -270,6 +287,14 @@ public class BrownieWorld extends World
             scoreInfo.setScore(scoreObj.getPoint());
             scoreInfo.store(); // Save to server
         }
+    }
+    /**
+     * Method getBrownie returns the clickable
+     * brownie
+     */
+    public Brownie getBrownie()
+    {
+        return clickableBrownie;
     }
     /**
      * Method getScore returns the score object

@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Brian P.
  * @version 18 March 2020
  */
-public class Container extends Actor
+public class Container extends Button
 {
     public Container()
     {

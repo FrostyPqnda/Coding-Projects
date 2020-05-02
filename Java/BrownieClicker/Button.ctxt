@@ -1,12 +1,15 @@
 #BlueJ class context
 comment0.target=Button
-comment0.text=\n\ Class\ Button\ holds\ all\ of\ the\ upgrade\ button\ icons\ and\ controls\ the\n\ placement\ of\ said\ icons\n\ \n\ @author\ Brian\ P.\ \n\ @version\ 18\ March\ 2020\n
+comment0.text=\n\ Class\ Button\ stores\ all\ of\ the\ upgrade\ methods\ that\ allows\ for\ each\ \n\ upgrades\ to\ call\ upon\ them\ when\ they\ have\ been\ bought\n\ \n\ @author\ Brian\ P.\ \n\ @version\ 18\ March\ 2020\n
 comment1.params=
 comment1.target=void\ buyGranny()
+comment1.text=\n\ Method\ buyGranny\ adds\ a\ grandma\ upgrade\ icon\ when\ \n\ a\ grandma\ upgrade\ is\ purchased\n
 comment2.params=
 comment2.target=void\ buyFactory()
+comment2.text=\n\ Method\ buyGranny\ adds\ a\ factory\ upgrade\ icon\ when\ \n\ a\ factory\ upgrade\ is\ purchased\n
 comment3.params=
 comment3.target=void\ buyClicker()
+comment3.text=\n\ Method\ buyClicker\ adds\ a\ autoclick\ upgrade\ icon\ when\n\ an\ autoclick\ upgrade\ is\ purchased\n
 comment4.params=
 comment4.target=BrownieWorld\ getWorld()
 comment4.text=\n\ Method\ getWorld\ returns\ the\ actor's\ world\ as\ a\ BrownieWorld\n

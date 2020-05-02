@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Brian P.
  * @version 18 March 2020
  */
-public class MiniBrownies extends Actor
+public class MiniBrownies extends Brownie
 {
     /**
      * Act - do whatever the MiniBrownies wants to do. This method is called whenever

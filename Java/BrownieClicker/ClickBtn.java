@@ -35,7 +35,7 @@ public class ClickBtn extends Button
             if(Greenfoot.mouseClicked(this))
             {
                 buyClicker();
-                Greenfoot.playSound("buy4.wav");
+                Greenfoot.playSound("Upgrade.wav");
                 auto.subtractPoint(autoclick);
                 AN++;
                 updateAutoclickCounter();

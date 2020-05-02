@@ -35,7 +35,7 @@ public class FactoryBtn extends Button
             if(Greenfoot.mouseClicked(this))
             {
                 buyFactory();
-                Greenfoot.playSound("buy4.wav");
+                Greenfoot.playSound("Upgrade.wav");
                 factoryCost.subtractPoint(factoryPrice);
                 TN++;
                 updateFactoryCounter();
