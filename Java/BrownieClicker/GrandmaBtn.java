@@ -9,9 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GrandmaBtn extends Button
 {
-    public int grannyPrice = 25; // Starting price of granny upgrade
-    private int GN = 0;
-    private int gCounter = 0;
+    public int grannyPrice = 25; // Starting price for granny upgrade
+    private int GN = 0; // Used to calculate future price
     /**
      * Act - do whatever the GrandmaBtn wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -59,11 +58,6 @@ public class GrandmaBtn extends Button
     {       
         Score point = getWorld().getGrandmaCounter();
         point.addPoint(1);
-        gCounter++;
-    }
-    public int getGUpgrade()
-    {
-        return gCounter;
     }
     /**
      * Method getWorld returns the actor's world as a BrownieWorld
