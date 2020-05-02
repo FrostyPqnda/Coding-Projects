@@ -9,9 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FactoryBtn extends Button
 {
-    private int factoryPrice = 150;
-    private int TN = 0;
-    private int counter = 0;  
+    private int factoryPrice = 150; // Starting price for factory upgrade
+    private int TN = 0; // Used to calculate future price
     /**
      * Act - do whatever the FactoryBtn wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -59,7 +58,6 @@ public class FactoryBtn extends Button
     {
         Score point = getWorld().getFactoryCounter();
         point.addPoint(1);
-        counter++;
     }
     /**
      * Method getWorld returns the actor's world as a BrownieWorld
