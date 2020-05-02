@@ -9,9 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ClickBtn extends Button
 {
-    private int autoclick = 250;
-    private int AN = 0;
-    private int counter = 0;
+    private int autoclick = 250; // Starting price for autoclick upgrade
+    private int AN = 0; // Used to calculate future price
     /**
      * Act - do whatever the ClickBtn wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -59,7 +58,6 @@ public class ClickBtn extends Button
     {
         Score point = getWorld().getAutoclickCounter();
         point.addPoint(1);
-        counter++;
     }
     /**
      * Method getWorld returns the actor's world as a BrownieWorld
