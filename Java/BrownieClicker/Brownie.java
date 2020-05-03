@@ -19,7 +19,7 @@ public class Brownie extends Actor
         if(getWorld().isPaused == false)
         {
             addPoint();
-            setLocation(getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+            setLocation(getWorld().getWidth() / 2, (getWorld().getHeight() / 2) - 15);
         }
     }
     /**

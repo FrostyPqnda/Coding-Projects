@@ -16,7 +16,7 @@ public class SaveBtn extends Actor
     {
         if(getWorld().isPaused == false)
         {
-            setLocation(getWorld().getWidth() / 2, 364);
+            setLocation(getWorld().getWidth() / 2, 363);
         }
     }
     /**

@@ -83,7 +83,7 @@ public class BrownieWorld extends World
             isPaused = false;
             removeObject(step);
             scoreInfo.getMyInfo();
-            addObject(save, getWidth() / 2, 364);
+            addObject(save, getWidth() / 2, 363);
             addObject(backMenu, (getWidth() / 2) - 270, 370);
         }
         // Saves the player's score
@@ -145,12 +145,6 @@ public class BrownieWorld extends World
             cCount = cInfo.getScore();
             autoclickCounter.setUpgrade(cCount);
         } 
-        // Prevents players from accidentally resetting their score
-        // to the original save
-        if(Greenfoot.isKeyDown("r") && pressedSave == true)
-        {
-            antiCheatScore();
-        }
     }
     /**
      * Method endSimulation will end the game once the player has reach
@@ -180,7 +174,7 @@ public class BrownieWorld extends World
         // Upgrade counter
         grandmaCounter = new Score();
         grandmaCounter.setUpgrade(gCount);
-        addObject(grandmaCounter, 560, 48);
+        addObject(grandmaCounter, 555, 48);
     }
     /**
      * Method factoryUpgradeCounter keeps track of how many
@@ -197,7 +191,7 @@ public class BrownieWorld extends World
         // Upgrade counter
         factoryCounter = new Score();
         factoryCounter.setUpgrade(fCount);
-        addObject(factoryCounter, 560, 150);
+        addObject(factoryCounter, 555, 150);
     }
     /**
      * Method factoryUpgradeCounter keeps track of how many
@@ -214,7 +208,7 @@ public class BrownieWorld extends World
         // Upgrade counter
         autoclickCounter = new Score();
         autoclickCounter.setUpgrade(cCount);
-        addObject(autoclickCounter, 560, 247);
+        addObject(autoclickCounter, 555, 247);
     }
     /**
      * Method addButton adds the buttons to the world
