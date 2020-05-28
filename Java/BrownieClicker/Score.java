@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Class Score controls the player score and upgrades
+ * Class Score controls the player score
  * 
  * @author Brian P.
  * @version 18 March 2020
@@ -9,9 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Score extends Actor
 {
    private int target = 0;
-   private int playerUpgrade = 0;
-   Font font = new Font("Poetsen One", 28);
-   Color color = new Color(238, 238, 238);
    /**
     * Constructor for the Score object
     */
@@ -24,34 +21,19 @@ public class Score extends Actor
     * Method setScore creates the
     * score object
     */
-   public void setScore(int score)
+   public void setPlayerScore(int score)
    {
        GreenfootImage scoreImage = getImage();
        scoreImage.clear();
-        
+       
+       Font font = new Font("Poetsen One", 28);
        scoreImage.setFont(font);
-        
+       Color color = new Color(238, 238, 238);
        scoreImage.setColor(color);
+       
        scoreImage.drawString("" + score, 144, 35);
        target = score;
        setImage(scoreImage);
-   }
-   /**
-    * Method setUpgrade creates the upgrade score
-    * object
-    */
-   public void setUpgrade(int upgrade)
-   {
-       GreenfootImage upgradeImage = getImage();
-       upgradeImage.clear();
-       
-       Font upgradeFont = new Font("Poetsen One", 20);
-       upgradeImage.setFont(upgradeFont);
-       
-       upgradeImage.setColor(color);
-       upgradeImage.drawString("" + upgrade, 144, 35);
-       playerUpgrade = upgrade;
-       setImage(upgradeImage);
    }
    /**
     * Act - do whatever the Score wants to do. This method is called whenever
@@ -59,7 +41,7 @@ public class Score extends Actor
     */
    public void act() 
    {
-       setScore(target);
+       setPlayerScore(target);
    }
    /**
     * Method addPoint adds points to the current score
@@ -81,10 +63,6 @@ public class Score extends Actor
    public int getPoint()
    {
        return target;
-   }
-   public int getPlayerUpgrade()
-   {
-       return playerUpgrade;
    }
    /**
     * Method getWorld returns the actor's world as a BrownieWorld

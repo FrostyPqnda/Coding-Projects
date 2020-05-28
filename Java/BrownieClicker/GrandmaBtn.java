@@ -40,7 +40,7 @@ public class GrandmaBtn extends Button
                 GN++;
                 updateGrannyCounter();
                 futureValue();
-                getWorld().antiCheatScore();
+                getWorld().saveCurrentScore();
             }
         }
     }
@@ -56,7 +56,7 @@ public class GrandmaBtn extends Button
      */
     public void updateGrannyCounter()
     {       
-        Score point = getWorld().getGrandmaCounter();
+        UpgradeDisplay point = getWorld().getGrandmaCounter();
         point.addPoint(1);
     }
     /**

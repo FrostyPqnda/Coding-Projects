@@ -14,19 +14,18 @@ public class BrownieWorld extends World
     private GrandmaBtn grannyBtn; // Granny upgrade
     private FactoryBtn factorialBtn; // Factory upgrade
     private ClickBtn autoclick; // Autoclicker upgrade 
-    private Score grandmaCounter; // Granny upgrade counter
-    private Score factoryCounter; // Factory upgrade counter
-    private Score autoclickCounter; // Autoclicker upgrade counter
-    public UserInfo scoreInfo; // Save score
-    public UserInfo gInfo; // Saves the grandma upgrade
-    public UserInfo fInfo; // Saves the factory upgrade
-    public UserInfo cInfo; // Saves the autoclicker upgrade
+    private UpgradeDisplay grandmaCounter; // Granny upgrade counter
+    private UpgradeDisplay factoryCounter; // Factory upgrade counter
+    private UpgradeDisplay autoclickCounter; // Autoclicker upgrade counter
+    public UserInfo playerInfo; // Save score
     private int score = 0; // Player score
     private SaveBtn save = new SaveBtn(); // Sabe button;
-    private int gCount, fCount, cCount = 0; // The starting value of the upgrades
+    private int gCount; // starting value of grandma upgrade
+    private int fCount; // starting value of factory upgrade 
+    private int cCount; // starting value of autoclick upgrade
     boolean startPressed = false; // Game start
     boolean isPaused = true; // Game paused
-    boolean pressedSave = false;
+    boolean pressedSave = false; // checks if save btn has been pressed
     Start startBtn = null; // Start btn object
     Title screen = null; // Screen object
     InfoBtn info = null; // Info button
@@ -42,13 +41,13 @@ public class BrownieWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
         Greenfoot.start();
-        setPaintOrder(BrownieWorld.class, Start.class, InfoBtn.class, Title.class, BackBtn.class, Instruction.class, Score.class, Brownie.class, Button.class, Container.class, BackToMenu.class, SaveBtn.class, MiniBrownies.class);
+        setPaintOrder(BrownieWorld.class, Start.class, InfoBtn.class, Title.class, BackBtn.class, Instruction.class, Score.class, UpgradeDisplay.class, Brownie.class, Button.class, Container.class, BackToMenu.class, SaveBtn.class, MiniBrownies.class);
         // Brownie
         clickableBrownie = new Brownie();
         addObject(clickableBrownie, getWidth() / 2, getHeight() / 2);
         // Score
         scoreObj = new Score();
-        scoreObj.setScore(score);
+        scoreObj.setPlayerScore(score);
         addObject(scoreObj, getWidth() / 2 , 30);
         addButtons(); // Buttons
         titleScreen(); // Title Screen
@@ -82,7 +81,7 @@ public class BrownieWorld extends World
             startPressed = true;
             isPaused = false;
             removeObject(step);
-            scoreInfo.getMyInfo();
+            playerInfo.getMyInfo();
             addObject(save, getWidth() / 2, 363);
             addObject(backMenu, (getWidth() / 2) - 270, 370);
         }
@@ -90,21 +89,19 @@ public class BrownieWorld extends World
         if(Greenfoot.mouseClicked(save))
         {
             saveScore();
-            saveGScore();
-            saveFScore();
-            saveCScore();
         }
         try
         {
             reloadScore();
         }
-        catch(java.lang.NullPointerException exception)
+        catch(java.lang.NullPointerException e)
         {
             System.out.println("ERROR!");
+            e.printStackTrace();
         }
         if(Greenfoot.mouseClicked(backMenu))
         {
-            antiCheatScore();
+            saveCurrentScore();
         }
         endSimulation();
     }
@@ -133,17 +130,20 @@ public class BrownieWorld extends World
         {
             pressedSave = true;
             // Score
-            score = scoreInfo.getScore();
-            scoreObj.setScore(score);
-            // Granny
-            gCount = gInfo.getScore();
+            score = playerInfo.getScore();
+            scoreObj.setPlayerScore(score);
+            
+            gCount = playerInfo.getInt(0);
+            fCount = playerInfo.getInt(1);
+            cCount = playerInfo.getInt(2);
+            
             grandmaCounter.setUpgrade(gCount);
-            // Factory
-            fCount = fInfo.getScore();
+            
             factoryCounter.setUpgrade(fCount);
-            // Autoclicker
-            cCount = cInfo.getScore();
+            
             autoclickCounter.setUpgrade(cCount);
+            
+            //System.out.println(gCount + "," + fCount + "," + cCount);
         } 
     }
     /**
@@ -156,7 +156,8 @@ public class BrownieWorld extends World
         {
             Greenfoot.playSound("Complete.wav");
             Greenfoot.setWorld(new EndCard());
-            scoreObj.setScore(0);
+            score = 0;
+            scoreObj.setPlayerScore(score);
         }
     }
     /**
@@ -172,9 +173,9 @@ public class BrownieWorld extends World
         grannyBtn = new GrandmaBtn();
         addObject(grannyBtn, 50, 48);
         // Upgrade counter
-        grandmaCounter = new Score();
+        grandmaCounter = new UpgradeDisplay();
         grandmaCounter.setUpgrade(gCount);
-        addObject(grandmaCounter, 555, 48);
+        addObject(grandmaCounter, 560, 48);
     }
     /**
      * Method factoryUpgradeCounter keeps track of how many
@@ -189,9 +190,9 @@ public class BrownieWorld extends World
         factorialBtn = new FactoryBtn();
         addObject(factorialBtn, 50, 150);
         // Upgrade counter
-        factoryCounter = new Score();
+        factoryCounter = new UpgradeDisplay();
         factoryCounter.setUpgrade(fCount);
-        addObject(factoryCounter, 555, 150);
+        addObject(factoryCounter, 560, 150);
     }
     /**
      * Method factoryUpgradeCounter keeps track of how many
@@ -206,9 +207,9 @@ public class BrownieWorld extends World
         autoclick = new ClickBtn();
         addObject(autoclick, 50, 247);
         // Upgrade counter
-        autoclickCounter = new Score();
+        autoclickCounter = new UpgradeDisplay();
         autoclickCounter.setUpgrade(cCount);
-        addObject(autoclickCounter, 555, 247);
+        addObject(autoclickCounter, 560, 247);
     }
     /**
      * Method addButton adds the buttons to the world
@@ -226,60 +227,28 @@ public class BrownieWorld extends World
     {
         if(UserInfo.isStorageAvailable())
         {
-            scoreInfo = UserInfo.getMyInfo();
-            if(scoreObj.getPoint() > scoreInfo.getScore())
+            playerInfo = UserInfo.getMyInfo();
+            if(scoreObj.getPoint() > playerInfo.getScore())
             {
-                scoreInfo.setScore(scoreObj.getPoint());
-                scoreInfo.store(); // Save to server
+                playerInfo.setScore(scoreObj.getPoint());
             }
-        }
-    }
-    public void saveGScore()
-    {
-        if(UserInfo.isStorageAvailable())
-        {
-            gInfo = UserInfo.getMyInfo();
-            if(grandmaCounter.getPlayerUpgrade() > gInfo.getScore())
-            {
-                gInfo.setScore(grandmaCounter.getPlayerUpgrade());
-                gInfo.store();
-            }
-        }
-    }
-    public void saveFScore()
-    {
-        if(UserInfo.isStorageAvailable())
-        {
-            fInfo = UserInfo.getMyInfo();
-            if(factoryCounter.getPlayerUpgrade() > fInfo.getScore())
-            {
-                fInfo.setScore(factoryCounter.getPlayerUpgrade());
-                fInfo.store();
-            }
-        }
-    }
-    public void saveCScore()
-    {
-        if(UserInfo.isStorageAvailable())
-        {
-            cInfo = UserInfo.getMyInfo();
-            if(autoclickCounter.getPlayerUpgrade() > cInfo.getScore())
-            {
-                cInfo.setScore(autoclickCounter.getPlayerUpgrade());
-                cInfo.store();
-            }
+            playerInfo.setInt(0, grandmaCounter.getPlayerUpgrade());
+            playerInfo.setInt(1, factoryCounter.getPlayerUpgrade());
+            playerInfo.setInt(2, autoclickCounter.getPlayerUpgrade());
+            playerInfo.store(); // Save to server
         }
     }
     /**
-     * Literally exist so players don't cheat their scores
+     * Overwrites the player's score if they make a purchase
+     * or exit
      */
-    public void antiCheatScore()
+    public void saveCurrentScore()
     {
         if(UserInfo.isStorageAvailable())
         {
-            scoreInfo = UserInfo.getMyInfo();
-            scoreInfo.setScore(scoreObj.getPoint());
-            scoreInfo.store(); // Save to server
+            playerInfo = UserInfo.getMyInfo();
+            playerInfo.setScore(scoreObj.getPoint());
+            playerInfo.store(); // Save to server
         }
     }
     /**
@@ -300,21 +269,21 @@ public class BrownieWorld extends World
     /**
      * Method getGrandmaCounter returns the grandmaCounter
      */
-    public Score getGrandmaCounter()
+    public UpgradeDisplay getGrandmaCounter()
     {
         return grandmaCounter;
     }
     /**
      * Method getFactoryCounter returns the factoryCounter
      */
-    public Score getFactoryCounter()
+    public UpgradeDisplay getFactoryCounter()
     {
         return factoryCounter;
     }
     /**
      * Method getAutoclickCounter returns the factoryCounter
      */
-    public Score getAutoclickCounter()
+    public UpgradeDisplay getAutoclickCounter()
     {
         return autoclickCounter;
     }

@@ -28,6 +28,7 @@ public class MiniBrownies extends Brownie
     {
         GreenfootImage mini = getImage();  
         mini.scale(mini.getWidth() - 525, mini.getHeight() - 525);  
+        mini.setTransparency(235);
         setImage(mini); 
         turn(90);
     }

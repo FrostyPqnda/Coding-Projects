@@ -40,7 +40,7 @@ public class FactoryBtn extends Button
                 TN++;
                 updateFactoryCounter();
                 futureValue();
-                getWorld().antiCheatScore();
+                getWorld().saveCurrentScore();
             }
         }
     }
@@ -56,7 +56,7 @@ public class FactoryBtn extends Button
      */
     private void updateFactoryCounter()
     {
-        Score point = getWorld().getFactoryCounter();
+        UpgradeDisplay point = getWorld().getFactoryCounter();
         point.addPoint(1);
     }
     /**

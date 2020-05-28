@@ -40,7 +40,7 @@ public class ClickBtn extends Button
                 AN++;
                 updateAutoclickCounter();
                 futureValue();
-                getWorld().antiCheatScore();
+                getWorld().saveCurrentScore();
             }
         }
     }
@@ -56,7 +56,7 @@ public class ClickBtn extends Button
      */
     private void updateAutoclickCounter()
     {
-        Score point = getWorld().getAutoclickCounter();
+        UpgradeDisplay point = getWorld().getAutoclickCounter();
         point.addPoint(1);
     }
     /**
