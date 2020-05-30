@@ -19,7 +19,7 @@ UserFile = open(file_name, "w")
 write_to_file = raw_input("Type: ")
 UserFile.write(write_to_file)
 UserFile.close()
-print("SUCCESS!")
+print("SUCCESS! File written to " + file_name)
 
 
     
