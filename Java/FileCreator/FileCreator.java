@@ -31,7 +31,7 @@ public class FileCreator
 			user_file.close();
 			input.close();
 			name_file.close();
-			System.out.println("Successfully wrote to the file.");
+			System.out.println("SUCCESS! File written to " file_name);
 		}
 		catch (IOException e)
 		{
