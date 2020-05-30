@@ -12,7 +12,7 @@ public class PalindromeChecker extends FindPalindrome
 		System.out.println("A palindrome is word/phrase that remains the \nsame when read in reverse. \n");
 		
 		Scanner input = new Scanner(System.in);
-		System.out.print("Check if a word/phrase is a palindrome:  ");
+		System.out.print("Check if a word/phrase is a palindrome: ");
 		String text = input.nextLine();
 		
 		boolean palin = palindrome(text);
