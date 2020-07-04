@@ -11,14 +11,15 @@ phone_book = {}
 name = ""
 number = ""
 while True:
-    name = raw_input("Enter name: ")
+    name = input("Enter name: ")
     if name == "":
         break
     elif name in phone_book:
         print ("Phone number: " + str(phone_book[name]))
     else:
-        number = raw_input("Enter phone number: ")
+        number = input("Enter phone number: ")
         phone_book[name] = number
+
 print (phone_book)
 
 

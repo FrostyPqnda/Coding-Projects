@@ -8,9 +8,9 @@ Python program that asks user to input a sentence
 and a word to check if the word appears in the
 sentence.
 """
-word = raw_input("Enter a sentence: ")
+word = input("Enter a sentence: ")
 
-string = raw_input("Enter a word: ")
+string = input("Enter a word: ")
 
 def count_occurrences(word, string):
     for letter in string:

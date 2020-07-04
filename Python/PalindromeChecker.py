@@ -17,7 +17,7 @@ def is_palindrome(word):
         return True
     return False
 
-inputText = raw_input("Enter a word: ");
+inputText = input("Enter a word: ")
 
 palindrome = is_palindrome(inputText)
 
