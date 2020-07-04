@@ -6,6 +6,7 @@ Created on Jun 4, 2020
 """
 Hangman game project from my CodeHS assignment
 """
+# Retrieve word list from website url
 import random
 import requests
 
@@ -13,6 +14,7 @@ word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-typ
 response = requests.get(word_site)
 list_of_words = response.content.splitlines()
 secret_word = random.choice(list_of_words)
+#secret_word = random.choice(["rabbits", "dogs", "frogs", "cats", "snake", "gecko"])
 dashes = "-" * len(secret_word)
 guesses_left = len(secret_word)
 wrong = []
@@ -22,8 +24,9 @@ def get_guess(word):
     global guesses_left
     
     while True:
-        guess = raw_input("Guess: ")
+        guess = input("Guess: ")
         guess = guess.lower()
+        guess = guess.encode()
         
         if len(guess) != 1:
             print("Your guess must have exactly one character!")
@@ -36,7 +39,7 @@ def get_guess(word):
             break
         else:
             print("That letter is in the secret word!")
-            return guess
+            return guess.decode()
             break
     
 def update_dashes(word, dashes, guess):    
@@ -54,16 +57,16 @@ def play_hangman():
     
     end = False
     while not end:
-        print(str(guesses_left) + " guesses left. \n")
+        print(str(guesses_left) + " guesses left.")
         print(dashes + '        ')
         guess = get_guess(secret_word)
-        dashes = update_dashes(secret_word, dashes, guess)
+        dashes = update_dashes(secret_word.decode(), dashes, guess)
         if dashes == secret_word:
             print("CONGRATS! YOU HAVE GUESSED THE WORD!")
-            print("The word was " + secret_word)
+            print("The word was " + secret_word.decode())
             end = True
         if guesses_left == 0:
-            print("You lose. The secret word was " + secret_word)
+            print("You lose. The secret word was " + secret_word.decode())
             end = True
         
     
