@@ -61,7 +61,7 @@ def play_hangman():
         print(dashes + '        ')
         guess = get_guess(secret_word)
         dashes = update_dashes(secret_word.decode(), dashes, guess)
-        if dashes == secret_word:
+        if dashes == secret_word.decode():
             print("CONGRATS! YOU HAVE GUESSED THE WORD!")
             print("The word was " + secret_word.decode())
             end = True
