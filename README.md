@@ -1,8 +1,4 @@
 # Coding-Portfolio
-Coding Projects
 
+Coding Projects I have created mostly in Java and Python. Some in C# and C++
 
-
-I make garbage projects with any languages I know or will use, mostly Java and Python.
-
-Also, I'm bad with all the languages I know.
