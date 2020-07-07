@@ -1,6 +1,6 @@
 //
-//  StringIntCalculator.cpp
-//  StringIntCalculator
+//  StringNumCalculator.cpp
+//  StringNumCalculator
 //
 //  Created by Brian Pham on 6/1/20.
 //  Copyright © 2020 FrostyPqnda. All rights reserved.
@@ -15,15 +15,15 @@ static double AddStrings(string a, string b)
 {
     try {
         double sum;
-        
+
         double aNum = stod(a);
         double bNum = stod(b);
-        
+
         return sum = aNum + bNum;
     } catch (invalid_argument ia) {
         cout << ia.what();
     }
-    
+
     return 0;
 }
 // Converts two strings into a double and subtracts them
@@ -31,15 +31,15 @@ static double SubtractStrings(string a, string b)
 {
     try {
         double sum;
-        
+
         double aNum = stod(a);
         double bNum = stod(b);
-        
+
         return sum = aNum - bNum;
     } catch (invalid_argument ia) {
         cout << ia.what();
     }
-    
+
     return 0;
 }
 // Converts two strings into a double and multiplies them
@@ -47,15 +47,15 @@ static double MultiplyStrings(string a, string b)
 {
     try {
         double sum;
-        
+
         double aNum = stod(a);
         double bNum = stod(b);
-        
+
         return sum = aNum * bNum;
     } catch (invalid_argument ia) {
         cout << ia.what();
     }
-    
+
     return 0;
 }
 // Converts two strings into a double and divides them
@@ -63,7 +63,7 @@ static double DivideStrings(string a, string b)
 {
     try {
         double sum;
-        
+
         double aNum = stod(a);
         double bNum = stod(b);
         if(bNum != 0)
@@ -77,7 +77,7 @@ static double DivideStrings(string a, string b)
     } catch (invalid_argument ia) {
         cout << ia.what();
     }
-    
+
     return 0; // Returns 0 if value is a non-double or divided by 0
 }
 
@@ -86,15 +86,15 @@ int main()
     string x;
     cout << "Enter first value: ";
     cin >> x;
-    
+
     string y;
     cout << "Enter second value: ";
     cin >> y;
-    
+
     string input;
     cout << "ADD / SUBTRACT / MULTIPLY / DIVIDE? ";
     cin >> input;
-    
+
     if (input == "ADD")
     {
         double addS = AddStrings(x, y);
