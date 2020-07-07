@@ -14,7 +14,6 @@ word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-typ
 response = requests.get(word_site)
 list_of_words = response.content.splitlines()
 secret_word = random.choice(list_of_words)
-#secret_word = random.choice(["rabbits", "dogs", "frogs", "cats", "snake", "gecko"])
 dashes = "-" * len(secret_word)
 guesses_left = len(secret_word)
 wrong = []
