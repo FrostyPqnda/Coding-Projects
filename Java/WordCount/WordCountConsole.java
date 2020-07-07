@@ -6,7 +6,7 @@ public class WordCountConsole extends WordCount
 	public static void main(String[] args) 
 	{
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter a word/sentence: ");
+		System.out.print("Enter a word/sentence: ");
 		String word = input.nextLine();
 		HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
 		String[] words = word.split(" ");
