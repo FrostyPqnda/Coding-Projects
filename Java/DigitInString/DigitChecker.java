@@ -19,9 +19,9 @@ public class DigitChecker
 				
 			}
 			catch (NumberFormatException nfe)
-		    {
-		      return false;
-		    }
+		    	{
+		      		return false;
+		    	}
 		}
 		return true;
 	}
