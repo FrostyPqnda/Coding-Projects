@@ -8,8 +8,8 @@ public class PasswordCheckerConsole extends PasswordChecker
 		System.out.print("Enter a password: ");
 		String password = input.nextLine();
 		Boolean passwordLength = checkPassword(password);
-    	System.out.println(passwordLength);
-    	input.close();
+		System.out.println(passwordLength);
+		input.close();
 	}
 
 }
