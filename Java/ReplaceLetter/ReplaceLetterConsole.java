@@ -23,10 +23,11 @@ public class ReplaceLetterConsole extends ReplaceLetter
 		char replacingLetter = inputReplacingLetter.next().charAt(0);
 		
 		String replace = replaceLetter(word, letterToReplace, replacingLetter);
-        System.out.print("Result: " + replace);
-        inputWord.close();
-        inputLetterToReplace.close();
-        inputReplacingLetter.close();
+		System.out.print("Result: " + replace);
+		
+		inputWord.close();
+		inputLetterToReplace.close();
+		inputReplacingLetter.close();
 	}
 
 }
