@@ -25,11 +25,8 @@ public class GameTester
 		System.out.print("Enter the world in which the game takes place: ");
 		String bg = world.nextLine();
 		
-		
-		
 		VideoGame VGD = new VideoGame(name, hero, villian, bg);
 		System.out.println(VGD);
-		
 		
 		logo.close();
 		savior.close();
