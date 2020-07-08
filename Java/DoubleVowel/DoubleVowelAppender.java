@@ -17,27 +17,26 @@ public class DoubleVowelAppender
 				vowel += "aa"; 
 			}
 			else if(curr == 'e')
-            {
-				
-                vowel += "ee";
-            }
+            		{
+                		vowel += "ee";
+            		}
 			else if(curr == 'i')
-            {
-                vowel += "ii";
-            }
-            else if(curr == 'o')
-            {
-                vowel += "oo";
-            }
-            else if(curr == 'u')
-            {
-                vowel += "uu";
-            }
-            else
-            {
-                vowel += curr;
-            }
-        }
-        return vowel;
+		    	{
+				vowel += "ii";
+		    	}
+            		else if(curr == 'o')
+		    	{
+				vowel += "oo";
+		    	}
+            		else if(curr == 'u')
+            		{
+                		vowel += "uu";
+            		}
+            		else
+            		{
+                		vowel += curr;
+            		}	
+		}
+		return vowel;
 	} 
 }
