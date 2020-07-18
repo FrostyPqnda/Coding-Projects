@@ -7,7 +7,7 @@
 public class VideoGame
 {
     // Class variables go here:
-    String gameName;
+    String title;
     String hero;
     String villian;
     String setting;
@@ -16,12 +16,12 @@ public class VideoGame
     int score;
     
     // Constructor for class VideoGame
-    public VideoGame(String title, String protagonist, String enemy, String area)
+    public VideoGame(String title, String hero, String villian, String setting)
     {
-        gameName = title;
-        hero = protagonist;
-        villian = enemy;
-        setting = area;
+        this.title = title;
+        this.hero = hero;
+        this.villian = villian;
+        this.setting = setting;
         
         topScoreInitials = "*";
         score = 0;
@@ -44,7 +44,7 @@ public class VideoGame
     // ToString Method for class VideoGame
     public String toString()
     {
-        return "In " + gameName + ", you, the hero " + hero + ", are on a quest to defeat the dreaded " + villian + " and save all of " + setting + ".";
+        return "In " + title + ", you, the hero " + hero + ", are on a quest to defeat the dreaded " + villian + " and save all of " + setting + ".";
     }
 }
 
