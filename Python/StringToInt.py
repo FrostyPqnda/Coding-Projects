@@ -11,6 +11,6 @@ def safe_int(word):
     except ValueError:
         return 0
     
-string_int = ['194234', '902', ' 332', 'A', 'B', 'C']
+string_int = ['1', '2', ' 3', 'A', 'B', 'C']
 
 print ([safe_int(word) for word in string_int])
