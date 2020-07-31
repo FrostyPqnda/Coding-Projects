@@ -16,12 +16,12 @@ public class DigitChecker
 				{
 					return true;
 				}
-				
+	
 			}
 			catch (NumberFormatException nfe)
-		    	{
-		      		return false;
-		    	}
+			{
+				return false;
+			}
 		}
 		return true;
 	}
