@@ -6,23 +6,22 @@ public class DigitChecker
 	 */
 	public static boolean digitChecker(String str)
 	{
-		for(int i = 0; i < str.length(); i++)
+		String text = "";
+
+		char[] digit = text.toCharArray();
+
+		for(char c : digit)
 		{
-			try
+			if(Character.isDigit(c))
 			{
-				int num = Integer.parseInt(str);
-				
-				if(Character.isDigit(num))
-				{
-					return true;
-				}
-	
+				return true;
 			}
-			catch (NumberFormatException nfe)
+			else
 			{
 				return false;
 			}
 		}
+
 		return true;
 	}
 }

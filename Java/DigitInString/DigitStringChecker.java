@@ -18,11 +18,11 @@ public class DigitStringChecker extends DigitChecker
 		
 		if(checkForDigit)
 		{
-			System.out.println(str + " is a digit.");
+			System.out.println("Contains a digit!");
 		}
 		else
 		{
-			System.out.println(str + " is not a digit.");
+			System.out.println("Does not contain a digit.");
 		}
 		
 		input.close();
