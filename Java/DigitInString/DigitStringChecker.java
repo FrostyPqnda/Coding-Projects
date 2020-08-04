@@ -3,7 +3,7 @@ import java.util.*;
  * @author brian
  * 
  * DigitStringChecker will check if a given string
- * only contains numbers
+ * contains a number
  */
 public class DigitStringChecker extends DigitChecker
 {
