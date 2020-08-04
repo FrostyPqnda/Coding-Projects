@@ -10,18 +10,21 @@ public class DigitChecker
 
 		char[] digit = text.toCharArray();
 
-		for(char c : digit)
+		if(text != null || !text.isEmpty())
 		{
-			if(Character.isDigit(c))
+			for(char c : digit)
 			{
-				return true;
-			}
-			else
-			{
-				return false;
+				if(Character.isDigit(c))
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 			}
 		}
 
-		return true;
+		return false;
 	}
 }
