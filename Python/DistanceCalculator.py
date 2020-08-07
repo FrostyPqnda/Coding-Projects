@@ -26,6 +26,7 @@ def distance(pos1, pos2):
     roundedResult = round(result, 2)
     
     print ("The distance from " + str(pos1) + " to " + str(pos2) + " is " + str(roundedResult) + " units.")
+
 distance(pos1, pos2)
 
 
