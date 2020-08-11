@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 /**
  * 
  * @author FrostyPqnda
@@ -13,26 +13,21 @@ public class AddThreeStrings extends AddStrings
 	public static void main(String[] args) 
 	{
 		
-		Scanner one = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
+
 		System.out.print("Enter first value: ");
-		String inputOne = one.nextLine();
+		String inputOne = input.nextLine();
 		
-		Scanner two = new Scanner(System.in);
 		System.out.print("Enter second value: ");
-		String inputTwo = two.nextLine();
+		String inputTwo = input.nextLine();
 		
-		Scanner three = new Scanner(System.in);
 		System.out.print("Enter third value: ");
-		String inputThree = three.nextLine();
+		String inputThree = input.nextLine();
 		
 		double addStrings = sumStrings(inputOne, inputTwo, inputThree);
 		System.out.println(addStrings);
-		
-		
-		one.close();
-		two.close();
-		three.close();
-		
+
+		input.close();
 
 	}
 
