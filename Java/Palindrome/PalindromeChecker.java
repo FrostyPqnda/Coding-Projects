@@ -18,12 +18,11 @@ public class PalindromeChecker extends FindPalindrome
 		boolean palin = palindrome(text);
 		System.out.println(palin);
 		
-		if(palin == true)
+		if(palin)
 		{
 			System.out.println(text + " is a palindrome!");
 		}
-		
-		if(palin == false)
+		else
 		{
 			System.out.println(text + " is not a palindrome :(");
 		}
