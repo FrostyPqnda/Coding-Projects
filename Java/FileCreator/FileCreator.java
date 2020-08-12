@@ -14,15 +14,14 @@ public class FileCreator
 	{
 		try
 		{
+			Scanner input = new Scanner(System.in);
 			// File is being named
-			Scanner name_file = new Scanner(System.in);
 			System.out.print("Name your file: ");
-			String file_name_input = name_file.nextLine();
+			String file_name_input = input.nextLine();
 			String file_name = file_name_input.concat(".txt");
 			
 			// File content is being created
 			FileWriter user_file = new FileWriter(file_name);
-			Scanner input = new Scanner(System.in);
 			System.out.println("Type out what you want on your txt file: ");
 			String text = input.nextLine();
 			user_file.write(text);
@@ -30,7 +29,6 @@ public class FileCreator
 			// File is finished
 			user_file.close();
 			input.close();
-			name_file.close();
 			System.out.println("SUCCESS! File written to " + file_name);
 		}
 		catch (IOException e)
