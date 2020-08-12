@@ -14,11 +14,11 @@ public class ReplaceLetter
 		{
 		    if(word.charAt(i) == letterToReplace)
 		    {
-			letterReplacement += replacingLetter;
+				letterReplacement += replacingLetter;
 		    }
 		    else
 		    {
-			letterReplacement += word.charAt(i);
+				letterReplacement += word.charAt(i);
 		    }
 		}
 		return letterReplacement;
