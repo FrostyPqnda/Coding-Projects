@@ -4,20 +4,22 @@ namespace CardGame
 {
     class Card
     {
-        public static int FIRE = 0;
-        public static int EARTH = 1;
-        public static int WATER = 2;
-        public static int AIR = 3;
+        public static readonly int FIRE = 0;
+        public static readonly int EARTH = 1;
+        public static readonly int WATER = 2;
+        public static readonly int AIR = 3;
 
-        public static int RED = 0;
-        public static int ORANGE = 1;
-        public static int YELLOW = 2;
-        public static int GREEN = 3;
-        public static int BLUE = 4;
-        public static int PURPLE = 5;
+        public static readonly int RED = 0;
+        public static readonly int ORANGE = 1;
+        public static readonly int YELLOW = 2;
+        public static readonly int GREEN = 3;
+        public static readonly int BLUE = 4;
+        public static readonly int PURPLE = 5;
+        public static readonly int BLACK = 6;
+        public static readonly int WHITE = 7;
 
         public static String[] elements = {"Fire", "Earth", "Water", "Air"};
-        public static String[] colors = {"red", "orange", "yellow", "green", "blue", "purple"};
+        public static String[] colors = {"red", "orange", "yellow", "green", "blue", "purple", "black", "white"};
 
         int element;
         int value;
@@ -30,22 +32,22 @@ namespace CardGame
             this.color = color;
         }
 
-        public int getElement()
+        public int GetElement()
         {
             return element;
         }
 
-        public int getValue()
+        public int GetValue()
         {
             return value;
         }
 
-        public int getColor()
+        public int GetColor()
         {
             return color;
         }
 
-        public String getArticle()
+        public String GetArticle()
         {
             if(color == ORANGE)
             {
@@ -54,26 +56,26 @@ namespace CardGame
             return "a";
         }
         // Returns an element from the elements array
-        public String getElementFromArray()
+        public String GetElementFromArray()
         {
             return elements[element];
         }
 
         // Returns a value as a string
-        public String getStringValue()
+        public String GetStringValue()
         {
             return value.ToString();
         }
 
         // Returns a color from the colors array
-        public String getColorFromArray()
+        public String GetColorFromArray()
         {
             return colors[color];
         }
 
         public String toString()
         {
-            return getColorFromArray() + " " + getElementFromArray() + " card of value " + getStringValue();
+            return GetColorFromArray() + " " + GetElementFromArray() + " card of value " + GetStringValue();
         }
     }
 }
