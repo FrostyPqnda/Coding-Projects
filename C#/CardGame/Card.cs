@@ -35,21 +35,26 @@ namespace CardGame
             this.color = color;
         }
 
+        // GetElement returns the int element variable
         public int GetElement()
         {
             return element;
         }
 
+        // GetValue returns the int value variable
         public int GetValue()
         {
             return value;
         }
 
+        // GetColor returns the int color variable
         public int GetColor()
         {
             return color;
         }
 
+        // GetArticle fixes the grammar if the color
+        // is orange
         public String GetArticle()
         {
             if(color == ORANGE)
@@ -65,7 +70,7 @@ namespace CardGame
         }
 
         // Returns a value as a string
-        public String GetStringValue()
+        public String GetValueToString()
         {
             return value.ToString();
         }
@@ -78,7 +83,7 @@ namespace CardGame
 
         public String toString()
         {
-            return GetColorFromArray() + " " + GetElementFromArray() + " card of value " + GetStringValue();
+            return GetColorFromArray() + " " + GetElementFromArray() + " card of value " + GetValueToString();
         }
     }
 }
