@@ -25,6 +25,9 @@ namespace CardGame
         int value;
         int color;
 
+        // Constructor for the Card class.
+        // Takes in the element, value, and
+        // color parameter
         public Card(int element, int value, int color)
         {
             this.element = element;
