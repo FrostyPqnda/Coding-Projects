@@ -49,10 +49,12 @@ namespace CardGame
         {
             return deck;
         }
-
-        public void deal()
+        
+        // DealCard will create new cards if
+        // the deck is empty and remove the
+        // 0th index of the deck.
+        public void DealCard()
         {
-            
             if(!deck.Any())
             {
                 CreateCards();
