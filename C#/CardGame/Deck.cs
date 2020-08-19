@@ -23,6 +23,8 @@ namespace CardGame
         private List<Card> deck;
         Random rand = new Random();
 
+        // Deck class constructor
+        // Sets the deck variable to a new list that takes in the Card object
         public Deck()
         {
             deck = new List<Card>();

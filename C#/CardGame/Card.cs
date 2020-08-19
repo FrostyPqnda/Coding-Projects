@@ -63,6 +63,7 @@ namespace CardGame
             }
             return "a";
         }
+        
         // Returns an element from the elements array
         public String GetElementFromArray()
         {
