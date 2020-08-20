@@ -4,7 +4,7 @@ using System;
 
 namespace CardGame
 {
-    class Deal
+    class Dealer
     {
         public static readonly int FIRE = 0;
         public static readonly int EARTH = 1;
@@ -22,7 +22,7 @@ namespace CardGame
 
         private List<Card> deal;
 
-        public Deal()
+        public Dealer()
         {
             deal = new List<Card>();
         }
@@ -43,6 +43,45 @@ namespace CardGame
             }
 
             return null;
+        }
+
+        public Card UseCard(int element, int value)
+        {
+            Card c = GetCard(element, value);
+
+            if(c == null)
+            {
+                return null;
+            } 
+
+            deal.Remove(c);
+            return c;
+        }
+
+        public Card UseCard(int index)
+        {
+            Card c = deal.ElementAt(index);
+            deal.RemoveAt(index);
+            return c;
+        }
+
+        public String ConvertToString()
+        {
+            String text = "";
+
+            for(int i = 0; i < deal.Count; i++)
+            {
+                if(i == deal.Count - 1)
+                {
+                    text += "and " + deal.ElementAt(i).GetArticle() + " " + deal.ElementAt(i).ToString();
+                }
+                else
+                {
+                    text += deal.ElementAt(i).GetArticle() + " " + deal.ElementAt(i).ToString() + ", ";
+                }
+            }
+
+            return text;
         }
     }
 }

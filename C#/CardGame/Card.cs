@@ -18,8 +18,8 @@ namespace CardGame
         public static readonly int BLACK = 6;
         public static readonly int WHITE = 7;
 
-        public static String[] elements = {"Fire", "Earth", "Water", "Air"};
-        public static String[] colors = {"red", "orange", "yellow", "green", "blue", "purple", "black", "white"};
+        public static readonly String[] elements = {"Fire", "Earth", "Water", "Air"};
+        public static readonly String[] colors = {"red", "orange", "yellow", "green", "blue", "purple", "black", "white"};
 
         int element;
         int value;
@@ -82,7 +82,7 @@ namespace CardGame
             return colors[color];
         }
 
-        public String toString()
+        public String ConvertToString()
         {
             return GetColorFromArray() + " " + GetElementFromArray() + " card of value " + GetValueToString();
         }

@@ -7,7 +7,11 @@ namespace CardGame
         static void Main(String[] args)
         {
             Card fire = new Card(0, 11, 5);
-            Console.WriteLine(fire.toString());
+            Console.WriteLine(fire.ConvertToString());
+
+            Dealer d = new Dealer();
+
+            Console.WriteLine(d);
 
             Console.ReadKey();
         }
