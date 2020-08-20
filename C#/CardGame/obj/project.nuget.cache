@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cOLYItCk4rHdDRD+3EUwkch9fXQV/4e2HZ4ygJXpB7VsLa1kbP9AW0wi0wxGySzrddEX9J4uYPCzLort6z+3rA==",
+  "dgSpecHash": "PFLJk3cHJj6B2YQpGqi6JYL31WXNTDfDwr7WXEOcYLLWX6q6olYtY57e9ANdNLENbMAa4bLvfv3wwYUcd84vdw==",
   "success": true,
-  "projectFilePath": "/Users/brian/Coding-Projects/C#/CardGame/CardGame.csproj",
+  "projectFilePath": "D:\\Coding-Projects\\C#\\CardGame\\CardGame.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

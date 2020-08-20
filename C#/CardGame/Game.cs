@@ -8,6 +8,8 @@ namespace CardGame
         {
             Card fire = new Card(0, 11, 5);
             Console.WriteLine(fire.toString());
+
+            Console.ReadKey();
         }
     }
 }

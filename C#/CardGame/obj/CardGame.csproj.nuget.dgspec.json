@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/brian/Coding-Projects/C#/CardGame/CardGame.csproj": {}
+    "D:\\Coding-Projects\\C#\\CardGame\\CardGame.csproj": {}
   },
   "projects": {
-    "/Users/brian/Coding-Projects/C#/CardGame/CardGame.csproj": {
+    "D:\\Coding-Projects\\C#\\CardGame\\CardGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/brian/Coding-Projects/C#/CardGame/CardGame.csproj",
+        "projectUniqueName": "D:\\Coding-Projects\\C#\\CardGame\\CardGame.csproj",
         "projectName": "CardGame",
-        "projectPath": "/Users/brian/Coding-Projects/C#/CardGame/CardGame.csproj",
-        "packagesPath": "/Users/brian/.nuget/packages/",
-        "outputPath": "/Users/brian/Coding-Projects/C#/CardGame/obj/",
+        "projectPath": "D:\\Coding-Projects\\C#\\CardGame\\CardGame.csproj",
+        "packagesPath": "C:\\Users\\Brian\\.nuget\\packages\\",
+        "outputPath": "D:\\Coding-Projects\\C#\\CardGame\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/brian/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Brian\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -50,7 +50,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.401/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
