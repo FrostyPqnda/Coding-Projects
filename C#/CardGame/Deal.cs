@@ -32,17 +32,17 @@ namespace CardGame
             deal.Add(card);
         }
 
-        public void GetCard(int element, int value)
+        public Card GetCard(int element, int value)
         {
             for(int i = 0; i < deal.Count; i++)
             {
                 if(deal.ElementAt(i).GetElement() == element && deal.ElementAt(i).GetValue() == value)
                 {
-                    deal.ElementAt(i);
+                    return deal.ElementAt(i);
                 }
             }
 
-            return;
+            return null;
         }
     }
 }
