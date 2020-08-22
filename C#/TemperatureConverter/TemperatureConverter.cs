@@ -1,19 +1,19 @@
-using System;
+﻿using System;
 
 namespace TemperatureConverter
 {
-    class TemperatureConversion
+    class TemperatureConversion : TemperatureCalculator
     {
-        public static void Main(string[] args)
-        {
-            Console.Write("What temperature unit would you like to convert (Farenheit/Celsius/Kelvin)? ");
+        static void Main(string[] args)
+        {   
+            Console.Write("What temperature unit would you like to convert (Farenheit (F)/ Celsius (C)/ Kelvin (K))? ");
             String unit = Console.ReadLine();
 
-            Console.Write("To which unit? (Farenheit/Celsius/Kelvin)? ");
+            Console.Write("To which unit? (Farenheit (F)/ Celsius (C)/ Kelvin (K))? ");
             String convert = Console.ReadLine();
             
             // Farenheit to Celsius
-            if (unit == "Farenheit" && convert == "Celsius")
+            if (unit.Equals("F", StringComparison.OrdinalIgnoreCase) && convert.Equals("C", StringComparison.OrdinalIgnoreCase))
             {
                 Console.Write("Enter a value: ");
                 double val = Convert.ToDouble(Console.ReadLine());
@@ -21,7 +21,7 @@ namespace TemperatureConverter
                 Console.WriteLine(c + " degrees Celsius");
             }
             // Farenheit to Kelvin
-            if (unit == "Farenheit" && convert == "Kelvin")
+            if (unit.Equals("F", StringComparison.OrdinalIgnoreCase) && convert.Equals("K", StringComparison.OrdinalIgnoreCase))
             {
                 Console.Write("Enter a value: ");
                 double val = Convert.ToDouble(Console.ReadLine());
@@ -29,7 +29,7 @@ namespace TemperatureConverter
                 Console.WriteLine(k + " degrees Kelvin");
             }
             // Celsius to Farenheit
-            if (unit == "Celsius" && convert == "Farenheit")
+            if (unit.Equals("C", StringComparison.OrdinalIgnoreCase) && convert.Equals("F", StringComparison.OrdinalIgnoreCase))
             {
                 Console.Write("Enter a value: ");
                 double val = Convert.ToDouble(Console.ReadLine());
@@ -37,7 +37,7 @@ namespace TemperatureConverter
                 Console.WriteLine(f + " degrees Farenheit");
             }
             // Celsius to Kelvin
-            if (unit == "Celsius" && convert == "Kelvin")
+            if (unit.Equals("C", StringComparison.OrdinalIgnoreCase) && convert.Equals("K", StringComparison.OrdinalIgnoreCase))
             {
                 Console.Write("Enter a value: ");
                 double val = Convert.ToDouble(Console.ReadLine());
@@ -45,7 +45,7 @@ namespace TemperatureConverter
                 Console.WriteLine(k + " degrees Kelvin");
             }
             // Kelvin to Farenheit
-            if (unit == "Kelvin" && convert == "Farenheit")
+            if (unit.Equals("Kelvin", StringComparison.OrdinalIgnoreCase) && convert.Equals("F", StringComparison.OrdinalIgnoreCase))
             {
                 Console.Write("Enter a value: ");
                 double val = Convert.ToDouble(Console.ReadLine());
@@ -53,7 +53,7 @@ namespace TemperatureConverter
                 Console.WriteLine(f + " degrees Farenheit");
             }
             // Kelvin to Farenheit
-            if (unit == "Kelvin" && convert == "Celsius")
+            if (unit.Equals("Kelvin", StringComparison.OrdinalIgnoreCase) && convert.Equals("C", StringComparison.OrdinalIgnoreCase))
             {
                 Console.Write("Enter a value: ");
                 double val = Convert.ToDouble(Console.ReadLine());
@@ -61,12 +61,14 @@ namespace TemperatureConverter
                 Console.WriteLine(c + " degrees Celsius");
             }
 
-            if (unit == convert)
+            if(unit.Equals(convert, StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("Converting a unit of tempeature into a same unit of temperature (i.e. farenheit to farenheit) will not change the value.");
+                Console.WriteLine("Cannot convert " + unit + " to " + convert + ". Must be of different unit.");
             }
 
             Console.ReadKey();
         }
+
+        
     }
 }

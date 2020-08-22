@@ -1,15 +1,11 @@
 ﻿using System;
 using System.IO;
 
-/**
- * FileCreator is a simple program that allows
- * users to create their own files.
- */
 namespace FileCreator
 {
-    class FileCreator
+    class FileWriter
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
             Console.Write("Name your file: ");
             string file = Console.ReadLine() + ".txt";
@@ -21,6 +17,8 @@ namespace FileCreator
             File.WriteAllText(file, fileContent);
 
             Console.WriteLine(file + " has been created.");
+
+            Console.ReadKey();
         }
     }
 }

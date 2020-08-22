@@ -4,7 +4,7 @@ namespace DigitStringChecker
 {
     class DigitInString
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
             Console.Write("Enter a text: ");
             bool isDigit = DigitChecker(Console.ReadLine());
@@ -18,8 +18,11 @@ namespace DigitStringChecker
                 Console.WriteLine("Does not contain a digit");
             }
 
+            Console.ReadKey();
         }
 
+        // DigitChecker loops through @param str for any
+        // possible numbers
         static bool DigitChecker(String str)
         {
             char[] digit = str.ToCharArray();

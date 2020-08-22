@@ -1,0 +1,13 @@
+D:\Coding-Projects\C#\TemperatureConverter\bin\Debug\netcoreapp3.1\TemperatureConverter.exe
+D:\Coding-Projects\C#\TemperatureConverter\bin\Debug\netcoreapp3.1\TemperatureConverter.deps.json
+D:\Coding-Projects\C#\TemperatureConverter\bin\Debug\netcoreapp3.1\TemperatureConverter.runtimeconfig.json
+D:\Coding-Projects\C#\TemperatureConverter\bin\Debug\netcoreapp3.1\TemperatureConverter.runtimeconfig.dev.json
+D:\Coding-Projects\C#\TemperatureConverter\bin\Debug\netcoreapp3.1\TemperatureConverter.dll
+D:\Coding-Projects\C#\TemperatureConverter\bin\Debug\netcoreapp3.1\TemperatureConverter.pdb
+D:\Coding-Projects\C#\TemperatureConverter\obj\Debug\netcoreapp3.1\TemperatureConverter.csprojAssemblyReference.cache
+D:\Coding-Projects\C#\TemperatureConverter\obj\Debug\netcoreapp3.1\TemperatureConverter.AssemblyInfoInputs.cache
+D:\Coding-Projects\C#\TemperatureConverter\obj\Debug\netcoreapp3.1\TemperatureConverter.AssemblyInfo.cs
+D:\Coding-Projects\C#\TemperatureConverter\obj\Debug\netcoreapp3.1\TemperatureConverter.csproj.CoreCompileInputs.cache
+D:\Coding-Projects\C#\TemperatureConverter\obj\Debug\netcoreapp3.1\TemperatureConverter.dll
+D:\Coding-Projects\C#\TemperatureConverter\obj\Debug\netcoreapp3.1\TemperatureConverter.pdb
+D:\Coding-Projects\C#\TemperatureConverter\obj\Debug\netcoreapp3.1\TemperatureConverter.genruntimeconfig.cache

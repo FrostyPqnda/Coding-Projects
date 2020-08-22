@@ -6,8 +6,8 @@
 //  Copyright © 2020 FrostyPqnda. All rights reserved.
 //
 
-//#include <stdio.h>
-//#include <iostream>
+#include <stdio.h>
+#include <iostream>
 using namespace std;
 
 // Converts two strings into a double and adds them
@@ -96,7 +96,7 @@ int main()
     cin >> input;
 
     if (input == "ADD")
-    {
+    {12
         double addS = AddStrings(x, y);
         cout << addS << endl;
     }

@@ -4,10 +4,8 @@
 //
 //  Created by Brian Pham on 6/1/20.
 //  Copyright © 2020 FrostyPqnda. All rights reserved.
-//
-
-#include <stdio.h>
 #include <iostream>
+#include <stdio.h>
 using namespace std;
 
 static string ReplaceLetter(string word, char removeLetter, char replacingLetter)
