@@ -16,14 +16,14 @@ int main()
     // Create file
     string fileName;
     cout << "Name your file: ";
-    cin >> fileName;
+    getline(cin, fileName);
     
     string file = fileName.append(".txt");
     
     // Write file content
     string content;
     cout << "Enter text: ";
-    cin >> content;
+    getline(cin, content);
     
     ofstream user_file;
     user_file.open(file, ios::out);
