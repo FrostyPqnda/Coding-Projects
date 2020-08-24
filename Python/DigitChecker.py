@@ -7,7 +7,7 @@ Created on Aug 23, 2020
 """
 Method digit_checker loops through 
 the user's input to check if a number
-existed in it
+exists in it
 """
 def digit_checker():
     is_digit = False
