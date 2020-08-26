@@ -26,11 +26,11 @@ public class BookRemover extends BookFilter
 		bookList.add(b4);
 		bookList.add(b5);
 
-		String[] authors = {"George Orwell", "William Golding", "C.S. Lewis", "J.R.R. Tolkien", "Ray Bradbury"};
+		String[] authors = {b1.getAuthor(), b2.getAuthor(), b3.getAuthor(), b4.getAuthor(), b5.getAuthor()};
 		int random = rand.nextInt(authors.length);
 
 		List<Book> removeAuthors = filterBooks(bookList, authors[random]);
-		System.out.println(removeAuthors);	
+		System.out.println(removeAuthors + " has been removed.");	
 	}
 
 }

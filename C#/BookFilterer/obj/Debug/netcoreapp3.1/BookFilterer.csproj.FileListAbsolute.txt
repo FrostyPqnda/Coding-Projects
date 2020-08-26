@@ -1,0 +1,13 @@
+D:\Coding-Projects\C#\BookFilterer\bin\Debug\netcoreapp3.1\BookFilterer.exe
+D:\Coding-Projects\C#\BookFilterer\bin\Debug\netcoreapp3.1\BookFilterer.deps.json
+D:\Coding-Projects\C#\BookFilterer\bin\Debug\netcoreapp3.1\BookFilterer.runtimeconfig.json
+D:\Coding-Projects\C#\BookFilterer\bin\Debug\netcoreapp3.1\BookFilterer.runtimeconfig.dev.json
+D:\Coding-Projects\C#\BookFilterer\bin\Debug\netcoreapp3.1\BookFilterer.dll
+D:\Coding-Projects\C#\BookFilterer\bin\Debug\netcoreapp3.1\BookFilterer.pdb
+D:\Coding-Projects\C#\BookFilterer\obj\Debug\netcoreapp3.1\BookFilterer.csprojAssemblyReference.cache
+D:\Coding-Projects\C#\BookFilterer\obj\Debug\netcoreapp3.1\BookFilterer.AssemblyInfoInputs.cache
+D:\Coding-Projects\C#\BookFilterer\obj\Debug\netcoreapp3.1\BookFilterer.AssemblyInfo.cs
+D:\Coding-Projects\C#\BookFilterer\obj\Debug\netcoreapp3.1\BookFilterer.csproj.CoreCompileInputs.cache
+D:\Coding-Projects\C#\BookFilterer\obj\Debug\netcoreapp3.1\BookFilterer.dll
+D:\Coding-Projects\C#\BookFilterer\obj\Debug\netcoreapp3.1\BookFilterer.pdb
+D:\Coding-Projects\C#\BookFilterer\obj\Debug\netcoreapp3.1\BookFilterer.genruntimeconfig.cache
