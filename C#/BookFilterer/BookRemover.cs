@@ -10,8 +10,8 @@ namespace BookFilterer
     */
     public class BookRemover
     {
-        // RemoveBook takes in @param readingList and author
-        // to remove a book
+        // RemoveBook takes in @param List<Book> readingList and 
+        // String author to remove a book
         public List<Book> RemoveBook(List<Book> readingList, String author)
         {
             // Loops through the entire list of books for any items
