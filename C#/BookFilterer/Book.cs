@@ -15,10 +15,10 @@ namespace BookFilterer
         // Constructor for the Book class.
         // Takes @param String author and
         // String book.
-        public Book(String author, String book)
+        public Book(String book, String author)
         {
-            this.author = author;
             this.book = book;
+            this.author = author;
         }
         
         // GetBook returns the

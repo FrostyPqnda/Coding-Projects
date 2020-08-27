@@ -22,7 +22,7 @@ namespace BookFilterer
                 if(!readingList.ElementAt(i).GetAuthor().Equals(author))
                 {
                     readingList.RemoveAt(i);
-                }
+                }      
             }
 
             return readingList;
