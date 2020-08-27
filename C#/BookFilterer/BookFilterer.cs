@@ -37,7 +37,7 @@ namespace BookFilterer
 
             foreach(Book item in bookList)
             {
-                Console.WriteLine(item + " has been removed the list.");
+                Console.WriteLine(item + " has been removed from the Book list.");
             }
 
             Console.ReadKey();
