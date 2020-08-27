@@ -10,24 +10,9 @@ namespace BookFilterer
     */
     public class BookRemover
     {
-        String title;
-        String writer;
-
-        /*  Constructor for the BookRemover class
-            Creates a Book object and sets the
-            instance variable title and writer 
-            to the GetBook() and GetAuthor
-        */
-        public BookRemover()
-        {
-            Book bookObj = new Book(writer, title);
-            title = bookObj.GetBook();
-            writer = bookObj.GetAuthor();
-        }
-
-        // FilterBook takes in @param readingList and author
+        // RemoveBook takes in @param readingList and author
         // to remove a book
-        public List<Book> FilterBook(List<Book> readingList, String author)
+        public List<Book> RemoveBook(List<Book> readingList, String author)
         {
             // Loops through the entire list of books for any items
             for(int i = readingList.Count - 1; i >= 0; i--)
@@ -40,16 +25,7 @@ namespace BookFilterer
                 }
             }
 
-            //Console.WriteLine(title + " by " + writer + " has been removed.");
             return readingList;
-            
         }
-
-        /*
-        public override String ToString() 
-        {
-            return title + " by " + writer + " has been removed.";
-        }
-        */
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using BookFilterer;
 
@@ -34,7 +33,7 @@ namespace BookFilterer
                 b1.GetAuthor(), b2.GetAuthor(), b3.GetAuthor(), b4.GetAuthor(), b5.GetAuthor()
             };
             int randomize = rand.Next(authors.Length);
-            List<Book> removeBook = bookSweeper.FilterBook(bookList, authors[randomize]);
+            List<Book> removeBook = bookSweeper.RemoveBook(bookList, authors[randomize]);
 
             Console.WriteLine(removeBook);
 
