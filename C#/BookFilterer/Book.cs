@@ -9,8 +9,9 @@ namespace BookFilterer
     */
     public class Book
     {
-        private String author;
+        // Instance variables for the Book class
         private String book;
+        private String author;
 
         // Constructor for the Book class.
         // Takes @param String author and
