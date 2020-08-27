@@ -28,14 +28,17 @@ namespace BookFilterer
             bookList.Add(b3);
             bookList.Add(b4);
             bookList.Add(b5);
-
+            
             String[] authors = {
                 b1.GetAuthor(), b2.GetAuthor(), b3.GetAuthor(), b4.GetAuthor(), b5.GetAuthor()
             };
             int randomize = rand.Next(authors.Length);
-            List<Book> removeBook = bookSweeper.RemoveBook(bookList, authors[randomize]);
+            bookList = bookSweeper.RemoveBook(bookList, authors[randomize]);
 
-            Console.WriteLine(removeBook);
+            foreach(Book item in bookList)
+            {
+                Console.WriteLine(item + " has been removed from the book list.");
+            }
 
             Console.ReadKey();
         }
