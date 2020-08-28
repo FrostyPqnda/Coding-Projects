@@ -6,7 +6,7 @@ Created on Apr 28, 2020
 
 """
 FileGenerator is a simple Python program that
-writes to a txt file that an user can create
+writes to a txt file that users can create
 """
 
 # Names the file based on the user's input
