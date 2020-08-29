@@ -10,9 +10,6 @@ Hangman game project from my CodeHS assignment
 import random
 import requests
 
-
-
-
 class Hangman:
 
     def __init__(self):
