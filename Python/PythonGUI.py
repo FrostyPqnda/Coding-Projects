@@ -17,7 +17,7 @@ def time():
 
 lbl = tk.Label(root, font = ('Oswald', 40, 'bold'), 
             background = '#2d57a1', 
-            foreground = 'white') 
+            foreground = '#cccccc') 
   
 # Placing clock at the centre 
 # of the tkinter window 
@@ -25,8 +25,8 @@ lbl.pack(anchor = 'center')
 time() 
 
 
-#canvas = tk.Canvas(root, height = 700, width = 700, bg = "#283140")
-#canvas.pack()
+canvas = tk.Canvas(root, height = 700, width = 700, bg = "#283140")
+canvas.pack()
 
 #frame = tk.Frame(root, bg = "#3c74d6")
 #frame.place(relwidth = 0.8, relheight = 0.8, relx = 0.1, rely = 0.1)
