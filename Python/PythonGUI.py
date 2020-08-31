@@ -1,38 +1,39 @@
-# importing whole module 
+# imports the tkinter module to
+# set up the GUI
 import tkinter as tk
 import tkinter.ttk as ttk
   
-# importing strftime function to 
-# retrieve system's time 
+# imports strftime function to 
+# retrieve the system's time 
 import datetime as dt
 
+# Sets up the GUI to be displayed
 root = tk.Tk()
 root.configure(bg = '#283140')
 root.title('Python GUI App')
 
-def time(): 
-    string = dt.datetime.now()
-    lbl.config(text = string.strftime('%I:%M:%S %p')) 
-    lbl.after(1000, time) 
+# Displays the current time 
+# onto to the GUI
+def display_time(): 
+    clock = dt.datetime.now()
+    lbl.config(text = clock.strftime('%I:%M:%S %p')) 
+    lbl.after(1000, display_time) 
 
+# Creates a label where the time will be displayed
 lbl = tk.Label(root, font = ('Oswald', 40, 'bold'), 
             background = '#2d57a1', 
             foreground = '#cccccc') 
 
-  
-# Placing clock at the centre 
-# of the tkinter window 
+# Places the clock at the center
+# of the GUI app
 lbl.pack(anchor = 'center') 
-time() 
+display_time() 
 
-
+# Creates and adds a canvas for the GUI
 canvas = tk.Canvas(root, height = 700, width = 700, bg = '#1d4d80')
 canvas.pack()
 
-#frame = tk.Frame(root, bg = '#3c74d6')
-#frame.place(relwidth = 0.8, relheight = 0.8, relx = 0.1, rely = 0.1)
-
-
+# Runs the GUI
 root.mainloop()
 
 
