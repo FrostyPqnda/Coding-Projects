@@ -96,7 +96,7 @@ int main()
     cin >> input;
 
     if (input == "ADD")
-    {12
+    {
         double addS = AddStrings(x, y);
         cout << addS << endl;
     }
