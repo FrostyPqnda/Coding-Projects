@@ -19,10 +19,6 @@ import tkinter as tk
 # the PIL module to save images
 from PIL import ImageGrab
 
-# import only asksaveaskfile from filedialog
-# will save as any image extension
-from tkinter.filedialog import asksaveasfile 
-
 # Sets up the GUI to be displayed
 root = tk.Tk()
 root.configure(bg = '#283140')
