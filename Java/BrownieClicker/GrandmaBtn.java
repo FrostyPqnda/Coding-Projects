@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GrandmaBtn extends Button
 {
-    public int grannyPrice = 25; // Starting price of granny upgrade
+    private int grannyPrice = 25; // Starting price of granny upgrade
     private int GN = 0; // Used to calculate future price
     /**
      * Act - do whatever the GrandmaBtn wants to do. This method is called whenever
@@ -17,11 +17,11 @@ public class GrandmaBtn extends Button
      */
     public void act() 
     {
-        if(getWorld().isPaused == false)
+        if(getWorld().startPressed == true)
         {
-            setLocation(50, 48);
+            setLocation(50, 65);
             checkBuy();
-            getWorld().showText("" + grannyPrice, 105, 48);
+            getWorld().showText("" + grannyPrice, 105, 65);
         }
     }
     /**
@@ -40,7 +40,7 @@ public class GrandmaBtn extends Button
                 GN++;
                 updateGrannyCounter();
                 futureValue();
-                getWorld().saveCurrentScore();
+                getWorld().saveCurrentData();
             }
         }
     }

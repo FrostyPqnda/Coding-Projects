@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MiniBrownies extends Brownie
 {
+    private boolean toggleMiniBrownies = false; // Display mini brownies?
     /**
      * Act - do whatever the MiniBrownies wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -22,13 +23,13 @@ public class MiniBrownies extends Brownie
         }
     }
     /**
-     * Constructor that controls the image and rotation of the mini brownies
+     * Constructor for MiniBrownies
      */
     public MiniBrownies()
     {
         GreenfootImage mini = getImage();  
-        mini.scale(mini.getWidth() - 525, mini.getHeight() - 525);  
-        mini.setTransparency(235);
+        mini.scale(mini.getWidth() - 600, mini.getHeight() - 600);  
+        mini.setTransparency(210);
         setImage(mini); 
         turn(90);
     }

@@ -12,7 +12,7 @@ public class Container extends Button
     public Container()
     {
         GreenfootImage box = getImage();
-        box.scale(box.getWidth() + 25, box.getHeight() + 3);
+        box.scale(box.getWidth() + 25, box.getHeight() + 5);
         setImage(box);
     }
 }

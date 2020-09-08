@@ -26,7 +26,7 @@ public class UpgradeDisplay extends Actor
        GreenfootImage upgradeImage = getImage();
        upgradeImage.clear();
        
-       Font upgradeFont = new Font("Poetsen One", 22);
+       Font upgradeFont = new Font("Poetsen One", 20);
        upgradeImage.setFont(upgradeFont);
        Color color = new Color(238, 238, 238);
        upgradeImage.setColor(color);

@@ -17,11 +17,11 @@ public class ClickBtn extends Button
      */
     public void act() 
     {
-        if(getWorld().isPaused == false)
+        if(getWorld().startPressed == true)
         {
-            setLocation(50, 250);
+            setLocation(50, 285);
             checkBuy();
-            getWorld().showText("" + autoclick, 105, 250);
+            getWorld().showText("" + autoclick, 105, 285);
         }
     }   
     /**
@@ -40,7 +40,7 @@ public class ClickBtn extends Button
                 AN++;
                 updateAutoclickCounter();
                 futureValue();
-                getWorld().saveCurrentScore();
+                getWorld().saveCurrentData();
             }
         }
     }
