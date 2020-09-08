@@ -34,11 +34,6 @@ msg.pack(anchor = 'center')
 canvas = tk.Canvas(root, height = 700, width = 700, bg = '#1d4d80')
 canvas.pack(expand=True, fill='both')
 
-"""
-e = tk.Entry(root, width = 150)
-e.pack()
-"""
-
 # Draws on the canvas
 def draw(event):
     color = 'white'
