@@ -15,7 +15,7 @@ in the future.
 # set up the GUI
 import tkinter as tk
 
-# imports mageGrab from
+# imports ImageGrab from
 # the PIL module to save images
 from PIL import ImageGrab
 
