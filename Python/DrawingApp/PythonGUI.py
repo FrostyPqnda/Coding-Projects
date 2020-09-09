@@ -53,7 +53,6 @@ def save(event):
 canvas.bind('<B1-Motion>', draw) # Calls the draw function on click and drag
 root.bind('<Control-s>', save) # Calls the save function on 'ctrl-s'
 
-
 saveLbl = tk.Label(root, font = ('Oswald', 30, 'bold'), 
             background = '#2d57a1', 
             foreground = '#cccccc', text='Ctrl-S to save')
