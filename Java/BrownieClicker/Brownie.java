@@ -16,26 +16,20 @@ public class Brownie extends Actor
      */
     public void act() 
     {
-        if(getWorld().isPaused == false)
+        if(getWorld().startPressed == true)
         {
             addPoint();
-            setLocation(getWorld().getWidth() / 2, (getWorld().getHeight() / 2) - 15);
+            setLocation((getWorld().getWidth() / 2) + 5, (getWorld().getHeight() / 2) -  50);
         }
     }
     /**
-     * Method bounce adds a bounce effect when the mouse is
-     * hovering above the brownie
+     * Constructor for the brownie class
      */
-    private void bounce()
+    public Brownie()
     {
-        if(Greenfoot.mouseMoved(this))
-        {
-            setImage("Big.png");
-        }
-        if((Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(this)))
-        {
-            setImage("Test.png");
-        }
+        GreenfootImage brownie = getImage();
+        brownie.scale(brownie.getWidth() + 80, brownie.getHeight() + 80);
+        setImage(brownie);
     }
     /**
      * Method addPoint adds a point for each click on the cookie

@@ -16,8 +16,8 @@ public class Button extends Actor
     public void buyGranny()
     {
         Grandma granny = new Grandma();
-        int x = Greenfoot.getRandomNumber(35)+54;
-        int y = Greenfoot.getRandomNumber(14)+94;
+        int x = Greenfoot.getRandomNumber(35)+50;
+        int y = Greenfoot.getRandomNumber(14)+110;
         getWorld().addObject(granny, x, y);
     }
     /**
@@ -27,8 +27,8 @@ public class Button extends Actor
     public void buyFactory()
     {
         Factory factorial = new Factory();
-        int x = Greenfoot.getRandomNumber(35)+54;
-        int y = Greenfoot.getRandomNumber(14)+190;
+        int x = Greenfoot.getRandomNumber(35)+50;
+        int y = Greenfoot.getRandomNumber(14)+220;
         getWorld().addObject(factorial, x, y);
     }
     /**
@@ -38,8 +38,8 @@ public class Button extends Actor
     public void buyClicker()
     {
         Autoclicker auto = new Autoclicker();
-        int x = Greenfoot.getRandomNumber(35)+54;
-        int y = Greenfoot.getRandomNumber(14)+290;
+        int x = Greenfoot.getRandomNumber(35)+50;
+        int y = Greenfoot.getRandomNumber(14)+325;
         getWorld().addObject(auto, x, y);
     }
     /**

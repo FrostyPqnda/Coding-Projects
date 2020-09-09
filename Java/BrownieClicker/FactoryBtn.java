@@ -10,18 +10,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class FactoryBtn extends Button
 {
     private int factoryPrice = 150; // Starting price for factory upgrade
-    private int TN = 0; // Used to calculate future price
+    private int FN = 0; // Used to calculate future price
     /**
      * Act - do whatever the FactoryBtn wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        if(getWorld().isPaused == false)
+        if(getWorld().startPressed == true)
         {
-            setLocation(50, 150);
+            setLocation(50, 175);
             checkBuy();
-            getWorld().showText("" + factoryPrice, 105, 150);
+            getWorld().showText("" + factoryPrice, 105, 175);
         }
     }    
     /**
@@ -37,10 +37,10 @@ public class FactoryBtn extends Button
                 buyFactory();
                 Greenfoot.playSound("Upgrade.wav");
                 factoryCost.subtractPoint(factoryPrice);
-                TN++;
+                FN++;
                 updateFactoryCounter();
                 futureValue();
-                getWorld().saveCurrentScore();
+                getWorld().saveCurrentData();
             }
         }
     }
@@ -49,7 +49,7 @@ public class FactoryBtn extends Button
      */
     public void futureValue()
     {
-        factoryPrice += ((5^(TN+1))*(TN+1) + (1+(3^TN)*(TN)));
+        factoryPrice += ((5^(FN+1))*(FN+1) + (1+(3^FN)*(FN)));
     }
     /**
      * Method updateFactoryCounter keeps track of upgrades bought

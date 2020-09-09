@@ -14,8 +14,8 @@ public class EndCard extends World
      */
     public EndCard()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        // Create a new world with 700x500 cells with a cell size of 1x1 pixels.
+        super(750, 550, 1); 
     }
     /**
      * Sets the game to a new BrownieWorld if 'N'
