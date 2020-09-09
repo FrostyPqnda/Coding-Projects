@@ -39,7 +39,7 @@ def draw(event):
     color = 'white'
     x1,y1 = (event.x-1),(event.y-1)
     x2,y2 = (event.x+1),(event.y+1)
-    canvas.create_oval(x1, y1, x2, y2, fill=color, outline=color)
+    canvas.create_line(x1, y1, x2, y2, fill=color, width = 5)
 
 # Saves the image
 def save(event):
@@ -53,10 +53,11 @@ def save(event):
 canvas.bind('<B1-Motion>', draw) # Calls the draw function on click and drag
 root.bind('<Control-s>', save) # Calls the save function on 'ctrl-s'
 
-saveImage = tk.Label(root, font = ('Oswald', 30, 'bold'), 
+
+saveLbl = tk.Label(root, font = ('Oswald', 30, 'bold'), 
             background = '#2d57a1', 
             foreground = '#cccccc', text='Ctrl-S to save')
-saveImage.pack(anchor = 'center')
+saveLbl.pack(anchor = 'center')
 
 # Runs the GUI
 root.mainloop()
