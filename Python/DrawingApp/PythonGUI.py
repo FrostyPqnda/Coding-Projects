@@ -22,12 +22,13 @@ from PIL import ImageGrab
 # Sets up the GUI to be displayed
 root = tk.Tk()
 root.configure(bg = '#283140')
-root.title('Python GUI App')
+root.title('GUI App')
 
 # Instruction for the GUI app
 msg = tk.Label(root, font = ('Oswald', 40, 'bold'), 
             background = '#2d57a1', 
-            foreground = '#cccccc', text='Click and drag to draw')
+            foreground = '#cccccc', 
+            text='Click and drag to draw')
 msg.pack(anchor = 'center')
 
 # Creates and adds a canvas for the GUI
@@ -55,7 +56,8 @@ root.bind('<Control-s>', save) # Calls the save function on 'ctrl-s'
 
 saveLbl = tk.Label(root, font = ('Oswald', 30, 'bold'), 
             background = '#2d57a1', 
-            foreground = '#cccccc', text='Ctrl-S to save')
+            foreground = '#cccccc', 
+            text='Ctrl-S to save')
 saveLbl.pack(anchor = 'center')
 
 # Runs the GUI
