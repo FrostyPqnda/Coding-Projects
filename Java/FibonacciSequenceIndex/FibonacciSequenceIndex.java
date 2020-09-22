@@ -13,7 +13,7 @@ public class FibonacciSequenceIndex
 {
     public static void main(String[] args)
     {
-        // Creates an array with a length of 15 that will store the sequence of Fibonacci numbers
+        // Creates an array with a length of [int max] that will store the sequence of Fibonacci numbers
         int max = 15;
         int[] sequence = new int[max];
 
