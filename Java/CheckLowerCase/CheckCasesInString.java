@@ -10,7 +10,7 @@ public class CheckCasesInString extends CheckStringCases
 		String text = input.nextLine();
 		
 		boolean checkCase = isLowerCase(text);
-		System.out.println("Is " + text + " lowercase? " + checkCase);
+		System.out.println("Is " + text + " all lowercase? " + checkCase);
 		input.close();
 	}
 
