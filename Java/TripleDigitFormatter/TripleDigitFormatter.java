@@ -12,14 +12,14 @@ public class TripleDigitFormatter
     /**
      * Method tripleDigitFormatter formats
      * @param num as a triple digit if it
-     * is in range of 0 to 99.
+     * is in range of 0 to 99 and returns it.
      */
     public static String tripleDigitFormatter(int num)
     {
         String str = "";
-        if(num >= 0 && num <= 99)
+        if(num >= 0 || (num <= -1 && num >= -99))
             str += String.format("%03d", num);
-        else if(num >= 100)
+        else if(num >= 100 || num <= -100)
             str += Integer.toString(num);
 
         return "Original: " + num + "\nNew: " + str;
