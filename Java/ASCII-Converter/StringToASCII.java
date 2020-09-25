@@ -1,5 +1,5 @@
 import java.text.ParseException;
-import java.util.*;
+import java.util.Scanner;
 /**
  * @author brian
  * 
@@ -17,8 +17,6 @@ public class StringToASCII extends StringConverter
 		String convert = input.nextLine();
 		
 		convertASCII(convert);
-		//System.out.println(ASCII);
-			
 		input.close();
 	}
 	
