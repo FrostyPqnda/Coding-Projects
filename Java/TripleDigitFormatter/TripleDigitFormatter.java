@@ -22,6 +22,6 @@ public class TripleDigitFormatter
         else if(num >= 100 || num <= -100)
             str += Integer.toString(num);
 
-        return "Original: " + num + "\nNew: " + str;
+        return "Result: " + str;
     }
 }
