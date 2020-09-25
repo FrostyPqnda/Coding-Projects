@@ -13,7 +13,7 @@ writes to a txt file that users can create
 file_name = input("Name your file: ")+".txt"
           
 
-# This is where the user can type out what he/she wants
+# This is where the user can type out the contents
 # on their file
 UserFile = open("Files/"+file_name, "w")
 write_to_file = input("Enter text: ")
