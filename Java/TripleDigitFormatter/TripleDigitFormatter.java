@@ -9,6 +9,11 @@
  */
 public class TripleDigitFormatter
 {
+    /**
+     * Method tripleDigitFormatter formats
+     * @param num as a triple digit if it
+     * is in range of 0 to 99.
+     */
     public static String tripleDigitFormatter(int num)
     {
         String str = "";
