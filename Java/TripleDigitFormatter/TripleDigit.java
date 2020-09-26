@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class TripleDigits extends TripleDigitFormatter
+public class TripleDigit extends TripleDigitFormatter
 {
     public static void main(String[] args)
     {

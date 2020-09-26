@@ -42,8 +42,4 @@ public class TripleDigitFormatter
 
         return "Original: " + letter + "\nResult: " + str;
     }
-
-
-
-
 }
