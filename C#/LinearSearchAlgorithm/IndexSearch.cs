@@ -8,19 +8,15 @@ namespace LinearSearchAlgorithm
     {
         static void Main(string[] args)
         {
-            List<int> numbers = new List<int>();
-            numbers.Add(15);
-            numbers.Add(4);
-            numbers.Add(53);
-            numbers.Add(2);
-            numbers.Add(133);
+            String[] str = {
+                "Dogs", "Cats", "Turtles",
+                "Fish", "Snakes"
+            };
 
             LinearSearch search = new LinearSearch();
+            int index = search.ListSearch(str, "Dogs");
 
-            int num = search.ListSearch(numbers, 54);
-
-
-            Console.WriteLine(num);
+            Console.WriteLine(index);
             Console.ReadKey();
         }
     }
