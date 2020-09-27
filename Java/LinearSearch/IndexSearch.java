@@ -14,7 +14,7 @@ public class IndexSearch extends LinearSearchAlgorithm
         Pokemon charizard = new Pokemon("Charizard", "Fire", "Flying", "Solar Power", "Blaze", false, true, false, ((int)(Math.random() * 714) + 1), rand.nextInt(100) + 1);
         Pokemon lucario = new Pokemon("Lucario", "Fighting", "Steel", "Inner Focus", "Justified", true, true, true, ((int)(Math.random() * 714) + 1), rand.nextInt(100) + 1);
         Pokemon blastoise = new Pokemon("Blastoise", "Water", "None", "Torrent", "Rain Dish", true, true, true, ((int)(Math.random() * 714) + 1), rand.nextInt(100) + 1);
-        Pokemon gengar = new Pokemon("Gengar", "Ghost", "Poison", "Cursed Body", "Levitate", true, true, false, ((int)(Math.random() * 714) + 1), rand.nextInt(100) + 1);
+        Pokemon gengar = new Pokemon("Gengar", "Ghost", "Poison", "Cursed Body", "Levitate", true, true, true, ((int)(Math.random() * 714) + 1), rand.nextInt(100) + 1);
         Pokemon infernape = new Pokemon("Infernape", "Fire", "Fighting", "Blaze", "Iron Fist", true, false, false, ((int)(Math.random() * 714) + 1), rand.nextInt(100) + 1);
         
         ArrayList<Pokemon> pokemon = new ArrayList<Pokemon>();
