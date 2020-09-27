@@ -17,9 +17,10 @@ namespace LinearSearchAlgorithm
 
             LinearSearch search = new LinearSearch();
 
+            int num = search.ListSearch(numbers, 54);
 
 
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(num);
             Console.ReadKey();
         }
     }

@@ -77,7 +77,7 @@ public class LinearSearchAlgorithm
     public static int arraySearch(String[] arr, String key)
     {
         for(int i = 0; i < arr.length; i++)
-            if(arr[i].equals(key))
+            if(arr[i].equalsIgnoreCase(key))
                 return i;
         return -1;
     }
@@ -93,7 +93,7 @@ public class LinearSearchAlgorithm
     public static int arrayListSearch(ArrayList<String> arr, String key)
     {
         for(int i = 0; i < arr.size(); i++)
-            if(arr.get(i).equals(key))
+            if(arr.get(i).equalsIgnoreCase(key))
                 return i;
         return -1;
     }
