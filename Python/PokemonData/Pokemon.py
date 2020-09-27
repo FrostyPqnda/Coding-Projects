@@ -32,15 +32,11 @@ class Pokemon:
     def set_hp(self, hp):
         if self.hp < 0 or self.hp > 714:
             self.hp = randint(1, 714)
-        else:
-            self.hp = hp
 
     # Sets the HP of the Pokemon based on a random number between [1, 100]
     def set_level(self, level):
         if self.level < 0 or self.level > 100:
             self.level = randint(1, 100)
-        else:
-            self.level = level
 
     # Compares two Pokemon objects
     def __eq__(self, value):
