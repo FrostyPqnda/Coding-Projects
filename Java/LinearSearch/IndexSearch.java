@@ -4,12 +4,6 @@ public class IndexSearch extends LinearSearchAlgorithm
 {
     public static void main(String[] args)
     {
-        printExample();
-    }
-
-    // Linear Search Algortithm examples using String array and ArrayList
-    static void printExample()
-    {
         System.out.println("====================================");
         ArrayList<String> animals = new ArrayList<String>();
         animals.add("Dog");

@@ -42,10 +42,10 @@ public class LinearSearchAlgorithm
      * If @param key exist in @param arr
      * the method will return at what index
      */
-    public static int arraySearch(double[] arr, int key)
+    public static int arraySearch(double[] arr, double key)
     {
         for(int i = 0; i < arr.length; i++)
-            if(arr[i] == (double)key)
+            if(arr[i] == key)
                 return i;
         return -1;
     }

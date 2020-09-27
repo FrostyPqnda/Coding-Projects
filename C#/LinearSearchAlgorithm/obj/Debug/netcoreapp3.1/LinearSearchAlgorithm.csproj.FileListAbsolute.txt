@@ -1,0 +1,13 @@
+D:\Coding-Projects\C#\LinearSearchAlgorithm\bin\Debug\netcoreapp3.1\LinearSearchAlgorithm.exe
+D:\Coding-Projects\C#\LinearSearchAlgorithm\bin\Debug\netcoreapp3.1\LinearSearchAlgorithm.deps.json
+D:\Coding-Projects\C#\LinearSearchAlgorithm\bin\Debug\netcoreapp3.1\LinearSearchAlgorithm.runtimeconfig.json
+D:\Coding-Projects\C#\LinearSearchAlgorithm\bin\Debug\netcoreapp3.1\LinearSearchAlgorithm.runtimeconfig.dev.json
+D:\Coding-Projects\C#\LinearSearchAlgorithm\bin\Debug\netcoreapp3.1\LinearSearchAlgorithm.dll
+D:\Coding-Projects\C#\LinearSearchAlgorithm\bin\Debug\netcoreapp3.1\LinearSearchAlgorithm.pdb
+D:\Coding-Projects\C#\LinearSearchAlgorithm\obj\Debug\netcoreapp3.1\LinearSearchAlgorithm.csprojAssemblyReference.cache
+D:\Coding-Projects\C#\LinearSearchAlgorithm\obj\Debug\netcoreapp3.1\LinearSearchAlgorithm.AssemblyInfoInputs.cache
+D:\Coding-Projects\C#\LinearSearchAlgorithm\obj\Debug\netcoreapp3.1\LinearSearchAlgorithm.AssemblyInfo.cs
+D:\Coding-Projects\C#\LinearSearchAlgorithm\obj\Debug\netcoreapp3.1\LinearSearchAlgorithm.csproj.CoreCompileInputs.cache
+D:\Coding-Projects\C#\LinearSearchAlgorithm\obj\Debug\netcoreapp3.1\LinearSearchAlgorithm.dll
+D:\Coding-Projects\C#\LinearSearchAlgorithm\obj\Debug\netcoreapp3.1\LinearSearchAlgorithm.pdb
+D:\Coding-Projects\C#\LinearSearchAlgorithm\obj\Debug\netcoreapp3.1\LinearSearchAlgorithm.genruntimeconfig.cache
