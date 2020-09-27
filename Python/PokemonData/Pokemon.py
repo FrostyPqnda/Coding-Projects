@@ -8,12 +8,13 @@ Class Pokemon
 
 Used to store the Pokemon data object
 """
-import random
+from random import randint # Imports the randint function from the random module
 
 class Pokemon:
 
     # Constructor for the Pokemon class
-    def __init__(self, name = "MissingNo", type1 = "N/A", type2 = "N/A", ability = "N/A", hiddenAbility = "N/A", shiny = False, canMegaEvolve = False, canGigantamax = False, hp = 0, level = 0):
+    # Order: Name, Type 1, Type 2, Ability, Hidden Ability, Shiny?, Mega Evolution?, Gigantamax Factor?, HP, Level
+    def __init__(self, name = "MissingNo.", type1 = "N/A", type2 = "N/A", ability = "N/A", hiddenAbility = "N/A", shiny = False, canMegaEvolve = False, canGigantamax = False, hp = 0, level = 0):
         self.name = name
         self.type1 = type1
         self.type2 = type2
@@ -23,17 +24,23 @@ class Pokemon:
         self.canMegaEvolve = canMegaEvolve
         self.canGigantamax = canGigantamax
         self.hp = hp
+        self.set_hp(hp)
         self.level = level
+        self.set_level(level)
 
     # Sets the HP of the Pokemon based on a random number between [1, 714]
     def set_hp(self, hp):
         if self.hp < 0 or self.hp > 714:
-            self.hp = random.randint(1, 714)
+            self.hp = randint(1, 714)
+        else:
+            self.hp = hp
 
     # Sets the HP of the Pokemon based on a random number between [1, 100]
     def set_level(self, level):
         if self.level < 0 or self.level > 100:
-            self.level = random.randint(1, 100)
+            self.level = randint(1, 100)
+        else:
+            self.level = level
 
     # Compares two Pokemon objects
     def __eq__(self, value):
