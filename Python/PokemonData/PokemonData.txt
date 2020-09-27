@@ -1,0 +1,77 @@
+Pokemon: Salamence
+Type 1: Dragon
+Type 2: Flying
+Ability: Intimidate
+Hidden Ability: Moxie
+Shiny? True
+Mega Evolution? True
+Gigantamax Factor? False
+HP: 455
+Level: 85
+
+Pokemon: Charizard
+Type 1: Fire
+Type 2: Flying
+Ability: Blaze
+Hidden Ability: Solar Power
+Shiny? True
+Mega Evolution? True
+Gigantamax Factor? True
+HP: 391
+Level: 66
+
+Pokemon: Lucario
+Type 1: Fighting
+Type 2: Steel
+Ability: Inner Focus
+Hidden Ability: Justified
+Shiny? True
+Mega Evolution? True
+Gigantamax Factor? False
+HP: 75
+Level: 95
+
+Pokemon: Blastoise
+Type 1: Water
+Type 2: N/A
+Ability: Torrent
+Hidden Ability: Rain Dish
+Shiny? True
+Mega Evolution? True
+Gigantamax Factor? True
+HP: 354
+Level: 9
+
+Pokemon: Gengar
+Type 1: Ghost
+Type 2: Poison
+Ability: Cursed Body
+Hidden Ability: Levitate
+Shiny? True
+Mega Evolution? True
+Gigantamax Factor? False
+HP: 301
+Level: 94
+
+Pokemon: Infernape
+Type 1: Fire
+Type 2: Fighting
+Ability: Blaze
+Hidden Ability: Iron Fist
+Shiny? True
+Mega Evolution? False
+Gigantamax Factor? False
+HP: 688
+Level: 98
+
+Pokemon: Gyarados
+Type 1: Water
+Type 2: Flying
+Ability: Intimidate
+Hidden Ability: Moxie
+Shiny? True
+Mega Evolution? True
+Gigantamax Factor? False
+HP: 189
+Level: 91
+
