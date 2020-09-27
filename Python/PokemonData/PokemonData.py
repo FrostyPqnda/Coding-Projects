@@ -22,7 +22,6 @@ blastoise = Pokemon("Blastoise", "Water", "N/A", "Torrent", "Rain Dish", True, T
 gengar = Pokemon("Gengar", "Ghost", "Poison", "Cursed Body", "Levitate", True, True, False, randint(1, 714), randint(1, 100))
 infernape = Pokemon("Infernape", "Fire", "Fighting", "Blaze", "Iron Fist", True, False, False, randint(1, 714), randint(1, 100))
 gyarados = Pokemon("Gyarados", "Water", "Flying", "Intimidate", "Moxie", True, True, False, randint(1, 714), randint(1, 100))
-
 pk = Pokemon()
 
 # Creates a list of Pokemon objects to store
