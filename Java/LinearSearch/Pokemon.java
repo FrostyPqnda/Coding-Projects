@@ -12,7 +12,7 @@ public class Pokemon
     boolean canGigantamax;
     int hp;
     int level;
-    Random rand = new Random();
+    Random rand = new Random(12345);
     int randHP = rand.nextInt(714) + 1;
     int randLVL = rand.nextInt(100) + 1;
 
