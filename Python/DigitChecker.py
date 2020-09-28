@@ -15,8 +15,6 @@ def digit_checker():
     for char in text:
         if char.isdigit():
             is_digit = True
-            return "Does your text contain a number? " + str(is_digit)
-
     return "Does your text contain a number? " + str(is_digit)
 
 print(digit_checker())
