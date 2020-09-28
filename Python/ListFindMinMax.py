@@ -5,23 +5,24 @@ Created on Sept 28, 2020
 '''
 
 """
-Python project that uses the simple Bubble Sort
+Python project that uses the a Bubble Sorting
 algorithm to sort the array in order of least to
 greatest or the reverse in order to find the
 minimum or maximum value of a list
+
+Bubble Sort: a simple sorting algorithm that swaps 
+the adjacent elements repeatedly until they are in
+the right order.
 """
+
 # Finds the minimum value of a list
 def findMin(arr):
     length = len(arr)
     if len(arr) == 1:
         return arr[0]
     """
-    Sorts the list using the Bubble Sort algorithm
-    Bubble Sort: simple sorting algorithm that swaps 
-    the adjacent elements repeatedly until they are in
-    the right order.
-
-    Sorts the list from least to greatest
+    Sorts the list using the Bubble Sort algorithm.
+    Sorts the list from least to greatest.
     """
     for x in range(length - 1):
         for y in range(length - x - 1):
@@ -31,20 +32,16 @@ def findMin(arr):
     # only the minimum value is left
     for i in range(length - 1 - 0):
         arr.pop()
-
     return arr
+
 # Finds the maximum value of list
 def findMax(arr):
     length = len(arr)
     if len(arr) == 1:
         return arr[0]
     """
-    Sorts the list using the Bubble Sort algorithm
-    Bubble Sort: simple sorting algorithm that swaps 
-    the adjacent elements repeatedly until they are in
-    the right order.
-
-    Sorts the list from greatest to least
+    Sorts the list using the Bubble Sort algorithm.
+    Sorts the list from greatest to least.
     """
     for x in range(length - 1):
         for y in range(length - x - 1):
@@ -54,7 +51,6 @@ def findMax(arr):
     # only the maximum value is left
     for i in range(length - 1 - 0):
         arr.pop()
-    
     return arr
 
 numbers = []
