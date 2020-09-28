@@ -18,7 +18,7 @@ the right order.
 # Finds the minimum value of a list
 def findMin(arr):
     length = len(arr)
-    if len(arr) == 1:
+    if length == 1:
         return arr[0]
     """
     Sorts the list using the Bubble Sort algorithm.
@@ -37,15 +37,15 @@ def findMin(arr):
 # Finds the maximum value of list
 def findMax(arr):
     length = len(arr)
-    if len(arr) == 1:
-        return arr[0]
+    if length == 1:
+        return arr
     """
     Sorts the list using the Bubble Sort algorithm.
     Sorts the list from greatest to least.
     """
     for x in range(length - 1):
         for y in range(length - x - 1):
-            if arr[y] < arr[y + 1]:
+            if arr[y] < arr[y + 1]: 
                 arr[y], arr[y + 1] = arr[y + 1], arr[y]
     # Removes the last elements of the array until
     # only the maximum value is left
@@ -57,9 +57,9 @@ numbers = []
 
 while True:
     try:
-        num = int(input('Enter a number: '))
+        num = int(input('Enter a number [Enter a non-number to quit]: '))
         numbers.append(num)
     except ValueError:
         break
 
-print('Minimum:', findMin(numbers))
+print('Maximum:', findMax(numbers))
