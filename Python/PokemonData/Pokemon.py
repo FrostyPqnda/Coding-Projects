@@ -37,10 +37,6 @@ class Pokemon:
     def set_level(self, level):
         if self.level < 0 or self.level > 100:
             self.level = randint(1, 100)
-
-    # Compares two Pokemon objects
-    def __eq__(self, value):
-        return super().__eq__(value)
     
     # Returns the object as a string
     def __str__(self):

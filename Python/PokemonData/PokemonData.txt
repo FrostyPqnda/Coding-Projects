@@ -6,8 +6,8 @@ Hidden Ability: Moxie
 Shiny? True
 Mega Evolution? True
 Gigantamax Factor? False
-HP: 7
-Level: 53
+HP: 345
+Level: 78
 =====================================
 Pokemon: Charizard
 Type 1: Fire
@@ -17,8 +17,8 @@ Hidden Ability: Solar Power
 Shiny? True
 Mega Evolution? True
 Gigantamax Factor? True
-HP: 641
-Level: 56
+HP: 245
+Level: 93
 =====================================
 Pokemon: Lucario
 Type 1: Fighting
@@ -28,8 +28,8 @@ Hidden Ability: Justified
 Shiny? True
 Mega Evolution? True
 Gigantamax Factor? False
-HP: 218
-Level: 38
+HP: 380
+Level: 65
 =====================================
 Pokemon: Blastoise
 Type 1: Water
@@ -39,8 +39,8 @@ Hidden Ability: Rain Dish
 Shiny? True
 Mega Evolution? True
 Gigantamax Factor? True
-HP: 378
-Level: 14
+HP: 492
+Level: 39
 =====================================
 Pokemon: Gengar
 Type 1: Ghost
@@ -50,8 +50,8 @@ Hidden Ability: Levitate
 Shiny? True
 Mega Evolution? True
 Gigantamax Factor? False
-HP: 566
-Level: 51
+HP: 377
+Level: 83
 =====================================
 Pokemon: Infernape
 Type 1: Fire
@@ -61,8 +61,8 @@ Hidden Ability: Iron Fist
 Shiny? True
 Mega Evolution? False
 Gigantamax Factor? False
-HP: 654
-Level: 79
+HP: 208
+Level: 81
 =====================================
 Pokemon: Gyarados
 Type 1: Water
@@ -72,8 +72,8 @@ Hidden Ability: Moxie
 Shiny? True
 Mega Evolution? True
 Gigantamax Factor? False
-HP: 130
-Level: 86
+HP: 665
+Level: 11
 =====================================
 Pokemon: MissingNo.
 Type 1: N/A
