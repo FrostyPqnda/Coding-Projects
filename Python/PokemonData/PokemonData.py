@@ -9,7 +9,6 @@ to a .txt file
 """
 from Pokemon import Pokemon # Imports the Pokemon.py file to use the Pokemon class
 from random import randint # Imports the randint function from the random module
-
 """
 Creates 6 objects that are an instance of the Pokemon class.
 Each Pokemon object will have a randomized HP and level from
