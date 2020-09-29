@@ -16,7 +16,7 @@ namespace LinearSearchAlgorithm
             LinearSearch search = new LinearSearch();
             int index = search.ListSearch(str, "Dogs");
 
-            Console.WriteLine(index);
+            Console.WriteLine("Index: " + index);
             Console.ReadKey();
         }
     }

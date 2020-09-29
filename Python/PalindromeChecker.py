@@ -17,13 +17,13 @@ def is_palindrome(word):
         return True
     return False
 
-inputText = input("Enter a word: ")
+inputText = input('Enter a word: ')
 
 palindrome = is_palindrome(inputText)
 
 print(palindrome)
 
 if(palindrome):
-    print(inputText + ' is a palindrome :)')
+    print(inputText, 'is a palindrome :)')
 else:
-    print(inputText + ' is not a palindrome :(')
+    print(inputText, 'is not a palindrome :(')

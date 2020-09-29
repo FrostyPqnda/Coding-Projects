@@ -11,15 +11,12 @@ name = input("What is your name? ")
 
 num = 0
 
-
 nameList = list(name)
 
 print (nameList)
 
-
 for letter in name:
     num += 1
-    
 
 print (num)
 

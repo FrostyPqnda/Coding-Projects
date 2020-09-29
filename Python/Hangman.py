@@ -6,14 +6,13 @@ Created on Jun 4, 2020
 """
 Hangman game project from my CodeHS assignment
 """
-# Retrieve word list from website url
-import random
+import random 
 import requests
 
 class Hangman:
 
     def __init__(self):
-        self.word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+        self.word_site = "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt"
         response = requests.get(self.word_site)
         self.list_of_words = response.content.splitlines()
         self.secret_word = random.choice(self.list_of_words)

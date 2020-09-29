@@ -13,7 +13,8 @@ from a list.
 class NameHat:
     def __init__(self):
         self.names = []
-    def __repr__(self):
+    
+    def __str__(self):
         return str(self.name)
     
     def insert_name(self, name):
