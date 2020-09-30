@@ -11,7 +11,6 @@ Used to store the Pokemon data object
 from random import randint # Imports the randint function from the random module
 
 class Pokemon:
-
     # Constructor for the Pokemon class
     # Order: Name, Type 1, Type 2, Ability, Hidden Ability, Shiny?, Mega Evolution?, Gigantamax Factor?, HP, Level
     def __init__(self, name = "MissingNo.", type1 = "N/A", type2 = "N/A", ability = "N/A", hiddenAbility = "N/A", shiny = None, canMegaEvolve = None, canGigantamax = None, hp = 0, level = 0):
