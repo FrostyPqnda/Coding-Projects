@@ -43,7 +43,7 @@ namespace LinearSearchAlgorithm
         public int ListSearch(List<String> arr, String key)
         {
             for(int i = 0; i < arr.Count; i++)
-                if(arr.ElementAt(i).Equals(key, StringComparison.OrdinalIgnoreCase))
+                if(arr.ElementAt(i).Equals(key))
                 return i;
             return -1; // Returns -1 if not found
         }
@@ -51,7 +51,7 @@ namespace LinearSearchAlgorithm
         public int ListSearch(String[] arr, String key)
         {
             for(int i = 0; i < arr.Length; i++)
-                if(arr.ElementAt(i).Equals(key, StringComparison.OrdinalIgnoreCase))
+                if(arr.ElementAt(i).Equals(key))
                     return i;
             return -1; // Returns -1 if not found
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Coding-Projects\\C#\\LinearSearchAlgorithm\\LinearSearchAlgorithm.csproj": {}
+    "D:\\Coding-Projects\\C#\\LinearSearch\\LinearSearchAlgorithm.csproj": {}
   },
   "projects": {
-    "D:\\Coding-Projects\\C#\\LinearSearchAlgorithm\\LinearSearchAlgorithm.csproj": {
+    "D:\\Coding-Projects\\C#\\LinearSearch\\LinearSearchAlgorithm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Coding-Projects\\C#\\LinearSearchAlgorithm\\LinearSearchAlgorithm.csproj",
+        "projectUniqueName": "D:\\Coding-Projects\\C#\\LinearSearch\\LinearSearchAlgorithm.csproj",
         "projectName": "LinearSearchAlgorithm",
-        "projectPath": "D:\\Coding-Projects\\C#\\LinearSearchAlgorithm\\LinearSearchAlgorithm.csproj",
+        "projectPath": "D:\\Coding-Projects\\C#\\LinearSearch\\LinearSearchAlgorithm.csproj",
         "packagesPath": "C:\\Users\\Brian\\.nuget\\packages\\",
-        "outputPath": "D:\\Coding-Projects\\C#\\LinearSearchAlgorithm\\obj\\",
+        "outputPath": "D:\\Coding-Projects\\C#\\LinearSearch\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Brian\\AppData\\Roaming\\NuGet\\NuGet.Config"
