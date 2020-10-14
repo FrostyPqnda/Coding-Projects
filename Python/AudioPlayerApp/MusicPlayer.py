@@ -208,7 +208,7 @@ media_frame.grid(row = 1, column = 0)
 
 # Create Volume Label Frame
 duration_frame = LabelFrame(master_frame, text="Duration", font = ('Oswald', 15, 'bold'), background = '#2d57a1', foreground = '#cccccc')
-duration_frame.grid(row=2, column=0, pady=30)
+duration_frame.grid(row=2, column=0, pady=20)
 
 # Create Volume Label Frame
 volume_frame = LabelFrame(master_frame, text="Volume", font = ('Oswald', 15, 'bold'), background = '#2d57a1', foreground = '#cccccc')
