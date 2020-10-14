@@ -44,7 +44,7 @@ namespace LinearSearchAlgorithm
         {
             for(int i = 0; i < arr.Count; i++)
                 if(arr.ElementAt(i).Equals(key))
-                return i;
+                    return i;
             return -1; // Returns -1 if not found
         }
         /* Uses a linear search algorithm to loop through the String Arrays of @param arr for @param key*/
