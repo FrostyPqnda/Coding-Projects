@@ -20,7 +20,7 @@ def play_time():
     song = f'D:/Coding-Projects/Python/AudioPlayerApp/Music/{song}.mp3'
     
     song_mut = MP3(song)
-    global song_length
+    #global song_length
     song_length = song_mut.info.length
     
     conv_song_length = time.strftime('%M:%S', time.gmtime(song_length))
