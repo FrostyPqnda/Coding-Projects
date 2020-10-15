@@ -51,9 +51,18 @@ def play_time():
     
 # Add one song
 def add_song():
-    song = filedialog.askopenfilename(initialdir='Music/', title = 'Choose A Song', filetypes = (('MP3 Files', '*.mp3'), ))
+    song = filedialog.askopenfilename(initialdir='Music/', title = 'Choose A Song', filetypes = (('MP3 Files', '*.mp3'), ('WAV Files', '*.wav'), ('OGG Files', '*.ogg')))
     song = song.replace('D:/Coding-Projects/Python/AudioPlayerApp/Music/', '')
-    song = song.replace('.mp3', '')
+    
+    if '.mp3' in song:
+        song = song.replace('.mp3', '')
+
+    if '.wav' in song:
+        song = song.replace('.wav', '')
+
+    if '.ogg' in song:
+        song = song.replace('.ogg', '')
+
     playlist.insert(END, song)
 
 # Add songs
