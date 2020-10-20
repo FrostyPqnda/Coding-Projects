@@ -8,36 +8,6 @@ import java.util.Collections;
 public class FindMinMax
 {
     /**
-     * Method collectionsFindMinimum uses the Collections class to sort @param numbers 
-     * and find the smallest integer in the ArrayList
-     */
-    public static int collectionsFindMinimum(ArrayList<Integer> numbers)
-    {
-        if(numbers.size() == 1 || numbers == null)
-            return numbers.get(0);
-        Collections.sort(numbers);
-        // Removes the highest number in the ArrayList until only one element is left.
-        for(int i = numbers.size() - 1; i > 0; i--)
-            numbers.remove(i);
-        return collectionsFindMinimum(numbers);
-    }
-
-    /**
-     * Method collectionsFindMaximum uses the Collections class to sort @param numbers 
-     * and find the highest integer in the ArrayList
-     */
-    public static int collectionsFindMaximum(ArrayList<Integer> numbers)
-    {
-        if(numbers.size() == 1 || numbers == null)
-            return numbers.get(0);
-        Collections.sort(numbers);
-        // Removes the lowest number in the ArrayList until only one element is left.
-        for(int i = 0; i < numbers.size() - 1; i++)
-            numbers.remove(i);
-        return collectionsFindMaximum(numbers);
-    }
-
-    /**
      * Method nestedFindMinimum uses a nested for-loop to sort @param numbers
      * and find the smallest integer in the ArrayList
      */
