@@ -18,8 +18,8 @@ public class ArrayListMinMax extends FindMinMax
                 break;
             }
         } while(true);
-
-        System.out.println("Maximum: " + nestedLoopFindMaximum(numbers));
+        
+        System.out.println("Maximum: " + findMaximum(numbers));
         scan.close();
     }
 }

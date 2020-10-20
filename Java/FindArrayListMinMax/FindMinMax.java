@@ -11,7 +11,7 @@ public class FindMinMax
      * Method nestedFindMinimum uses a nested for-loop to sort @param numbers
      * and find the smallest integer in the ArrayList
      */
-    public static int nestedLoopFindMinimum(ArrayList<Integer> numbers)
+    public static int findMinimum(ArrayList<Integer> numbers)
     {
         if(numbers.size() == 1 || numbers == null)
             return numbers.get(0);
@@ -25,14 +25,14 @@ public class FindMinMax
         // Removes the highest number in the ArrayList until only one element is left.
         for(int i = numbers.size() - 1; i > 0; i--)
             numbers.remove(i);
-        return nestedLoopFindMinimum(numbers);
+        return findMinimum(numbers);
     }
 
     /**
      * Method nestedLoopFindMaximum uses a nested for-loop to sort @param numbers
      * and find the largest integer in the ArrayList
      */
-    public static int nestedLoopFindMaximum(ArrayList<Integer> numbers)
+    public static int findMaximum(ArrayList<Integer> numbers)
     {
         if(numbers.size() == 1 || numbers == null)
             return numbers.get(0);
@@ -46,7 +46,7 @@ public class FindMinMax
         // Removes the smallest number in the ArrayList until only one element is left.
         for(int i = numbers.size() - 1; i > 0; i--)
             numbers.remove(i);
-        return nestedLoopFindMaximum(numbers);
+        return findMaximum(numbers);
     }
 
     
