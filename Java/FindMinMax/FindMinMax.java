@@ -51,6 +51,4 @@ public class FindMinMax
             numbers.remove(i);
         return findMaximum(numbers);
     }
-
-    
 }
