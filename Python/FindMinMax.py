@@ -28,11 +28,10 @@ def findMin(arr):
         for y in range(length - x - 1):
             if arr[y] > arr[y + 1]:
                 arr[y], arr[y + 1] = arr[y + 1], arr[y]
-    # Removes the last elements of the array until
-    # only the minimum value is left
-    for i in range(length - 1 - 0):
+    # Removes the last elements of the array until only the minimum value is left
+    for i in range(length - 1):
         arr.pop()
-    return arr
+    return findMin(arr)
 
 # Finds the maximum value of list
 def findMax(arr):
@@ -47,17 +46,17 @@ def findMax(arr):
         for y in range(length - x - 1):
             if arr[y] < arr[y + 1]: 
                 arr[y], arr[y + 1] = arr[y + 1], arr[y]
-    # Removes the last elements of the array until
-    # only the maximum value is left
-    for i in range(length - 1 - 0):
+    # Removes the last elements of the array until only the maximum value is left
+    for i in range(length - 1):
         arr.pop()
-    return arr
+    return findMax(arr)
+
 
 numbers = []
 
 while True:
     try:
-        num = int(input('Enter a number [Enter a non-number to quit]: '))
+        num = int(input('Enter a number [Enter a non-Integer value to quit]: '))
         numbers.append(num)
     except ValueError:
         break
