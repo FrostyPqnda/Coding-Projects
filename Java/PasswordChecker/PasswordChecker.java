@@ -1,27 +1,31 @@
-/*
- * This is a Java program that checks if the user's
- * password is long enough.
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+/**
+ * Java program that checks if a password is long
+ * enough and meets the requirement
+ * 
+ * Requirements:
+ * 
+ * Has letters, numbers, and special characters.
  */
 public class PasswordChecker 
 {
-	/*
-	 * Public static boolean method that takes
-	 * in a string parameter and checks if the 
-	 * length is long enough.
+	/**
+	 * Method checkPassword checks @param password if it
+	 * is a valid password and will return a boolean value
+	 * of true or false.
 	 */
 	public static boolean checkPassword(String password)
 	{
-	    String passwordChecker = "";
-	    for(int i = 0; i < password.length(); i++)
-	    {
-	        char curr = password.charAt(i);
-	        if(!Character.isLetter(curr) && !Character.isDigit(curr))
-	        {
-	            return false;
-	        }
-	    }
-	    boolean passwordLength = password.length() >= 8;
-	    return passwordLength;
+		// Special characters [$, @, #, etc] in the password string
+		Pattern specialChars = Pattern.compile("[^A-Za-z0-9 ]");
+		Matcher s = specialChars.matcher(password);
+		
+		// Alpha-numeric characters in the password string
+		Pattern alphaNumericChars = Pattern.compile("[A-Za-z0-9]");
+		Matcher a = alphaNumericChars.matcher(password);
+
+		return password.length() >= 8 && a.find() && s.find();
 	}
 }
 
