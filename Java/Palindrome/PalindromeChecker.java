@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 /**
  * @author brian
  *
@@ -9,8 +9,6 @@ public class PalindromeChecker extends FindPalindrome
 {
 	public static void main(String[] args) 
 	{
-		System.out.println("A palindrome is word/phrase that remains the \nsame when read in reverse. \n");
-		
 		Scanner input = new Scanner(System.in);
 		System.out.print("Check if a word/phrase is a palindrome: ");
 		String text = input.nextLine();

@@ -12,17 +12,8 @@ public class FindPalindrome
 		String palin = "";
 		
 		for(int i = text.length() - 1; i >= 0; i--)
-		{
 			palin += text.charAt(i);
-		}
 		
-		if(palin.equalsIgnoreCase(text))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return palin.equalsIgnoreCase(text);
 	}
 }
