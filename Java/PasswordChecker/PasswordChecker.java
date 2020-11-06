@@ -2,7 +2,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 /**
  * Java program that checks if a password is long
- * enough and meets the requirement
+ * enough and meets the requirements
  * 
  * Requirements:
  * 
@@ -17,15 +17,12 @@ public class PasswordChecker
 	 */
 	public static boolean checkPassword(String password)
 	{
-		// Special characters [$, @, #, etc] in the password string
-		Pattern specialChars = Pattern.compile("[^A-Za-z0-9 ]");
-		Matcher s = specialChars.matcher(password);
-		
-		// Alpha-numeric characters in the password string
-		Pattern alphaNumericChars = Pattern.compile("[A-Za-z0-9]");
-		Matcher a = alphaNumericChars.matcher(password);
+		// Contains at least one digit, letter (upper and lower), special character, no whitespaces, and has a length of 8 or higher.
+		String passwordRegex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
+		Pattern pass = Pattern.compile(passwordRegex);
+		Matcher pw = pass.matcher(password);
 
-		return password.length() >= 8 && a.find() && s.find();
+		return pw.find(); // return true if the length is greater than or equal to 8 and contains a letter, number, and special character
 	}
 }
 

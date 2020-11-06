@@ -7,7 +7,7 @@ public class PasswordCheckerConsole extends PasswordChecker
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter a password: ");
 		String password = input.nextLine();
-		System.out.println(checkPassword(password));
+		System.out.println("Valid password? " + checkPassword(password));
 		input.close();
 	}
 }

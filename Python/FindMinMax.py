@@ -51,7 +51,6 @@ def findMax(arr):
         arr.pop()
     return findMax(arr)
 
-
 numbers = []
 
 while True:
