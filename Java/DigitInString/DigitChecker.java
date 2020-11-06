@@ -13,7 +13,6 @@ public class DigitChecker
 			for(char c : digit)
 				if(containsDigit = Character.isDigit(c))
 					break;
-
 		return containsDigit;
 	}
 }
