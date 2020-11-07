@@ -14,16 +14,7 @@ public class DigitStringChecker extends DigitChecker
 		String str = input.nextLine();
 		
 		boolean checkForDigit = digitChecker(str);
-		System.out.println(checkForDigit);
-		
-		if(checkForDigit)
-		{
-			System.out.println("Contains a digit!");
-		}
-		else
-		{
-			System.out.println("Does not contain a digit.");
-		}
+		System.out.println("Contains a digit? " + checkForDigit);
 		
 		input.close();
 	}
