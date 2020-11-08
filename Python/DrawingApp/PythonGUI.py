@@ -6,9 +6,6 @@ Created on Aug 31, 2020
 Python project that uses the
 tkinter module to create a GUI
 app.
-
-Might be used for machine learning
-in the future.
 """
 
 # imports the tkinter module to
