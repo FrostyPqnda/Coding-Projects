@@ -12,8 +12,7 @@ public class ArrayListMinMax extends FindMinMax
         do {
             try {
                 System.out.print("Please enter an Integer value [Enter a non-Integer value to quit]: ");
-                int number = scan.nextInt();
-                numbers.add(number);
+                numbers.add(scan.nextInt());
             } catch(InputMismatchException e) {
                 break;
             }
