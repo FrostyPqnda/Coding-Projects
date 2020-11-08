@@ -55,8 +55,7 @@ numbers = []
 
 while True:
     try:
-        num = int(input('Enter a number [Enter a non-Integer value to quit]: '))
-        numbers.append(num)
+        numbers.append(int(input('Enter a number [Enter a non-Integer value to quit]: ')))
     except ValueError:
         break
 
