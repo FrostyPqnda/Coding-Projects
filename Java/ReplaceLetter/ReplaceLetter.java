@@ -9,18 +9,12 @@ public class ReplaceLetter
 {
 	public static String replaceLetter(String word, char letterToReplace, char replacingLetter)
 	{
-		String letterReplacement = "";
+		String text = "";
 		for(int i = 0; i < word.length(); i++)
-		{
 		    if(word.charAt(i) == letterToReplace)
-		    {
-				letterReplacement += replacingLetter;
-		    }
+				text += replacingLetter;
 		    else
-		    {
-				letterReplacement += word.charAt(i);
-		    }
-		}
-		return letterReplacement;
+				text += word.charAt(i);
+		return text;
 	}
 }
