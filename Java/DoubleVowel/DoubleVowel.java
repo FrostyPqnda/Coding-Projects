@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class DoubleVowel extends DoubleVowelAppender
 {
-
 	public static void main(String[] args) 
 	{
 		Scanner input = new Scanner(System.in);
@@ -11,7 +10,5 @@ public class DoubleVowel extends DoubleVowelAppender
 		String output = doubleVowel(word);
 		System.out.println("Result: " + output);
 		input.close();
-
 	}
-
 }

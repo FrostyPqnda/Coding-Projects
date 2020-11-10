@@ -13,29 +13,17 @@ public class DoubleVowelAppender
 		{
 			char curr = text.charAt(i);
 			if (curr == 'a') 
-			{
 				vowel += "aa"; 
-			}
 			else if(curr == 'e')
-            		{
-                		vowel += "ee";
-            		}
+				vowel += "ee";
 			else if(curr == 'i')
-		    	{
 				vowel += "ii";
-		    	}
-            		else if(curr == 'o')
-		    	{
+			else if(curr == 'o')
 				vowel += "oo";
-		    	}
-            		else if(curr == 'u')
-            		{
-                		vowel += "uu";
-            		}
-            		else
-            		{
-                		vowel += curr;
-            		}	
+			else if(curr == 'u')
+				vowel += "uu";
+			else
+				vowel += curr;
 		}
 		return vowel;
 	} 

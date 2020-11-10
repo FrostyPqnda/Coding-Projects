@@ -21,5 +21,5 @@ public class VowelCount
 		    }
 		}
 		return countForVowels;
-    	}
+	}
 }
