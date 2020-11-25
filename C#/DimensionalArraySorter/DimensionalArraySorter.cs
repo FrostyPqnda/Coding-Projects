@@ -33,9 +33,8 @@ namespace DimensionalArraySorter
             for(int row = 0; row < length; row++)
                 for(int col = 0; col < length; col++)
                     temp[count++] = curr[row, col];
-            
-            // Calls the MergeSort function to sort the temporary array
-            MergeSort(temp, temp.Length); 
+        
+            MergeSort(temp, temp.Length); // Calls the MergeSort function to sort the temporary array
 
             count = 0; // Resets the counter variable back to zero
             // Copy elements of the temporary array one by one into the multi-dimensional array
