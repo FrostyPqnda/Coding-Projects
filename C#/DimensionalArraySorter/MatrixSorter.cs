@@ -6,7 +6,8 @@ namespace DimensionalArraySorter
     {
         static void Main(string[] args)
         {   
-            Random2DArray rng = new Random2DArray(); // Create an object of the Random2DArray class
+            // Create an object of the Random2DArray class
+            Random2DArray rng = new Random2DArray(); 
 
             // Ask users for the row length
             Console.Write("Enter the row length: ");
@@ -17,15 +18,16 @@ namespace DimensionalArraySorter
 
             // Create a randomized, unsorted 2D array and print it out to the terminal
             int[,] matrix = rng.GenerateRandom2DArray(row, col);
-            Console.WriteLine("\nUnsorted");
+            Console.WriteLine("\nUnsorted:");
             PrintMatrix(matrix);
             
             // Sorts the randomized, unsorted 2D array and print it out to the terminal
-            Console.WriteLine("\nSorted");
+            Console.WriteLine("\nSorted:");
             SortMatrix(matrix, row, col);
             PrintMatrix(matrix);
-
-            Console.ReadKey();  // Prevents the terminal from closing on run 
+            
+            // Prevents the terminal from closing on run 
+            Console.ReadKey();  
         }
 
         // Sorts the given matrix [Inspired by GeeksForGeeks Matrix Sort - https://www.geeksforgeeks.org/sort-given-matrix/]
