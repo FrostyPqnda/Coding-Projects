@@ -31,22 +31,22 @@ namespace DimensionalArraySorter
         // Sorts the given matrix [Inspired by GeeksForGeeks Matrix Sort - https://www.geeksforgeeks.org/sort-given-matrix/]
         static void SortMatrix(int[,] curr, int rowLength, int columnLength)
         {
-            int[] temp = new int[rowLength * columnLength]; // Create a temporary array with a length of @param x * y
+            int[] arr = new int[rowLength * columnLength]; // Create a temporary array with a length of @param rowLength * columnLength
             int count = 0; // Counter variable for the temporary array
 
             // Copy elements of the multi-dimensional arrays one by one into the temporary array
             for(int row = 0; row < rowLength; row++)
                 for(int col = 0; col < columnLength; col++)
-                    temp[count++] = curr[row, col];
+                    arr[count++] = curr[row, col];
 
             MergeSorter merge = new MergeSorter(); // Create object of the MergeSorter class
-            merge.MergeSort(temp, temp.Length); // Calls the MergeSort function to sort the temporary array
+            merge.MergeSort(arr, arr.Length); // Calls the MergeSort function to sort the temporary array
 
             count = 0; // Resets the counter variable back to zero
             // Copy elements of the temporary array one by one into the multi-dimensional array
             for(int row = 0; row < rowLength; row++)
                 for(int col = 0; col < columnLength; col++)
-                    curr[row, col] = temp[count++];
+                    curr[row, col] = arr[count++];
         }
 
         // Print all elements of a multi-dimensional array
