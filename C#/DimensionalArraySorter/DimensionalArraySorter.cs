@@ -7,12 +7,7 @@ namespace DimensionalArraySorter
     {
         static void Main(string[] args)
         {
-            int[,] matrix = {
-                {123, 23, 145},
-                {234, 43, 1324},
-                {435, 223, 132}
-            };
-
+            int[,] matrix = GenerateRandom2DArray(10);
             Console.WriteLine("Unsorted");            
             PrintMatrix(matrix, matrix.GetLength(0));
 
@@ -48,7 +43,7 @@ namespace DimensionalArraySorter
         {
             for(int row = 0; row < length; row++) {
                 for(int col = 0; col < length; col++) {
-                    Console.Write(curr[row, col] + " ");
+                    Console.Write(curr[row, col] + "\t");
                 }
                 Console.WriteLine();
             }
@@ -79,7 +74,7 @@ namespace DimensionalArraySorter
 
         }
 
-        // Combines the splitted arrays for the mergeSort method to use
+        // Combines the splitted arrays for the MergeSort method to use
         static void Merge(int[] curr, int[] left, int[] right)
         {
             int x = 0, y = 0, z = 0; // counter variables for the arrays
@@ -100,6 +95,19 @@ namespace DimensionalArraySorter
             
             while(y < right.Length)
                 curr[z++] = right[y++];
+        }
+
+        // Creates a randomized 2d array with a row and column size of @param number
+        static int[,] GenerateRandom2DArray(int number)
+        {
+            int[,] arr = new int[number, number];
+            Random rng = new Random();
+
+            for(int row = 0; row < number; row++)
+                for(int col = 0; col < number; col++)
+                    arr[row, col] = rng.Next(0, 10001);
+
+            return arr;
         }
     }
 }
