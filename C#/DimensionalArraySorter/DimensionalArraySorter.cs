@@ -8,15 +8,15 @@ namespace DimensionalArraySorter
         static void Main(string[] args)
         {
             int[,] matrix = {
-                {123, 23, 145,},
+                {123, 23, 145},
                 {234, 43, 1324},
-                {435, 223, 132},
+                {435, 223, 132}
             };
 
             Console.WriteLine("Unsorted");            
             PrintMatrix(matrix, matrix.GetLength(0));
 
-            DimensionalArraySort(matrix, matrix.GetLength(0));
+            SortMatrix(matrix, matrix.GetLength(0));
             Console.WriteLine("\nSorted");
             PrintMatrix(matrix, matrix.GetLength(0));
 
@@ -24,7 +24,7 @@ namespace DimensionalArraySorter
         }
 
         // Sorts the given matrix [Inspired by GeeksForGeeks Matrix Sort - https://www.geeksforgeeks.org/sort-given-matrix/]
-        static void DimensionalArraySort(int[,] curr, int length)
+        static void SortMatrix(int[,] curr, int length)
         {
             int[] temp = new int[length * length]; // Create a temporary array with a length of @param length^2
             int count = 0; // Counter variable for the temporary array
