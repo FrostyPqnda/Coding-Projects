@@ -7,15 +7,21 @@ namespace DimensionalArraySorter
     {
         static void Main(string[] args)
         {
-            int[,] matrix = GenerateRandom2DArray(10);
-            Console.WriteLine("Unsorted");            
+            // Ask user to specify the length for the 2D array
+            Console.Write("Enter a length for the 2D array: ");
+            int length = Convert.ToInt32(Console.ReadLine());
+
+            // Generates a random, unsorted 2D array with a length based on the user's input
+            int[,] matrix = GenerateRandom2DArray(length);
+            Console.WriteLine("\nUnsorted");            
             PrintMatrix(matrix, matrix.GetLength(0));
 
+            // Sorts the random, unsorted 2D array and prints it out to the terminal
             SortMatrix(matrix, matrix.GetLength(0));
             Console.WriteLine("\nSorted");
             PrintMatrix(matrix, matrix.GetLength(0));
 
-            Console.ReadKey();  
+            Console.ReadKey();  // Prevents the terminal from closing on run
         }
 
         // Sorts the given matrix [Inspired by GeeksForGeeks Matrix Sort - https://www.geeksforgeeks.org/sort-given-matrix/]
@@ -57,8 +63,8 @@ namespace DimensionalArraySorter
                 return;
 
             int midPoint = length / 2; // Find middle
-            int[] leftArr = new int[midPoint]; // Array starting from midpoint
-            int[] rightArr = new int[length - midPoint]; // Array starting from first index to midpoint
+            int[] leftArr = new int[midPoint]; // Left side of array up to the midpoint
+            int[] rightArr = new int[length - midPoint]; //Right side of array starting from the midpoint 
 
             // Populate the first half into left
             for(int i = 0; i < midPoint; i++)
@@ -97,17 +103,18 @@ namespace DimensionalArraySorter
                 curr[z++] = right[y++];
         }
 
-        // Creates a randomized 2d array with a row and column size of @param number
+        // Creates a randomized 2D array with a row and column size of @param number
         static int[,] GenerateRandom2DArray(int number)
         {
-            int[,] arr = new int[number, number];
-            Random rng = new Random();
+            int[,] arr = new int[number, number]; // Create a 2D array with a row and column length of @param number
+            Random rng = new Random(); // Create object from the Random class
 
-            for(int row = 0; row < number; row++)
-                for(int col = 0; col < number; col++)
+            // Populate the 2D array with random value from the range of [0, 10000] inclusive
+            for(int row = 0; row < arr.GetLength(0); row++)
+                for(int col = 0; col < arr.GetLength(1); col++)
                     arr[row, col] = rng.Next(0, 10001);
 
-            return arr;
+            return arr; // Return the randomized 2D array
         }
     }
 }
