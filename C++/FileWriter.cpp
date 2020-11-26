@@ -30,11 +30,11 @@ int main()
     
     if(!user_file)
     {
-        cout << "Failed to create file \n";
+        cout << "Failed to create file\n";
     }
     else
     {
-        cout << file << " has been created \n";
+        cout << file << " has been created\n";
         user_file << content;
         user_file.close();
     }

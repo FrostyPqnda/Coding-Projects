@@ -18,7 +18,7 @@ public class ArrayListMinMax extends FindMinMax
             }
         } while(true);
         
-        System.out.println("Maximum: " + findMaximum(numbers));
+        System.out.println("Minimum: " + findMinimum(numbers));
         scan.close();
     }
 }
