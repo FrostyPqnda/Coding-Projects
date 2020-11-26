@@ -7,7 +7,7 @@ namespace DimensionalArraySorter
         // Creates a randomized 2D array with a row length of @param rowLength and a column length of @param columnLength
         public int[,] GenerateRandom2DArray(int rowLength, int columnLength)
         {
-            int[,] arr = new int[rowLength, columnLength]; // Create a 2D array with a row and column length of @param number
+            int[,] arr = new int[rowLength, columnLength]; // Create a 2D array with a size of @param rowLength * @param columnLength
             Random rng = new Random(); // Create object from the Random class
 
             // Populate the 2D array with random value from the range of [0, 10000] inclusive

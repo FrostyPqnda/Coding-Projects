@@ -31,7 +31,7 @@ namespace DimensionalArraySorter
         // Combines the splitted arrays for the MergeSort method to use
         static void Merge(int[] curr, int[] left, int[] right)
         {
-            int x = 0, y = 0, z = 0; // counter variables for the arrays
+            int x = 0, y = 0, z = 0; // counter variables for the arrays [left, right, and curr]
 
             /* Loop through the left and right arrays and look for the lowest index value
             in the array (the lowest value overall). */
