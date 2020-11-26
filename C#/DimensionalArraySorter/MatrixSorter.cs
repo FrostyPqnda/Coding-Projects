@@ -11,10 +11,13 @@ namespace DimensionalArraySorter
 
             // Ask users for the row length
             Console.Write("Enter the row length: ");
-            int row = Convert.ToInt32(Console.ReadLine());
+            int rowLength = Convert.ToInt32(Console.ReadLine());
+            int row = (rowLength > 1) ? rowLength : 1;
+
             // Ask users for the column length
             Console.Write("Enter the column length: ");
-            int col = Convert.ToInt32(Console.ReadLine());
+            int columnLength = Convert.ToInt32(Console.ReadLine());
+            int col = (columnLength > 1) ? columnLength : 1;
 
             // Create a randomized, unsorted 2D array and print it out to the terminal
             int[,] matrix = rng.GenerateRandom2DArray(row, col);
