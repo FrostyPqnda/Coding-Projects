@@ -58,9 +58,8 @@ namespace DimensionalArraySorter
         static void PrintMatrix(int[,] curr)
         {
             for(int row = 0; row < curr.GetLength(0); row++) {
-                for(int col = 0; col < curr.GetLength(1); col++) {
+                for(int col = 0; col < curr.GetLength(1); col++)
                     Console.Write(curr[row, col] + "\t");
-                }
                 Console.WriteLine();
             }
         }

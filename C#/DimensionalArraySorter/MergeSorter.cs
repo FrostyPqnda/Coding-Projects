@@ -15,11 +15,11 @@ namespace DimensionalArraySorter
             int[] leftArr = new int[midPoint]; // Left side of array up to the midpoint
             int[] rightArr = new int[length - midPoint]; //Right side of array starting from the midpoint 
 
-            // Populate the first half into left
+            // Populate the first half into the left array
             for(int i = 0; i < midPoint; i++)
                 leftArr[i] = curr[i];
             
-            // Populate the second half into right
+            // Populate the second half into the right array
             for(int i = midPoint; i < length; i++)
                 rightArr[i - midPoint] = curr[i];
             
