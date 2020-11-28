@@ -12,7 +12,7 @@ reddit = praw.Reddit(
 
 keyphrases = ['!QuackBot', 'Duck', 'Quack'] # Certain words that will activate QuackBot
 
-subreddit = reddit.subreddit('duck') # The subreddit the QuackBot will live in
+subreddit = reddit.subreddit('all') # The subreddit the QuackBot will live in
 
 bot_reply_list = [
     'QUACK!', 
