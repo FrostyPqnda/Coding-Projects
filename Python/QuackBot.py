@@ -12,7 +12,7 @@ reddit = praw.Reddit(
 
 keyphrases = ['!QuackBot', 'Duck', 'Quack'] # Certain words that will activate QuackBot
 
-subreddit = reddit.subreddit('all') # The subreddit the QuackBot will live in
+subreddit = reddit.subreddit('dankmemes') # The subreddit the QuackBot will live in
 
 bot_reply_list = [
     'QUACK!', 
@@ -34,8 +34,7 @@ for post in subreddit.hot(limit=10000):
         if hasattr(comment,'body'):
             if keyphrases[0].lower() in comment.body or keyphrases[1].lower() in comment.body or keyphrases[2].lower() in comment.body:
                 random_index = randint(0, len(bot_reply_list) - 1) # Get a random value from the bot reply list
-                print(comment.body)
-                print(bot_reply_list[random_index]) # Replies to a redditor with a randomized reply from the list
+                comment.reply(bot_reply_list[random_index]) # Replies to a redditor with a randomized reply from the list
                 sleep(720) # Replies to another post after 12 minutes
 
 
