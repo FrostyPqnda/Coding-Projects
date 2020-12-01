@@ -22,10 +22,12 @@ root.configure(bg = '#283140')
 root.title('GUI App')
 
 # Instruction for the GUI app
-msg = tk.Label(root, font = ('Oswald', 40, 'bold'), 
-            background = '#2d57a1', 
-            foreground = '#cccccc', 
-            text='Click and drag to draw')
+msg = tk.Label(
+    root, 
+    font = ('Oswald', 40, 'bold'), 
+    background = '#2d57a1', 
+    foreground = '#cccccc', 
+    text='Click and drag to draw')
 msg.pack(anchor = 'center')
 
 # Creates and adds a canvas for the GUI
@@ -51,10 +53,12 @@ def save(event):
 canvas.bind('<B1-Motion>', draw) # Calls the draw function on click and drag
 root.bind('<Control-s>', save) # Calls the save function on 'ctrl-s'
 
-saveLbl = tk.Label(root, font = ('Oswald', 30, 'bold'), 
-            background = '#2d57a1', 
-            foreground = '#cccccc', 
-            text='Ctrl-S to save')
+saveLbl = tk.Label(
+    root, 
+    font = ('Oswald', 30, 'bold'), 
+    background = '#2d57a1', 
+    foreground = '#cccccc', 
+    text='Ctrl-S to save')
 saveLbl.pack(anchor = 'center')
 
 # Runs the GUI

@@ -11,12 +11,12 @@ namespace DimensionalArraySorter
 
             // Ask users for the row length
             Console.Write("Enter the row length: ");
-            int rowLength = Convert.ToInt32(Console.ReadLine());
+            int rowLength = Convert.ToInt32(Console.ReadLine()); // Input row
             int row = (rowLength > 1) ? rowLength : 1; // If the inputted row length is less than 1, then the row length is set to 1
 
             // Ask users for the column length
             Console.Write("Enter the column length: ");
-            int columnLength = Convert.ToInt32(Console.ReadLine());
+            int columnLength = Convert.ToInt32(Console.ReadLine()); // Input column
             int col = (columnLength > 1) ? columnLength : 1; // If the inputted column length is less than 1, then the row length is set to 1
 
             // Create a randomized, unsorted 2D array and print it out to the terminal
