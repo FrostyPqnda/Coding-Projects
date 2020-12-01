@@ -2,7 +2,7 @@ from random import randint # Imports the randint function from the random module
 
 # Generate a list with a random set of numbers
 def generateRandomList(length):
-    arr = [randint(1, length) for i in range(length)]
+    arr = [randint(1, 100) for i in range(length)]
     return arr
 
 """
