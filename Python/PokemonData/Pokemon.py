@@ -12,43 +12,37 @@ from random import randint # Imports the randint function from the random module
 
 class Pokemon:
     # Constructor for the Pokemon class
-    # Order: Name, Type 1, Type 2, Ability, Hidden Ability, Shiny?, Mega Evolution?, Gigantamax Factor?, HP, Level
-    def __init__(self, name = "MissingNo.", type1 = "N/A", type2 = "N/A", ability = "N/A", hiddenAbility = "N/A", shiny = None, canMegaEvolve = None, canGigantamax = None, hp = 0, level = 0):
-        self.name = name
-        self.type1 = type1
-        self.type2 = type2
-        self.ability = ability
-        self.hiddenAbility = hiddenAbility
-        self.shiny = shiny
-        self.canMegaEvolve = canMegaEvolve
-        self.canGigantamax = canGigantamax
-        self.hp = hp
-        self.set_hp(hp)
-        self.level = level
-        self.set_level(level)
+    # Order: Name, Type, Ability, Shiny?, Mega Evolution?, HP, Level
+    def __init__(self, pkmnName = "MissingNo.", pkmnType = "N/A", pkmnAbility = "N/A", pkmnShiny = None, pkmnMegaEvolve = None, pkmnHP = 0, pkmnLevel = 0):
+        self.pkmnName = pkmnName
+        self.pkmnType = pkmnType
+        self.pkmnAbility = pkmnAbility
+        self.pkmnShiny = pkmnShiny
+        self.pkmnMegaEvolve = pkmnMegaEvolve
+        self.pkmnHP = pkmnHP
+        self.set_hp(pkmnHP)
+        self.pkmnLevel = pkmnLevel
+        self.set_level(pkmnLevel)
 
     # Sets the HP of the Pokemon based on a random number between [1, 714]
-    def set_hp(self, hp):
-        if self.hp < 0 or self.hp > 714:
-            self.hp = randint(1, 714)
+    def set_hp(self, pkmnHP):
+        if self.pkmnHP < 0 or self.pkmnHP > 714:
+            self.pkmnHP = randint(1, 714)
 
     # Sets the HP of the Pokemon based on a random number between [1, 100]
-    def set_level(self, level):
-        if self.level < 0 or self.level > 100:
-            self.level = randint(1, 100)
+    def set_level(self, pkmnHP):
+        if self.pkmnHP < 0 or self.pkmnHP > 100:
+            self.pkmnHP = randint(1, 100)
     
     # Returns the object as a string
     def __str__(self):
-        pokemon = "Pokemon: " + self.name
-        type_one = "\nType 1: " + self.type1
-        type_two = "\nType 2: " + self.type2
-        base_ability = "\nAbility: " + self.ability
-        hidden_ability = "\nHidden Ability: " + self.hiddenAbility
-        shiny_value = "\nShiny? " + str(self.shiny)
-        mega_evolve = "\nMega Evolution? " + str(self.canMegaEvolve)
-        gigantamx_factor = "\nGigantamax Factor? " + str(self.canGigantamax)
-        base_hp = "\nHP: " + str(self.hp)
-        base_level = "\nLevel: " + str(self.level)
-        return pokemon + type_one + type_two + base_ability + hidden_ability + shiny_value + mega_evolve + gigantamx_factor + base_hp + base_level
+        pokemon = "Pokemon: " + self.pkmnName
+        pkmnType = "\nType: " + self.pkmnType
+        pkmnAbility = "\nAbility: " + self.pkmnAbility
+        pkmnShiny = "\nShiny? " + str(self.pkmnShiny)
+        pkmnMegaEvolve = "\nMega Evolution? " + str(self.pkmnMegaEvolve)
+        pkmnHP = "\nHP: " + str(self.pkmnHP)
+        pkmnLevel = "\nLevel: " + str(self.pkmnLevel)
+        return pokemon + pkmnType + pkmnAbility + pkmnShiny + pkmnMegaEvolve + pkmnHP + pkmnLevel
         
         

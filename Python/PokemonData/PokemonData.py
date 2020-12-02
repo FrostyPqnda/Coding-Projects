@@ -14,13 +14,13 @@ Creates 6 objects that are an instance of the Pokemon class.
 Each Pokemon object will have a randomized HP and level from
 a range of [1, 714] for the HP and a range of [1, 100] for the level
 """
-salamence = Pokemon("Salamence", "Dragon", "Flying", "Intimidate", "Moxie", True, True, False, randint(1, 714), randint(1, 100))
-charizard = Pokemon("Charizard", "Fire", "Flying", "Blaze", "Solar Power", True, True, True, randint(1, 714), randint(1, 100))
-lucario = Pokemon("Lucario", "Fighting", "Steel", "Inner Focus", "Justified", True, True, False, randint(1, 714), randint(1, 100))
-blastoise = Pokemon("Blastoise", "Water", "N/A", "Torrent", "Rain Dish", True, True, True, randint(1, 714), randint(1, 100))
-gengar = Pokemon("Gengar", "Ghost", "Poison", "Cursed Body", "Levitate", True, True, False, randint(1, 714), randint(1, 100))
-infernape = Pokemon("Infernape", "Fire", "Fighting", "Blaze", "Iron Fist", True, False, False, randint(1, 714), randint(1, 100))
-gyarados = Pokemon("Gyarados", "Water", "Flying", "Intimidate", "Moxie", True, True, False, randint(1, 714), randint(1, 100))
+salamence = Pokemon("Salamence", "Dragon, Flying", "Intimidate, Moxie", True, True, randint(1, 714), randint(1, 100))
+charizard = Pokemon("Charizard", "Fire, Flying", "Blaze, Solar Power", True, True, randint(1, 714), randint(1, 100))
+lucario = Pokemon("Lucario", "Fighting, Steel", "Inner Focus, Justified", True, True, randint(1, 714), randint(1, 100))
+blastoise = Pokemon("Blastoise", "Water", "Torrent, Rain Dish", True, True, randint(1, 714), randint(1, 100))
+gengar = Pokemon("Gengar", "Ghost, Poison", "Cursed Body", True, True, randint(1, 714), randint(1, 100))
+infernape = Pokemon("Infernape", "Fire, Fighting", "Blaze, Iron Fist", True, False, randint(1, 714), randint(1, 100))
+gyarados = Pokemon("Gyarados", "Water, Flying", "Intimidate, Moxie", True, True, randint(1, 714), randint(1, 100))
 pk = Pokemon()
 
 # Creates a list of Pokemon objects to store

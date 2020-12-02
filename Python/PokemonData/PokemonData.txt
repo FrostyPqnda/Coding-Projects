@@ -1,88 +1,64 @@
 Pokemon: Salamence
-Type 1: Dragon
-Type 2: Flying
-Ability: Intimidate
-Hidden Ability: Moxie
+Type: Dragon, Flying
+Ability: Intimidate, Moxie
 Shiny? True
 Mega Evolution? True
-Gigantamax Factor? False
-HP: 194
-Level: 42
+HP: 61
+Level: 83
 =====================================
 Pokemon: Charizard
-Type 1: Fire
-Type 2: Flying
-Ability: Blaze
-Hidden Ability: Solar Power
+Type: Fire, Flying
+Ability: Blaze, Solar Power
 Shiny? True
 Mega Evolution? True
-Gigantamax Factor? True
-HP: 188
-Level: 70
+HP: 36
+Level: 97
 =====================================
 Pokemon: Lucario
-Type 1: Fighting
-Type 2: Steel
-Ability: Inner Focus
-Hidden Ability: Justified
+Type: Fighting, Steel
+Ability: Inner Focus, Justified
 Shiny? True
 Mega Evolution? True
-Gigantamax Factor? False
-HP: 86
-Level: 32
+HP: 72
+Level: 58
 =====================================
 Pokemon: Blastoise
-Type 1: Water
-Type 2: N/A
-Ability: Torrent
-Hidden Ability: Rain Dish
+Type: Water
+Ability: Torrent, Rain Dish
 Shiny? True
 Mega Evolution? True
-Gigantamax Factor? True
-HP: 581
-Level: 88
+HP: 19
+Level: 13
 =====================================
 Pokemon: Gengar
-Type 1: Ghost
-Type 2: Poison
+Type: Ghost, Poison
 Ability: Cursed Body
-Hidden Ability: Levitate
 Shiny? True
 Mega Evolution? True
-Gigantamax Factor? False
-HP: 575
-Level: 62
+HP: 99
+Level: 61
 =====================================
 Pokemon: Infernape
-Type 1: Fire
-Type 2: Fighting
-Ability: Blaze
-Hidden Ability: Iron Fist
+Type: Fire, Fighting
+Ability: Blaze, Iron Fist
 Shiny? True
 Mega Evolution? False
-Gigantamax Factor? False
-HP: 101
-Level: 8
+HP: 20
+Level: 83
 =====================================
 Pokemon: Gyarados
-Type 1: Water
-Type 2: Flying
-Ability: Intimidate
-Hidden Ability: Moxie
+Type: Water, Flying
+Ability: Intimidate, Moxie
 Shiny? True
 Mega Evolution? True
-Gigantamax Factor? False
-HP: 133
-Level: 69
+HP: 15
+Level: 39
 =====================================
 Pokemon: MissingNo.
-Type 1: N/A
-Type 2: N/A
+Type: N/A
 Ability: N/A
-Hidden Ability: N/A
 Shiny? None
 Mega Evolution? None
-Gigantamax Factor? None
 HP: 0
 Level: 0
 =====================================
