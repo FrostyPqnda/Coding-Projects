@@ -6,6 +6,9 @@ namespace DimensionalArraySorter
     {
         static void Main(string[] args)
         {   
+            Console.Title = "Matrix Sorter";
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+
             // Create an object of the Random2DArray class
             Random2DArray rng = new Random2DArray(); 
 
