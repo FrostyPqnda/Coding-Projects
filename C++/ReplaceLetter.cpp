@@ -17,7 +17,6 @@ static string replaceLetter(string word, char removeLetter, char replacingLetter
             val += replacingLetter;
         else
             val += word.at(i);
-    
     return val;
 }
 
