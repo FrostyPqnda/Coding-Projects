@@ -11,16 +11,17 @@ from Pokemon import Pokemon # Imports the Pokemon.py file to use the Pokemon cla
 from random import randint # Imports the randint function from the random module
 """
 Creates 6 objects that are an instance of the Pokemon class.
-Each Pokemon object will have a randomized HP and level from
-a range of [1, 714] for the HP and a range of [1, 100] for the level
+Each Pokemon object will have a randomized HP and level.
+Each pokemon's HP will be determined by the highest possible HP 
+they will have at level 50 and 100. The levels will be set between [50, 100].
 """
-salamence = Pokemon("Salamence", "Dragon, Flying", "Intimidate, Moxie", True, True, randint(1, 714), randint(1, 100))
-charizard = Pokemon("Charizard", "Fire, Flying", "Blaze, Solar Power", True, True, randint(1, 714), randint(1, 100))
-lucario = Pokemon("Lucario", "Fighting, Steel", "Inner Focus, Justified", True, True, randint(1, 714), randint(1, 100))
-blastoise = Pokemon("Blastoise", "Water", "Torrent, Rain Dish", True, True, randint(1, 714), randint(1, 100))
-gengar = Pokemon("Gengar", "Ghost, Poison", "Cursed Body", True, True, randint(1, 714), randint(1, 100))
-infernape = Pokemon("Infernape", "Fire, Fighting", "Blaze, Iron Fist", True, False, randint(1, 714), randint(1, 100))
-gyarados = Pokemon("Gyarados", "Water, Flying", "Intimidate, Moxie", True, True, randint(1, 714), randint(1, 100))
+salamence = Pokemon("Salamence", "Dragon, Flying", "Intimidate, Moxie", True, randint(202, 394), randint(50, 100))
+charizard = Pokemon("Charizard", "Fire, Flying", "Blaze, Solar Power", True, randint(185, 360), randint(50, 100))
+lucario = Pokemon("Lucario", "Fighting, Steel", "Inner Focus, Justified", True, randint(177, 344), randint(50, 100))
+blastoise = Pokemon("Blastoise", "Water", "Torrent, Rain Dish", True, randint(186, 362), randint(50, 100))
+gengar = Pokemon("Gengar", "Ghost, Poison", "Cursed Body", True, randint(167, 324), randint(50, 100))
+infernape = Pokemon("Infernape", "Fire, Fighting", "Blaze, Iron Fist", True, randint(183, 356), randint(50, 100))
+gyarados = Pokemon("Gyarados", "Water, Flying", "Intimidate, Moxie", True, randint(202, 394), randint(50, 100))
 pk = Pokemon()
 
 # Creates a list of Pokemon objects to store

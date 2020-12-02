@@ -1,64 +1,56 @@
 Pokemon: Salamence
 Type: Dragon, Flying
 Ability: Intimidate, Moxie
-Shiny? True
-Mega Evolution? True
-HP: 61
-Level: 83
+Shiny: True
+HP: 288
+Level: 86
 =====================================
 Pokemon: Charizard
 Type: Fire, Flying
 Ability: Blaze, Solar Power
-Shiny? True
-Mega Evolution? True
-HP: 36
-Level: 97
+Shiny: True
+HP: 294
+Level: 56
 =====================================
 Pokemon: Lucario
 Type: Fighting, Steel
 Ability: Inner Focus, Justified
-Shiny? True
-Mega Evolution? True
-HP: 72
-Level: 58
+Shiny: True
+HP: 291
+Level: 57
 =====================================
 Pokemon: Blastoise
 Type: Water
 Ability: Torrent, Rain Dish
-Shiny? True
-Mega Evolution? True
-HP: 19
-Level: 13
+Shiny: True
+HP: 347
+Level: 85
 =====================================
 Pokemon: Gengar
 Type: Ghost, Poison
 Ability: Cursed Body
-Shiny? True
-Mega Evolution? True
-HP: 99
-Level: 61
+Shiny: True
+HP: 245
+Level: 82
 =====================================
 Pokemon: Infernape
 Type: Fire, Fighting
 Ability: Blaze, Iron Fist
-Shiny? True
-Mega Evolution? False
-HP: 20
-Level: 83
+Shiny: True
+HP: 303
+Level: 61
 =====================================
 Pokemon: Gyarados
 Type: Water, Flying
 Ability: Intimidate, Moxie
-Shiny? True
-Mega Evolution? True
-HP: 15
-Level: 39
+Shiny: True
+HP: 365
+Level: 74
 =====================================
-Pokemon: MissingNo.
-Type: N/A
-Ability: N/A
-Shiny? None
-Mega Evolution? None
+Pokemon: None
+Type: None
+Ability: None
+Shiny: None
 HP: 0
 Level: 0
 =====================================
