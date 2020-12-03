@@ -29,5 +29,5 @@ int main()
     cout << "Enter an integer: ";
     cin >> y; 
 
-    cout << "Total number of objects in the set: " << max(x, y) << endl << "Number of sampling objects in the set: " << min(x, y) << endl << "The total number of combination is " << combination(x,y) << endl;
+    cout << "\nTotal number of objects in the set: " << max(x, y) << endl << "Number of sampling objects in the set: " << min(x, y) << endl << "The total number of combination is " << combination(x,y) << endl;
 }
