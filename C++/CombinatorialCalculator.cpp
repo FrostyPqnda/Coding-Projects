@@ -30,4 +30,5 @@ int main()
     cin >> y; 
 
     cout << "\nTotal number of objects in the set: " << max(x, y) << endl << "Number of sampling objects in the set: " << min(x, y) << endl << "The total number of combination is " << combination(x,y) << endl;
+    return 0;
 }
