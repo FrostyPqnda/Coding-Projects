@@ -36,7 +36,7 @@ namespace DimensionalArraySorter
             Console.ReadKey();  
         }
 
-        // Sorts the given matrix [Inspired by GeeksForGeeks Matrix Sort - https://www.geeksforgeeks.org/sort-given-matrix/]
+        // Sorts the given matrix [Edited version of GeeksForGeeks' Matrix Sort - https://www.geeksforgeeks.org/sort-given-matrix/]
         static void SortMatrix(int[,] curr, int rowLength, int columnLength)
         {
             int[] arr = new int[rowLength * columnLength]; // Create a temporary array with a length of @param rowLength * columnLength
