@@ -20,9 +20,6 @@ public class WordCount
 		Object[] keys = printWord.keySet().toArray();
 		Arrays.sort(keys);
 		for(Object word : keys)
-		{
-			int value = printWord.get(word);
-			System.out.println(word + ": " + value);
-		}
+			System.out.println(word + ": " + printWord.get(word));
 	}
 }

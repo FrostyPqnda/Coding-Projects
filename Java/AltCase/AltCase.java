@@ -13,17 +13,10 @@ public class AltCase
 	{
 	    String returnAltCase = "";
 	    for(int i = 0; i < text.length(); i++)
-	    {
-	        char curCase = text.charAt(i);
 	        if(i % 2 == 0)
-	        {
-	            returnAltCase += Character.toUpperCase(curCase);
-	        }
+	            returnAltCase += Character.toUpperCase(text.charAt(i));
 	        else
-	        {
-	            returnAltCase += Character.toLowerCase(curCase);
-	        }
-	    }
+	            returnAltCase += Character.toLowerCase(text.charAt(i));
 	    return returnAltCase;
 	}
 

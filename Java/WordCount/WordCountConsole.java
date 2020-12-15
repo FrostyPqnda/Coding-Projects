@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Scanner;
+import java.util.HashMap;
 
 public class WordCountConsole extends WordCount
 {
@@ -14,13 +15,9 @@ public class WordCountConsole extends WordCount
         {
             Integer num = wordCount.get(words[i].toLowerCase());
             if(num == null)
-            {
                 num = Integer.valueOf(1);
-            }
             else
-            {
                 num = Integer.valueOf(num.intValue() + 1);
-            }
             wordCount.put(words[i].toLowerCase(), num);
         }
         printNumWord(wordCount);

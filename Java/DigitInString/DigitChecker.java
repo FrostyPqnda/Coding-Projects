@@ -9,7 +9,7 @@ public class DigitChecker
 		char[] digit = str.toCharArray();
 		boolean containsDigit = false;
 
-		if(str != null || !str.isEmpty())
+		if(!(str == null && str.isEmpty()))
 			for(char c : digit)
 				if(containsDigit = Character.isDigit(c))
 					break;

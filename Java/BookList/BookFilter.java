@@ -13,12 +13,8 @@ public class BookFilter
 	public static List<Book> filterBooks(List<Book> readingList, String author)
 	{
 	    for(int i = readingList.size() - 1; i >= 0; i--)
-	    {
 	        if(!readingList.get(i).getAuthor().equals(author))
-	        {
 	            readingList.remove(i);
-	        }
-	    }
 	    return readingList;
 	}
 

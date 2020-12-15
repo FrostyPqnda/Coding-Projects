@@ -11,16 +11,8 @@ public class CheckStringCases
 	    char[] charArray = phrase.toCharArray();
 	    
 	    for(int i = 0; i < phrase.length(); i++)
-	    {
 	        if(Character.isLetter(charArray[i]))
-	        {
-	            if(!Character.isLowerCase(charArray[i]))
-	            {
-	                return false;
-	            }
-	        }
-	    }
-	    
-	    return true;
+	            return Character.isLowerCase(charArray[i]);
+	    return false;
 	}
 }

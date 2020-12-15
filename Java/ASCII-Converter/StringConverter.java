@@ -9,10 +9,8 @@ public class StringConverter
 	{
 		try
 		{
-			String convertText = str;
-			byte[] c = convertText.getBytes("US-ASCII");
-			
-			System.out.println("The ASCII value of [" + convertText + "] is: ");
+			byte[] c = str.getBytes("US-ASCII");
+			System.out.println("The ASCII value of [" + str + "] is: ");
 			System.out.println(Arrays.toString(c));
 		}
 		catch(java.io.UnsupportedEncodingException e)

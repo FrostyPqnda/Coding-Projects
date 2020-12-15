@@ -33,7 +33,6 @@ public class FactorialCalculator
 		int num = 1;
 		for(int s = n; s > 0; s--)
 			num *= s;
-
 		return num;
 	}
 

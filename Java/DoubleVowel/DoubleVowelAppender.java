@@ -10,21 +10,18 @@ public class DoubleVowelAppender
 	{
 		String vowel = "";
 		for (int i = 0; i < text.length(); i++) 
-		{
-			char curr = text.charAt(i);
-			if (curr == 'a') 
+			if (text.charAt(i) == 'a') 
 				vowel += "aa"; 
-			else if(curr == 'e')
+			else if(text.charAt(i) == 'e')
 				vowel += "ee";
-			else if(curr == 'i')
+			else if(text.charAt(i) == 'i')
 				vowel += "ii";
-			else if(curr == 'o')
+			else if(text.charAt(i) == 'o')
 				vowel += "oo";
-			else if(curr == 'u')
+			else if(text.charAt(i) == 'u')
 				vowel += "uu";
 			else
-				vowel += curr;
-		}
+				vowel += text.charAt(i);
 		return vowel;
 	} 
 }
