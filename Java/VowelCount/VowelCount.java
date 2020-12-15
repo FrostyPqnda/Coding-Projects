@@ -16,9 +16,7 @@ public class VowelCount
 		{
 		    check += sentence.charAt(i);
 		    if (check.charAt(i) == vowel)
-		    {
-			countForVowels++;
-		    }
+				countForVowels++;
 		}
 		return countForVowels;
 	}
