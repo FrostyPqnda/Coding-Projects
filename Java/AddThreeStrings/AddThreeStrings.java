@@ -24,7 +24,7 @@ public class AddThreeStrings extends AddStrings
 		System.out.print("Enter third value: ");
 		String inputThree = input.nextLine();
 		
-		double addStrings = sumStrings(inputOne, inputTwo, inputThree);
+		int addStrings = sumStrings(inputOne, inputTwo, inputThree);
 		System.out.println(addStrings);
 
 		input.close();

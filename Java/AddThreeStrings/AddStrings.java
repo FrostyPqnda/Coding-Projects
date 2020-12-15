@@ -4,23 +4,14 @@ public class AddStrings
 	 * Method sumStrings adds @param one, @param two, and @param three if they are
 	 * all a number value
 	 */
-	public static double sumStrings(String one, String two, String three)
+	public static int sumStrings(String one, String two, String three)
 	{
-	    try 
-	    {
-	        double f = Double.parseDouble(one);
-	        double s = Double.parseDouble(two);
-	        double t = Double.parseDouble(three);
-	        
-	        double sum = f + s + t;
-	        return sum;
+		int sum = 0;
+	    try {
+			sum = Integer.parseInt(one) + Integer.parseInt(two) + Integer.parseInt(three);
+	    } catch (NumberFormatException nfe) {
+			System.out.println("NumberFormatException: \n" + nfe.getMessage()); // Catches any value that is not a number
 	    }
-	    // Catches any value that is not a number
-	    catch (NumberFormatException nfe)
-	    {
-	      System.out.println("NumberFormatException: \n" + nfe.getMessage());
-	    }
-	    
-	    return 0;
+	    return sum;
 	}
 }
