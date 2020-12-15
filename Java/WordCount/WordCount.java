@@ -6,7 +6,8 @@
  * times a certain word appears from a text
  */
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Arrays;
 
 public class WordCount
 {
