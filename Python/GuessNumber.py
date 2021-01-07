@@ -17,7 +17,9 @@ while True:
     if num == randNum:
         print("Correct! \nIt took you " + str(count) + " tries to guess the number.")
         break
-    elif num != randNum:
-        print("Try again!")
+    elif num > randNum:
+        print("Too high!")
+    elif num < randNum:
+        print("Too low!")
     
     count += 1
