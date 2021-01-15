@@ -42,7 +42,7 @@ def mergeSort(arr):
             arr[z] = leftList[x]
             x += 1
             z += 1
-        while y < len(leftList):
+        while y < len(rightList):
             arr[z] = rightList[y]
             y += 1
             z += 1
