@@ -26,8 +26,11 @@ def getCPS():
 
 def reset():
     global count 
+    global cps
     count = 0
+    cps = 0
     counterLabel.configure(text = 'Clicks: ' + str(count))
+    cpsLabel.configure(text = 'CPS: ' + str(cps))
     clickBtn.configure(state = 'active')
     countdown(10)
 
