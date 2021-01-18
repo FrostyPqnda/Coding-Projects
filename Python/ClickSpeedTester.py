@@ -4,26 +4,32 @@ import time
 
 count = 0
 cps = 0
-running = False
 
 def clicks():
     global count
-    global running
-    running = True
-    if running == True:
-        count += 1
-        counterLabel.configure(text = f'Clicks: {count}')
+    count += 1
+    counterLabel.configure(text = f'Clicks: {count}')
 
 def countdown(t):
-    global running
-    running = True
-    if running == True:
-        timerLabel.configure(text = 'Timer: ' + str(t))
+    resetBtn.configure(state = 'disabled')
+    timerLabel.configure(text = 'Timer: ' + str(t))
+    if t > 0:
+        root.after(1000, countdown, t - 1)
+    if t == 0:
+        clickBtn.configure(state = 'disabled')
+        getCPS()
+        resetBtn.configure(state = 'active')
 
-        if t > 0:
-            root.after(1000, countdown, t - 1)
-        if t == 0:
-            running == False
+def getCPS():
+    cps = round((count / 10), 2)
+    cpsLabel.configure(text = 'CPS: ' + str(cps))
+
+def reset():
+    global count 
+    count = 0
+    counterLabel.configure(text = 'Clicks: ' + str(count))
+    clickBtn.configure(state = 'active')
+    countdown(10)
 
 root = Tk()
 root.configure(bg = '#283140')
@@ -35,18 +41,21 @@ title.pack()
 canvas = Canvas(root, height = 700, width = 700, bg = '#1d4d80')
 canvas.pack(expand=True, fill='both')
 
-counterLabel = Label(canvas, text = 'Clicks: ', bg = '#222222', fg = '#cccccc', font = ('Oswald', 20, 'bold'))
+counterLabel = Label(canvas, text = 'Clicks: 0', bg = '#222222', fg = '#cccccc', font = ('Oswald', 20, 'bold'))
 counterLabel.pack(pady = 10)
 
 timerLabel = Label(canvas, text = 'Timer: ', bg = '#222222', fg = '#cccccc', font = ('Oswald', 20, 'bold'))
-timerLabel.pack(pady = 30)
-
-countdown(10)
+timerLabel.pack(pady = 20)
 
 cpsLabel = Label(canvas, text = 'CPS: ' + str(cps), bg = '#222222', fg = '#cccccc', font = ('Oswald', 20, 'bold'))
-cpsLabel.pack(pady = 40)
+cpsLabel.pack(pady = 25)
 
-btn = Button(canvas, text = 'CLICK ME', width = 25, height = 5, bg = '#222222', font = ('Oswald', 12), fg = '#cccccc', command = clicks) 
-btn.pack(padx = 350, pady = 80)
+clickBtn = Button(canvas, text = 'CLICK ME', width = 25, height = 5, bg = '#222222', font = ('Oswald', 12), fg = '#cccccc', command = clicks) 
+clickBtn.pack(pady = 80)
+
+resetBtn = Button(canvas, text = 'RESET', width = 25, height = 2, bg = '#222222', font = ('Oswald', 12), fg = '#cccccc', command = reset)
+resetBtn.pack(pady = 85)
+
+countdown(10)
 
 root.mainloop()
