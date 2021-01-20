@@ -11,7 +11,7 @@ namespace BubbleSortVisualizer
             Console.Title = "Bubble Sort Visualizer";
             Console.ForegroundColor = ConsoleColor.DarkCyan;
 
-            List<int> list = GenerateRandomList(7);
+            List<int> list = GenerateRandomList(5);
             BubbleSort(list);
             Console.ReadKey();
         }
@@ -20,7 +20,7 @@ namespace BubbleSortVisualizer
         compares each adjacent elements and swaps them if they are in the wrong order. */
         public static void BubbleSort(List<int> list)
         {
-            int count = 1; // Counting swap variable
+            int swapCount = 1; // Counting swap variable
 
             // Prints out the unsorted list [before it is being sorted].
             Console.Write("Unsorted: ");
@@ -30,16 +30,15 @@ namespace BubbleSortVisualizer
             for(int x = 0; x < list.Count - 1; x++) {
                 for(int y = 0; y < list.Count - x - 1; y++) {
                     if(list[y] > list[y + 1]) {
-                        int temp = list[y];
-
                         // Prints out the list during the swapping process and the two elements that were swapped.
-                        Console.Write("Swap #" + count + ": ");
+                        Console.Write("Swap #" + swapCount + ": ");
                         list.ForEach(elem => Console.Write(elem + " "));
                         Console.Write("- elements to be swapped: [" + list[y] + ", " + list[y + 1] + "]");
                         Console.Write(" -> swapped: [" + list[y + 1] + ", " + list[y] + "]\n");
                         Console.WriteLine();
-                        count++;
+                        swapCount++;
 
+                        int temp = list[y];
                         list[y] = list[y + 1];
                         list[y + 1] = temp; 
                     }
