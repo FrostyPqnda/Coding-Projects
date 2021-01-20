@@ -1,6 +1,5 @@
 # Import modules
 from tkinter import *
-import time
 
 count = 0
 cps = 0
@@ -59,6 +58,6 @@ clickBtn.pack(pady = 80)
 resetBtn = Button(canvas, text = 'RESET', width = 25, height = 2, bg = '#222222', font = ('Oswald', 12), fg = '#cccccc', command = reset)
 resetBtn.pack(pady = 85)
 
-#countdown(10)
+countdown(10)
 
 root.mainloop()

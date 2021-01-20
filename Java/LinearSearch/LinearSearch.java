@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class LinearSearchAlgorithm
+public class LinearSearch
 {
     /**
      * Method arraySearch loops through 

@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+import java.util.*;
 
-public class IndexSearch extends LinearSearchAlgorithm
+public class IndexSearchAlgorithm extends LinearSearch
 {
     public static void main(String[] args)
     {
@@ -15,7 +15,5 @@ public class IndexSearch extends LinearSearchAlgorithm
 
         // Index is not found
         System.out.println(array2DSearch(str, "Lion"));
-
-        
     }
 }
