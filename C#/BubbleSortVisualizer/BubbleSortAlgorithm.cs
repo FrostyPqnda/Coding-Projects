@@ -30,7 +30,8 @@ namespace BubbleSortVisualizer
 
             for(int x = 0; x < list.Count - 1; x++) {
                 for(int y = 0; y < list.Count - x - 1; y++) {
-                    if(list[y] > list[y + 1]) {
+                    if(list[y] >
+                     list[y + 1]) {
                         // Prints out the list during the swapping process and the two elements that were swapped.
                         Console.Write("Swap #" + swapCount + ": ");
                         list.ForEach(elem => Console.Write(elem + " "));
