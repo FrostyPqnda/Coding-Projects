@@ -10,8 +10,9 @@ namespace BubbleSortVisualizer
         {
             Console.Title = "Bubble Sort Visualizer";
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-
-            List<int> list = GenerateRandomList(5);
+            
+            Console.Write("Enter a length for the list: ");
+            List<int> list = GenerateRandomList(Convert.ToInt32(Console.ReadLine()));
             BubbleSort(list);
             Console.ReadKey();
         }
@@ -23,7 +24,7 @@ namespace BubbleSortVisualizer
             int swapCount = 1; // Counting swap variable
 
             // Prints out the unsorted list [before it is being sorted].
-            Console.Write("Unsorted: ");
+            Console.Write("\nUnsorted: ");
             list.ForEach(elem => Console.Write(elem + " "));
             Console.WriteLine("\n");
 
