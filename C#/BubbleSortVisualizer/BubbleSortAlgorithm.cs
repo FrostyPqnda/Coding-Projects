@@ -34,7 +34,7 @@ namespace BubbleSortVisualizer
                         // Prints out the list during the swapping process and the two elements that were swapped.
                         Console.Write("Swap #" + swapCount + ": ");
                         list.ForEach(elem => Console.Write(elem + " "));
-                        Console.Write("- elements to be swapped: [" + list[y] + ", " + list[y + 1] + "]");
+                        Console.Write("- swapping: [" + list[y] + ", " + list[y + 1] + "]");
                         Console.Write(" -> swapped: [" + list[y + 1] + ", " + list[y] + "]\n");
                         Console.WriteLine();
                         swapCount++;
