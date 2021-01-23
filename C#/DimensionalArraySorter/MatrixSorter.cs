@@ -47,8 +47,8 @@ namespace DimensionalArraySorter
                 for(int col = 0; col < columnLength; col++)
                     arr[count++] = curr[row, col];
 
-            MergeSorter merge = new MergeSorter(); // Create object of the MergeSorter class
-            merge.MergeSort(arr, arr.Length); // Calls the MergeSort function to sort the temporary array
+            QuickSorter qs = new QuickSorter(); // Create object of the QuickSorter class
+            qs.QuickSort(arr, 0, arr.Length - 1); // Calls the QuickSort function to sort the temporary array
 
             count = 0; // Resets the counter variable back to zero
             // Copy elements of the temporary array one by one into the multi-dimensional array
