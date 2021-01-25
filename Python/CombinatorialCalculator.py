@@ -5,8 +5,10 @@ in a larger set.
 """
 
 def factorial(num):
-    if num == 1:
+    # Base case
+    if num == 0:
         return 1
+    # Recursive call
     return num * factorial(num - 1)
 
 def calculateCombination(a, b):
@@ -15,6 +17,4 @@ def calculateCombination(a, b):
 x = int(input("Enter an integer: "))
 y = int(input("Enter an integer: "))
 
-c = calculateCombination(x, y)
-
-print(c)
+print(calculateCombination(x, y))
