@@ -1,44 +1,38 @@
 ﻿using System;
 
-namespace GuessTheWord
+namespace GuessWord
 {
-    public class WordGame
+    class WordGame
     {
-        private string word; // Instance variable
-
-        // Constructor of the WordGame class
-        public WordGame()
-        {   
-            Random rand = new Random(); // Iniialize the Random class 
-            String[] text = System.IO.File.ReadAllLines("WordList.txt"); // Creates a string array containing all the words from WordList.txt
-            int randomIndex = rand.Next(text.Length); // Create a random number between all words in WordList.txt
-            word = text[randomIndex]; // Sets the word to a random word from WordList.txt
-        }
-
-        // Gives the player hints of whether or not their input text is equal to the hidden word.
-        public String GetClue(String text)
+        static void Main(string[] args)
         {
-            String hintStr = "";
-            for(int i = 0; i < word.Length; i++)
-                if(text[i] == word[i])
-                    hintStr += text[i]; // Adds the character from @param text to the hintStr variable at the correct position
-                else if(word.IndexOf(text[i]) != -1)
-                    hintStr += '+'; // Adds a + if the letter exists in the word but not in the right position
-                else  
-                    hintStr += '*'; // Adds a * if the letter does not exist in the word
-            return hintStr;
-        }
+            Console.Title = "Word Game";
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            
+            HiddenWord word = new HiddenWord();
+            bool run = true;
 
-        // Accessor method (getter)
-        public String GetWord()
-        {
-            return word;
-        }
+            Console.Write("Guess the word [The hidden word has " + word.GetWord().Length + " letters]: ");
+            String guess = Console.ReadLine();
 
-        // return the class object as a string
-        public override String ToString()
-        {
-            return "The hidden word was [" + word + "]!";
+            while(run) 
+            {
+                if(guess.Length >= word.GetWord().Length) {
+                    Console.WriteLine(word.GetClue(guess));
+                } else {
+                    Console.WriteLine("\nThe length of your input was shorter than the length of the hidden word!");
+                }
+                    
+                Console.Write("\nGuess the word [The hidden word has " + word.GetWord().Length + " letters]: ");
+                guess = Console.ReadLine();
+
+                if(guess.Equals(word.GetWord(), StringComparison.OrdinalIgnoreCase)) {
+                    run = false;
+                    Console.WriteLine(word);
+                }
+            }
+
+            Console.ReadKey();
         }
     }
 }
