@@ -17,11 +17,10 @@ namespace GuessWord
 
             while(run) 
             {
-                if(guess.Length >= word.GetWord().Length) {
+                if(guess.Length >= word.GetWord().Length)
                     Console.WriteLine(word.GetClue(guess));
-                } else {
+                else
                     Console.WriteLine("\nThe length of your input was shorter than the length of the hidden word!");
-                }
                     
                 Console.Write("\nGuess the word [The hidden word has " + word.GetWord().Length + " letters]: ");
                 guess = Console.ReadLine();
