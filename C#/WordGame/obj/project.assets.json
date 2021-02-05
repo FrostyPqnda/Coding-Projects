@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Coding-Projects\\C#\\CombinationLock\\CombinationLock.csproj",
-      "projectName": "CombinationLock",
-      "projectPath": "D:\\Coding-Projects\\C#\\CombinationLock\\CombinationLock.csproj",
+      "projectUniqueName": "D:\\Coding-Projects\\C#\\WordGame\\WordGame.csproj",
+      "projectName": "WordGame",
+      "projectPath": "D:\\Coding-Projects\\C#\\WordGame\\WordGame.csproj",
       "packagesPath": "C:\\Users\\Brian\\.nuget\\packages\\",
-      "outputPath": "D:\\Coding-Projects\\C#\\CombinationLock\\obj\\",
+      "outputPath": "D:\\Coding-Projects\\C#\\WordGame\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Brian\\AppData\\Roaming\\NuGet\\NuGet.Config"
