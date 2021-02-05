@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Coding-Projects\\C#\\QuickSortVisualizer\\QuickSortVisualizer.csproj",
-      "projectName": "QuickSortVisualizer",
-      "projectPath": "D:\\Coding-Projects\\C#\\QuickSortVisualizer\\QuickSortVisualizer.csproj",
+      "projectUniqueName": "D:\\Coding-Projects\\C#\\CombinationLock\\CombinationLock.csproj",
+      "projectName": "CombinationLock",
+      "projectPath": "D:\\Coding-Projects\\C#\\CombinationLock\\CombinationLock.csproj",
       "packagesPath": "C:\\Users\\Brian\\.nuget\\packages\\",
-      "outputPath": "D:\\Coding-Projects\\C#\\QuickSortVisualizer\\obj\\",
+      "outputPath": "D:\\Coding-Projects\\C#\\CombinationLock\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Brian\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -17,4 +17,4 @@ def calculateCombination(a, b):
 x = int(input("Enter an integer: "))
 y = int(input("Enter an integer: "))
 
-print(calculateCombination(x, y))
+print(str(calculateCombination(x, y)) + " total combinations")
