@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.io.FileWriter;
 import java.io.FileReader;
@@ -15,6 +14,7 @@ public class UserData extends PasswordGenerator
     public static void main(String[] args) throws InputMismatchException
     {
         Scanner scan = new Scanner(System.in);
+        PasswordSecurity ps = new PasswordSecurity();
 
         System.out.print("Enter an username: ");
         String name = scan.nextLine();
@@ -23,14 +23,11 @@ public class UserData extends PasswordGenerator
         int length = scan.nextInt();
         String password = generatePassword(length);
         
-        
-        scan.close();
-        
         try {
-            SecretKey secretKey = generateKey("AES");
+            SecretKey secretKey = ps.generateKey("AES");
             Cipher cipher = Cipher.getInstance("AES");
 
-            byte[] encryptedPassword = encryptString(password, secretKey, cipher);
+            byte[] encryptedPassword = ps.encryptString(password, secretKey, cipher);
             //byte[] encryptedUsername = encryptString(name, secretKey, cipher);
             writeToPasswordList(name, encryptedPassword.toString());
 
@@ -41,6 +38,7 @@ public class UserData extends PasswordGenerator
         }
 
         readPasswordList();
+        scan.close();
     }
 
     static void writeToPasswordList(String userKey, String userPassword)
@@ -86,24 +84,5 @@ public class UserData extends PasswordGenerator
         }
     }
 
-    static SecretKey generateKey(String encryptionType) throws Exception
-    {
-        KeyGenerator keyGenerator = KeyGenerator.getInstance(encryptionType);
-        SecretKey secretKey = keyGenerator.generateKey();
-        return secretKey;
-    }
-
-    static byte[] encryptString(String dataToEncrypt, SecretKey secretKey, Cipher cipher) throws Exception
-    {
-        byte[] text = dataToEncrypt.getBytes("UTF-8");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        return cipher.doFinal(text);
-    }
-
-    static String decryptString(byte[] dataToDecrypt, SecretKey secretKey, Cipher cipher) throws Exception
-    {
-        cipher.init(Cipher.DECRYPT_MODE, secretKey);
-        byte[] decryptedText = cipher.doFinal(dataToDecrypt);
-        return new String(decryptedText);
-    }
+    
 }
