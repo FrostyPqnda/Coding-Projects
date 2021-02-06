@@ -42,8 +42,4 @@ public class UserData extends PasswordGenerator
 
         //pl.readPasswordList();
     }
-
-    
-
-    
 }
