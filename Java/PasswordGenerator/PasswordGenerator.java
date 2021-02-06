@@ -1,6 +1,4 @@
 import java.security.SecureRandom;
-import java.util.Scanner;
-import java.util.InputMismatchException;
 
 public class PasswordGenerator extends PasswordChecker
 {
@@ -15,42 +13,20 @@ public class PasswordGenerator extends PasswordChecker
         final SecureRandom secRand = new SecureRandom();
 
         String passwordStr = "";
-
-        if(passwordLength < 1) 
-            throw new IllegalArgumentException();
-
-        //StringBuilder sb = new StringBuilder(passwordLength);
-
+        
+        // If password length is less than 8, set it to 8
         if(passwordLength < 8)
-            passwordLength = 8;
-
+            passwordLength = 8; 
+        
         for(int i = 0; i < passwordLength; i++) {
             int randCharIndex = secRand.nextInt(randString.length());
             char randChar = randString.charAt(randCharIndex);
-            //sb.append(randChar);
-            passwordStr += randChar;
-            System.out.println(passwordStr);
+            passwordStr += randChar; // Adds the random character to the password string
         }
+
         if(checkPassword(passwordStr))
-            return passwordStr;
+            return passwordStr; // Returns the password only if it is alpha-numerica and has at least 1 special character.
         else
-            return generatePassword(passwordLength);
+            return generatePassword(passwordLength); // If checkPassword is false, then run the method again recursively until checkPassword is true.
     }
-
-    public static void main(String[] args) 
-    { 
-        Scanner scan = new Scanner(System.in);
-        //boolean run = true;
-        try {
-            System.out.print("Enter a length: ");
-            int input = scan.nextInt();
-            String password = generatePassword(input);
-            System.out.println("Your generated password: " + password);
-            System.out.println(password.length());
-        } catch(InputMismatchException e) {
-            e.printStackTrace();
-        }
-
-        scan.close();
-    } 
 }
