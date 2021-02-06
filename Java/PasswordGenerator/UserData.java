@@ -19,9 +19,6 @@ public class UserData extends PasswordGenerator
         int length = scan.nextInt();
         String password = generatePassword(length);
 
-        //System.out.println("\nUsername: " + name);
-        //System.out.println("Password: " + password);
-
         scan.close();
         
         try {

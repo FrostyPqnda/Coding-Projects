@@ -9,7 +9,7 @@ public class PasswordList {
     public void writeToPasswordList(byte[] userName, byte[] userPassword)
     {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("PasswordList.txt", true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("PasswordList.bsd", true));
             bw.write(userName + ": " + userPassword);
             bw.newLine();
             bw.close();
@@ -26,7 +26,7 @@ public class PasswordList {
             HashMap<String, String> hm = new HashMap<String, String>();
             String line;
 
-            BufferedReader br = new BufferedReader(new FileReader("PasswordList.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("PasswordList.bsd"));
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(": ", 2);
                 if(parts.length >= 2) {
