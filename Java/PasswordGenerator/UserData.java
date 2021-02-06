@@ -39,7 +39,5 @@ public class UserData extends PasswordGenerator
         } catch(Exception e) {
             System.out.println(e);
         }
-
-        //pl.readPasswordList();
     }
 }

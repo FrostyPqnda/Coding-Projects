@@ -41,8 +41,7 @@ public class PasswordList {
             for(String key : hm.keySet())
                 System.out.println(key + ": " + hm.get(key));
             
-            br.close();
-
+                br.close();
         } catch(IOException io) {
             System.out.println("An error occured!!");
             io.printStackTrace();
