@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BubbleSortVisualizer
 {
-    class BubbleSortAlgorithm
+    class VisualBubbleSort
     {
         static void Main(string[] args)
         {

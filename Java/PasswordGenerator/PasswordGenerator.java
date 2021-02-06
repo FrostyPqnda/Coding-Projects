@@ -13,7 +13,7 @@ public class PasswordGenerator extends PasswordChecker
 
         String passwordStr = "";
         
-        // If password length is less than 8, set it to 8
+        // Sets the password to 8 if it is less than 8 
         if(passwordLength < 8)
             passwordLength = 8; 
         

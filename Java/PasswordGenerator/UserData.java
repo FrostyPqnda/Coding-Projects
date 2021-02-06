@@ -1,88 +1,49 @@
 import java.util.Scanner;
-import java.util.HashMap;
 import java.util.InputMismatchException;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
+
 
 public class UserData extends PasswordGenerator 
 {    
     public static void main(String[] args) throws InputMismatchException
     {
         Scanner scan = new Scanner(System.in);
-        PasswordSecurity ps = new PasswordSecurity();
+        CryptoPassword cp = new CryptoPassword();
+        PasswordReader pr = new PasswordReader();
 
         System.out.print("Enter an username: ");
         String name = scan.nextLine();
         
-        System.out.print("Enter a length: ");
+        System.out.print("Enter a password length: ");
         int length = scan.nextInt();
         String password = generatePassword(length);
+
+        System.out.println("\nUsername: " + name);
+        System.out.println("Password: " + password);
+
+        scan.close();
         
         try {
-            SecretKey secretKey = ps.generateKey("AES");
+            SecretKey secretKey = cp.generateKey("AES");
             Cipher cipher = Cipher.getInstance("AES");
 
-            byte[] encryptedPassword = ps.encryptString(password, secretKey, cipher);
-            //byte[] encryptedUsername = encryptString(name, secretKey, cipher);
-            writeToPasswordList(name, encryptedPassword.toString());
-
-            //String decryptedData = decryptString(encryptedData, secretKey, cipher);
-            //System.out.println("Decrypted: " + decryptedData);
+            byte[] encryptedUsername = cp.encryptString(name, secretKey, cipher);
+            byte[] encryptedPassword = cp.encryptString(password, secretKey, cipher);
+            pr.writeToPasswordList(encryptedUsername, encryptedPassword);
+            
+            //String decryptedUsername = cp.decryptString(encryptedUsername, secretKey, cipher);
+            //System.out.println("Username: " + decryptedUsername);
+            //String decryptedPassword = cp.decryptString(encryptedPassword, secretKey, cipher);
+            //System.out.println("Password: " + decryptedPassword);
         } catch(Exception e) {
             System.out.println(e);
         }
 
-        readPasswordList();
-        scan.close();
+        //pr.readPasswordList();
     }
 
-    static void writeToPasswordList(String userKey, String userPassword)
-    {
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("PasswordList.txt", true));
-            bw.write(userKey + ": " + userPassword);
-            bw.newLine();
-            bw.close();
-            System.out.println("Content successfully written to PasswordList.txt");
-        } catch(IOException io) {
-            System.out.println("An error occured!");
-			io.printStackTrace();
-        }
-    }
-
-    static void readPasswordList()
-    {
-        try {
-            HashMap<String, String> hm = new HashMap<String, String>();
-            String line;
-
-            BufferedReader br = new BufferedReader(new FileReader("PasswordList.txt"));
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(": ", 2);
-                if(parts.length >= 2) {
-                    String key = parts[0];
-                    String value = parts[1];
-                    hm.put(key, value);
-                } else {
-                    System.out.println("Ignoring line: " + line);
-                }
-            }
-
-            for(String key : hm.keySet())
-                System.out.println(key + ": " + hm.get(key));
-            
-            br.close();
-
-        } catch(IOException io) {
-            System.out.println("An error occured!!");
-            io.printStackTrace();
-        }
-    }
+    
 
     
 }

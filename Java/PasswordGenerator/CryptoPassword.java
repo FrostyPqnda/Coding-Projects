@@ -2,7 +2,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-public class PasswordSecurity {
+public class CryptoPassword {
     public SecretKey generateKey(String encryptionType) throws Exception
     {
         KeyGenerator keyGenerator = KeyGenerator.getInstance(encryptionType);
