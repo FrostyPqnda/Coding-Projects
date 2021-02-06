@@ -18,7 +18,7 @@ namespace BubbleSortVisualizer
 
         /* This method sorts the list using Bubble Sort, a single sorting algorithm that
         compares each adjacent elements and swaps them if they are in the wrong order. */
-        public static void BubbleSort(List<int> list)
+        static void BubbleSort(List<int> list)
         {
             int swapCount = 1; // Counting swap variable
 
@@ -30,7 +30,7 @@ namespace BubbleSortVisualizer
             for(int x = 0; x < list.Count - 1; x++) {
                 for(int y = 0; y < list.Count - x - 1; y++) {
                     if(list[y] > list[y + 1]) {
-                        // Prints out the list during the swapping process and the two elements that were swapped.
+                        // Prints out list during swapping process
                         Console.Write("Swap #" + swapCount + ": ");
                         list.ForEach(elem => Console.Write(elem + " "));
                         Console.Write("- swapping: [" + list[y] + ", " + list[y + 1] + "]");
@@ -52,7 +52,7 @@ namespace BubbleSortVisualizer
         
         /* Generates a random integer list of length @param length with a value between
         [0, 100] inclusive. */
-        public static List<int> GenerateRandomList(int length) 
+        static List<int> GenerateRandomList(int length) 
         {
             List<int> randomList = new List<int>(length);
             Random rng = new Random();
