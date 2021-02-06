@@ -10,18 +10,13 @@ import java.util.regex.Matcher;
  */
 public class PasswordChecker 
 {
-	/**
-	 * Method checkPassword checks @param password if it
-	 * is a valid password and will return a boolean value
-	 * of true or false.
-	 */
+	// checkPassword checks @param password is a valid password
 	public static boolean checkPassword(String password)
 	{
 		// Contains at least one digit, letter (upper and lower), special character, no whitespaces, and has a length of 8 or higher.
-		String passwordRegex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
+		String passwordRegex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\"'`~_=|([+#?!@$%^&*-])])(?=\\S+$).{8,}";
 		Pattern pass = Pattern.compile(passwordRegex);
 		Matcher pw = pass.matcher(password);
-
 		return pw.find(); // return true if the length is greater than or equal to 8 and contains a letter, number, and special character
 	}
 }
