@@ -2,7 +2,6 @@ import java.security.SecureRandom;
 
 public class PasswordGenerator extends PasswordChecker
 {
-    // Credit to
     public static String generatePassword(int passwordLength)
     {
         final String UPPER_ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -25,7 +24,7 @@ public class PasswordGenerator extends PasswordChecker
         }
 
         if(checkPassword(passwordStr))
-            return passwordStr; // Returns the password only if it is alpha-numerica and has at least 1 special character.
+            return passwordStr; // Returns the password only if it is alpha-numeric and has at least 1 special character.
         else
             return generatePassword(passwordLength); // If checkPassword is false, then run the method again recursively until checkPassword is true.
     }
