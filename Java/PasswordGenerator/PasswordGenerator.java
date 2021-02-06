@@ -6,7 +6,7 @@ public class PasswordGenerator extends PasswordChecker
     {
         final String UPPER_ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         final String LOWER_ALPHA = UPPER_ALPHA.toLowerCase();
-        final String SPECIAL_CHARS = "\"\"'`~_=|({[.,/+#?!@$%^&*-]})";
+        final String SPECIAL_CHARS = "\"\"'`~_=|({[.<>,/+#?!@$%^&*-]})";
         final String NUMBER = "0123456789"; 
         final String randString = UPPER_ALPHA + LOWER_ALPHA + SPECIAL_CHARS + NUMBER;
         final SecureRandom secRand = new SecureRandom();
@@ -19,8 +19,7 @@ public class PasswordGenerator extends PasswordChecker
         
         for(int i = 0; i < passwordLength; i++) {
             int randCharIndex = secRand.nextInt(randString.length());
-            char randChar = randString.charAt(randCharIndex);
-            passwordStr += randChar; // Adds the random character to the password string
+            passwordStr += randString.charAt(randCharIndex);; // Adds the random character to the password string
         }
 
         if(checkPassword(passwordStr))

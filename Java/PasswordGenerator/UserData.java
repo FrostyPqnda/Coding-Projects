@@ -10,7 +10,7 @@ public class UserData extends PasswordGenerator
     {
         Scanner scan = new Scanner(System.in);
         CryptoPassword cp = new CryptoPassword();
-        PasswordReader pr = new PasswordReader();
+        PasswordList pl = new PasswordList();
 
         System.out.print("Enter an username: ");
         String name = scan.nextLine();
@@ -19,8 +19,8 @@ public class UserData extends PasswordGenerator
         int length = scan.nextInt();
         String password = generatePassword(length);
 
-        System.out.println("\nUsername: " + name);
-        System.out.println("Password: " + password);
+        //System.out.println("\nUsername: " + name);
+        //System.out.println("Password: " + password);
 
         scan.close();
         
@@ -30,17 +30,17 @@ public class UserData extends PasswordGenerator
 
             byte[] encryptedUsername = cp.encryptString(name, secretKey, cipher);
             byte[] encryptedPassword = cp.encryptString(password, secretKey, cipher);
-            pr.writeToPasswordList(encryptedUsername, encryptedPassword);
+            pl.writeToPasswordList(encryptedUsername, encryptedPassword);
             
-            //String decryptedUsername = cp.decryptString(encryptedUsername, secretKey, cipher);
-            //System.out.println("Username: " + decryptedUsername);
-            //String decryptedPassword = cp.decryptString(encryptedPassword, secretKey, cipher);
-            //System.out.println("Password: " + decryptedPassword);
+            String decryptedUsername = cp.decryptString(encryptedUsername, secretKey, cipher);
+            System.out.println("\nUsername: " + decryptedUsername);
+            String decryptedPassword = cp.decryptString(encryptedPassword, secretKey, cipher);
+            System.out.println("Password: " + decryptedPassword);
         } catch(Exception e) {
             System.out.println(e);
         }
 
-        //pr.readPasswordList();
+        //pl.readPasswordList();
     }
 
     

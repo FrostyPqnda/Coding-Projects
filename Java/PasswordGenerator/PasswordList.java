@@ -5,12 +5,12 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
-public class PasswordReader {
-    public void writeToPasswordList(byte[] userKey, byte[] userPassword)
+public class PasswordList {
+    public void writeToPasswordList(byte[] userName, byte[] userPassword)
     {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("PasswordList.txt", true));
-            bw.write(userKey + ": " + userPassword);
+            bw.write(userName + ": " + userPassword);
             bw.newLine();
             bw.close();
             System.out.println("\nData successfully written.");
