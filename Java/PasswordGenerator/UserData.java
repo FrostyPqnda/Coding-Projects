@@ -18,7 +18,8 @@ public class UserData extends PasswordGenerator
         
         System.out.print("Enter an username: ");
         String name = scan.nextLine();
-
+        scan.close();
+        
         try {
             SecretKey secretKey = generateKey("AES");
             Cipher cipher = Cipher.getInstance("AES");
