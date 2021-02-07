@@ -2,7 +2,7 @@ import java.security.SecureRandom;
 
 public class PasswordGenerator extends PasswordChecker
 {
-    public static String generatePassword(int passwordLength)
+    public String generatePassword(int passwordLength)
     {
         final String UPPER_ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         final String LOWER_ALPHA = UPPER_ALPHA.toLowerCase();
@@ -13,9 +13,8 @@ public class PasswordGenerator extends PasswordChecker
 
         String passwordStr = "";
         
-        // Sets the password to 8 if it is less than 8 
-        if(passwordLength < 8)
-            passwordLength = 8; 
+        if(passwordLength < 8 || passwordLength > 20)
+            passwordLength = (int)((Math.random() * 13) + 8); 
         
         for(int i = 0; i < passwordLength; i++) {
             int randCharIndex = secRand.nextInt(randString.length());
