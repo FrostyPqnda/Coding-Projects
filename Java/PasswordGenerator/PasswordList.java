@@ -1,14 +1,19 @@
-import java.util.HashMap;
+import java.util.List;
 import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.BufferedReader;
+//import java.io.FileReader;
+//import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import javax.crypto.BadPaddingException;
+import java.nio.file.Files;
+//import java.io.File;
+//import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-public class PasswordList {
+public class PasswordList extends UserData {
+
     public void writeToPasswordList(String userName, byte[] userPassword)
     {
         try {
@@ -23,55 +28,29 @@ public class PasswordList {
         }
     }
 
-    public HashMap<String, String> getPasswordList() throws ArrayIndexOutOfBoundsException
-    {
-        HashMap<String, String> hm = new HashMap<String, String>();
-        BufferedReader br = null;
-
+    public List<String> passwordList() throws ArrayIndexOutOfBoundsException
+    {        
+        List<String> passwordArrList = null;
         try {
-            br = new BufferedReader(new FileReader("PasswordList.bsd"));
-            String line = null;
-
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(":"); // Split the line by :
-                String username = parts[0].trim(); // Username
-                String password = parts[1].trim(); // Password
-                
-                if (!username.equals("") && !password.equals("")) 
-                    hm.put(username, password); 
-            }
+            passwordArrList = Files.readAllLines(Paths.get("PasswordList.bsd"));
+            return passwordArrList;
         } catch(IOException io) {
-            System.out.println("An error occured!!");
-            io.printStackTrace();
-        } finally {
-            if(br != null) {
-                try {
-                    br.close();
-                } catch(Exception e) {
-                    System.out.println("An error occured!!");
-                    e.printStackTrace();
-                }
-            }
+            System.out.println("An error occured!");
         }
-
-        return hm;
+        return passwordArrList;
     }
 
-    public String getPassword(String username) throws Exception
+    public String getPassword(List<String> passwordList, String username) throws Exception
     {
         CryptoPassword cp = new CryptoPassword();
         SecretKey secretKey = cp.generateKey("AES");
         Cipher cipher = Cipher.getInstance("AES");
-        
-        try {
-            if(UserData.verifyUsername(username)) {
+
+        for(int i = 0; i < passwordList.size(); i++) {
+            if(verifyUsername(username)) {
                 return cp.decryptPassword(UserData.getEncryptedPassword(), secretKey, cipher);
             }
         }
-        catch(BadPaddingException bpe) {
-            bpe.printStackTrace();
-        }
-
         return "Username not found!";
     }
 }

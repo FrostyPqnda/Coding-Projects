@@ -15,20 +15,21 @@ public class UserData
     private static PasswordGenerator pg = new PasswordGenerator();
 
     public static void main(String[] args) throws Exception {
-        createUserData();
+        //createUserData();
 
-        try {  
-            pl.writeToPasswordList(username, getEncryptedPassword());
-        } catch(Exception e) {
-            System.out.println(e);
-        }
-
-        System.out.println(verifyUsername("Mandy Evans"));
-        System.out.println(pl.getPassword("FrostyPqnda"));
+    
+        /*try { 
+            pl.writeToPasswordList(username, getEncryptedPassword()); 
+        } catch(Exception e) { 
+            System.out.println(e); 
+        }*/
+        
+        //System.out.println(pl.getPassword("Brian Pham"));
+        //pl.getPasswordList().forEach((elem) -> System.out.println(elem));
+        System.out.println(pl.getPassword(pl.passwordList(), "Brian Pham"));
     }
 
-    static void createUserData()
-    {
+    static void createUserData() {
         scan = new Scanner(System.in);
         System.out.print("Enter an username: ");
         username = scan.nextLine();
@@ -51,9 +52,11 @@ public class UserData
 
             while(scan.hasNext() && !found) {
                 tempUsername = scan.next();
-
-                if(tempUsername.trim().equals(username.trim())) {
-                    found = true;
+                
+                if(username != null) {
+                    if(tempUsername.trim().equals(username.trim())) {
+                        found = true;
+                    }
                 }
             }
             scan.close();
@@ -70,5 +73,15 @@ public class UserData
         Cipher cipher = Cipher.getInstance("AES");
         byte[] encryptedPassword = cp.encryptPassword(password, secretKey, cipher);
         return encryptedPassword;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        UserData.username = username;
     }
 }
