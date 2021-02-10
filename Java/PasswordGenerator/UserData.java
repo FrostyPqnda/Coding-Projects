@@ -26,7 +26,7 @@ public class UserData
         
         //System.out.println(pl.getPassword("Brian Pham"));
         //pl.getPasswordList().forEach((elem) -> System.out.println(elem));
-        System.out.println(pl.getPassword(pl.passwordList(), "Brian Pham"));
+        //System.out.println(pl.getPassword(pl.passwordList(), "Brian Pham"));
     }
 
     static void createUserData() {

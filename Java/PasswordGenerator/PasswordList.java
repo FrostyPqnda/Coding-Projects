@@ -48,7 +48,8 @@ public class PasswordList extends UserData {
 
         for(int i = 0; i < passwordList.size(); i++) {
             if(verifyUsername(username)) {
-                return cp.decryptPassword(UserData.getEncryptedPassword(), secretKey, cipher);
+                //return cp.decryptPassword(UserData.getEncryptedPassword(), secretKey, cipher);
+                return "Username found!";
             }
         }
         return "Username not found!";
