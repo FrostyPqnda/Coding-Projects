@@ -16,7 +16,7 @@ namespace BubbleSortVisualizer
             Console.ReadKey();
         }
 
-        /* This method sorts the list using Bubble Sort, a single sorting algorithm that
+        /* This method sorts the list using Bubble Sort, a simple sorting algorithm that
         compares each adjacent elements and swaps them if they are in the wrong order. */
         static void BubbleSort(List<int> list)
         {
