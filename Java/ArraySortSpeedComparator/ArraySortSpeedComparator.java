@@ -8,12 +8,13 @@ public class ArraySortSpeedComparator
     static Scanner scan = new Scanner(System.in);
     static int length = 50000;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         while (true) 
         {
-            System.out.println("Enter 0 to test for a Random ArrayList");
-            System.out.println("Enter 1 to test for a Reverse ArrayList");
-            System.out.println("Enter 2 to test for an Almost Sorted ArrayList");
+            System.out.println("Enter 0 to test for a Random Array");
+            System.out.println("Enter 1 to test for a Reverse Array");
+            System.out.println("Enter 2 to test for an Almost Sorted Array");
             System.out.print("\nChoose a test case: ");
             
             int testCase = scan.nextInt();

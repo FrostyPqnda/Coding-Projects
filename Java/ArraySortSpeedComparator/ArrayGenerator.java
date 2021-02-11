@@ -14,7 +14,8 @@ public class ArrayGenerator
     public int[] reverseArray(int length)
     {   
         int[] arr = new int[length];
-        for(int i = 0; i < length; i++) {
+        for(int i = 0; i < length; i++) 
+        {
             arr[i] = i;
         }
         for(int i = 0; i < arr.length / 2; i++)
@@ -29,7 +30,8 @@ public class ArrayGenerator
     public int[] almostSortedArrayList(int length)
     {
         int[] arr = new int[length];
-        for(int i = 0; i < length; i++) {
+        for(int i = 0; i < length; i++) 
+        {
             arr[i] = i + 1;
         }
         int swap = arr[arr.length - 1];

@@ -18,7 +18,6 @@ public class Sorter
                 }
             }
         }
-
     }
 
     /**
@@ -28,10 +27,10 @@ public class Sorter
      */
     public void selectionSort(int[] arr)
     {
-        // Loops through the entire array - 1
+        // One by one move boundary of the unsorted subarray
         for(int i = 0; i < arr.length - 1; i++) 
         {
-            // Find the minimum index in the array
+            // Find the minimum index in the unsorted array
             int minIndex = i; 
             for(int x = i + 1; x < arr.length; x++) 
             {
@@ -44,13 +43,22 @@ public class Sorter
             swap(arr, minIndex, i);
         }
     }
-
+    
+    /**
+     * Insertion Sort is a simple sorting algorithm that virtually splits the
+     * array into unsorted and sorted. Values from the unsorted part are picked
+     * and inserted into the correct position in the sorted part.
+     */
     public void insertionSort(int[] arr)
     {
         for(int i = 1; i < arr.length; ++i)
         {   
             int key = arr[i];
             int x = (i - 1);
+            /**
+             * Move elements arr[0...i-1], that are greater than the key
+             * to one position ahead of its current position
+             */
             while(x >= 0 && arr[x] > key)
             {
                 arr[x + 1] = arr[x];
@@ -60,6 +68,11 @@ public class Sorter
         }
     }
 
+    /**
+     * Merge Sort sorts the array through the Divide-and-Conquer algorithm, in which it will 
+     * split the array into two halves, sorts the two splitted array and the merge them back 
+     * into one.
+     */
     public void mergeSort(int[] arr, int length)
     {
         // Base case - array length is 1
@@ -94,6 +107,7 @@ public class Sorter
         merge(arr, left, right);
     }
 
+    // Merges the left array and right array back into the current array
     void merge(int[] curr, int[] left, int[] right)
     {
         // Index incrementer variable
@@ -131,6 +145,10 @@ public class Sorter
         }
     }
 
+    /**
+     * QuickSort is a Divide-and-Conquer sorting algorithm that picks an element as
+     * the pivot and partitions the given array around the pivot.
+     */
     public void quickSort(int[] arr, int low, int high)
     {
         if(low < high)
@@ -143,6 +161,11 @@ public class Sorter
         }
     }
 
+    /**
+     * Takes the last element as the pivot, places that elemet at its correct position
+     * in the sorted array, and places all elements smaller to the left of the pivot
+     * and all elements greater to the right of the pivot.
+     */
     int partition(int[] arr, int low, int high)
     {
         int pivot = arr[high]; // The pivot 
