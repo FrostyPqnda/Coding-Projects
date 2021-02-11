@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.HashMap;
 
-public class WordCountConsole extends WordCount
+public class WordCounter extends WordCount
 {
 
 	public static void main(String[] args) 
