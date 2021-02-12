@@ -23,7 +23,7 @@ public class DistanceCalculator
         Point b = new Point(x2, y2);
 
         double calcDistance = a.getDistance(b);
-        System.out.println("\nThe distance between Point A: " + a +  " and Point B: " + b + " is " + calcDistance + " units.");
+        System.out.println("\nThe distance between Point A " + a +  " and Point B " + b + " is " + calcDistance + " units.");
 
         scan.close();
     }
