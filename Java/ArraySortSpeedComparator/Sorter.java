@@ -147,13 +147,12 @@ public class Sorter
      */
     int partition(int[] arr, int low, int high)
     {
-        int pivot = arr[high]; // The pivot 
         int i = (low - 1); // Index of smaller element
        
         for(int x = low; x < high; x++)
         {
             // If the current element is smaller than the pivot
-            if(arr[x] < pivot) 
+            if(arr[x] < arr[high]) 
             {
                 i++;
                 // Swap arr[i] and arr[x];

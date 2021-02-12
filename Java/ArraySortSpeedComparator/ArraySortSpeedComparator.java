@@ -12,23 +12,23 @@ public class ArraySortSpeedComparator
     {
         while (true) 
         {
-            System.out.println("Enter 0 to test for a Random Array");
-            System.out.println("Enter 1 to test for a Reverse Array");
-            System.out.println("Enter 2 to test for an Almost Sorted Array");
+            System.out.println("Enter 1 to test for a Random Array");
+            System.out.println("Enter 2 to test for a Reverse Array");
+            System.out.println("Enter 3 to test for an Almost Sorted Array");
             System.out.print("\nChoose a test case: ");
             
             int testCase = scan.nextInt();
-            if(testCase == 0) 
+            if(testCase == 1) 
             {
                 randomArraySortSpeedTest();
                 break;
             } 
-            else if(testCase == 1) 
+            else if(testCase == 2) 
             {
                 reverseArraySortSpeedTest();
                 break;
             }
-            else if(testCase == 2) 
+            else if(testCase == 3) 
             {
                 almostSortedArraySortSpeedTest();
                 break;
@@ -46,35 +46,47 @@ public class ArraySortSpeedComparator
         int[] randomArr = arr.randomArray(length);
         System.out.println("\nTesting for Random Array");
         
-        startTime = System.currentTimeMillis();
-        sort.bubbleSort(randomArr);
-        endTime = System.currentTimeMillis();
-        elapsedTime = endTime - startTime;
-        System.out.println("\nBubble Sort Time: " + elapsedTime + " ms");
-        
-        startTime = System.currentTimeMillis();
-        sort.selectionSort(randomArr);
-        endTime = System.currentTimeMillis();
-        elapsedTime = endTime - startTime;
-        System.out.println("Selection Sort Time: " + elapsedTime + " ms");
+        int sort = scan.nextInt();
 
-        startTime = System.currentTimeMillis();
-        sort.insertionSort(randomArr);
-        endTime = System.currentTimeMillis();
-        elapsedTime = endTime - startTime;
-        System.out.println("Insertion Sort Time: " + elapsedTime + " ms");
+        System.out.print("\nChoose a sorting algorithm: ");
+        System.out.println("\nEnter 1 for Bubble Sort");
+        System.out.println("Enter 2 for Selection Sort");
+        System.out.println("Enter 3 for Insertion Sort");
+        System.out.println("Enter 4 for Merge Sort");
+        System.out.println("Enter 5 for Quick Sort");
 
-        startTime = System.currentTimeMillis();
-        sort.mergeSort(randomArr, randomArr.length);
-        endTime = System.currentTimeMillis();
-        elapsedTime = endTime - startTime;
-        System.out.println("Merge Sort Time: " + elapsedTime + " ms");
-
-        startTime = System.currentTimeMillis();
-        sort.quickSort(randomArr, 0, randomArr.length - 1);
-        endTime = System.currentTimeMillis();
-        elapsedTime = endTime - startTime;
-        System.out.println("Quick Sort Time: " + elapsedTime + " ms");
+        while(true)
+        {
+            if(sort == 1)
+            {
+                bubbleSortTime(randomArr);
+                break;
+            }
+            else if(sort == 2)
+            {
+                selectionSortTime(randomArr);
+                break;
+            }
+            else if(sort == 3)
+            {
+                insertionSortTime(randomArr);
+                break;
+            }
+            else if(sort == 4)
+            {
+                mergeSortTime(randomArr);
+                break;
+            }
+            else if(sort == 5)
+            {
+                quickSortTIme(randomArr);
+                break;
+            }
+            else
+            {
+                System.out.println("Invalid input!");
+            }
+        }
     }
 
     static void reverseArraySortSpeedTest()
@@ -82,35 +94,47 @@ public class ArraySortSpeedComparator
         int[] reverseArr = arr.reverseArray(length);
         System.out.println("Testing for Reverse Array");
         
-        startTime = System.currentTimeMillis();
-        sort.bubbleSort(reverseArr);
-        endTime = System.currentTimeMillis();
-        elapsedTime = endTime - startTime;
-        System.out.println("\nBubble Sort Time: " + elapsedTime + " ms");
-        
-        startTime = System.currentTimeMillis();
-        sort.selectionSort(reverseArr);
-        endTime = System.currentTimeMillis();
-        elapsedTime = endTime - startTime;
-        System.out.println("Selection Sort Time: " + elapsedTime + " ms");
+        int sort = scan.nextInt();
 
-        startTime = System.currentTimeMillis();
-        sort.insertionSort(reverseArr);
-        endTime = System.currentTimeMillis();
-        elapsedTime = endTime - startTime;
-        System.out.println("Insertion Sort Time: " + elapsedTime + " ms");
+        System.out.print("\nChoose a sorting algorithm: ");
+        System.out.println("\nEnter 1 for Bubble Sort");
+        System.out.println("Enter 2 for Selection Sort");
+        System.out.println("Enter 3 for Insertion Sort");
+        System.out.println("Enter 4 for Merge Sort");
+        System.out.println("Enter 5 for Quick Sort");
 
-        startTime = System.currentTimeMillis();
-        sort.mergeSort(reverseArr, reverseArr.length);
-        endTime = System.currentTimeMillis();
-        elapsedTime = endTime - startTime;
-        System.out.println("Merge Sort Time: " + elapsedTime + " ms");
-
-        startTime = System.currentTimeMillis();
-        sort.quickSort(reverseArr, 0, reverseArr.length - 1);
-        endTime = System.currentTimeMillis();
-        elapsedTime = endTime - startTime;
-        System.out.println("Quick Sort Time: " + elapsedTime + " ms");
+        while(true)
+        {
+            if(sort == 1)
+            {
+                bubbleSortTime(reverseArr);
+                break;
+            }
+            else if(sort == 2)
+            {
+                selectionSortTime(reverseArr);
+                break;
+            }
+            else if(sort == 3)
+            {
+                insertionSortTime(reverseArr);
+                break;
+            }
+            else if(sort == 4)
+            {
+                mergeSortTime(reverseArr);
+                break;
+            }
+            else if(sort == 5)
+            {
+                quickSortTIme(reverseArr);
+                break;
+            }
+            else
+            {
+                System.out.println("Invalid input!");
+            }
+        }
     }
 
     static void almostSortedArraySortSpeedTest() 
@@ -118,34 +142,91 @@ public class ArraySortSpeedComparator
         int[] almostSortedArr = arr.almostSortedArrayList(length);
         System.out.println("Testing for Almost Sorted ArrayList");
         
+        int sort = scan.nextInt();
+
+        System.out.print("\nChoose a sorting algorithm: ");
+        System.out.println("\nEnter 1 for Bubble Sort");
+        System.out.println("Enter 2 for Selection Sort");
+        System.out.println("Enter 3 for Insertion Sort");
+        System.out.println("Enter 4 for Merge Sort");
+        System.out.println("Enter 5 for Quick Sort");
+
+        while(true)
+        {
+            if(sort == 1)
+            {
+                bubbleSortTime(almostSortedArr);
+                break;
+            }
+            else if(sort == 2)
+            {
+                selectionSortTime(almostSortedArr);
+                break;
+            }
+            else if(sort == 3)
+            {
+                insertionSortTime(almostSortedArr);
+                break;
+            }
+            else if(sort == 4)
+            {
+                mergeSortTime(almostSortedArr);
+                break;
+            }
+            else if(sort == 5)
+            {
+                quickSortTIme(almostSortedArr);
+                break;
+            }
+            else
+            {
+                System.out.println("Invalid input!");
+            }
+        }
+    }
+
+    static void bubbleSortTime(int[] arr)
+    {
         startTime = System.currentTimeMillis();
-        sort.bubbleSort(almostSortedArr);
+        sort.bubbleSort(arr);
         endTime = System.currentTimeMillis();
         elapsedTime = endTime - startTime;
         System.out.println("\nBubble Sort Time: " + elapsedTime + " ms");
-        
-        startTime = System.currentTimeMillis();
-        sort.selectionSort(almostSortedArr);
-        endTime = System.currentTimeMillis();
-        elapsedTime = endTime - startTime;
-        System.out.println("Selection Sort Time: " + elapsedTime + " ms");
+    }
 
+    static void selectionSortTime(int[] arr)
+    {
         startTime = System.currentTimeMillis();
-        sort.insertionSort(almostSortedArr);
+        sort.selectionSort(arr);
         endTime = System.currentTimeMillis();
         elapsedTime = endTime - startTime;
-        System.out.println("Insertion Sort Time: " + elapsedTime + " ms");
+        System.out.println("\nSelection Sort Time: " + elapsedTime + " ms");
+    }
 
+    static void insertionSortTime(int[] arr)
+    {
         startTime = System.currentTimeMillis();
-        sort.mergeSort(almostSortedArr, almostSortedArr.length);
+        sort.insertionSort(arr);
         endTime = System.currentTimeMillis();
         elapsedTime = endTime - startTime;
-        System.out.println("Merge Sort Time: " + elapsedTime + " ms");
+        System.out.println("\nInsertion Sort Time: " + elapsedTime + " ms");
+    }
 
+    static void mergeSortTime(int[] arr)
+    {
         startTime = System.currentTimeMillis();
-        sort.quickSort(almostSortedArr, 0, almostSortedArr.length - 1);
+        sort.mergeSort(arr, arr.length);
         endTime = System.currentTimeMillis();
         elapsedTime = endTime - startTime;
-        System.out.println("Quick Sort Time: " + elapsedTime + " ms");
+        System.out.println("\nMerge Sort Time: " + elapsedTime + " ms");
+    }
+
+    static void quickSortTIme(int[] arr)
+    {
+        startTime = System.currentTimeMillis();
+        sort.quickSort(arr, 0, arr.length - 1);
+        endTime = System.currentTimeMillis();
+        elapsedTime = endTime - startTime;
+        System.out.println("\nQuick Sort Time: " + elapsedTime + " ms");
     }
 }
