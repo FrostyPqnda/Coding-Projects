@@ -8,16 +8,9 @@ public class Sorter
     public void bubbleSort(int[] arr)
     {
         for(int i = 0; i < arr.length - 1; i++)
-        {
             for(int x = 0; x < arr.length - i - 1; x++)
-            {
                 if(arr[x] > arr[x + 1])
-                {
-                    // Swaps arr[x] and arr[x + 1]
-                    swap(arr, x, x+1);
-                }
-            }
-        }
+                    swap(arr, x, x+1); // Swaps arr[x] and arr[x + 1]
     }
 
     /**
@@ -33,12 +26,8 @@ public class Sorter
             // Find the minimum index in the unsorted array
             int minIndex = i; 
             for(int x = i + 1; x < arr.length; x++) 
-            {
                 if(arr[x] < arr[minIndex])
-                {
                     minIndex = x;
-                }
-            }
             // Swap the found minimum element with the first elements
             swap(arr, minIndex, i);
         }
@@ -76,10 +65,8 @@ public class Sorter
     public void mergeSort(int[] arr, int length)
     {
         // Base case - array length is 1
-        if(length < 2) 
-        {
+        if(length < 2)
             return;
-        }
         
         // Find the middle
         int mid = length / 2;
@@ -90,14 +77,10 @@ public class Sorter
 
         // Populate first half into the left array
         for(int i = 0; i < mid; i++) 
-        {
             left[i] = arr[i];
-        }
         // Populate the second half into the right array
         for(int i = mid; i < length; i++) 
-        {
             right[i - mid] = arr[i];
-        }
         
         // Recursive calls
         mergeSort(left, mid);
@@ -122,13 +105,9 @@ public class Sorter
              * the value. 
              */
             if(left[leftIndex] <= right[rightIndex]) 
-            {
                 curr[currIndex++] = left[leftIndex++];
-            } 
             else 
-            {    
                 curr[currIndex++] = right[rightIndex++];
-            }
         }
         /**
          * If one of the arrays still have values remaining,
