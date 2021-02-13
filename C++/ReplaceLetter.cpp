@@ -24,7 +24,7 @@ int main()
 {
     string input;
     cout << "Enter a word: ";
-    getline(cin, input);
+    cin >> input;
     
     char remove;
     cout << "Enter a letter you want to remove: ";
