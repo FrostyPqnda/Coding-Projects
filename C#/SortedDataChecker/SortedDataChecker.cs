@@ -59,7 +59,7 @@ namespace CheckSortedData
         // Checks if the double list is in ascending or descending order
         static bool CheckList(List<double> list)
         {
-             bool ascendingOrder = true;
+            bool ascendingOrder = true;
             bool descendingOrder = true;
             // Loop to check if the list is in ascending order
             for(int i = 0; i < list.Count - 1; i++)
