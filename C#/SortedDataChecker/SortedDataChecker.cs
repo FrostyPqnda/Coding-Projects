@@ -7,8 +7,16 @@ namespace CheckSortedData
     {
         static void Main(string[] args)
         {
-            string[] arr = {"Lion", "Bacon", "Frog", "Toad"};
-            Console.WriteLine(CheckArray(arr));
+            Console.Title = "Sorted Data Checker";
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+
+            Random random = new Random();
+            List<int> list = new List<int>();
+            for(int i = 0; i < 10; i++)
+                list.Add(random.Next(10, 1000));
+            list.ForEach(elem => Console.Write(elem + " "));
+            
+            Console.WriteLine("\n\nIs a sorted list? " + CheckList(list));
             Console.ReadKey();
         }
         // Checks if the integer array is in ascending or descending order
