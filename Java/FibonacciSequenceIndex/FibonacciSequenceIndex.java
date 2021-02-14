@@ -17,7 +17,7 @@ public class FibonacciSequenceIndex
         int max = 15;
         int[] sequence = new int[max];
 
-        //create the first 2 Fibonacci sequence elements
+        // Creates the first 2 Fibonacci sequence elements
         sequence[0] = 0;
         sequence[1] = 1;
 
