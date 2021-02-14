@@ -18,5 +18,4 @@ public class DigitStringChecker extends DigitChecker
 		
 		input.close();
 	}
-
 }
