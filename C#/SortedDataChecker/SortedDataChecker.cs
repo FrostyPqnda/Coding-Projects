@@ -16,7 +16,13 @@ namespace CheckSortedData
                 list.Add(random.Next(10, 1000));
             list.ForEach(elem => Console.Write(elem + " "));
             
-            Console.WriteLine("\n\nIs a sorted list? " + CheckSortedList(list));
+            Console.WriteLine("\nIs a sorted list? " + CheckSortedList(list) + "\n");
+            
+            list.Sort();
+            list.ForEach(elem => Console.Write(elem + " "));
+
+            Console.WriteLine("\nIs a sorted list? " + CheckSortedList(list));
+            
             Console.ReadKey();
         }
         // Checks if the integer array is in ascending or descending order
