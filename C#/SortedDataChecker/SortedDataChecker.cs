@@ -16,11 +16,11 @@ namespace CheckSortedData
                 list.Add(random.Next(10, 1000));
             list.ForEach(elem => Console.Write(elem + " "));
             
-            Console.WriteLine("\n\nIs a sorted list? " + CheckList(list));
+            Console.WriteLine("\n\nIs a sorted list? " + CheckSortedList(list));
             Console.ReadKey();
         }
         // Checks if the integer array is in ascending or descending order
-        static bool CheckArray(int[] arr)
+        static bool CheckSortedArray(int[] arr)
         {
             bool ascendingOrder = true;
             bool descendingOrder = true;
@@ -35,7 +35,7 @@ namespace CheckSortedData
             return ascendingOrder || descendingOrder;
         }
         // Checks if the integer list is in ascending or descending order
-        static bool CheckList(List<int> list)
+        static bool CheckSortedList(List<int> list)
         {
             bool ascendingOrder = true;
             bool descendingOrder = true;
@@ -50,7 +50,7 @@ namespace CheckSortedData
             return ascendingOrder || descendingOrder;
         }
         // Checks if the double array is in ascending or descending order
-        static bool CheckArray(double[] arr)
+        static bool CheckSortedArray(double[] arr)
         {
             bool ascendingOrder = true;
             bool descendingOrder = true;
@@ -65,7 +65,7 @@ namespace CheckSortedData
             return ascendingOrder || descendingOrder;
         }
         // Checks if the double list is in ascending or descending order
-        static bool CheckList(List<double> list)
+        static bool CheckSortedList(List<double> list)
         {
             bool ascendingOrder = true;
             bool descendingOrder = true;
@@ -80,7 +80,7 @@ namespace CheckSortedData
             return ascendingOrder || descendingOrder;
         }
         // Checks if the character array is in ascending or descending order
-        static bool CheckArray(char[] arr)
+        static bool CheckSortedArray(char[] arr)
         {
             bool ascendingOrder = true;
             bool descendingOrder = true;
@@ -95,7 +95,7 @@ namespace CheckSortedData
             return ascendingOrder || descendingOrder;
         }
         // Checks if the character list is in ascending or descending order
-        static bool CheckList(List<char> list)
+        static bool CheckSortedList(List<char> list)
         {
             bool ascendingOrder = true;
             bool descendingOrder = true;
@@ -110,7 +110,7 @@ namespace CheckSortedData
             return ascendingOrder || descendingOrder;
         } 
         // Checks if the string array is in ascending or descending order
-        static bool CheckArray(string[] arr)
+        static bool CheckSortedArray(string[] arr)
         {
             bool ascendingOrder = true;
             bool descendingOrder = true;
@@ -125,7 +125,7 @@ namespace CheckSortedData
             return ascendingOrder || descendingOrder;
         }
         // Checks if the string list is in ascending or descending order
-        static bool CheckList(List<string> list)
+        static bool CheckSortedList(List<string> list)
         {
             bool ascendingOrder = true;
             bool descendingOrder = true;
