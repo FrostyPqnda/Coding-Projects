@@ -22,7 +22,6 @@ namespace CheckSortedData
             list.ForEach(elem => Console.Write(elem + " "));
 
             Console.WriteLine("\nIs a sorted list? " + CheckSortedList(list));
-            
             Console.ReadKey();
         }
         // Checks if the integer array is in ascending or descending order
