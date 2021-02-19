@@ -8,8 +8,6 @@ import java.util.ArrayList;
  */
 public class BinarySearch extends MergeSortAlgorithm 
 {
-    static SortedArrayChecker sac = new SortedArrayChecker();
-
     public static int arrayBinarySearch(int[] arr, int low, int high, int target) 
     {
         if(high >= low)
