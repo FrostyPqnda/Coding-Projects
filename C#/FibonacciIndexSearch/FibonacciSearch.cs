@@ -20,7 +20,7 @@ namespace FibonacciIndexSearch
             Console.Write("\n\nEnter a number: ");
             int index = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("\n\nThe index position of " + index + " is at " + FibonacciIndexSearch(arr, index));
+            Console.WriteLine("\n\nThe index position of " + index + " is " + FibonacciIndexSearch(arr, index));
             Console.ReadKey();
         }
 
