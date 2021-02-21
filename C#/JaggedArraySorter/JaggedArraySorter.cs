@@ -14,24 +14,29 @@ namespace JaggedSorter
 
             // Displaying the values of 2D Jagged Array
             Console.WriteLine("Unsorted 2D Jagged Array\n");
-            for(int i = 0; i < arr.Length; i++) {
-                for(int j = 0; j < arr[i].Length; j++)
-                    Console.Write(arr[i][j] + " ");
-                Console.WriteLine();
-            }
+            printJaggedArray(arr);
 
             Console.WriteLine("\n------------------------------");
             jaggedSort(arr);
 
             // Displaying the values of 2D Jagged Array
             Console.WriteLine("\nSorted 2D Jagged Array\n");
-            for(int i = 0; i < arr.Length; i++) {
-                for(int j = 0; j < arr[i].Length; j++)
-                    Console.Write(arr[i][j] + " ");
-                Console.WriteLine();
-            }
+            printJaggedArray(arr);
 
             Console.ReadKey();
+        }
+
+        // Prints all elements of the 2D Jagged Array
+        static void printJaggedArray(int[][] arr)
+        {
+            foreach(int[] row in arr)
+            {
+                foreach(int item in row)
+                {
+                    Console.Write(item + " ");
+                }
+                Console.WriteLine();
+            }
         }
 
         // Sorts the rows of arrays in the 2D Jagged Array
