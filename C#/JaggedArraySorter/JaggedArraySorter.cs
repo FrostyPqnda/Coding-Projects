@@ -74,9 +74,10 @@ namespace JaggedSorter
             {
                 int numCols = rand.Next(5, 11);
                 arr[i] = new int[numCols];
+                // Populates each element in the array with a value between [10, 100]
                 for(int x = 0; x < arr[i].Length; x++)
                 {
-                    arr[i][x] = rand.Next(10, 101);
+                    arr[i][x] = rand.Next(10, 101); 
                 }
             }
             return arr;
