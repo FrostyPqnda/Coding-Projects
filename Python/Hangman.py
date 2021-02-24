@@ -66,6 +66,5 @@ class Hangman:
                 print('You lose. The secret word was ' + self.secret_word.decode())
                 end = True
         
-    
 hangman = Hangman()
 hangman.play_hangman()

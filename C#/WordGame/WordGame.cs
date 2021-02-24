@@ -31,7 +31,6 @@ namespace GuessWord
                     Console.WriteLine("\nThe length of your input was shorter than the length of the hidden word!");
                     tries++;
                 }
-                    
                 if(guess.Equals(word.GetWord(), StringComparison.OrdinalIgnoreCase)) {
                     run = false;
                     Console.WriteLine(word);
