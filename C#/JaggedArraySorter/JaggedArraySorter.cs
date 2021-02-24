@@ -52,7 +52,7 @@ namespace JaggedSorter
         // Sorts the array using the Insertion Sort algorithm
         static void insertionSort(int[] arr)
         {
-            for(int i = 1; i < arr.Length; ++i)
+            for(int i = 1; i < arr.Length; i++)
             {
                 int key = arr[i];
                 int x = i - 1;
