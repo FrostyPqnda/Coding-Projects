@@ -1,4 +1,4 @@
-public class ShiftElementsInDataSet
+public class ShiftElementsInArray
 {
     public static void main(String[] args)
     {
