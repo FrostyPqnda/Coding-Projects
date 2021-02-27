@@ -6,8 +6,8 @@ public class ShiftElementsInArray
         System.out.println("Original Array:");
         for(int item : arr)
             System.out.print(item + " ");
-        System.out.println("\n\nArray shifted to the right:");
-        shiftRight(arr);
+        System.out.println("\n\nArray shifted to the left:");
+        shiftLeft(arr);
         for(int item : arr)
             System.out.print(item + " ");
     }
