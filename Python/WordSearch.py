@@ -4,16 +4,12 @@ If the word does exist in the sentence, it
 returns the index position it is first
 located in the sentence.
 """
-
 def search(phrase, word):
-    phrase = phrase[0:] +  phrase[:-1].replace('.', '')
     textArr = phrase.split(' ')
     for i in range(0, len(textArr)):
         if(textArr[i] == word):
             return 'The word [' + word + '] exists in the sentence and is located at index ' + str(i) 
     return 'The word [' + word + '] does not exist in the sentence'
 
-s = 'I am a cat.'
-
-print(s + '\n')
+s = 'I am a cat'
 print(search(s, 'cat'))
