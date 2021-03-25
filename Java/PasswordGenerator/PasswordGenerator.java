@@ -16,9 +16,10 @@ public class PasswordGenerator extends PasswordChecker
         if(passwordLength < 8 || passwordLength > 20)
             passwordLength = (int)((Math.random() * 13) + 8); 
         
-        for(int i = 0; i < passwordLength; i++) {
+        for(int i = 0; i < passwordLength; i++) 
+        {
             int randCharIndex = secRand.nextInt(randString.length());
-            passwordStr += randString.charAt(randCharIndex);; // Adds the random character to the password string
+            passwordStr += randString.charAt(randCharIndex); // Adds the random character to the password string
         }
 
         if(checkPassword(passwordStr))

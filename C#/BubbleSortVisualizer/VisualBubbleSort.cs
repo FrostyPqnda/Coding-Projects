@@ -20,23 +20,27 @@ namespace BubbleSortVisualizer
         compares each adjacent elements and swaps them if they are in the wrong order. */
         static void BubbleSort(List<int> list)
         {
-            int swapCount = 1; // Counting swap variable
+            int swapCount = 0; // Counting swap variable
 
             // Prints out the unsorted list [before it is being sorted].
             Console.Write("\nUnsorted: ");
             list.ForEach(elem => Console.Write(elem + " "));
             Console.WriteLine("\n");
 
-            for(int x = 0; x < list.Count - 1; x++) {
-                for(int y = 0; y < list.Count - x - 1; y++) {
-                    if(list[y] > list[y + 1]) {
+            for(int x = 0; x < list.Count - 1; x++) 
+            {
+                for(int y = 0; y < list.Count - x - 1; y++) 
+                {
+                    if(list[y] > list[y + 1]) 
+                    {
+                        swapCount++;
                         // Prints out list during swapping process
                         Console.Write("Swap #" + swapCount + ": ");
                         list.ForEach(elem => Console.Write(elem + " "));
                         Console.Write("- swapping: [" + list[y] + ", " + list[y + 1] + "]");
                         Console.Write(" -> swapped: [" + list[y + 1] + ", " + list[y] + "]\n");
                         Console.WriteLine();
-                        swapCount++;
+                        
 
                         int temp = list[y];
                         list[y] = list[y + 1];
