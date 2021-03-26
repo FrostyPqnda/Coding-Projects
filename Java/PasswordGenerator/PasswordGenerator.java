@@ -2,7 +2,11 @@ import java.security.SecureRandom;
 
 public class PasswordGenerator extends PasswordChecker
 {
-    public String generatePassword(int passwordLength)
+    public static void main(String[] args)
+    {
+        System.out.println(generatePassword(10));
+    }
+    public static String generatePassword(int passwordLength)
     {
         final String UPPER_ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         final String LOWER_ALPHA = UPPER_ALPHA.toLowerCase();
