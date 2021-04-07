@@ -7,7 +7,7 @@ public class LongestWord
     }
 
     // Returns the longest word in the array
-    public static String longestWordInArray(String[] arr)
+    static String longestWordInArray(String[] arr)
     {
         String longestWord = arr[0];
         for(int i  = 0; i < arr.length; i++)
