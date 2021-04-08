@@ -6,7 +6,9 @@ public class PasswordGenerator extends PasswordChecker
     {
         System.out.println(generatePassword(10));
     }
-    public static String generatePassword(int passwordLength)
+
+    // Creates a randomized password with uppercase and lowercase letters, numbers, and special characters
+    static String generatePassword(int passwordLength)
     {
         final String UPPER_ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         final String LOWER_ALPHA = UPPER_ALPHA.toLowerCase();
@@ -17,18 +19,30 @@ public class PasswordGenerator extends PasswordChecker
 
         String passwordStr = "";
         
+        // Sets the length between 8 - 20 if it is out of bound
         if(passwordLength < 8 || passwordLength > 20)
-            passwordLength = (int)((Math.random() * 13) + 8); 
+        {
+            passwordLength = (int)((Math.random() * 13) + 8);
+        } 
         
+        // Loops through the value of the password length and appends a random letter 
+        // to the empty password string
         for(int i = 0; i < passwordLength; i++) 
         {
             int randCharIndex = secRand.nextInt(randString.length());
-            passwordStr += randString.charAt(randCharIndex); // Adds the random character to the password string
+            // Appends the randomized letter/number/special character to the password string
+            passwordStr += randString.charAt(randCharIndex);
         }
 
         if(checkPassword(passwordStr))
-            return passwordStr; // Returns the password only if it is alpha-numeric and has at least 1 special character.
+        {
+            // Returns the password only if it is alpha-numeric and has at least 1 special character.
+            return passwordStr; 
+        }
         else
-            return generatePassword(passwordLength); // If checkPassword is false, then run the method again recursively until checkPassword is true.
+        {
+            // If checkPassword is false, then run the method again until it is true.
+            return generatePassword(passwordLength); 
+        }
     }
 }
