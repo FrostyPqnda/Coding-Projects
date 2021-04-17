@@ -1,6 +1,5 @@
 public class TranslateBinary extends BinaryTranslator
 {
-	
 	public static void main(String[] args) 
 	{
 		// Ouputs my name - Brian
@@ -10,6 +9,4 @@ public class TranslateBinary extends BinaryTranslator
 		int decimal = binaryToDecimal("1101101010110111");
 		System.out.println(decimal);
 	}
-
 }
-

@@ -7,10 +7,11 @@ public class SnakeEyes
 {
     public static void main(String[] args)
     {
-        int count = 1; // Counting variable. Counts the amount of rolls it took to get snake eyes
+        int count = 0; // Counting variable. Counts the amount of rolls it took to get snake eyes
 
         while(true)
         {
+            count++;
             int rollOne = (int)(Math.random() * 6) + 1; // Dice 1 value from 1 - 6 inclusive
             int rollTwo = (int)(Math.random() * 6) + 1; // Dice 2 value from 1 - 6 inclusive
             
@@ -22,7 +23,7 @@ public class SnakeEyes
                 break;
             }
 
-            count++;
+            
         }
     }
 }

@@ -19,6 +19,4 @@ public class StringToASCII extends StringConverter
 		convertASCII(convert);
 		input.close();
 	}
-	
-	
 }

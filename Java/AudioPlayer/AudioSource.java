@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
  */
 public class AudioSource
 {
-
 	public void playAudio(String audioLocation)
 	{
 		try
@@ -37,7 +36,6 @@ public class AudioSource
 				clip.start();
 				
 				JOptionPane.showMessageDialog(null, "Press OK to stop playing");
-				
 			}
 			else
 			{
@@ -49,5 +47,4 @@ public class AudioSource
 			ex.printStackTrace();
 		}
 	}
-
 }

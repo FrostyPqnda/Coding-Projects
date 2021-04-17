@@ -6,12 +6,12 @@ public class BinaryTranslator
 {
 	/*
 	 * Public static string methood that converts
-	 * a binary string into my name.
+	 * a binary string into text format.
 	 */
 	public static String binaryToText(String binary)
 	{
 	    String ret = "";
-	    for( int i = 0; i < binary.length(); i+=8)
+	    for(int i = 0; i < binary.length(); i+=8)
 	    {
 	        String s = binary.substring(i, i+8);
 	        int dec = binaryToDecimal(s);

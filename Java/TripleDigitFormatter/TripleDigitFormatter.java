@@ -36,9 +36,10 @@ public class TripleDigitFormatter
         int ascii = 0;
 
         if(Character.isLetter(letter))
+        {
             ascii = letter;
             str += String.format("%03d", ascii);
-
+        }
 
         return "Original: " + letter + "\nResult: " + str;
     }

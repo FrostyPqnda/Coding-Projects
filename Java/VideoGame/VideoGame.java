@@ -7,13 +7,13 @@
 public class VideoGame
 {
     // Class variables go here:
-    String title;
-    String hero;
-    String villian;
-    String setting;
-    String topScoreInitials;
-    int topScore;
-    int score;
+    private String title;
+    private String hero;
+    private String villian;
+    private String setting;
+    private String topScoreInitials;
+    private int topScore;
+    private int score;
     
     // Constructor for class VideoGame
     public VideoGame(String title, String hero, String villian, String setting)

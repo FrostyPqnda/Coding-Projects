@@ -26,5 +26,4 @@ public class ReplaceLetterConsole extends ReplaceLetter
 		
 		input.close();
 	}
-
 }

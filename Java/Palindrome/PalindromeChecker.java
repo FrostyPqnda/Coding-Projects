@@ -27,5 +27,4 @@ public class PalindromeChecker extends FindPalindrome
 		
 		input.close();
 	}
-
 }

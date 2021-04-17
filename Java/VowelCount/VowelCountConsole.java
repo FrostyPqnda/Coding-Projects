@@ -19,5 +19,4 @@ public class VowelCountConsole extends VowelCount
 		System.out.println("Your sentence had " + a + " A's, " + e + " E's, " + i + " I's, " + o + " O's, " + "and " + u + " U's.");
 		input.close();
 	}
-
 }
