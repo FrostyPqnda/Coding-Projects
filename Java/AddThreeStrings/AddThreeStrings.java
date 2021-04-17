@@ -12,7 +12,6 @@ public class AddThreeStrings extends AddStrings
 
 	public static void main(String[] args) 
 	{
-		
 		Scanner input = new Scanner(System.in);
 
 		System.out.print("Enter first value: ");
@@ -28,7 +27,5 @@ public class AddThreeStrings extends AddStrings
 		System.out.println(addStrings);
 
 		input.close();
-
 	}
-
 }

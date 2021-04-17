@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class AltCaseConsole extends AltCase
 {
-
 	public static void main(String[] args)
 	{
 		Scanner input = new Scanner(System.in);
@@ -12,5 +11,4 @@ public class AltCaseConsole extends AltCase
 		System.out.println("Result: " + output);
 		input.close();
 	}
-
 }

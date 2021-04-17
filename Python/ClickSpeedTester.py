@@ -12,7 +12,6 @@ def clicks():
 
 # Countdown timer that disables the button once it hits 0
 def countdown(t):
-    resetBtn.configure(state = 'disabled')
     countdownTimerLabel.configure(text = 'Timer: ' + str(t))
     if t > 0:
         root.after(1000, countdown, t - 1)
@@ -23,8 +22,7 @@ def countdown(t):
 
 # Calculates the user's cps and displays it on screen
 def getCPS():
-    cps = round((count / 10), 2)
-    cpsLabel.configure(text = 'CPS: ' + str(cps))
+    cpsLabel.configure(text = 'CPS: ' + str(round((count / 10), 2)))
 
 # Resets the click speed tester
 def reset():

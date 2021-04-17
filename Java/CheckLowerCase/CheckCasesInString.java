@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class CheckCasesInString extends CheckStringCases
 {
-
 	public static void main(String[] args) 
 	{
 		Scanner input = new Scanner(System.in);
@@ -10,8 +9,7 @@ public class CheckCasesInString extends CheckStringCases
 		String text = input.nextLine();
 		
 		boolean checkCase = isLowerCase(text);
-		System.out.println("Is " + text + " all lowercase? " + checkCase);
+		System.out.println("Is [" + text + "] all lowercase? " + checkCase);
 		input.close();
 	}
-
 }

@@ -6,17 +6,13 @@ public class DigitChecker
 	 */
 	public static boolean digitChecker(String str)
 	{
-		char[] charArray = str.toCharArray();
-		boolean containsDigit = false;
-
-		for(char c : charArray)
+		for(char c : str.toCharArray())
 		{
 			if(Character.isDigit(c))
 			{
-				containsDigit = true;
+				return true;
 			}
 		}
-
-		return containsDigit;
+		return false;
 	}
 }

@@ -19,5 +19,4 @@ public class AltCase
 	            returnAltCase += Character.toLowerCase(text.charAt(i));
 	    return returnAltCase;
 	}
-
 }
