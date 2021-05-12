@@ -56,5 +56,16 @@ def finiteGeometricSum(start, end, a1, r):
         sum += geometricNthTerm(a1, r, i)
     return sum
 
-print(finiteGeometricSum(4, 6, 5, 4))
+# Calculates the sum of an infinite geometric series
+def infiniteGeometricSum(a1, r):
+    return a1/(1 - r)
+
+
+startTerm = int(input('Enter a starting point: '))
+endTerm = int(input('Enter a stopping point: '))
+firstTerm = int(input('Enter the first term: '))
+value = int(input('Enter the common difference/ratio: '))
+
+print('Sum of a finite arithmetic series [start = ' + str(startTerm) + ', stop = ' + str(endTerm) + ']:', finiteArithmeticSum(startTerm, endTerm, firstTerm, value))
+
 
