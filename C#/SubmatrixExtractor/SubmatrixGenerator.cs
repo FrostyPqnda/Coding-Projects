@@ -14,7 +14,7 @@ namespace SubmatrixExtractor
             PrintMatrix(mat);
 
             Console.WriteLine("\nSubmatrix: \n");
-            int[,] subMat = ExtractSubmatrix(mat, 1, 3, 1, 3);
+            int[,] subMat = ExtractSubmatrix(mat, 1, 4, 1, 3);
             PrintMatrix(subMat);
 
             Console.ReadKey();
@@ -39,11 +39,10 @@ namespace SubmatrixExtractor
             return subMat;
         }
 
-
-        // Creates a randomized 2D array with a row length of @param rowLength and a column length of @param columnLength
+        // Creates a randomized 2D array with a row length of @param rowSize and a column length of @param colSize
         static int[,] GenerateRandomMatrix(int rowSize, int colSize)
         {
-            int[,] arr = new int[rowSize, colSize]; // Create a 2D array with a size of @param rowLength * @param columnLength
+            int[,] arr = new int[rowSize, colSize]; // Create a matrix with a size of @param  * @param colSize
             Random rng = new Random(); // Create object from the Random class
 
             // Populate the 2D array with random value from the range of [100, 999] inclusive
