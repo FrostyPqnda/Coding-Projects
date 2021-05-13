@@ -4,7 +4,7 @@ namespace DimensionalArraySorter
     public class QuickSorter
     {
         // Sorts the arrays using the Merge Sort algorithm
-        public void QuickSort(int[] arr, int low, int high)
+        public static void QuickSort(int[] arr, int low, int high)
         {
             if(low < high) {
                 int pi = Partition(arr, low, high);
@@ -15,7 +15,7 @@ namespace DimensionalArraySorter
         }
         
         /*  */
-        int Partition(int[] arr, int low, int high)
+        static int Partition(int[] arr, int low, int high)
         {
             int pivot = arr[high];
             int i = (low - 1);

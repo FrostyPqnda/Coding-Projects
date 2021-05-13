@@ -13,9 +13,6 @@ namespace GuessWord
             bool run = true;
             int tries = 0;
 
-            //Console.Write("Guess the word [The hidden word has " + word.GetWord().Length + " letters]: ");
-            //String guess = Console.ReadLine();
-
             while(run) 
             {
                 Console.Write("Guess the word [The hidden word has " + word.GetWord().Length + " letters]: ");

@@ -9,7 +9,7 @@ namespace SubmatrixExtractor
             Console.Title = "Submatrix Extractor";
             Console.ForegroundColor = ConsoleColor.DarkCyan;
 
-            int[,] mat = GenerateRandomMatrix(5, 4);
+            int[,] mat = RandomMatrix(5, 4);
             Console.WriteLine("Original: \n");
             PrintMatrix(mat);
 
@@ -39,21 +39,20 @@ namespace SubmatrixExtractor
             return subMat;
         }
 
-        // Creates a randomized 2D array with a row length of @param rowSize and a column length of @param colSize
-        static int[,] GenerateRandomMatrix(int rowSize, int colSize)
+        // Creates a randomized matrix with values [100, 999] inclusive.
+        static int[,] RandomMatrix(int rowSize, int colSize)
         {
-            int[,] arr = new int[rowSize, colSize]; // Create a matrix with a size of @param  * @param colSize
-            Random rng = new Random(); // Create object from the Random class
+            int[,] arr = new int[rowSize, colSize]; 
+            Random rng = new Random();
 
-            // Populate the 2D array with random value from the range of [100, 999] inclusive
             for(int row = 0; row < rowSize; row++)
                 for(int col = 0; col < colSize; col++)
                     arr[row, col] = rng.Next(100, 1000);
 
-            return arr; // Return the randomized 2D array
+            return arr;
         }
 
-        // Print all elements of a multi-dimensional array
+        // Print all elements of a matrix
         static void PrintMatrix(int[,] mat)
         {
             for(int row = 0; row < mat.GetLength(0); row++) 

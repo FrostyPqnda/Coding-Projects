@@ -2,15 +2,12 @@
 
 namespace DimensionalArraySorter
 {
-    class MatrixSorter
+    class MatrixSorter : QuickSorter
     {
         static void Main(string[] args)
         {   
             Console.Title = "Matrix Sorter";
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-
-            // Create an object of the Random2DArray class
-            Random2DArray rng = new Random2DArray(); 
 
             // Ask users for the row length
             Console.Write("Enter the row length: ");
@@ -23,7 +20,7 @@ namespace DimensionalArraySorter
             int col = (columnLength > 1) ? columnLength : 1; // If the inputted column length is less than 1, then the row length is set to 1
 
             // Create a randomized, unsorted 2D array and print it out to the terminal
-            int[,] matrix = rng.GenerateRandom2DArray(row, col);
+            int[,] matrix = RandomMatrix(row, col);
             Console.WriteLine("\nUnsorted:");
             PrintMatrix(matrix);
             
@@ -47,14 +44,26 @@ namespace DimensionalArraySorter
                 for(int col = 0; col < colSize; col++)
                     arr[count++] = mat[row, col];
 
-            QuickSorter qs = new QuickSorter(); // Create object of the QuickSorter class
-            qs.QuickSort(arr, 0, arr.Length - 1); // Calls the QuickSort function to sort the temporary array
+            QuickSort(arr, 0, arr.Length - 1); // Calls the QuickSort function to sort the temporary array
 
             count = 0; // Resets the counter variable back to zero
             // Copy elements of the temporary array one by one into the multi-dimensional array
             for(int row = 0; row < rowSize; row++)
                 for(int col = 0; col < colSize; col++)
                     mat[row, col] = arr[count++];
+        }
+
+        // Creates a randomized matrix with values [0, 10000] inclusive
+        static int[,] RandomMatrix(int rowSize, int colSize)
+        {
+            int[,] arr = new int[rowSize, colSize]; 
+            Random rng = new Random(); 
+
+            for(int row = 0; row < rowSize; row++)
+                for(int col = 0; col < colSize; col++)
+                    arr[row, col] = rng.Next(0, 10001);
+
+            return arr;
         }
 
         // Print all elements of a multi-dimensional array
