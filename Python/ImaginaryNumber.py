@@ -24,7 +24,10 @@ def getImaginaryNumber(n):
         num = sqrt(abs(n))
         if(isPerfectSquare(abs(n))):
             intNum = int(num)
-            imgNum += str(intNum) + 'i'
+            if(n == -1):
+                imgNum += 'i'
+            else:
+                imgNum += str(intNum) + 'i'
         else:
             roundedNum = float(round(num * 100)) / 100 # Rounds the number to the nearest hundredth place.
             imgNum += str(roundedNum) + 'i'
@@ -39,4 +42,4 @@ def getImaginaryNumber(n):
 
     return imgNum
 
-print(getImaginaryNumber(-101))
+print(getImaginaryNumber(-4))
