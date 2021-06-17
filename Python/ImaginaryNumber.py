@@ -20,8 +20,8 @@ def getImaginaryNumber(n):
 
     Otherwise, return the root value of n.
     """
+    num = sqrt(abs(n))
     if(n < 0):
-        num = sqrt(abs(n))
         if(isPerfectSquare(abs(n))):
             intNum = int(num)
             if(n == -1):
@@ -42,4 +42,5 @@ def getImaginaryNumber(n):
 
     return imgNum
 
-print(getImaginaryNumber(-4))
+negNum = -4
+print('The root value of', negNum, 'is', getImaginaryNumber(negNum))
