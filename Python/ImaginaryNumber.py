@@ -41,6 +41,3 @@ def getImaginaryNumber(n):
             imgNum += str(roundedNum)
 
     return imgNum
-
-negNum = -4
-print('The root value of', negNum, 'is', getImaginaryNumber(negNum))
