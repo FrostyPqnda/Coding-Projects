@@ -41,3 +41,6 @@ def getImaginaryNumber(n):
             imgNum += str(roundedNum)
 
     return imgNum
+
+negNum = int(input('Enter a negative number: '))
+print('The square root of', negNum, 'is', getImaginaryNumber(negNum))
