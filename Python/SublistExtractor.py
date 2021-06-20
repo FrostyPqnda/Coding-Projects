@@ -1,7 +1,7 @@
 # Extracts a sublist from the original list.
 # Values of sublist will include all values
 # of the original list [start, end).
-# Precondition: 0 < start < end < list length
+# Precondition: 0 < start < end < len(arr)
 def extractSublist(arr, start, end):
     subList = []
     for item in range(start, end):
