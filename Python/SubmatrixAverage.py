@@ -23,4 +23,4 @@ arr = [
     [5, 6, 1, 3]
 ]
 
-print(getSubmatrixAverage(arr, 1, 3, 0, 3))
+print('Average:', str(getSubmatrixAverage(arr, 1, 3, 1, 2)))
