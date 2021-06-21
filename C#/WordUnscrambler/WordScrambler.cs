@@ -22,7 +22,7 @@ namespace WordUnscrambler
         // Scrambles the word in random order
         public string ScrambleWord(string str)
         {
-            string scrambledWord = "";
+            string text = "";
             char[] arr = str.ToCharArray();
             Random rand = new Random();
             for(int i = 0; i < arr.Length - 1; i++)
@@ -32,8 +32,8 @@ namespace WordUnscrambler
                 arr[i] = arr[pos];
                 arr[pos] = temp;
             }
-            scrambledWord = String.Join("", arr);
-            return scrambledWord;
+            text = String.Join("", arr);
+            return text;
         }
         
         // Gives the player hints about the unscrambled hidden word
