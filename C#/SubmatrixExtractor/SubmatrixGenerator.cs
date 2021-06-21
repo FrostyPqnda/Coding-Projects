@@ -9,12 +9,12 @@ namespace SubmatrixExtractor
             Console.Title = "Submatrix Extractor";
             Console.ForegroundColor = ConsoleColor.DarkCyan;
 
-            int[,] mat = RandomMatrix(5, 4);
+            int[,] mat = RandomMatrix(8, 8);
             Console.WriteLine("Original: \n");
             PrintMatrix(mat);
 
-            Console.WriteLine("\nSubmatrix: \n");
-            int[,] subMat = ExtractSubmatrix(mat, 1, 4, 1, 3);
+            Console.WriteLine("\nExtracted Submatrix: \n");
+            int[,] subMat = ExtractSubmatrix(mat, 5, 8, 2, 7);
             PrintMatrix(subMat);
 
             Console.ReadKey();
