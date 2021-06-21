@@ -23,7 +23,7 @@ namespace WordUnscrambler
 
                 if(guessWord.Length == scramble.GetUnscrambledWord().Length)
                 {
-                    Console.WriteLine("\nClue: " + scramble.GetClue(guessWord));
+                    Console.WriteLine("\nHint: " + scramble.GetClue(guessWord));
                 }
                 else if(guessWord.Equals("-1"))
                 {

@@ -14,14 +14,15 @@ namespace SubmatrixExtractor
             PrintMatrix(mat);
 
             Console.WriteLine("\nExtracted Submatrix: \n");
-            int[,] subMat = ExtractSubmatrix(mat, 5, 8, 2, 7);
+            int[,] subMat = ExtractSubmatrix(mat, 5, 8, 4, 7);
             PrintMatrix(subMat);
 
             Console.ReadKey();
         }
         
         // Extracts a submatrix from the original matrix
-        // Condition: 0 ≤ startRow < endRow, 0 ≤ startCol < endCol
+        // Condition: 0 ≤ startRow < endRow < mat.length
+        // Condition: 0 ≤ startCol < endCol < mat[0].length
         static int[,] ExtractSubmatrix(int[,] mat, int startRow, int endRow, int startCol, int endCol)
         {
             int rowSize = endRow - startRow, colSize = endCol - startCol;

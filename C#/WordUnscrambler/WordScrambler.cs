@@ -16,7 +16,7 @@ namespace WordUnscrambler
             String[] text = System.IO.File.ReadAllLines("WordList.txt"); // Creates a string array containing all the words from WordList.txt
             int randomIndex = rand.Next(text.Length); // Create a random number between all words in WordList.txt
             unscrambledWord = text[randomIndex];
-            scrambledWord = ScrambleWord(text[randomIndex]); // Sets the word to a random word from WordList.txt
+            scrambledWord = ScrambleWord(unscrambledWord); // Sets the word to a random word from WordList.txt
         }
 
         // Scrambles the word in random order
