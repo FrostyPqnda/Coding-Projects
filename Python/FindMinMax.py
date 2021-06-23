@@ -21,7 +21,6 @@ def findMin(arr):
     if length == 1:
         return arr[0]
     """
-    Sorts the list using the Bubble Sort algorithm.
     Sorts the list from least to greatest.
     """
     for x in range(length - 1):
@@ -39,7 +38,6 @@ def findMax(arr):
     if length == 1:
         return arr
     """
-    Sorts the list using the Bubble Sort algorithm.
     Sorts the list from greatest to least.
     """
     for x in range(length - 1):
