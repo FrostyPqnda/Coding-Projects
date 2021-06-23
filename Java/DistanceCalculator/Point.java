@@ -29,6 +29,8 @@ public class Point
         this.y = y;
     }
 
+    // Calculates the distance from point a to point b
+    // Distance formula: distance = sqrt((x2 - x1)^2 + (y2 - y1)^2)
     public double getDistance(Point p)
     {
         double xDist = Math.pow((p.getX() - x), 2);
@@ -39,6 +41,6 @@ public class Point
 
     public String toString()
     {
-        return "(" + x + ", " + y + ")";
+        return "[" + x + ", " + y + "]";
     }
 }
