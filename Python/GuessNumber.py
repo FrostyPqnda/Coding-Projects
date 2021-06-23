@@ -9,10 +9,11 @@ Python game that asks users to guess a number
 between 1 and 100 inclusive.
 """
 randNum = randint(1, 100) # Generated random number b/w 1 and 100 inclusive
-count = 1 # Counting variable that counts how many tries it took
+count = 0 # Counting variable that counts how many tries it took
 
 while True:
     num = int(input("Guess the number [1, 100]: "))
+    count += 1
 
     if num == randNum:
         print("Correct! \nIt took you " + str(count) + " tries to guess the number.")
@@ -22,4 +23,4 @@ while True:
     elif num < randNum:
         print("Too low!")
     
-    count += 1
+    

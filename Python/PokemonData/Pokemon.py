@@ -24,10 +24,10 @@ class Pokemon:
     
     # Returns the object as a string
     def __str__(self):
-        pkmn = "Pokemon: " + str(self.pkmnName)
+        pkmnName = "Pokemon: " + str(self.pkmnName)
         pkmnType = "\nType: " + str(self.pkmnType)
         pkmnAbility = "\nAbility: " + str(self.pkmnAbility)
         pkmnShiny = "\nShiny: " + str(self.pkmnShiny)
         pkmnHP = "\nHP: " + str(self.pkmnHP)
         pkmnLevel = "\nLevel: " + str(self.pkmnLevel)
-        return pkmn + pkmnType + pkmnAbility + pkmnShiny + pkmnHP + pkmnLevel
+        return pkmnName + pkmnType + pkmnAbility + pkmnShiny + pkmnHP + pkmnLevel

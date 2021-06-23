@@ -52,4 +52,4 @@ for pkmn in pkmnList:
 
 # Closes the file after all objects have been added
 data.close()
-print("Pokemon data successfully written to: " + pkmn_data_file)
+print("Pokemon data successfully written to " + pkmn_data_file)
