@@ -6,7 +6,7 @@ a 1-Dimensional list.
 """
 class PixelScreen:
     # Initializer for the PixelScreen class
-    # Precondition: numRows, numCols >= 3
+    # Precondition: numRows >= 0, numCols >= 3; numCols % 3 == 0
     def __init__(self, numRows, numCols, scanned, *screen):
         self.numRows = numRows
         self.numCols = numCols
@@ -21,7 +21,7 @@ class PixelScreen:
                 index += 1
 
     # Code taken from [https://stackoverflow.com/questions/3380726/converting-a-rgb-color-tuple-to-a-six-digit-code]
-    def RGBToHex(self, r = 0, g = 0, b = 0):
+    def RGBToHex(self, r, g, b):
         if (r >= 0 and r <= 255) and (g >= 0 and g <= 255) and (b >= 0 and b <= 255):
             return ('#%02x%02x%02x' % (r, g, b)).upper()
         else:
@@ -42,9 +42,9 @@ def generatePixelScreen(size):
         pixelScreen.append(randint(0, 255))
     return pixelScreen
 
-tv = generatePixelScreen(9)
+tv = generatePixelScreen(15)
 
-pixelScreen = PixelScreen(3, 3, tv)
+pixelScreen = PixelScreen(5, 3, tv)
 pixelScreen.displayScreen()
 
 print('\n' + str(pixelScreen.screen[1]))
