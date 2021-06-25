@@ -6,12 +6,12 @@ a 1-Dimensional list.
 """
 class PixelScreen:
     # Initializer for the PixelScreen class
-    # Precondition: numCols % 3 == 0
+    # Precondition: numRows, numCols >= 3
     def __init__(self, numRows, numCols, scanned, *screen):
         self.numRows = numRows
         self.numCols = numCols
         self.scanned = scanned
-        self.screen = [[0 for _ in range(numCols)] for _ in range(numRows)]
+        self.screen = [[None for _ in range(numCols)] for _ in range(numRows)]
         
         index = 0
 
