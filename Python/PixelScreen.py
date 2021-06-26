@@ -53,9 +53,9 @@ def generatePixelRow(size):
         pixelScreen.append(randint(0, 255))
     return pixelScreen
 
-tv = generatePixelRow(30)
+tv = generatePixelRow(56)
 
-pixelScreen = PixelScreen(6, 5, tv)
+pixelScreen = PixelScreen(7, 8, tv)
 
 print("Pixel Screen:\n")
 
