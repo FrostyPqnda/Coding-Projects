@@ -36,7 +36,7 @@ class PixelScreen:
         for i in range(len(rowScreen) - 2):
             hexVal = self.__RGBToHex(rowScreen[i], rowScreen[i+1], rowScreen[i+2])
             hexCodeList.append(hexVal)
-
+            
         return hexCodeList
 
     # Display the PixelScreen list
@@ -63,4 +63,4 @@ pixelScreen.displayScreen()
 
 rowInput = (int(input("\nEnter a row #: ")))
 
-print('\nTotal possible hexadecimals that could be made from row ' + str(rowInput) + ': ' + str(pixelScreen.getPossibleHexesFromRow(rowInput)))
+print('\nThe possible hexadecimals that could be made from row ' + str(rowInput) + ': ' + str(pixelScreen.getPossibleHexesFromRow(rowInput)))
