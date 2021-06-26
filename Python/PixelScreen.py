@@ -24,7 +24,7 @@ class PixelScreen:
     # Converts RGB values to hexadecimal
     def __RGBToHex(self, r, g, b):
         if (r >= 0 and r <= 255) and (g >= 0 and g <= 255) and (b >= 0 and b <= 255):
-            return ('#%02x%02x%02x' % (r, g, b)).upper()
+            return '#{:02x}{:02x}{:02x}'.format(r, g, b).upper()
         else:
             return -1
     
@@ -63,4 +63,4 @@ pixelScreen.displayScreen()
 
 rowInput = (int(input("\nEnter a row #: ")))
 
-print('\nThe possible hexadecimals that could be made from row ' + str(rowInput) + ': ' + str(pixelScreen.getPossibleHexesFromRow(rowInput)))
+print('\nThe possible hexadecimals that could be made from row ' + str(rowInput) + ' are ' + str(pixelScreen.getPossibleHexesFromRow(rowInput)))
