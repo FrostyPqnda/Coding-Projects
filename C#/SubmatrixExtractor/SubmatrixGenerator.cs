@@ -14,7 +14,7 @@ namespace SubmatrixExtractor
             PrintMatrix(mat);
 
             Console.WriteLine("\nExtracted Submatrix: \n");
-            int[,] subMat = ExtractSubmatrix(mat, 5, 8, 4, 7);
+            int[,] subMat = ExtractSubmatrix(mat, 2, 2);
             PrintMatrix(subMat);
 
             Console.ReadKey();
@@ -34,6 +34,23 @@ namespace SubmatrixExtractor
                 {
                     int r = row - startRow, c = col - startCol;
                     subMat[r, c] = mat[row, col];
+                }
+            }
+
+            return subMat;
+        }
+
+        // Extracts a submatrix from the original matrix
+        // Values of the submatrix will be [0, row] and [0, col]
+        static int[,] ExtractSubmatrix(int[,] mat, int row, int col)
+        {
+            int[,] subMat = new int[row + 1, col + 1];
+
+            for(int r = 0; r < row + 1; r++)
+            {
+                for(int c = 0; c < col + 1; c++)
+                {
+                    subMat[r, c] = mat[r, c];
                 }
             }
 
