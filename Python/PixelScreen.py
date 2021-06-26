@@ -47,15 +47,18 @@ class PixelScreen:
             print()
 
 # Creates a randomized list with values [0, 255] inclusive
-def generatePixelScreen(size):
+def generatePixelRow(size):
     pixelScreen = []
     for _ in range(size):
         pixelScreen.append(randint(0, 255))
     return pixelScreen
 
-tv = generatePixelScreen(30)
+tv = generatePixelRow(30)
 
 pixelScreen = PixelScreen(6, 5, tv)
+
+print("Pixel Screen:\n")
+
 pixelScreen.displayScreen()
 
 rowInput = (int(input("\nEnter a row #: ")))
