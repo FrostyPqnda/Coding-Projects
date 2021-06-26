@@ -6,7 +6,7 @@ a 1-Dimensional list.
 """
 class PixelScreen:
     # Initializer for the PixelScreen class
-    # Precondition: numRows >= 0, numCols >= 3; numCols % 3 == 0
+    # Precondition: numRows >= 0, numCols >= 3
     def __init__(self, numRows, numCols, scanned, *screen):
         self.numRows = numRows
         self.numCols = numCols
@@ -21,12 +21,24 @@ class PixelScreen:
                 index += 1
 
     # Code taken from [https://stackoverflow.com/questions/3380726/converting-a-rgb-color-tuple-to-a-six-digit-code]
-    def RGBToHex(self, r, g, b):
+    # Converts RGB values to hexadecimal
+    def __RGBToHex(self, r, g, b):
         if (r >= 0 and r <= 255) and (g >= 0 and g <= 255) and (b >= 0 and b <= 255):
             return ('#%02x%02x%02x' % (r, g, b)).upper()
         else:
             return -1
     
+    # Gets the total possible consecutive hexadecimal values that can be made from a particular row and returns it as a list.
+    def getPossibleHexesFromRow(self, row):
+        rowScreen = self.screen[row]
+        hexCodeList = []
+        
+        for i in range(len(rowScreen) - 2):
+            hexVal = self.__RGBToHex(rowScreen[i], rowScreen[i+1], rowScreen[i+2])
+            hexCodeList.append(hexVal)
+
+        return hexCodeList
+
     # Display the PixelScreen list
     def displayScreen(self):
         for r in range(self.numRows):
@@ -35,22 +47,17 @@ class PixelScreen:
             print()
 
 # Creates a randomized list with values [0, 255] inclusive
-# Precondition: size % 3 == 0
 def generatePixelScreen(size):
     pixelScreen = []
     for _ in range(size):
         pixelScreen.append(randint(0, 255))
     return pixelScreen
 
-tv = generatePixelScreen(15)
+tv = generatePixelScreen(30)
 
-pixelScreen = PixelScreen(5, 3, tv)
+pixelScreen = PixelScreen(6, 5, tv)
 pixelScreen.displayScreen()
 
-print('\n' + str(pixelScreen.screen[1]))
+rowInput = (int(input("\nEnter a row #: ")))
 
-red = pixelScreen.screen[1][0]
-green = pixelScreen.screen[1][1]
-blue = pixelScreen.screen[1][2]
-
-print(pixelScreen.RGBToHex(red, green, blue))
+print('\nTotal possible hexadecimals that could be made from row ' + str(rowInput) + ': ' + str(pixelScreen.getPossibleHexesFromRow(rowInput)))
