@@ -16,14 +16,15 @@ public class MatrixMath
      * Precondition: matA dimension == matB dimension
      * 
      * If the dimensions between the two matrix are different,
-     * return the matrix with the size of matA and a value of 0.
+     * return an empty matrix
      */
     public int[][] addMatrices()
     {
-        int[][] mat = new int[matA.length][matA[0].length];
+        int[][] mat = new int[0][0];
 
         if(matA.length == matB.length && matA[0].length == matB[0].length)
         {
+            mat = new int[matA.length][matA[0].length];
             for(int r = 0; r < matA.length; r++)
             {
                 for(int c = 0; c < matA[r].length; c++)
@@ -43,14 +44,15 @@ public class MatrixMath
      * Precondition: matA dimension == matB dimension
      * 
      * If the dimensions between the two matrix are different,
-     * return the matrix with the size of matA and a value of 0.
+     * return an empty matrix
      */
     public int[][] subtractMatrices()
     {
-        int[][] mat = new int[matA.length][matA[0].length];
+        int[][] mat = new int[0][0];
 
         if(matA.length == matB.length && matA[0].length == matB[0].length)
         {
+            mat = new int[matA.length][matA[0].length];
             for(int r = 0; r < matA.length; r++)
             {
                 for(int c = 0; c < matA[r].length; c++)
