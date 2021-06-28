@@ -24,5 +24,5 @@ public class MatrixMathTester
             }
             System.out.println();
         }
-    }    
+    }           
 }
