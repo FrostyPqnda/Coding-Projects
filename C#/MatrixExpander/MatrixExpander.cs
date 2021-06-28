@@ -18,7 +18,7 @@ namespace MatrixExpander
             PrintMatrix(mat);
 
             Console.WriteLine("\nExpanded Matrix:\n");
-            int[,] exp = ExpandMatrix(mat, 2);
+            int[,] exp = ExpandMatrix(mat, 2, 2);
             PrintMatrix(exp);
 
             Console.ReadKey();
@@ -49,46 +49,6 @@ namespace MatrixExpander
         {
             int rowSize = mat.GetLength(0) * rowFactor;
             int colSize = mat.GetLength(1) * colFactor;
-
-            int rowBlock = rowSize / mat.GetLength(0);
-            int colBlock = colSize / mat.GetLength(1);
-
-            int[,] expMat = new int[rowSize, colSize];
-
-            for(int row = 0; row < mat.GetLength(0); row++)
-            {
-                int rowOffset = row * rowBlock;
-                int rowLen = rowOffset + rowBlock;
-
-                for(int col = 0; col < mat.GetLength(1); col++)
-                {
-                    int colOffset = col * colBlock;
-                    int colLen = colOffset + colBlock;
-
-                    for(int r = rowOffset; r < rowLen; r++)
-                    {
-                        for(int c = colOffset; c < colLen; c++)
-                        {
-                            expMat[r, c] = mat[row, col];
-                        }
-                    }
-                }
-            }
-            
-            return expMat;
-        }
-
-        // Expands the original matrix by a factor.
-        //
-        // Precondition: size of original matrix is greater than 0.
-        // Precondition: factor is greater than 0.
-        //
-        // Postcondition: return a new and larger matrix with a size of matrix size * factor.
-        // Postcondition: all values in the original matrix will be filled in square format.
-        static int[,] ExpandMatrix(int[,] mat, int factor)
-        {
-            int rowSize = mat.GetLength(0) * factor;
-            int colSize = mat.GetLength(1) * factor;
 
             int rowBlock = rowSize / mat.GetLength(0);
             int colBlock = colSize / mat.GetLength(1);
