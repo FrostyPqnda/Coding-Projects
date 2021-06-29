@@ -20,7 +20,7 @@ class Hangman:
         self.guesses_left = len(self.secret_word)
         self.wrong = []
 
-    def get_guess(self, word):
+    def __getGuess(self, word):
         while True:
             guess = input('Guess: ')
             guess = guess.lower()
@@ -39,14 +39,14 @@ class Hangman:
                 return guess.decode()
                 break
         
-    def update_dashes(self, word, dashes, guess):    
+    def __updateDashes(self, word, dashes, guess):    
         for i in range(len(word)):
             if word[i] == guess:
                 new = dashes[:i]+guess+dashes[i+1:]
                 dashes = new
         return dashes
         
-    def play_hangman(self):
+    def play(self):
         # Print the word
         print('The word is %d letters long' % len(self.secret_word))
         dashes = ''
@@ -56,8 +56,8 @@ class Hangman:
         while not end:
             print(str(self.guesses_left) + ' guesses left.')
             print(dashes + '        ')
-            guess = self.get_guess(self.secret_word)
-            dashes = self.update_dashes(self.secret_word.decode(), dashes, guess)
+            guess = self.__getGuess(self.secret_word)
+            dashes = self.__updateDashes(self.secret_word.decode(), dashes, guess)
             if dashes == self.secret_word.decode():
                 print('CONGRATS! YOU HAVE GUESSED THE WORD!')
                 print('The word was ' + self.secret_word.decode())
@@ -67,4 +67,4 @@ class Hangman:
                 end = True
         
 hangman = Hangman()
-hangman.play_hangman()
+hangman.play()

@@ -14,7 +14,7 @@ namespace SubmatrixExtractor
             PrintMatrix(mat);
 
             Console.WriteLine("\nExtracted Submatrix: \n");
-            int[,] subMat = ExtractSubmatrix(mat, 2, 2);
+            int[,] subMat = ExtractSubmatrix(mat, 1, 1);
             PrintMatrix(subMat);
 
             Console.ReadKey();
