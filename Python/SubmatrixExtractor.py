@@ -50,5 +50,5 @@ mat = createMatrix(5, 5)
 printMatrix(mat)
 
 print('\nSubmatrix:\n')
-subMat = extractSubmatrix(mat, 2, 3)
+subMat = extractSubmatrix(mat, 2, 3, 4, 4)
 printMatrix(subMat)
