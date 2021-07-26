@@ -51,20 +51,17 @@ namespace MatrixExpander
             int rowSize = mat.GetLength(0) * rowFactor;
             int colSize = mat.GetLength(1) * colFactor;
 
-            int rowBlock = rowSize / mat.GetLength(0);
-            int colBlock = colSize / mat.GetLength(1);
-
             int[,] expMat = new int[rowSize, colSize];
 
             for(int row = 0; row < mat.GetLength(0); row++)
             {
-                int rowOffset = row * rowBlock;
-                int rowLen = rowOffset + rowBlock;
+                int rowOffset = row * rowFactor;
+                int rowLen = rowOffset + rowFactor;
 
                 for(int col = 0; col < mat.GetLength(1); col++)
                 {
-                    int colOffset = col * colBlock;
-                    int colLen = colOffset + colBlock;
+                    int colOffset = col * colFactor;
+                    int colLen = colOffset + colFactor;
 
                     for(int r = rowOffset; r < rowLen; r++)
                     {
