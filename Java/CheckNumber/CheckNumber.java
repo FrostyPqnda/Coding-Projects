@@ -13,8 +13,8 @@ public class CheckNumber
         int num = scan.nextInt();
         
         System.out.print("\nPossible factors of " + num + ": ");
-        System.out.print(getFactor(num));
-        System.out.print("\n\n" + num + " is a " + checkFactor(num));
+        System.out.println(getFactor(num));
+        System.out.println("\n" + checkFactor(num));
 
         scan.close();
     }
@@ -25,7 +25,7 @@ public class CheckNumber
      */
     static String checkFactor(int number)
     {
-        if(number == 0)
+        if(number == 0 || number == 1)
         {
             return "Neither";
         }
