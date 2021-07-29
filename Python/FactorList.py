@@ -13,6 +13,6 @@ class FactorList:
 
 num = int(input('Enter a number: '))
 
-f = FactorList(num)
+factors = FactorList(num)
 
-print('Possible factors of', num, ':', f)
+print('\nPossible factors of', num, ':', factors)
