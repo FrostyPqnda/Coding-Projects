@@ -16,11 +16,20 @@ class FactorList:
                     if(number % i == 0):
                         self.factorList.append(i)
     
+    def checkType(self):
+        if len(self.factorList) == 0 or len(self.factorList) == 1:
+            return 'Neither prime or composite'
+        
+        if len(self.factorList) > 2:
+            return 'Composite Number'
+        else:
+            return 'Prime Number'
+
     def __str__(self):
-        return str(self.factorList)
+        return str(self.factorList) + '\n' + self.checkType()
 
 num = int(input('Enter a number: '))
 
 factors = FactorList(num)
 
-print('\nPossible factors of', num, ':', factors)
+print('Possible factors of', num, ':', factors)

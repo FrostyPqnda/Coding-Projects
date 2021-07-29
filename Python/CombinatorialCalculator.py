@@ -2,8 +2,9 @@
 Python program that calculates the total possible number of 
 combination that could be attained from a selection of set 
 in a larger set.
-"""
 
+Formula: C(n,r) = n! / ((n - r)! * r!)
+"""
 def factorial(num):
     # Base case
     if num == 0:
