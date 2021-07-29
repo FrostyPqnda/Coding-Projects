@@ -7,7 +7,7 @@ a 1-Dimensional list.
 class PixelScreen:
     # Initializer for the PixelScreen class
     # Precondition: numRows >= 0, numCols >= 3
-    def __init__(self, numRows, numCols, scanned, *screen):
+    def __init__(self, numRows, numCols, scanned):
         self.numRows = numRows
         self.numCols = numCols
         self.scanned = scanned

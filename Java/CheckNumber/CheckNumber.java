@@ -21,7 +21,7 @@ public class CheckNumber
     
     /**
      * @param number
-     * @return String stating if a number is prime or composite
+     * @return String stating if a number is prime or composite or neither
      */
     static String checkFactor(int number)
     {
