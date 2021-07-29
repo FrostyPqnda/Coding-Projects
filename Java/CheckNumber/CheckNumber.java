@@ -50,11 +50,31 @@ public class CheckNumber
     {
         ArrayList<Integer> factorList = new ArrayList<Integer>();
 
-        for(int i = 1; i <= number; i++)
+        if(number > 0)
         {
-            if(number % i == 0)
+            for(int i = 1; i <= number; i++)
             {
-                factorList.add(i);
+                if(number % i == 0)
+                {
+                    factorList.add(i);
+                }
+            }
+        }
+        else
+        {
+            for(int i = number; i <= Math.abs(number); i++)
+            {
+                if(i == 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    if(number % i == 0)
+                    {
+                        factorList.add(i);
+                    }
+                }
             }
         }
 
