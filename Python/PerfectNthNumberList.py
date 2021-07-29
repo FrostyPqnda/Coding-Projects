@@ -6,7 +6,7 @@ class PerfectNumberList:
     Initializes a list of 'perfect' numbers.
     All values will be within [0, numRange]
 
-    A perfect number is a number in which an nth root value can
+    A perfect nth number is a number in which an nth root value can
     be given. i.e. 1000 is a perfect number if the nthRoot is 3
 
     i.e. calling PerfectNumberList(9, 2) will return [0, 1, 4, 9]
