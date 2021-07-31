@@ -4,7 +4,7 @@ public class PrimeFactor
 {
     private int number;
     private ArrayList<Integer> primeList;
-
+    
     public PrimeFactor(int number)
     {
         this.number = number;
