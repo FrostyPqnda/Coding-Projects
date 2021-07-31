@@ -40,7 +40,7 @@ def getImaginaryNumber(n):
             roundedNum = float(round(num * 100)) / 100 # Rounds the number to the nearest hundredth place.
             imgNum += str(roundedNum)
 
-    return imgNum
+    return '\u00B1 ' + imgNum
 
 negNum = int(input('Enter a negative number: '))
 print('The square root of', negNum, 'is', getImaginaryNumber(negNum))
