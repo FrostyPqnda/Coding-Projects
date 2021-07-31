@@ -3,7 +3,7 @@ from math import *
 class PerfectNumberList:
 
     """
-    Initializes a list of 'perfect' numbers.
+    Initializes a list of 'perfect' nth numbers.
     All values will be within [0, numRange]
 
     A perfect nth number is a number in which an nth root value can
@@ -17,19 +17,19 @@ class PerfectNumberList:
         self.numList = []
 
         for i in range(numRange + 1):
-            if self.__isPerfectNthRoot(i, self.nthRoot):
+            if self.isPerfectNthRoot(i, self.nthRoot):
                 self.numList.append(i)
 
     # Checks if the number is a perfect nth root 
-    def __isPerfectNthRoot(self, num, root):
+    def isPerfectNthRoot(self, num, root):
         num = abs(num)
         root = abs(root)
 
-        powNum = self.__getNthRoot(num, root)
+        powNum = self.getNthRootValue(num, root)
         return pow(round(powNum), root) == num
 
     # Gets the nth root value of a number
-    def __getNthRoot(self, num, root):
+    def getNthRootValue(self, num, root):
         rootNum = pow(num, (1/root))
         return round(rootNum)
 

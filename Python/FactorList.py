@@ -19,7 +19,7 @@ class FactorList:
     def checkType(self):
         if len(self.factorList) == 0 or len(self.factorList) == 1:
             return 'Neither prime or composite'
-        
+            
         if len(self.factorList) > 2:
             return 'Composite Number'
         else:
