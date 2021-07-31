@@ -4,12 +4,12 @@ class FactorList:
         self.factorList = []
         self.number = number
 
-        if self.number > 0:
-            for i in range(1, self.number + 1):
-                if self.number % i == 0:
+        if number > 0:
+            for i in range(1, number + 1):
+                if number % i == 0:
                     self.factorList.append(i)
         else:
-            for i in range(self.number, abs(self.number) + 1):
+            for i in range(number, abs(number) + 1):
                 if i == 0:
                     continue
                 else:
