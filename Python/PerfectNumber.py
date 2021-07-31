@@ -11,8 +11,9 @@ def getFactor(num):
 # Checks if a number is perfect.
 #
 # A number is perfect if the sum 
-# of the first to the second-to-last
-# elements is equal to the last element
+# of all the possible factors 
+# (excluding the last) is equal
+# to the original number
 def isPerfect(num):
     factorNum = getFactor(num)
     sum = 0
