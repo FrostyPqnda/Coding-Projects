@@ -15,7 +15,7 @@ file_name = input("Name your file: ")+".txt"
 
 # This is where the user can type out the contents
 # on their file
-UserFile = open("Files/"+file_name, "w")
+UserFile = open(file_name, "w")
 write_to_file = input("Enter text: ")
 UserFile.write(write_to_file)
 UserFile.close()
