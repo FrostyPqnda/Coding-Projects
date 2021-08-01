@@ -39,7 +39,6 @@ public class FibonacciSequenceIndex
      */
     public static int findIndex (int[] arr, int n) 
     {
-        int index = Arrays.binarySearch(arr, n); // Uses the built-in binarySearch method to find the index of an array
-        return (index < 0) ? -1 : index; // Compact if statement that checks if index < 0 is either -1 or the index
+        return Arrays.binarySearch(arr, n);
     }
 }
