@@ -34,7 +34,7 @@ public class BinaryTranslator
 	    {
 	        int curDigit = Integer.valueOf(digits[i]).intValue();
 	        res += curDigit * Math.pow(2, exp);
-	        exp --;
+	        exp--;
 	    }
 	    return res;
 	}
