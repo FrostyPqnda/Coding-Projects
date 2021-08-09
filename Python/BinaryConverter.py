@@ -10,5 +10,3 @@ def strToBinary(text):
 
 def decToBinary(num):  
     return bin(num)[2:]
-
-print(strToBinary('brian'))
