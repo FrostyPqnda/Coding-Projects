@@ -24,5 +24,5 @@ int main()
     cout << "Enter a number: ";
     cin >> number; 
     generateFibonacciSeries(number);
-    system("pause");
+    return 0;
 }
