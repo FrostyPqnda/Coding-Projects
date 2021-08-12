@@ -97,7 +97,7 @@ namespace Data
             Random rand = new Random();
             for(int i = 0; i < size; i++)
             {
-                arr[i] = rand.Next(10, 101); 
+                arr[i] = rand.Next(0, 101); 
             }
             return arr;
         }
