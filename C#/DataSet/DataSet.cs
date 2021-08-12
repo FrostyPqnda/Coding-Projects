@@ -11,9 +11,15 @@ namespace Data
             this.arr = arr;
         }
 
-        public double findMedian()
+        public DataSet(int size)
         {
-            insertionSort(arr);
+            arr = GenerateSet(size);
+        }
+
+        // Finds the median (middle value) of the data set
+        public double FindMedian()
+        {
+            InsertionSort(arr);
             if(arr.Length % 2 != 0)
             {
                 return arr[arr.Length / 2];
@@ -30,7 +36,8 @@ namespace Data
 
         }
 
-        public double findMean()
+        // Finds the mean (average) of the data set
+        public double FindMean()
         {
             double average = 0;
             for(int i = 0; i < arr.Length; i++)
@@ -40,12 +47,13 @@ namespace Data
             return Math.Round((average / arr.Length), 2);
         }
 
-        public int findMode()
+        // Finds the mode (most occuring number) of the data set
+        public int FindMode()
         {
             int mode = 0, count = 0;
             for(int i = 0; i < arr.Length; i++)
             {
-                if(countOccurence(arr, arr[i]) > 1 && countOccurence(arr, arr[i]) > count)
+                if(CountOccurence(arr, arr[i]) > 1 && CountOccurence(arr, arr[i]) > count)
                 {
                     mode = arr[i];
                     count++;
@@ -54,7 +62,8 @@ namespace Data
             return mode;
         }
 
-        public int findRange()
+        // Finds the range of the data set (max - min)
+        public int FindRange()
         {
             int min = arr[0], max = arr[0];
             for(int i = 0; i < arr.Length; i++)
@@ -71,9 +80,10 @@ namespace Data
             return max - min;
         }
 
-        public double findStandardDeviation()
+        // Finds the standard deviation (spreadness) of the data set 
+        public double FindStandardDeviation()
         {
-            double mean = findMean(), standardDeviation = 0;
+            double mean = FindMean(), standardDeviation = 0;
             foreach(int item in arr)
             {
                 standardDeviation += Math.Pow(item - mean, 2);
@@ -81,7 +91,19 @@ namespace Data
             return Math.Round(Math.Sqrt(standardDeviation / arr.Length), 2);
         }
 
-        private int countOccurence(int[] arr, int elem)
+        private int[] GenerateSet(int size)
+        {
+            int[] arr = new int[size];
+            Random rand = new Random();
+            for(int i = 0; i < size; i++)
+            {
+                arr[i] = rand.Next(10, 101); 
+            }
+            return arr;
+        }
+
+        // Counts which number occurs most in the data set
+        private int CountOccurence(int[] arr, int elem)
         {
             int count = 0;
             for(int i = 0; i < arr.Length; i++)
@@ -93,8 +115,9 @@ namespace Data
             }
             return count;
         }
-
-        private void insertionSort(int[] arr)
+        
+        // Sorts the array via insertion sort
+        private void InsertionSort(int[] arr)
         {
             for(int i = 1; i < arr.Length; i++)
             {
@@ -112,11 +135,11 @@ namespace Data
         public override string ToString()
         {
             string str = "[" + string.Join(", ", arr) + "]\n";
-            string mean = "Mean: " + findMean() + "";
-            string median = "Median: " + findMedian() + "";
-            string mode = "Mode: " + findMode() + "";
-            string range = "Range: " + findRange() + "";
-            string std = "Standard Deviation: " + findStandardDeviation() + "";
+            string mean = "Mean: " + FindMean() + "";
+            string median = "Median: " + FindMedian() + "";
+            string mode = "Mode: " + FindMode() + "";
+            string range = "Range: " + FindRange() + "";
+            string std = "Standard Deviation: " + FindStandardDeviation() + "";
 
             return str + "\n" + median + "\n" + mean + "\n" + mode + "\n" + range + "\n" + std;
         }

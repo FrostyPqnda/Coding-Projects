@@ -9,8 +9,7 @@ namespace Data
             Console.Title = "Data Set";
             Console.ForegroundColor = ConsoleColor.DarkCyan;
 
-            int[] arr = {1, 2, 3, 2, 5, 7};
-            DataSet data = new DataSet(arr);
+            DataSet data = new DataSet(20);
             Console.WriteLine(data);
             Console.ReadKey();
         }
