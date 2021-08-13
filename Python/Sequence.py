@@ -60,7 +60,6 @@ def finiteGeometricSum(start, end, a1, r):
 def infiniteGeometricSum(a1, r):
     return a1/(1 - r)
 
-
 startTerm = int(input('Enter a starting point: '))
 endTerm = int(input('Enter a stopping point: '))
 firstTerm = int(input('Enter the first term: '))
