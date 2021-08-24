@@ -91,6 +91,7 @@ namespace Data
             return Math.Round(Math.Sqrt(standardDeviation / arr.Length), 2);
         }
 
+        // Returns a generated set (array) of numbers
         private int[] GenerateSet(int size)
         {
             int[] arr = new int[size];
