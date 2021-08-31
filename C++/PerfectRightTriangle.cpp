@@ -22,15 +22,14 @@ bool isPythagoreanTriple(int a, int b, int c)
 
 int main()
 {
-    int a;
+    int a, b, c;
+
     cout << "Enter the 1st number: ";
     cin >> a;
 
-    int b;
     cout << "Enter the 2nd number: ";
     cin >> b;
 
-    int c;
     cout << "Enter the 3rd number: ";
     cin >> c;
 
