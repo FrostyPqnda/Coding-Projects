@@ -1,6 +1,5 @@
 #include <iostream>
-#include <stdio.h>
-#include <math.h>
+#include <cmath>
 using namespace std;
 
 bool isPythagoreanTriple(int a, int b, int c)

@@ -10,7 +10,6 @@ import random
 import requests
 
 class Hangman:
-
     def __init__(self):
         self.word_site = 'https://gist.githubusercontent.com/deekayen/4148741/raw/98d35708fa344717d8eee15d11987de6c8e26d7d/1-1000.txt'
         response = requests.get(self.word_site)
