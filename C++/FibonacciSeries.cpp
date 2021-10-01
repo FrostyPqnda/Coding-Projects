@@ -3,7 +3,7 @@
 using namespace std;
 
 // Generates the fibonacci series
-void generateFibonacciSeries(unsigned long long number)
+void GenerateFibonacciSeries(unsigned long long number)
 {
     unsigned long long fib[number];
     fib[0] = 0;
@@ -23,6 +23,6 @@ int main()
     unsigned long long number;
     cout << "Enter a number: ";
     cin >> number; 
-    generateFibonacciSeries(number);
+    GenerateFibonacciSeries(number);
     return 0;
 }

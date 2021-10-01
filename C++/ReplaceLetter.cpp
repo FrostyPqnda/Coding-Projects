@@ -8,7 +8,7 @@
 #include <stdio.h>
 using namespace std;
 
-static string replaceLetter(string word, char removeLetter, char replacingLetter)
+static string ReplaceLetter(string word, char removeLetter, char replacingLetter)
 {
     string val = "";
     
@@ -34,6 +34,6 @@ int main()
     cout << "Enter the new letter you want to add: ";
     cin >> replace;
     
-    string result = replaceLetter(input, remove, replace);
+    string result = ReplaceLetter(input, remove, replace);
     cout << result << endl;
 }

@@ -2,7 +2,7 @@
 #include <cmath>
 using namespace std;
 
-bool isPythagoreanTriple(int a, int b, int c)
+bool IsPythagoreanTriple(int a, int b, int c)
 {
     int squaredC = pow(a, 2) + pow(b, 2);
     int sqrtC = sqrt(squaredC);
