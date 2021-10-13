@@ -46,7 +46,7 @@ root.title('Click Speed Tester')
 
 # Giant title text
 title = Label(root, font = ('Oswald', 40, 'bold'), background = '#283140', foreground = '#cccccc', text='CLICK SPEED TEST')
-title.pack()
+title.pack()  
 
 # A "board" where all of the buttons and labels will be displayed on
 canvas = Canvas(root, height = 700, width = 700, bg = '#1d4d80')

@@ -51,8 +51,8 @@ class Hangman:
         dashes = ''
         dashes = dashes.ljust(len(self.secret_word),'-')
         
-        end = False
-        while not end:
+        gameLoop = True
+        while gameLoop:
             print(str(self.guesses_left) + ' guesses left.')
             print(dashes + '        ')
             guess = self.__getGuess(self.secret_word)
@@ -60,10 +60,10 @@ class Hangman:
             if dashes == self.secret_word.decode():
                 print('CONGRATS! YOU HAVE GUESSED THE WORD!')
                 print('The word was ' + self.secret_word.decode())
-                end = True
+                gameLoop = False
             if self.guesses_left == 0:
                 print('You lose. The secret word was ' + self.secret_word.decode())
-                end = True
+                gameLoop = False
         
 hangman = Hangman()
 hangman.play()

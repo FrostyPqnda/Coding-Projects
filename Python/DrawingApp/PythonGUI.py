@@ -37,16 +37,16 @@ canvas.pack(expand=True, fill='both')
 # Draws on the canvas
 def draw(event):
     color = 'white'
-    x1,y1 = (event.x-1),(event.y-1)
-    x2,y2 = (event.x+1),(event.y+1)
+    x1, y1 = (event.x-1), (event.y-1)
+    x2, y2 = (event.x+1), (event.y+1)
     canvas.create_line(x1, y1, x2, y2, fill=color, width = 5)
 
 # Saves the image
 def save(event):
-    x=root.winfo_rootx()+canvas.winfo_x()
-    y=root.winfo_rooty()+canvas.winfo_y()
-    x1=x+canvas.winfo_width()
-    y1=y+canvas.winfo_height()
+    x = root.winfo_rootx()+canvas.winfo_x()
+    y = root.winfo_rooty()+canvas.winfo_y()
+    x1 = x + canvas.winfo_width()
+    y1 = y + canvas.winfo_height()
     store = ImageGrab.grab((x, y, x1, y1))
     store.save("img.png")
 
