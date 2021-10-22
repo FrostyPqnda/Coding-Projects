@@ -21,7 +21,7 @@ double EstimatePi(unsigned long long int n)
     // Number of points generated in total
     int numPointsTotal = 0; 
 
-    // Loop to generate an (x, y) point n times that will be used to calculate the estimated
+    // Loop to generate a random (x, y) point n times that will be used to calculate the estimated
     // value of pi.
     for(unsigned long long int i = 0; i < n; i++)
     {
