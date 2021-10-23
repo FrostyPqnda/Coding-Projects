@@ -9,7 +9,7 @@
  * row value * column value [row value][column value]
  * and fill it up with each character in the String.
  * 
- * Each '-' at the end of the block denotes existence
+ * Each '-' at the end of the block denotes the existence
  * of a whitespace within the original String, or to
  * compensate the block if its size is greater than
  * the length of the String.
