@@ -23,7 +23,7 @@ public class WordBlock
      * Constructor for the WordBlock class.
      * 
      * Creates a character block with each element
-     * filled by a character in the given String.
+     * filled with a character in the given String.
      * 
      * @param word -> String that will be used to fill up the character block
      * @param row -> Row size of the character block

@@ -8,13 +8,12 @@ public class WordBlockTester
         System.out.print("Enter a word: ");
         String word = scan.nextLine();
         int row, col;
-        WordBlock wb;
 
         do {
             row = readRow();
             col = readColumn();
             
-            wb = new WordBlock(word, row, col);
+            WordBlock wb = new WordBlock(word, row, col);
             System.out.println("\n" + wb);
         } while(row < 0 || col < 0);
         
