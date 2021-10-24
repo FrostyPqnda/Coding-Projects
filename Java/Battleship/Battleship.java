@@ -20,7 +20,7 @@ public class Battleship
 		setUpShips(human, computer);
 	
 		System.out.print("Hit enter to start guessing.");
-		String guess = scan.nextLine();
+		scan.nextLine();
         
 		boolean gameOver = false;
 
@@ -47,7 +47,7 @@ public class Battleship
 		initializeShipsFromInput(human);
 
 		System.out.print("Hit enter for the enemy to choose their ship locations.");
-		String placeEnemy = scan.nextLine();
+		scan.nextLine();
 
 		computer.initializeShipsRandomly();
 
@@ -60,7 +60,7 @@ public class Battleship
 		for(int i = 0; i < player.NUM_SHIPS; i++)
 		{
 			System.out.print("Hit enter to place the next ship.");
-			String place = scan.nextLine();
+			scan.nextLine();
 			System.out.println("Your current grid of ships.");
 			player.printMyShips();
 

@@ -7,10 +7,7 @@ public class WordBlockTester
     {
         System.out.print("Enter a word: ");
         String word = scan.nextLine();
-        int row, col;
-
-        row = readRow();
-        col = readColumn();
+        int row = readRow(), col = readColumn();
         
         WordBlock wb = new WordBlock(word, row, col);
         System.out.println("\n" + wb);

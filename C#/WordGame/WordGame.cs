@@ -33,7 +33,8 @@ namespace GuessWord
                     Console.WriteLine(word);
                     Console.WriteLine("Number of tries to guess the word: " + tries);
                 }
-            }
+            } 
+
             Console.ReadKey();
         }
     }

@@ -16,7 +16,7 @@ public class Deck
     public Deck()
     {
         deck = new ArrayList<Card>();
-        for(int rank = 2; rank <= ACE; rank++)
+        for(int rank = SPADES; rank <= ACE; rank++)
         {
             for(int suit = HEARTS; suit <= CLUBS; suit++)
             {

@@ -19,17 +19,15 @@ public class Blackjack
     public static void main(String[] args)
     {
         double bankroll = STARTING_BANKROLL;
+        String playAgain;
         System.out.println("Starting bankroll: " + bankroll);
-        while(true)
-        {
+
+        do {
             bankroll = playRound(bankroll);
-            System.out.print("Would you like to play again? (Y/N)");
-            String playAgain = scan.nextLine();
-            if(playAgain.equalsIgnoreCase("N"))
-            {
-                break;
-            }
-        }
+            System.out.print("Would you like to play again? (Y/N): ");
+            playAgain = scan.nextLine();
+        } while(!playAgain.equalsIgnoreCase("N"));
+
         System.out.println("Thanks for playing!");
     }
 
@@ -58,9 +56,8 @@ public class Blackjack
             int value = dealer.getValue();
             System.out.println("Dealer's hand has value " + value);
             
-            //readLine("Enter to continue...");
             System.out.println("Enter to continue...");
-            String x = scan.nextLine();
+            scan.nextLine();
             
             if(value < 17)
             {
@@ -204,8 +201,7 @@ public class Blackjack
             System.out.println("You busted :(");
         }
         System.out.println("Enter for dealer turn...");
-        String x = scan.nextLine();
-        //readLine("Enter for dealer turn...");
+        scan.nextLine();
         dealerTurn(dealer, deck);
         double bankrollChange = findWinner(dealer, player, bet);
         bankroll += bankrollChange;
