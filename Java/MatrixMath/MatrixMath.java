@@ -32,6 +32,8 @@ public class MatrixMath
                     mat[r][c] = (matA[r][c] + matB[r][c]);
                 }
             }
+        } else {
+            System.out.println("Invalid!");
         }
 
         return mat;
@@ -60,6 +62,8 @@ public class MatrixMath
                     mat[r][c] = (matA[r][c] - matB[r][c]);
                 }
             }
+        } else {
+            System.out.println("Invalid!");
         }
 
         return mat;
@@ -94,6 +98,8 @@ public class MatrixMath
                     sum = 0;
                 }
             }
+        } else {
+            System.out.println("Invalid!");
         }
 
         return mat;
