@@ -73,7 +73,7 @@ public class WordBlock
             {
                 blockStr += charBlock[r][c] + " ";
             }
-            blockStr += System.lineSeparator();
+            blockStr += "\n";
         }
 
         return blockStr;
