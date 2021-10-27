@@ -32,6 +32,6 @@ int main()
     cout << "Enter the 3rd number: ";
     cin >> c;
 
-    cout << "Is the set [" << a << ", " << b << ", " << c << "] a Pythagorean Triple? " << isPythagoreanTriple(a, b, c) << endl;
+    cout << "Is the set [" << a << ", " << b << ", " << c << "] a Pythagorean Triple? " << IsPythagoreanTriple(a, b, c) << endl;
     return 0;
 }

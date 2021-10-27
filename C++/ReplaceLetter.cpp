@@ -8,6 +8,7 @@
 #include <stdio.h>
 using namespace std;
 
+// Replaces all instances of a letter with a new letter
 static string ReplaceLetter(string word, char removeLetter, char replacingLetter)
 {
     string val = "";
@@ -24,14 +25,14 @@ int main()
 {
     string input;
     cout << "Enter a word: ";
-    cin >> input;
+    getline(cin, input);
     
     char remove;
-    cout << "Enter a letter you want to remove: ";
+    cout << "Enter the character you want to remove: ";
     cin >> remove;
     
     char replace;
-    cout << "Enter the new letter you want to add: ";
+    cout << "Enter the new character you want to add: ";
     cin >> replace;
     
     string result = ReplaceLetter(input, remove, replace);
