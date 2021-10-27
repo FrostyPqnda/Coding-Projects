@@ -12,9 +12,7 @@ public class CheckNumber
         System.out.print("Enter a number: ");
         int num = scan.nextInt();
         
-        System.out.print("\nPossible factors of " + num + ": ");
-        System.out.println(getFactor(num));
-        System.out.println("\n" + checkFactor(num));
+        System.out.println(num + " is a " + checkFactor(num));
 
         scan.close();
     }
@@ -64,13 +62,13 @@ public class CheckNumber
         {
             for(int i = number; i <= Math.abs(number); i++)
             {
-                if(i == 0)
+                if(i == 0) 
                 {
                     continue;
-                }
-                else
+                } 
+                else 
                 {
-                    if(number % i == 0)
+                    if(number % i == 0) 
                     {
                         factorList.add(i);
                     }
