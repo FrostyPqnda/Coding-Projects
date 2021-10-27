@@ -7,23 +7,39 @@ public class IsPalindromeList
         ArrayList<Integer> arr = new ArrayList<Integer>();
         arr.add(1);
         arr.add(2);
+        arr.add(3);
         arr.add(2);
         arr.add(1);
 
         System.out.println(arr);
         System.out.println("Is a palindrome list: " + isPalindrome(arr));
     }
-
+    
+    /**
+     * Checks if the given ArrayList is a palindrome.
+     * 
+     * @param arrList
+     * @return True/False statement whether or not the array list is a palindrome
+     */
     public static boolean isPalindrome(ArrayList<Integer> arrList)
     {
-        boolean palindrome = true;
-        for(int i = 0; i <= arrList.size() / 2 && !arrList.isEmpty(); i++)
+        boolean isPalindromeList = true;
+        
+        ArrayList<Integer> revList = new ArrayList<Integer>();
+
+        for(int i = arrList.size() - 1; i >= 0; i--) 
         {
-            if(arrList.get(i) != arrList.get(arrList.size() - i - 1))
+            revList.add(arrList.get(i));
+        }
+
+        for(int i = 0; i < arrList.size(); i++) 
+        {
+            if(revList.get(i) != arrList.get(i)) 
             {
-                palindrome = false;
+                isPalindromeList = false;
             }
         }
-        return palindrome;
+
+        return isPalindromeList;
     }
 }
