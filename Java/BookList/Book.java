@@ -6,7 +6,7 @@
  */
 public class Book
 {
-    private String title; // name of book
+    private String title; // title of book
     private String author; // name of writer
     
     public Book(String theTitle, String theAuthor)
@@ -27,15 +27,15 @@ public class Book
         return author;
     }
     
-    // Prints the book and author
-    public String toString()
-    {
-        return title + " by " + author;
-    }
-    
     // Compares two books
     public boolean equals(Book other)
     {
         return title.equals(other.title) && author.equals(other.author);
+    }
+
+    // Prints the book and author
+    public String toString()
+    {
+        return title + " by " + author;
     }
 }

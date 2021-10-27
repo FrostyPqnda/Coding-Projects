@@ -1,20 +1,24 @@
-import java.util.List;
-/**
- * @author brian
- *
- * BookFilter class - filters any books provided from the
- * Book class.
- * 
- * Removes any books not approved and only gives what has
- * been approved
- */
+import java.util.ArrayList;
+
 public class BookFilter 
 {
-	public static List<Book> filterBooks(List<Book> readingList, String author)
+	/**
+	 * Filters out any books that do not belong to 
+	 * the author
+	 * 
+	 * @param readingList
+	 * @param author
+	 * @return the remaining ArrayList containing only the books created by the author.
+	 */
+	public static ArrayList<Book> filterBooks(ArrayList<Book> readingList, String author)
 	{
-	    for(int i = readingList.size() - 1; i >= 0; i--)
+	    for(int i = readingList.size() - 1; i >= 0; i--) 
+		{
 	        if(!readingList.get(i).getAuthor().equals(author))
+			{
 	            readingList.remove(i);
+			}
+		}
 	    return readingList;
 	}
 

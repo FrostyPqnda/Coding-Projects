@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 /**
  * @author brian
@@ -18,19 +17,20 @@ public class BookRemover extends BookFilter
 		Book b2 = new Book("Lord of the Flies", "William Golding");
 		Book b3 = new Book("The Chronicles of Narnia", "C.S. Lewis");
 		Book b4 = new Book("The Hobbit", "J.R.R. Tolkien");
-		Book b5 = new Book("Farenheit 451", "Ray Bradbury");
+		Book b5 = new Book("The Lord of the Ring", "J.R.R. Tolkien");
+		Book b6 = new Book("Farenheit 451", "Ray Bradbury");
 
 		bookList.add(b1);
 		bookList.add(b2);
 		bookList.add(b3);
 		bookList.add(b4);
 		bookList.add(b5);
+		bookList.add(b6);
 
-		String[] authors = {b1.getAuthor(), b2.getAuthor(), b3.getAuthor(), b4.getAuthor(), b5.getAuthor()};
-		int random = rand.nextInt(authors.length);
+		int random = rand.nextInt(bookList.size());
 
-		List<Book> removeAuthors = filterBooks(bookList, authors[random]);
-		System.out.println(removeAuthors + " has been removed.");	
+		ArrayList<Book> removeAuthors = filterBooks(bookList, bookList.get(random).getAuthor());
+		System.out.println("Remaining book(s): " + removeAuthors);	
 	}
 
 }
