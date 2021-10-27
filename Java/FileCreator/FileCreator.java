@@ -25,8 +25,7 @@ public class FileCreator
 
 	static void createTextFile(Scanner scan, String fileName)
 	{
-		// Allows users to name their files 
-		// and will set it to .txt format
+		// Append the ".txt" extension to the user's file
 		fileName = fileName.concat(".txt");
 
 		try 
@@ -36,7 +35,7 @@ public class FileCreator
 			if(file.createNewFile())
 			{
 				FileWriter fw = new FileWriter(file); // Creates a FileWriter object to allow users to write what they want to their files
-				System.out.println("Type out what you want on your txt file: "); // Asks users what they want to put into the content of their .txt files
+				System.out.println("\nType out what you want on your txt file: "); // Asks users what they want to put into the content of their .txt files
 				String text = scan.nextLine();
 				
 				// Writes what the user inputted into the file
