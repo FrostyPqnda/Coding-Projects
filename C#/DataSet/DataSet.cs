@@ -4,29 +4,29 @@ namespace Data
 {
     public class DataSet
     {
-        private int[] arr;
+        private int[] data;
         
-        public DataSet(int[] arr)
+        public DataSet(int[] data)
         {
-            this.arr = arr;
+            this.data = data;
         }
 
         public DataSet(int size)
         {
-            arr = GenerateSet(size);
+            data = GenerateSet(size);
         }
 
         // Finds the median (middle value) of the data set
         public double FindMedian()
         {
-            InsertionSort(arr);
-            if(arr.Length % 2 != 0)
+            InsertionSort(data);
+            if(data.Length % 2 != 0)
             {
-                return arr[arr.Length / 2];
+                return data[data.Length / 2];
             }
-            else if(arr.Length % 2 == 0)
+            else if(data.Length % 2 == 0)
             {
-                double evenMedian = arr[arr.Length / 2] + arr[(arr.Length / 2) - 1];
+                double evenMedian = data[data.Length / 2] + data[(data.Length / 2) - 1];
                 return evenMedian / 2;
             }
             else
@@ -40,22 +40,22 @@ namespace Data
         public double FindMean()
         {
             double average = 0;
-            for(int i = 0; i < arr.Length; i++)
+            for(int i = 0; i < data.Length; i++)
             {
-                average += arr[i];
+                average += data[i];
             }
-            return Math.Round((average / arr.Length), 2);
+            return Math.Round((average / data.Length), 2);
         }
 
         // Finds the mode (most occuring number) of the data set
         public int FindMode()
         {
             int mode = 0, count = 0;
-            for(int i = 0; i < arr.Length; i++)
+            for(int i = 0; i < data.Length; i++)
             {
-                if(CountOccurence(arr, arr[i]) > 1 && CountOccurence(arr, arr[i]) > count)
+                if(CountOccurence(data, data[i]) > 1 && CountOccurence(data, data[i]) > count)
                 {
-                    mode = arr[i];
+                    mode = data[i];
                     count++;
                 }
             }
@@ -65,16 +65,16 @@ namespace Data
         // Finds the range of the data set (max - min)
         public int FindRange()
         {
-            int min = arr[0], max = arr[0];
-            for(int i = 0; i < arr.Length; i++)
+            int min = data[0], max = data[0];
+            for(int i = 0; i < data.Length; i++)
             {
-                if(arr[i] < min)
+                if(data[i] < min)
                 {
-                    min = arr[i];
+                    min = data[i];
                 }
-                if(arr[i] > max)
+                if(data[i] > max)
                 {
-                    max = arr[i];
+                    max = data[i];
                 }
             }
             return max - min;
@@ -84,32 +84,32 @@ namespace Data
         public double FindStandardDeviation()
         {
             double mean = FindMean(), standardDeviation = 0;
-            foreach(int item in arr)
+            foreach(int item in data)
             {
                 standardDeviation += Math.Pow(item - mean, 2);
             }
-            return Math.Round(Math.Sqrt(standardDeviation / arr.Length), 2);
+            return Math.Round(Math.Sqrt(standardDeviation / data.Length), 2);
         }
 
-        // Returns a generated set (array) of numbers
+        // Returns a generated set of numbers
         private int[] GenerateSet(int size)
         {
-            int[] arr = new int[size];
+            int[] data = new int[size];
             Random rand = new Random();
             for(int i = 0; i < size; i++)
             {
-                arr[i] = rand.Next(0, 101); 
+                data[i] = rand.Next(0, 101); 
             }
-            return arr;
+            return data;
         }
 
         // Counts which number occurs most in the data set
-        private int CountOccurence(int[] arr, int elem)
+        private int CountOccurence(int[] data, int elem)
         {
             int count = 0;
-            for(int i = 0; i < arr.Length; i++)
+            for(int i = 0; i < data.Length; i++)
             {
-                if(arr[i] == elem)
+                if(data[i] == elem)
                 {
                     count++;
                 }
@@ -117,25 +117,31 @@ namespace Data
             return count;
         }
         
-        // Sorts the array via insertion sort
-        private void InsertionSort(int[] arr)
+        // Sorts the data via insertion sort
+        public void InsertionSort(int[] data)
         {
-            for(int i = 1; i < arr.Length; i++)
+            for(int i = 1; i < data.Length; i++)
             {
-                int key = arr[i];
-                int x = i - 1;
-                while(x >= 0 && arr[x] > key)
+                int key = data[i];
+                int j = i - 1;
+            
+                while(j >= 0 && key < data[j])
                 {
-                    arr[x + 1] = arr[x];
-                    x--;
+                    data[j + 1] = data[j];
+                    j--;
                 }
-                arr[x + 1] = key;
+                data[j + 1] = key;
             }
+        }
+
+        public int[] GetData()
+        {
+            return data;
         }
 
         public override string ToString()
         {
-            string str = "[" + string.Join(", ", arr) + "]\n";
+            string str = "[" + string.Join(", ", data) + "]\n";
             string mean = "Mean: " + FindMean() + "";
             string median = "Median: " + FindMedian() + "";
             string mode = "Mode: " + FindMode() + "";
