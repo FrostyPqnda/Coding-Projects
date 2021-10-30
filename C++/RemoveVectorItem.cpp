@@ -23,7 +23,7 @@ int main() {
     }
 
     cout << "\n\nNEW DATA: "; 
-    removeItem(data, 8);
+    removeItem(data, 9);
     for(int item : data) {
         cout << item << " ";
     }
