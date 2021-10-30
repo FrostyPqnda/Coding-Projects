@@ -10,9 +10,21 @@ using namespace std;
 // generated n number of times.
 // 
 // The bigger n is, the more accurate the results.
+double EstimatePi(unsigned long long int);
+
+int main() 
+{
+    int numPoints;
+    cout << "Enter the number of points: ";
+    cin >> numPoints;
+
+    double estimateOfPi = EstimatePi(numPoints);
+    cout << "The estimated value of pi: " << estimateOfPi << endl;
+}
+
 double EstimatePi(unsigned long long int n) 
 {
-    // Set the seed number to random choice based on the computer's internal clock
+        // Set the seed number to random choice based on the computer's internal clock
     srand(time(NULL)); 
 
     // Number of points generated inside the circle
@@ -50,14 +62,4 @@ double EstimatePi(unsigned long long int n)
     
     // Return the variable 'pi' storing the estimated value of pi
     return pi;
-}
-
-int main() 
-{
-    int numPoints;
-    cout << "Enter the number of points: ";
-    cin >> numPoints;
-
-    double estimateOfPi = EstimatePi(numPoints);
-    cout << "The estimated value of pi: " << estimateOfPi << endl;
 }
