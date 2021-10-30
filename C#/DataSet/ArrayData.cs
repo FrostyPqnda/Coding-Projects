@@ -9,7 +9,7 @@ namespace Data
             Console.Title = "Data Set";
             Console.ForegroundColor = ConsoleColor.DarkCyan;
 
-            DataSet data = new DataSet(5);
+            DataSet data = new DataSet(50);
             Console.WriteLine("Generated data: " + data);
             
             Console.ReadKey();
