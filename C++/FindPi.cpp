@@ -24,7 +24,7 @@ int main()
 
 double EstimatePi(unsigned long long int n) 
 {
-        // Set the seed number to random choice based on the computer's internal clock
+    // Set the seed number to random choice based on the computer's internal clock
     srand(time(NULL)); 
 
     // Number of points generated inside the circle
