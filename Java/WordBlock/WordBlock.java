@@ -43,11 +43,10 @@ public class WordBlock
                 
                 if(inBound) {
                     charBlock[r][c] = newText.charAt(index);
+                    index++;
                 } else {
                     charBlock[r][c] = '-';
                 }
-
-                index++;
             }
         }
     }
