@@ -2,6 +2,17 @@
 #include <stdio.h>
 using namespace std;
 
+void GenerateFibonacciSeries(unsigned long long number);
+
+int main()
+{
+    unsigned long long number;
+    cout << "Enter a number: ";
+    cin >> number; 
+    GenerateFibonacciSeries(number);
+    return 0;
+}
+
 // Generates the fibonacci series
 void GenerateFibonacciSeries(unsigned long long number)
 {
@@ -16,13 +27,4 @@ void GenerateFibonacciSeries(unsigned long long number)
     for(unsigned long long i = 0; i < number; i++)
         cout << fib[i] << " ";
     cout << "\n" << endl;
-}
-
-int main()
-{
-    unsigned long long number;
-    cout << "Enter a number: ";
-    cin >> number; 
-    GenerateFibonacciSeries(number);
-    return 0;
 }

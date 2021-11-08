@@ -8,18 +8,7 @@
 #include <stdio.h>
 using namespace std;
 
-// Replaces all instances of a letter with a new letter
-static string ReplaceLetter(string word, char removeLetter, char replacingLetter)
-{
-    string val = "";
-    
-    for(int i = 0; i < word.length(); i++)
-        if(word.at(i) == removeLetter)
-            val += replacingLetter;
-        else
-            val += word.at(i);
-    return val;
-}
+static string ReplaceLetter(string word, char removeLetter, char replacingLetter);
 
 int main()
 {
@@ -38,3 +27,17 @@ int main()
     string result = ReplaceLetter(input, remove, replace);
     cout << result << endl;
 }
+
+// Replaces all instances of a letter with a new letter
+static string ReplaceLetter(string word, char removeLetter, char replacingLetter)
+{
+    string val = "";
+    
+    for(int i = 0; i < word.length(); i++)
+        if(word.at(i) == removeLetter)
+            val += replacingLetter;
+        else
+            val += word.at(i);
+    return val;
+}
+

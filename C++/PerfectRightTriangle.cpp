@@ -2,22 +2,7 @@
 #include <cmath>
 using namespace std;
 
-bool IsPythagoreanTriple(int a, int b, int c)
-{
-    int squaredC = pow(a, 2) + pow(b, 2);
-    int sqrtC = sqrt(squaredC);
-
-    if(sqrtC == c)
-    {
-        cout << boolalpha;
-        return true;
-    }
-    else
-    {
-        cout << boolalpha;
-        return false;
-    }
-}
+bool IsPythagoreanTriple(int a, int b, int c);
 
 int main()
 {
@@ -34,4 +19,23 @@ int main()
 
     cout << "Is the set [" << a << ", " << b << ", " << c << "] a Pythagorean Triple? " << IsPythagoreanTriple(a, b, c) << endl;
     return 0;
+}
+
+// Checks if the given numbers will form a perfect right
+// triangle.
+bool IsPythagoreanTriple(int a, int b, int c)
+{
+    int squaredC = pow(a, 2) + pow(b, 2);
+    int sqrtC = sqrt(squaredC);
+
+    if(sqrtC == c)
+    {
+        cout << boolalpha;
+        return true;
+    }
+    else
+    {
+        cout << boolalpha;
+        return false;
+    }
 }
