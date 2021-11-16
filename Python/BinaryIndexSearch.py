@@ -22,7 +22,6 @@ def binarySearch(arr, left, right, target):
 def printList(arr):
     for i in range(len(arr)):
         print(arr[i], end = " ")
-    print()
 
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
