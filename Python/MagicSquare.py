@@ -12,7 +12,7 @@ def magicSquare(square):
     diagTwo = getDiagTwo(square)
 
     for r in range(len(square)):
-        for c in range(len(square[r]) - 1):
+        for c in range(len(square) - 1):
             rowSum = getSum(square[r])
             colSum = getSum(getColumn(square, c))
             diagOneSum = getSum(diagOne)
