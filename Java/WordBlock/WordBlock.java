@@ -40,14 +40,10 @@ public class WordBlock
             {
                 String newText = word.replace(" ", "");
                 boolean inBound = index >= 0 && index < newText.length();
-                
-                if(inBound) {
-                    charBlock[r][c] = newText.charAt(index);
-                    index++;
-                } else {
-                    charBlock[r][c] = '-';
-                }
-            }
+
+                charBlock[r][c] = (inBound) ? newText.charAt(index) : '-';
+                index++;
+            } 
         }
     }
 
