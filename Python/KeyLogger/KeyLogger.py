@@ -60,8 +60,8 @@ def recordData(bucket):
 
     data.write('Key\tCount\n')
 
-    for item in bucket:
-        data.write(item + '\t' + str(bucket[item]) + '\n')
+    for key, value in bucket.items():
+        data.write(key + '\t' + str(value) + '\n')
     
     print('SUCCESS!')
 
