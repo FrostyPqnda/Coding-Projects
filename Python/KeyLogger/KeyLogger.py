@@ -8,8 +8,11 @@ of when the user inputs a lowercase alpha character.
 
 from pynput import keyboard as kb
 
+# List to store the key input
 keyArr = []
 
+# Record the key input from the user
+# and store it into a list.
 def keyPress(key):
     try:
         print('Key {0} pressed'.format(key.char))
@@ -19,10 +22,13 @@ def keyPress(key):
         if key != kb.Key.esc:
             print('Non-alphanumeric key pressed')
 
+# End the recording 
 def keyRelease(key):
     if key == kb.Key.esc:
         return False
 
+# Sorts the array.
+# Method of sorting is insertion sort.
 def sort(arr):
     for i in range(1, len(arr)):
         currItem = arr[i]
@@ -34,6 +40,8 @@ def sort(arr):
         
         arr[prev + 1] = currItem
 
+# Count the frequency of each key input and store
+# it into a dictionary
 def bucketize(arr):
     sort(arr)
     bucket = {}
@@ -45,6 +53,7 @@ def bucketize(arr):
             bucket[item] = 1
     return bucket
 
+# Write the data to an excel sheet
 def recordData(bucket):
     file = 'KeyLog.xlsx'
     data = open(file, 'w')
@@ -56,12 +65,9 @@ def recordData(bucket):
     
     print('SUCCESS!')
 
-def recordKeyInput():
-    print('Press [esc] to end recording')
-    with kb.Listener(on_press=keyPress, on_release=keyRelease) as listener:
-        listener.join()
-
-recordKeyInput()
+print('Press [esc] to end recording')
+with kb.Listener(on_press=keyPress, on_release=keyRelease) as listener:
+    listener.join()
 
 bucket = bucketize(keyArr)
 
