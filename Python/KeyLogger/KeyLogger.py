@@ -73,5 +73,4 @@ with kb.Listener(on_press=keyPress, on_release=keyRelease) as listener:
     listener.join()
 
 bucket = bucketize(keyArr)
-
 recordData(bucket)
