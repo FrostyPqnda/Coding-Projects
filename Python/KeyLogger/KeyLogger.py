@@ -1,5 +1,5 @@
 """
-Python project that will record keyboard input from the
+Python program that will record keyboard input from the
 user.
 
 The keyboard input that will be collected will be instances
