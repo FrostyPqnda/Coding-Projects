@@ -3,7 +3,10 @@ Python program that will record keyboard input from the
 user.
 
 The keyboard input that will be collected will be instances
-of when the user inputs a lowercase alpha character.
+of when the user inputs an alpha character.
+
+NOTE: Upper and lowercase letters will be treated the same 
+for simplicity sake. 
 """
 
 from pynput import keyboard as kb
@@ -16,8 +19,8 @@ keyArr = []
 def keyPress(key):
     try:
         print('Key {0} pressed'.format(key.char))
-        if str(key.char).isalpha() and str(key.char).islower():
-            keyArr.append(key.char)
+        if str(key.char).isalpha():
+            keyArr.append(str(key.char).upper())
     except AttributeError:
         if key != kb.Key.esc:
             print('Non-alphanumeric key pressed')
