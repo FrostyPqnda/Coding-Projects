@@ -2,8 +2,8 @@
 Python program that will record keyboard input from the
 user.
 
-The keyboard input that will be collected will be instances
-of when the user inputs an alpha character.
+Purpose of the program: Collect the frequency of each letter
+the user presses.
 
 NOTE: Upper and lowercase letters will be treated the same 
 for simplicity sake. 
@@ -32,29 +32,31 @@ def keyRelease(key):
 
 # Sorts the array.
 # Method of sorting is insertion sort.
-def sort(arr):
-    for i in range(1, len(arr)):
-        currItem = arr[i]
+def sort(data):
+    for i in range(1, len(data)):
+        currItem = data[i]
         prev = i - 1
 
-        while prev >= 0 and currItem < arr[prev]:
-            arr[prev + 1] = arr[prev]
+        while prev >= 0 and currItem < data[prev]:
+            data[prev + 1] = data[prev]
             prev -= 1
         
-        arr[prev + 1] = currItem
+        data[prev + 1] = currItem
 
 # Count the frequency of each key input and store
-# it into a dictionary
-def bucketize(arr):
-    sort(arr)
-    bucket = {}
+# it into a bucket.
+def bucketize(data, bucket):
+    
+    # Fill the bucket dictionary with letter, count pair
+    def fillBucket(bucket):
+        for i in range(65, 91):
+            bucket[chr(i)] = 0
+    
+    fillBucket(bucket)
 
-    for item in arr:
+    for item in data:
         if item in bucket:
             bucket[item] += 1
-        else:
-            bucket[item] = 1
-    return bucket
 
 # Write the data to an excel sheet
 def recordData(bucket):
@@ -72,5 +74,6 @@ print('Press [esc] to end recording')
 with kb.Listener(on_press=keyPress, on_release=keyRelease) as listener:
     listener.join()
 
-bucket = bucketize(keyArr)
+bucket = {}
+bucketize(keyArr, bucket)
 recordData(bucket)
