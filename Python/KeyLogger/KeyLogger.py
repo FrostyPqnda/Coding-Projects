@@ -9,7 +9,7 @@ NOTE: Upper and lowercase letters will be treated the same
 for simplicity sake. 
 """
 
-from pynput import keyboard as kb
+import pynput.keyboard as kb
 
 # List to store the key input
 keyArr = []
@@ -22,8 +22,7 @@ def keyPress(key):
         if str(key.char).isalpha():
             keyArr.append(str(key.char).upper())
     except AttributeError:
-        if key != kb.Key.esc:
-            print('Non-alphanumeric key pressed')
+        print('Non-alphanumeric key pressed')
 
 # End the recording 
 def keyRelease(key):
@@ -46,13 +45,9 @@ def sort(data):
 # Count the frequency of each key input and store
 # it into a bucket.
 def bucketize(data, bucket):
-    
-    # Fill the bucket dictionary with letter, count pair
-    def fillBucket(bucket):
-        for i in range(65, 91):
-            bucket[chr(i)] = 0
-    
-    fillBucket(bucket)
+    # Store bucket dictionary with letter, count pair
+    for i in range(65, 91):
+        bucket[chr(i)] = 0
 
     for item in data:
         if item in bucket:
@@ -70,10 +65,8 @@ def recordData(bucket):
     
     print('SUCCESS!')
 
-print('Press [esc] to end recording')
-with kb.Listener(on_press=keyPress, on_release=keyRelease) as listener:
-    listener.join()
+def recordKey():
+    print('Press [esc] to end recording')
+    with kb.Listener(on_press=keyPress, on_release=keyRelease) as listener:
+        listener.join()
 
-bucket = {}
-bucketize(keyArr, bucket)
-recordData(bucket)
