@@ -29,7 +29,7 @@ def keyRelease(key):
     if key == kb.Key.esc:
         return False
 
-# Sorts the array.
+# Sorts the data.
 # Method of sorting is insertion sort.
 def sort(data):
     for i in range(1, len(data)):
