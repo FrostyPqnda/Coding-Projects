@@ -53,6 +53,12 @@ def bucketize(data, bucket):
         if item in bucket:
             bucket[item] += 1
 
+# Record key presses
+def recordKey():
+    print('Press [esc] to end recording')
+    with kb.Listener(on_press=keyPress, on_release=keyRelease) as listener:
+        listener.join()
+
 # Write the data to an excel sheet
 def recordData(bucket):
     file = 'KeyLog.xlsx'
@@ -65,8 +71,5 @@ def recordData(bucket):
     
     print('SUCCESS!')
 
-def recordKey():
-    print('Press [esc] to end recording')
-    with kb.Listener(on_press=keyPress, on_release=keyRelease) as listener:
-        listener.join()
+
 
