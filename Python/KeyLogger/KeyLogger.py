@@ -52,7 +52,7 @@ def bucketize(data, bucket):
     for item in data:
         if item in bucket:
             bucket[item] += 1
-
+                                    
 # Record key presses
 def recordKey():
     print('Press [esc] to end recording')
@@ -70,6 +70,3 @@ def recordData(bucket):
         data.write(key + '\t' + str(value) + '\n')
     
     print('SUCCESS!')
-
-
-
