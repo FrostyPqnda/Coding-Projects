@@ -60,7 +60,7 @@ def recordKey():
         listener.join()
 
 # Write the data to an excel sheet
-def recordData(bucket):
+def writeData(bucket):
     file = 'KeyLog.xlsx'
     data = open(file, 'w')
 
