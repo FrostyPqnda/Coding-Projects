@@ -22,7 +22,7 @@ def keyPress(key):
         if str(key.char).isalpha():
             keyArr.append(str(key.char).upper())
     except AttributeError:
-        print('Non-alphanumeric key pressed')
+        print ('Key {0} pressed'.format(key))
 
 # End the recording 
 def keyRelease(key):
