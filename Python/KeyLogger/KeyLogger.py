@@ -29,19 +29,6 @@ def keyRelease(key):
     if key == kb.Key.esc:
         return False
 
-# Sorts the data.
-# Method of sorting is insertion sort.
-def sort(data):
-    for i in range(1, len(data)):
-        currItem = data[i]
-        prev = i - 1
-
-        while prev >= 0 and currItem < data[prev]:
-            data[prev + 1] = data[prev]
-            prev -= 1
-        
-        data[prev + 1] = currItem
-
 # Count the frequency of each key input and store
 # it into a bucket.
 def bucketize(data, bucket):
@@ -65,8 +52,8 @@ def writeData(bucket):
     data = open(file, 'w')
 
     data.write('Key\tCount\n')
-
+        
     for key, value in bucket.items():
         data.write(key + '\t' + str(value) + '\n')
     
-    print('SUCCESS!')
+    print('File successfully written to', file)
