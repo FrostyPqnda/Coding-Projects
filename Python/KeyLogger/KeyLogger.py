@@ -4,9 +4,6 @@ user.
 
 Purpose of the program: Collect the frequency of each letter
 the user presses.
-
-NOTE: Upper and lowercase letters will be treated the same 
-for simplicity sake. 
 """
 
 import pynput.keyboard as kb
