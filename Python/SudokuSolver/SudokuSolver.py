@@ -22,20 +22,18 @@ def isEmpty(file):
     content = file.readlines()
     return len(content) == 0
 
-# Checks if the content of the file
+# Checks if the content of the board
 # contains the correct data
-def isValid(file):
-    content = file.readlines()
-    content = [x.replace(' ', '') for x in content]
-    valid = True
+def isValid(board):
+    validBoard = True
 
-    """
-    for r in range(len(content)):
-        for c in range(len(content[r])):
-            if not str(content[r][c]).isdigit():
-                valid = False
-    """
-    return valid
+    for r in range(SIZE):
+        for c in range(SIZE):
+            temp = []
+            temp.append(board[r][c])
+
+            if any(i < 0 and i > 9 for i in temp):
+                validBoard = False
 
 # Load the board with contents
 # from the file.
@@ -53,8 +51,7 @@ board = [[0 for _ in range(SIZE)] for _ in range(SIZE)]
 
 if exists(inFile):
     file = open(inFile, 'r')
-    loadFile()
-
+    print(isValid(file))
 else:
     print('Error reading file.')
 
