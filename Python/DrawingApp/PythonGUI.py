@@ -14,7 +14,7 @@ import tkinter as tk
 
 # imports ImageGrab from
 # the PIL module to save images
-from PIL import ImageGrab
+from PIL import Image
 
 # Sets up the GUI to be displayed
 root = tk.Tk()
