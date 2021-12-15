@@ -51,7 +51,8 @@ board = [[0 for _ in range(SIZE)] for _ in range(SIZE)]
 
 if exists(inFile):
     file = open(inFile, 'r')
-    print(isValid(file))
+    loadFile(board, file)
+    printBoard(board)
 else:
     print('Error reading file.')
 
