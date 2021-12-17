@@ -20,7 +20,7 @@ namespace FibonacciIndexSearch
             Console.Write("\n\nEnter a number: ");
             int index = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("\n\nThe index position of " + index + " is " + FibonacciIndexSearch(arr, index));
+            Console.WriteLine("\nThe index position of " + index + " is " + FibonacciIndexSearch(arr, index));
             Console.ReadKey();
         }
 
@@ -43,10 +43,14 @@ namespace FibonacciIndexSearch
         {
             // Loops through the entire array to search for the target
             for(int i = 0; i < arr.Length; i++)
+            {
                 // If the index is equal to the target value, return the position
                 // of where it first occurs
                 if(arr[i] == target)
+                {
                     return i;
+                }
+            }
             // If the target is not in the array, return -1
             return -1;
         }

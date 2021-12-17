@@ -52,9 +52,12 @@ namespace InvertedMatrix
         // Print all elements of a multi-dimensional array
         static void PrintMatrix(int[,] curr)
         {
-            for(int row = 0; row < curr.GetLength(0); row++) {
+            for(int row = 0; row < curr.GetLength(0); row++) 
+            {
                 for(int col = 0; col < curr.GetLength(1); col++)
+                {
                     Console.Write(curr[row, col] + " ");
+                }
                 Console.WriteLine();
             }
         }

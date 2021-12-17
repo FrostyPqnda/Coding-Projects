@@ -20,12 +20,20 @@ namespace GuessWord
         {
             String hintStr = "";
             for(int i = 0; i < word.Length; i++)
+            {
                 if(text[i] == word[i])
+                {
                     hintStr += text[i]; // Adds the character from @param text to the hintStr variable at the correct position
+                }
                 else if(word.IndexOf(text[i]) != -1)
+                {
                     hintStr += '+'; // Adds a + if the letter exists in the word but not in the right position
+                }
                 else  
+                {
                     hintStr += '*'; // Adds a * if the letter does not exist in the word
+                }
+            }
             return "\n" + hintStr;
         }
 

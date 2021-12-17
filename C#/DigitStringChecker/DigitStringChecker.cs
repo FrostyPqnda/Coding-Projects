@@ -9,7 +9,7 @@ namespace DigitStringChecker
             Console.Write("Enter a text: ");
             bool isDigit = DigitChecker(Console.ReadLine());
 
-            if(isDigit)
+            if(isDigit) 
                 Console.WriteLine("Contains a digit!");
             else
                 Console.WriteLine("Does not contain a digit");
@@ -24,10 +24,16 @@ namespace DigitStringChecker
             char[] digit = str.ToCharArray();
             bool isDigit = false;
 
-            if(str != null)
+            if(str != null) 
+            {
                 foreach (char c in digit)
+                {
                     if(isDigit = Char.IsDigit(c))
+                    {
                         break;
+                    }
+                }
+            }
 
             return isDigit;
         }

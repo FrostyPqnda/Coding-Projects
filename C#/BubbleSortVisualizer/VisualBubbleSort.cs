@@ -40,7 +40,6 @@ namespace BubbleSortVisualizer
                         Console.Write("-> swapping: [" + list[y] + ", " + list[y + 1] + "]");
                         Console.Write(" -> swapped: [" + list[y + 1] + ", " + list[y] + "]\n");
                         Console.WriteLine();
-                        
 
                         int temp = list[y];
                         list[y] = list[y + 1];

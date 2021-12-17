@@ -64,8 +64,12 @@ namespace SubmatrixExtractor
             Random rng = new Random();
 
             for(int row = 0; row < rowSize; row++)
+            {
                 for(int col = 0; col < colSize; col++)
+                {
                     arr[row, col] = rng.Next(100, 1000);
+                }
+            }
 
             return arr;
         }

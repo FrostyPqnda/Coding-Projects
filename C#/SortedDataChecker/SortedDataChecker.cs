@@ -11,26 +11,30 @@ namespace CheckSortedData
             Console.ForegroundColor = ConsoleColor.DarkCyan;
 
             Random random = new Random();
-            List<int> list = new List<int>();
+            int[] arr = new int[10];
     
             for(int i = 0; i < 10; i++)
             {
-                list.Add(random.Next(10, 1000));
+                arr[i] = random.Next(10, 1000);
             }
             
-            list.ForEach(elem => Console.Write(elem + " "));
+            foreach(int item in arr) {
+                Console.Write(item + " ");
+            }
             
-            Console.WriteLine("\nIs a sorted list? " + CheckSortedList(list) + "\n");
-            
-            list.Sort();
-            list.ForEach(elem => Console.Write(elem + " "));
+            Console.WriteLine("\nIs a sorted array? " + IsSorted(arr) + "\n");
 
-            Console.WriteLine("\nIs a sorted list? " + CheckSortedList(list));
+            Sort(arr);
+            foreach(int item in arr) {
+                Console.Write(item + " ");
+            }
+
+            Console.WriteLine("\nIs a sorted array? " + IsSorted(arr));
             Console.ReadKey();
         }
         
         // Checks if the integer array is in ascending or descending order
-        static bool isSorted(int[] arr)
+        static bool IsSorted(int[] arr)
         {
             bool ascendingOrder = true;
             bool descendingOrder = true;
@@ -55,31 +59,25 @@ namespace CheckSortedData
 
             return ascendingOrder || descendingOrder;
         }
-        // Checks if the integer list is in ascending or descending order
-        static bool isSorted(List<int> list)
+
+        static void Sort(int[] arr) 
         {
-            bool ascendingOrder = true;
-            bool descendingOrder = true;
-
-            // Loop to check if the list is in ascending order
-            for(int i = 0; i < list.Count - 1; i++) 
+            for(int i = 0; i < arr.Length; i++)
             {
-                if(list[i] > list[i + 1])
-                {
-                    ascendingOrder = false;
-                }
-            }
+                int minIndex = i;
 
-            // Loop to check if the list is in descending order
-            for(int i = 0; i < list.Count - 1; i++) 
-            {
-                if(list[i] < list[i + 1])
+                for(int j = i + 1; j < arr.Length; j++)
                 {
-                    descendingOrder = false;
+                    if(arr[j] < arr[minIndex])
+                    {
+                        minIndex = j;
+                    }
                 }
-            }
 
-            return ascendingOrder || descendingOrder;
+                int temp = arr[i];
+                arr[i] = arr[minIndex];
+                arr[minIndex] = temp;
+            }
         }
     }
 }
