@@ -72,7 +72,7 @@ def isSafe(board, row, col, num):
 #    set the cell to a value from [1, 9].
 # 3. Repeat until board is solved or can't be solved.
 def solve(board):
-    # Gets the cell position where there is an empty spot on the board
+    # Get a cell position where there is an empty spot on the board
     row, col = findEmpty(board)
     
     # There are no more empty cell, so return True
