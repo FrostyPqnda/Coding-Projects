@@ -20,9 +20,9 @@ def loadBoard(board, file):
     content = file.readlines()
     content = [x.replace(' ', '') for x in content]
     
-    for r in range(SIZE):
-        for c in range(SIZE):
-            board[r][c] = int(content[r][c])
+    for row in range(SIZE):
+        for col in range(SIZE):
+            board[row][col] = int(content[row][col])
 
 # Checks if the board is empty.
 # Board is considered empty if 
@@ -30,9 +30,9 @@ def loadBoard(board, file):
 def isEmptyBoard(board):    
     numZero = 0
 
-    for r in range(SIZE):
-        for c in range(SIZE):
-            if board[r][c] == 0:
+    for row in range(SIZE):
+        for col in range(SIZE):
+            if board[row][col] == 0:
                 numZero += 1
 
     return numZero == pow(SIZE, 2)
@@ -95,7 +95,6 @@ def solve(board):
 
     # Return False by default
     return False
-    
 
 inFile = input('Enter the filename: ')
 board = [[0 for _ in range(SIZE)] for _ in range(SIZE)]
