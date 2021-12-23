@@ -37,9 +37,8 @@ def isEmptyBoard(board):
 
     return numZero == pow(SIZE, 2)
 
-# Finds an empty cell
-# returns a tuple row, col if there is one.
-# Otherwise return tuple None, None
+# Finds an empty cell and return the
+# position. Otherwise, return nothing.
 def findEmpty(board):
     for row in range(SIZE):
         for col in range(SIZE):
@@ -48,7 +47,7 @@ def findEmpty(board):
     return None, None
 
 # Checks if it is possible to assign
-# a number to the given cell (row, col)
+# a number to the given cell.
 def isSafe(board, row, col, num):
     safe = True
 
