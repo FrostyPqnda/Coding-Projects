@@ -60,7 +60,7 @@ def loadBoard(board, inFile):
 # it does not contain only 0's
 # and contains no invalid values,
 def isValidBoard(board):
-    numInvalid = 0
+    valid = True
     numZero = 0
 
     for row in range(size):
@@ -68,16 +68,16 @@ def isValidBoard(board):
             if board[row][col] == 0:
                 numZero += 1
             if board[row][col] < 0 or board[row][col] > size:
-                numInvalid += 1
+                valid = False
 
-    return numInvalid == 0 and numZero != pow(size, 2)
+    return valid and numZero != pow(size, 2)
 
 # Finds an empty cell
 # returns a tuple row, col if there is one.
 # Otherwise return tuple None, None
 def findEmpty(board):
-    for row in range(len(board)):
-        for col in range(len(board)):
+    for row in range(size):
+        for col in range(size):
             if board[row][col] == 0:
                 return row, col
     return None, None
