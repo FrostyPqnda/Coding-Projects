@@ -12,14 +12,10 @@ def isPerfectSquare(num):
 
 # Print the board
 def printBoard(board):
-    if len(board) <= 9:
-        for arr in board:
-            for item in arr:
-                print(item, end = ' ')
-            print()
-    else:
-        for arr in board:
-            print(arr)
+    for arr in board:
+        for item in arr:
+            print(item, end = ' ')
+        print()
 
 # Read the file and return the matrix size
 def readFile(inFile):
