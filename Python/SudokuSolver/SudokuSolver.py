@@ -58,7 +58,7 @@ def loadBoard(board, inFile):
 #
 # Board is considered valid if 
 # it does not contain only 0's
-# and contains no invalid values,
+# and no invalid values
 def isValidBoard(board):
     valid = True
     numZero = 0
@@ -167,4 +167,4 @@ if exists(inFile) and getsize(inFile) > 0:
     else:
         print('Error reading size.')
 else:
-    print('Error reading file.')
+    print('Error reading file.') 
