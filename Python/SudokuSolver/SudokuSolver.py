@@ -1,30 +1,28 @@
 """
 A sudoku solving program that reads in an unsolved
 sudoku text file and solves it.
-
-WORK IN PROGRESS:
-
-Supports only 4x4 and 9x9 boards.
-
-Will be updated to work with bigger boards
-and m x n boards.
 """
 
 from os.path import exists, getsize
 from math import sqrt
 
+# Checks if the number is perfect square.
+def isPerfectSquare(num):
+    return num > 1 and pow(sqrt(num), 2) == num
+
 # Print the board
 def printBoard(board):
-    for arr in board:
-        for item in arr:
-            print(item, end = ' ')
-        print()
+    if len(board) <= 9:
+        for arr in board:
+            for item in arr:
+                print(item, end = ' ')
+            print()
+    else:
+        for arr in board:
+            print(arr)
 
 # Read the file and return the matrix size
 def readFile(inFile):
-    def isPerfectSquare(num):
-        return pow(sqrt(num), 2) == num
-
     with open(inFile, 'r') as file:
         content = file.readlines()
         content = [x.split() for x in content]
@@ -35,7 +33,7 @@ def readFile(inFile):
         for i in range(rowSize):
             colSize = len(content[i])
 
-        if isPerfectSquare(rowSize) and rowSize == colSize:
+        if (isPerfectSquare(rowSize) or (rowSize % 2 == 0)) and rowSize == colSize:
             size = rowSize
         else:
             size = -1
@@ -51,7 +49,10 @@ def loadBoard(board, inFile):
 
         for row in range(size):
             for col in range(size):
-                board[row][col] = int(content[row][col])
+                try:
+                    board[row][col] = int(content[row][col])
+                except ValueError:
+                    board[row][col] = 0
 
 # Checks if the board is valid.
 #
@@ -91,17 +92,27 @@ def isSafe(board, row, col, num):
         if board[row][i] == num or board[i][col] == num:
             safe = False
     
-    box = int(sqrt(size))
+    # Check if the sub-grid is safe
+    if isPerfectSquare(size):
+        subSize = int(sqrt(size))
 
-    # Check if the box is safe
-    startRow = row - row % box
-    startCol = col - col % box
+        startRow = row - row % subSize
+        startCol = col - col % subSize
 
-    for r in range(box):
-        for c in range(box):
-            if board[r + startRow][c + startCol] == num:
-                safe = False
+        for r in range(subSize):
+            for c in range(subSize):
+                if board[r + startRow][c + startCol] == num:
+                    safe = False
+    else:
+        rowSize = row // 2 * 2
+        colOffset = int(size / 2)
+        colSize = col // colOffset * colOffset
 
+        for r in range(rowSize, rowSize + 2):
+            for c in range(colSize, colSize + colOffset):
+                if board[row][col] == num:
+                    safe = False
+    
     return safe 
 
 # Solves the sudoku puzzle using a backtracking algorithm.
@@ -139,13 +150,13 @@ inFile = input('Enter the filename: ')
 
 if exists(inFile) and getsize(inFile) > 0:
     size = readFile(inFile)
-    
-    if size != -1 and size < 10:
+
+    if size != -1:
         board = [[None for _ in range(size)] for _ in range(size)]
         loadBoard(board, inFile)
-
+        
         if isValidBoard(board):
-            printBoard(board)
+            printBoard(board) 
             print()
             if solve(board):
                 printBoard(board)
