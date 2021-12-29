@@ -146,7 +146,6 @@ def solve(board):
         if isSafe(board, row, col, num):
             board[row][col] = num
 
-            # Recurse the function again to find the next empty cell
             if solve(board):
                 return True
         
