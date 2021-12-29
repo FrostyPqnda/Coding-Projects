@@ -162,7 +162,7 @@ if exists(inFile) and getsize(inFile) > 0:
     size = readFile(inFile)
 
     if size != -1:
-        board = [[0 for _ in range(size)] for _ in range(size)]
+        board = [[None for _ in range(size)] for _ in range(size)]
 
         if loadFile(board, inFile):
             printBoard(board) 
