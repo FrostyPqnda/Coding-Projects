@@ -36,37 +36,51 @@ def readFile(inFile):
 
     return size
 
-# Load the board with values from
-# the file.
-def loadBoard(board, inFile):
+# Validates the contents of the input file.
+#
+# File is considered validated if it contains
+# no invalid values and does not contain only
+# 0's.
+def validateFile(inFile):
+    isValid = True
+    numZero = 0
+
     with open(inFile, 'r') as file:
         content = file.readlines()
         content = [x.split() for x in content]
 
         for row in range(size):
             for col in range(size):
-                try:
-                    board[row][col] = int(content[row][col])
-                except ValueError:
-                    board[row][col] = 0
+                curr = int(content[row][col])
 
-# Checks if the board is valid.
-#
-# Board is considered valid if 
-# it does not contain only 0's
-# and no invalid values
-def isValidBoard(board):
-    valid = True
-    numZero = 0
+                if curr == 0:
+                    numZero += 1
 
-    for row in range(size):
-        for col in range(size):
-            if board[row][col] == 0:
-                numZero += 1
-            if board[row][col] < 0 or board[row][col] > size:
-                valid = False
+                if curr < 0 or curr > size:
+                    isValid = False
 
-    return valid and numZero != pow(size, 2)
+    return isValid and numZero != pow(size, 2)
+
+# Load the board with values from
+# the file.
+def loadFile(board, inFile):
+    isLoaded = False
+
+    if validateFile(inFile):
+        isLoaded = True
+
+        with open(inFile, 'r') as file:
+            content = file.readlines()
+            content = [x.split() for x in content]
+
+            for row in range(size):
+                for col in range(size):
+                    try:
+                        board[row][col] = int(content[row][col])
+                    except ValueError:
+                        board[row][col] = 0
+    
+    return isLoaded
 
 # Finds an empty cell
 # returns a tuple row, col if there is one.
@@ -148,10 +162,9 @@ if exists(inFile) and getsize(inFile) > 0:
     size = readFile(inFile)
 
     if size != -1:
-        board = [[None for _ in range(size)] for _ in range(size)]
-        loadBoard(board, inFile)
-        
-        if isValidBoard(board):
+        board = [[0 for _ in range(size)] for _ in range(size)]
+
+        if loadFile(board, inFile):
             printBoard(board) 
             print()
             if solve(board):
@@ -159,7 +172,7 @@ if exists(inFile) and getsize(inFile) > 0:
             else:
                 print('Puzzle could not be solved.')
         else:
-            print('Board is invalid.')
+            print('Board could not be loaded.')
     else:
         print('Error reading size.')
 else:
