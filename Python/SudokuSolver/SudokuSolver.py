@@ -91,16 +91,6 @@ def loadFile(board, inFile):
 
     return isLoaded
 
-# Finds an empty cell
-# returns a tuple row, col if there is one.
-# Otherwise return tuple None, None
-def findEmpty(board):
-    for row in range(size):
-        for col in range(size):
-            if board[row][col] == 0:
-                return row, col
-    return None, None
-
 # Checks if it is possible to assign
 # a number to the given cell (row, col)
 def isSafe(board, row, col, num):
@@ -133,6 +123,16 @@ def isSafe(board, row, col, num):
                     safe = False
     
     return safe 
+
+# Finds an empty cell
+# returns a tuple row, col if there is one.
+# Otherwise return tuple None, None
+def findEmpty(board):
+    for row in range(size):
+        for col in range(size):
+            if board[row][col] == 0:
+                return row, col
+    return None, None
 
 # Solves the sudoku puzzle using a backtracking algorithm.
 # Process:
