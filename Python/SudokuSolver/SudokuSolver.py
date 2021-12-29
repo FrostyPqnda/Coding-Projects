@@ -40,10 +40,18 @@ def readFile(inFile):
 #
 # File is considered validated if it contains
 # no invalid values and does not contain only
-# 0's.
+# one value.
 def validateFile(inFile):
     isValid = True
-    numZero = 0
+    
+    def allSame(board, num):
+        numSame = 0
+        for row in range(size):
+            for col in range(size):
+                if int(board[row][col]) == num:
+                    numSame += 1
+
+        return numSame == pow(size, 2)
 
     with open(inFile, 'r') as file:
         content = file.readlines()
@@ -53,13 +61,14 @@ def validateFile(inFile):
             for col in range(size):
                 curr = int(content[row][col])
 
-                if curr == 0:
-                    numZero += 1
-
                 if curr < 0 or curr > size:
                     isValid = False
 
-    return isValid and numZero != pow(size, 2)
+        for i in range(0, size + 1):
+            if allSame(content, i):
+                isValid = False
+
+    return isValid
 
 # Load the board with values from
 # the file.
@@ -79,7 +88,7 @@ def loadFile(board, inFile):
                         board[row][col] = int(content[row][col])
                     except ValueError:
                         board[row][col] = 0
-    
+
     return isLoaded
 
 # Finds an empty cell
