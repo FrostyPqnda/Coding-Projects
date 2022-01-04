@@ -48,8 +48,14 @@ def validateFile(inFile):
         numSame = 0
         for row in range(size):
             for col in range(size):
-                if int(board[row][col]) == num:
-                    numSame += 1
+                curr = board[row][col]
+
+                if curr.isalpha():
+                    isValid = False
+                    break
+                else:
+                    if int(curr) == num:
+                        numSame += 1
 
         return numSame == pow(size, 2)
 
@@ -59,14 +65,20 @@ def validateFile(inFile):
 
         for row in range(size):
             for col in range(size):
-                curr = int(content[row][col])
+                curr = content[row][col]
 
-                if curr < 0 or curr > size:
+                if curr.isalpha():
                     isValid = False
+                    break
+
+                if int(curr) < 0 or int(curr) > size:
+                    isValid = False
+                    break
 
         for i in range(0, size + 1):
             if allSame(content, i):
                 isValid = False
+                break
 
     return isValid
 
@@ -84,10 +96,8 @@ def loadFile(board, inFile):
 
             for row in range(size):
                 for col in range(size):
-                    try:
-                        board[row][col] = int(content[row][col])
-                    except ValueError:
-                        board[row][col] = 0
+                    board[row][col] = int(content[row][col])
+
 
     return isLoaded
 
