@@ -24,7 +24,7 @@ def keyPress(key):
 
 # End the recording 
 def keyRelease(key):
-    if key == kb.Key.esc:
+    if key == kb.Key.end:
         return False
 
 # Count the frequency of each key input and store
@@ -40,7 +40,7 @@ def bucketize(data, bucket):
                                     
 # Record key presses
 def recordKey():
-    print('Press [esc] to end recording')
+    print('Press [end] to end recording')
     with kb.Listener(on_press=keyPress, on_release=keyRelease) as listener:
         listener.join()
 
