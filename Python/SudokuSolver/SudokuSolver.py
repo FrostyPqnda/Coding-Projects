@@ -82,8 +82,7 @@ def validateFile(inFile):
 
     return isValid
 
-# Load the board with values from
-# the file.
+# Load the file into a board.
 def loadFile(board, inFile):
     isLoaded = False
 
