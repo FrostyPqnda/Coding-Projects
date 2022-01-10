@@ -33,14 +33,14 @@ public class WordBlock
     {
         this.charBlock = new char[row][col];
         int index = 0;
+
+        String newText = word.replace(" ", "");
         
         for(int r = 0; r < row; r++) 
         {
             for(int c = 0; c < col; c++)
             {
-                String newText = word.replace(" ", "");
                 boolean inBound = index >= 0 && index < newText.length();
-
                 charBlock[r][c] = (inBound) ? newText.charAt(index) : '-';
                 index++;
             } 
