@@ -10,7 +10,7 @@ public class WordBlockTester
         int row = readRow(), col = readColumn();
         
         WordBlock wb = new WordBlock(word, row, col);
-        System.out.println("\n" + wb);
+        System.out.println(wb);
     }
 
     static int readRow() 
