@@ -10,8 +10,8 @@ namespace MatrixExpander
             Console.Title = "Matrix Expander";
 
             int[,] mat = {
-                {1, 2, 3},
-                {4, 5, 6}
+                {1, 2},
+                {3, 4}
             };
 
             Console.WriteLine("Original Matrix:\n");
@@ -31,7 +31,7 @@ namespace MatrixExpander
             {
                 for(int j = 0; j < mat.GetLength(1); j++)
                 {
-                    Console.Write(mat[i, j] + "\t");
+                    Console.Write(mat[i, j] + " ");
                 }
                 Console.WriteLine();
             }
