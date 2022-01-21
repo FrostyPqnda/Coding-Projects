@@ -12,15 +12,11 @@ import matplotlib.pyplot as plt
 # List to store the key input
 keyArr = []
 
-# Record the key input from the user
-# and store it into a list.
 def keyPress(key):
     try:
         print('Key {0} pressed'.format(key.char))
-        if str(key.char).isalpha():
-            keyArr.append(str(key.char).upper())
     except AttributeError:
-        print ('Key {0} pressed'.format(key))
+        print('Key {0} pressed'.format(key))
 
 # End the recording 
 def keyRelease(key):
@@ -37,7 +33,7 @@ def bucketize(data, bucket):
     for item in data:
         if item in bucket:
             bucket[item] += 1
-                                    
+
 # Record key presses
 def recordKey():
     print('Press [end] to end recording')
