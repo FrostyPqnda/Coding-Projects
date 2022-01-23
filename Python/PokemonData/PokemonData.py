@@ -9,12 +9,7 @@ to a .txt file
 """
 from Pokemon import Pokemon # Imports the Pokemon.py file to use the Pokemon class
 from random import randint # Imports the randint function from the random module
-"""
-Creates 6 objects that are an instance of the Pokemon class.
-Each Pokemon object will have a randomized HP and level.
-Each pokemon's HP will be determined by the highest possible HP 
-they will have at level 50 and 100. The levels will be set between [50, 100].
-"""
+
 salamence = Pokemon("Salamence", "Dragon, Flying", "Intimidate, Moxie", True, randint(202, 394), randint(50, 100))
 charizard = Pokemon("Charizard", "Fire, Flying", "Blaze, Solar Power", True, randint(185, 360), randint(50, 100))
 lucario = Pokemon("Lucario", "Fighting, Steel", "Inner Focus, Justified", True, randint(177, 344), randint(50, 100))
