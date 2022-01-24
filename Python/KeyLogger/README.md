@@ -4,7 +4,7 @@ NOTE: Upper and lowercase letters will be treated the same for simplicity sake.
 
 HOW TO USE:
 
-STEP 1: Run the program (must be able to run Python).
+STEP 1: Run the program (must be able to run Python).  
 STEP 2: Press any key. Press [ESC] to end the recording.  
 
 
