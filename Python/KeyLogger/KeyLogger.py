@@ -6,14 +6,19 @@ the user presses.
 """
 
 import pynput.keyboard as kb
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 # List to store the key input
 keyArr = []
 
+# Record key presses and append them to a list
 def keyPress(key):
     try:
         print('Key {0} pressed'.format(key.char))
+
+        if (key.char).isalpha():
+            keyArr.append((key.char).upper())
+
     except AttributeError:
         print('Key {0} pressed'.format(key))
 
@@ -56,6 +61,8 @@ bucket = {}
 bucketize(keyArr, bucket)
 writeData(bucket)
 
+"""
 plt.title('Key Frequency Bar Graph')
 plt.bar(*zip(*bucket.items()))
 plt.show()
+"""
