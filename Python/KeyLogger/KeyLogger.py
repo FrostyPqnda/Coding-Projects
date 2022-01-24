@@ -1,7 +1,6 @@
 """
 Python program that will record keyboard input from the
 user.
-
 Purpose of the program: Collect the frequency of each letter
 the user presses.
 """
@@ -20,7 +19,7 @@ def keyPress(key):
 
 # End the recording 
 def keyRelease(key):
-    if key == kb.Key.end:
+    if key == kb.Key.esc:
         return False
 
 # Count the frequency of each key input and store
@@ -36,7 +35,7 @@ def bucketize(data, bucket):
 
 # Record key presses
 def recordKey():
-    print('Press [end] to end recording')
+    print('Press [ESC] to end recording')
     with kb.Listener(on_press=keyPress, on_release=keyRelease) as listener:
         listener.join()
 
