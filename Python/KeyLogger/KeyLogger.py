@@ -1,6 +1,7 @@
 """
 Python program that will record keyboard input from the
 user.
+
 Purpose of the program: Collect the frequency of each letter
 the user presses.
 """
