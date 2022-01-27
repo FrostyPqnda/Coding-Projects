@@ -36,28 +36,14 @@ def readFile(inFile):
 
     return size
 
-# Validates the contents of the input file.
+# Check the contents of the input file for any invalidations.
 #
-# File is considered validated if it contains
+# File is considered valid if it contains
 # no invalid values and does not contain only
 # one value.
-def validateFile(inFile):
-    isValid = True
-    
-    def allSame(board, num):
-        numSame = 0
-        for row in range(size):
-            for col in range(size):
-                curr = board[row][col]
-
-                if curr.isalpha():
-                    isValid = False
-                    break
-                else:
-                    if int(curr) == num:
-                        numSame += 1
-
-        return numSame == pow(size, 2)
+def checkFile(inFile):
+    allClear = True
+    numSame = 0
 
     with open(inFile, 'r') as file:
         content = file.readlines()
@@ -67,26 +53,25 @@ def validateFile(inFile):
             for col in range(size):
                 curr = content[row][col]
 
-                if curr.isalpha():
-                    isValid = False
+                if curr.isdigit():
+                    if int(curr) < 0 or int(curr) > size:
+                        allClear = False
+                        break
+
+                    for i in range(0, size + 1):
+                        if int(curr) == i:
+                            numSame += 1
+                else:
+                    allClear = False
                     break
 
-                if int(curr) < 0 or int(curr) > size:
-                    isValid = False
-                    break
-
-        for i in range(0, size + 1):
-            if allSame(content, i):
-                isValid = False
-                break
-
-    return isValid
+    return allClear and numSame != (size * size)
 
 # Load the file into a board.
 def loadFile(board, inFile):
     isLoaded = False
 
-    if validateFile(inFile):
+    if checkFile(inFile):
         isLoaded = True
 
         with open(inFile, 'r') as file:
@@ -96,7 +81,8 @@ def loadFile(board, inFile):
             for row in range(size):
                 for col in range(size):
                     board[row][col] = int(content[row][col])
-
+    else:
+        print('Invalid value(s) found in the file.')
 
     return isLoaded
 
