@@ -5,6 +5,7 @@ sudoku text file and solves it.
 
 from os.path import exists, getsize
 from math import sqrt
+from re import L
 
 # Checks if the number is perfect square.
 def isPerfectSquare(num):
@@ -42,8 +43,21 @@ def readFile(inFile):
 # no invalid values and does not contain only
 # one value.
 def checkFile(inFile):
+
+    def allSame(board, num):
+        numSame = 0
+
+        for row in range(size):
+            for col in range(size):
+                if board[row][col].isdigit():
+                    if int(board[row][col]) == num:
+                        numSame += 1
+                else:
+                    return False
+
+        return numSame == pow(size, 2)
+
     allClear = True
-    numSame = 0
 
     with open(inFile, 'r') as file:
         content = file.readlines()
@@ -54,18 +68,20 @@ def checkFile(inFile):
                 curr = content[row][col]
 
                 if curr.isdigit():
-                    if int(curr) < 0 or int(curr) > size:
+                    curr = int(curr)
+                    if curr < 0 or curr > size:
                         allClear = False
                         break
-
-                    for i in range(0, size + 1):
-                        if int(curr) == i:
-                            numSame += 1
                 else:
                     allClear = False
                     break
+        
+        for i in range(0, size + 1):
+            if allSame(content, i):
+                allClear = False
+                break
 
-    return allClear and numSame != (size * size)
+    return allClear
 
 # Load the file into a board.
 def loadFile(board, inFile):
