@@ -7,7 +7,7 @@ the user presses.
 """
 
 import pynput.keyboard as kb
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 # List to store the key input
 keyArr = []
@@ -62,8 +62,6 @@ bucket = {}
 bucketize(keyArr, bucket)
 writeData(bucket)
 
-"""
 plt.title('Key Frequency Bar Graph')
 plt.bar(*zip(*bucket.items()))
 plt.show()
-"""
