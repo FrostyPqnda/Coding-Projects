@@ -19,7 +19,7 @@ isRunning = True
 
 # Creates a GUI window
 root = Tk()
-root.resizable(False, False)
+
 
 # Destroys the GUI app on exit
 def exit():
@@ -32,9 +32,11 @@ def exit():
 
 # Creates a pop-up GUI app
 def createPopUpWindow():
+    root.title('KeyLogger')
+    root.resizable(False, False)
     canvas = Canvas(root, width = 300, height = 300, bg = '#1d4d80')
     canvas.pack()
-    button = Button(root, text = 'End Recording', command = exit, bg = '#222222', fg = '#cccccc', width = 25, height = 5)
+    button = Button(root, text = 'End Recording', font = ('Oswald', 12), command = exit, bg = '#222222', fg = '#ffffff', width = 25, height = 5)
     canvas.create_window(150, 150, window = button)
     root.protocol("WM_DELETE_WINDOW", exit)
     root.mainloop()
@@ -63,7 +65,7 @@ def bucketize(data, bucket):
 
 # Records the key logging session
 def recordKey():
-    print('KeyLogger recording in session [Close the pop-up window to end the recording.]:')
+    print('KeyLogger recording in session [Close the pop-up window to end the recording]:')
     with kb.Listener(on_press = keyPress) as listener:
         createPopUpWindow()
         
