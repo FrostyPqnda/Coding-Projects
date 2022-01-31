@@ -19,12 +19,12 @@ isRunning = True
 
 # Creates a GUI window
 root = Tk()
-root.configure(bg = '#283140')
+root.resizable(False, False)
 
 # Destroys the GUI app on exit
 def exit():
     global isRunning
-    msgBox = messagebox.askquestion('Exit Application','Do you wish to end the recording?', icon = 'warning')
+    msgBox = messagebox.askquestion('Exit Application','Do you wish to end the recording?')
 
     if msgBox == 'yes':
         root.destroy()
