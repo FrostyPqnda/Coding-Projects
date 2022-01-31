@@ -6,11 +6,39 @@ Purpose of the program: Collect the frequency of each letter
 the user presses.
 """
 
+from email import message
 import pynput.keyboard as kb
 import matplotlib.pyplot as plt
+from tkinter import *
+from tkinter import messagebox
 
 # List to store the key input
 keyArr = []
+
+# Checks if the key logger is still running
+isRunning = True
+
+# Creates a GUI window
+root = Tk()
+root.configure(bg = '#283140')
+
+# Destroys the GUI app on exit
+def exit():
+    global isRunning
+    msgBox = messagebox.askquestion('Exit Application','Do you wish to end the recording?', icon = 'warning')
+
+    if msgBox == 'yes':
+        root.destroy()
+        isRunning = False
+
+# Creates a pop-up GUI app
+def createPopUpWindow():
+    canvas = Canvas(root, width = 300, height = 300, bg = '#1d4d80')
+    canvas.pack()
+    button = Button(root, text = 'End Recording', command = exit, bg = '#222222', fg = '#cccccc', width = 25, height = 5)
+    canvas.create_window(150, 150, window = button)
+    root.protocol("WM_DELETE_WINDOW", exit)
+    root.mainloop()
 
 # Record key presses and append them to a list
 def keyPress(key):
@@ -23,11 +51,6 @@ def keyPress(key):
     except AttributeError:
         print('Key {0} pressed'.format(key))
 
-# End the recording 
-def keyRelease(key):
-    if key == kb.Key.esc:
-        return False
-
 # Count the frequency of each key input and store
 # it into a bucket.
 def bucketize(data, bucket):
@@ -39,25 +62,30 @@ def bucketize(data, bucket):
         if item in bucket:
             bucket[item] += 1
 
-# Record key presses
-def recordKey():
-    print('Press [ESC] to end recording')
-    with kb.Listener(on_press=keyPress, on_release=keyRelease) as listener:
+# Runs a key logging session
+def runKeyLogger():
+    print('KeyLogger recording in session [Close the pop-up window to end the recording.]:')
+    with kb.Listener(on_press = keyPress) as listener:
+        createPopUpWindow()
+        
+        if not isRunning:
+            return False
+
         listener.join()
 
 # Write the data to an excel sheet
-def writeData(bucket):
-    file = 'KeyLog.xlsx'
-    data = open(file, 'w')
+def writeData(data):
+    inFile = 'KeyLog.xlsx'
 
-    data.write('Key\tCount\n')
-        
-    for key, value in bucket.items():
-        data.write(key + '\t' + str(value) + '\n')
+    with open(inFile, 'w') as file:
+        file.write('Key\tCount\n')
+            
+        for key, value in data.items():
+            file.write(key + '\t' + str(value) + '\n')
     
-    print('File successfully written to', file)
+    print('File successfully written to', inFile)
 
-recordKey()
+runKeyLogger()
 bucket = {}
 bucketize(keyArr, bucket)
 writeData(bucket)
