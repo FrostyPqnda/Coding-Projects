@@ -41,7 +41,7 @@ public class PasswordGenerator extends PasswordChecker
         }
         else
         {
-            // If checkPassword is false, then run the method again until it is true.
+            // If checkPassword is false, then run the function again until it is true.
             return generatePassword(passwordLength); 
         }
     }
