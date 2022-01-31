@@ -6,7 +6,6 @@ Purpose of the program: Collect the frequency of each letter
 the user presses.
 """
 
-from email import message
 import pynput.keyboard as kb
 import matplotlib.pyplot as plt
 from tkinter import *
