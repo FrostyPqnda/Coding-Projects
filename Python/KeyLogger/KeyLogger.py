@@ -62,8 +62,8 @@ def bucketize(data, bucket):
         if item in bucket:
             bucket[item] += 1
 
-# Runs a key logging session
-def runKeyLogger():
+# Records the key logging session
+def recordKey():
     print('KeyLogger recording in session [Close the pop-up window to end the recording.]:')
     with kb.Listener(on_press = keyPress) as listener:
         createPopUpWindow()
@@ -85,7 +85,7 @@ def writeData(data):
     
     print('File successfully written to', inFile)
 
-runKeyLogger()
+recordKey()
 bucket = {}
 bucketize(keyArr, bucket)
 writeData(bucket)
