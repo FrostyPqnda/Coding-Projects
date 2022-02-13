@@ -25,21 +25,9 @@ public class IsPalindromeList
     {
         boolean isPalindromeList = true;
         
-        // Create a new ArrayList 
-        ArrayList<Integer> revList = new ArrayList<Integer>();
-        
-        // Copy elements of the old ArrayList to the new ArrayList
-        // in reverse order.
-        for(int i = arrList.size() - 1; i >= 0; i--) 
+        for(int i = 0; i < arrList.size() / 2; i++) 
         {
-            revList.add(arrList.get(i));
-        }
-
-        // Check if the two ArrayList are the same
-        for(int i = 0; i < arrList.size(); i++) 
-        {
-            if(revList.get(i) != arrList.get(i)) 
-            {
+            if(arrList.get(i) != arrList.get(arrList.size() - i - 1)) {
                 isPalindromeList = false;
             }
         }
