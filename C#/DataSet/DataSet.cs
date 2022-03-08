@@ -14,26 +14,25 @@ namespace Data
         public DataSet(int size)
         {
             data = GenerateSet(size);
+            InsertionSort(data);
         }
 
         // Finds the median (middle value) of the data set
         public double FindMedian()
         {
             InsertionSort(data);
+            double median = 0;
             if(data.Length % 2 != 0)
             {
-                return data[data.Length / 2];
-            }
-            else if(data.Length % 2 == 0)
-            {
-                double evenMedian = data[data.Length / 2] + data[(data.Length / 2) - 1];
-                return evenMedian / 2;
+                median = data[data.Length / 2];
             }
             else
             {
-                return 0;
+                double evenMedian = data[data.Length / 2] + data[(data.Length / 2) - 1];
+                median = evenMedian / 2;
             }
 
+            return median;
         }
 
         // Finds the mean (average) of the data set
