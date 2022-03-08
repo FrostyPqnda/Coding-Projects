@@ -23,8 +23,8 @@ def printList(arr):
     for i in range(len(arr)):
         print(arr[i], end = " ")
 
-arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+arr = [1, 2, 3, 5, 5, 8, 10, 15, 19, 19]
 
 printList(arr)
 
-print("\nThe index was found at position " + str(binarySearch(arr, 0, len(arr) - 1, 4)) + "\n")
+print("\nThe index was found at position " + str(binarySearch(arr, 0, len(arr) - 1, 5)) + "\n")
