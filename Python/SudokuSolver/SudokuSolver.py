@@ -5,7 +5,6 @@ sudoku text file and solves it.
 
 from os.path import exists, getsize
 from math import sqrt
-from re import L
 
 # Checks if the number is perfect square.
 def isPerfectSquare(num):
