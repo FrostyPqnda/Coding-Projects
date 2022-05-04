@@ -5,5 +5,3 @@ NOTE: Upper and lowercase letters will be treated the same for simplicity sake.
 HOW TO USE:
 - Install pynput (for keyboard monitoring)  
 - Run the program (must be able to run Python).   
-
-
