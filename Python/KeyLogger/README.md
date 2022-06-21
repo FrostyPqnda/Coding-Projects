@@ -2,7 +2,7 @@ A crappily-built key logger designed to collect keyboard inputs from the user. T
  
 NOTE: Upper and lowercase letters will be treated the same for simplicity sake. 
 
-NOTE: This is merely a barebones code. The actual executable application that will use the source code will be released at a future date
+DISCLAIMER: Do note that this code is merely barebone version of an executable application that I plan to release later in the future. Until then, come back later to see the release of the KeyLogger application.
 
 HOW TO USE:
 - Install pynput (for keyboard monitoring)  
