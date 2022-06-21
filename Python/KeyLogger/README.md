@@ -2,6 +2,8 @@ A crappily-built key logger designed to collect keyboard inputs from the user. T
  
 NOTE: Upper and lowercase letters will be treated the same for simplicity sake. 
 
+NOTE: This is merely a barebones code. The actual executable application that will use the source code will be released at a future date
+
 HOW TO USE:
 - Install pynput (for keyboard monitoring)  
 - Run the program (must be able to run Python).   
