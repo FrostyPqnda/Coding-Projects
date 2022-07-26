@@ -2,8 +2,8 @@
 using namespace std;
 
 struct Node {
-    int data;
     Node* next;
+    int data;
 
     Node(int data) {
         this->data = data;
@@ -15,6 +15,7 @@ struct LinkedList {
     Node* head;
     LinkedList() {head = nullptr;}
 
+    // Insert element into linked list
     void insert(int data) {
         Node* temp = new Node(data);
         temp->next = head;
@@ -45,6 +46,25 @@ struct LinkedList {
         head = prevNode;
         return;
     }
+
+    int search(int elem) {
+        Node* currNode = head;
+        int count = 0;
+        int idx = -1;
+
+        while(currNode) {
+            if(currNode->data == elem) {
+                idx = count;
+                break;
+            } else {
+                count++;
+            }
+
+            currNode = currNode->next;
+        }
+        
+        return idx;
+    }
 };
 
 LinkedList li;
@@ -54,11 +74,6 @@ int main() {
     for(int i = 0; i < 10; i++) {
         li.insert((rand() % 100) + 1);
     }
-
-    li.print();
-
-    li.reverse();
-    cout << endl;
 
     li.print();
 }
