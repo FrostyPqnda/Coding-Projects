@@ -62,4 +62,4 @@ numSolution = 0
 size = int(input('Enter a size: '))
 board = [['-' for _ in range(size)] for _ in range(size)]
 placeQueens(0)
-print('# of solutions:', numSolution)
+print('# of solutions:',numSolution)
