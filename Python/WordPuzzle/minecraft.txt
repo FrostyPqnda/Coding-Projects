@@ -1,23 +1,23 @@
-E J A Q D W N P V E N C S P O E D V U Y
-Q G Q H Y Q P R I S M A R I N E I L E T
-P V U I H O E B W L S T D C D L A H O C
-P A A N T Y M N V P L F H K L R M N H G
-U P R P P O R F D N E A J A N S O Y P L
-L P T Z Z O R O Z E N X G X P H N W J O
-P V Z A I B W C L T R E E E I O D S S W
-Q M C Y O C Z D M H R M N K R V T J B S
-T P C Y A W O E E E E K A I F E Y I L T
-X K C A L Y N L P R T M K N H L A Y O O
-Y P S E U T H E A E D T Q G A H E C K N
-P Q B G K L E L K O V S N O C A E B Z E
-P P P J I R D R K K K M C T N P B Z J Z
-H B J O C S L H N Y P J I F Y P O M P V
-Q F S K Q B A R A M V W O B O S A B N N
-X Z E H B Z N U N Y N M R C R L G Z E Q
-Y M C D U K D D C K T P A N O L P M D X
-Z P Y H L A P B T G K R X X B A Y W T J
-D P P J Y U X W Z D Q N R L C I M O M N
-B X V B Q P N L B Y B F R I B U B P R J
+S N C P V D N N Q Y X T D W E C Z L N L
+X P A T R H L U E X U I T I Z Z W R B H
+K C Z M L I A O Q T A G B H T A W A T J
+H Y R R R R S S G M H M U M J I I E R J
+D G I L T E O M O V O E N S T R V P I Y
+G R L Z J Q D N A Z F K R C R E D R D E
+M Z O H R Y D N O R L Y H I C P Q E E X
+Q Z A W Z A M K E A I I H Z T E A D N A
+I E F B S N F E O T T N C L E E W N T K
+L G M N O Q X C O Q R K E L A R E E D C
+A A J E T T W G L Y D V G N L C Q S R I
+B G K T N B N E I L U Z A L S I P A L P
+J Q F H T I V N O G A R D R E D N E L F
+T O P E A O R U O R C E S K E K O H G V
+G R H R H P O T I O N P D Y O H A X E E
+O S H S T N O R I H M P P J X C T U S O
+X T A F H K U C Z E J O I R J L D I B V
+J R C Q G Z X R U F V C M C J Q H G W O
+F N G B I J M L U C P K H J T K P O Z B
+A D O B E A C O N M G J S O N K Q K E F
 
 SWORD
 PICKAXE
@@ -44,3 +44,5 @@ TNT
 WITCH
 ENDERDRAGON
 WITHER
+ENDERPEARL
+INGOT
