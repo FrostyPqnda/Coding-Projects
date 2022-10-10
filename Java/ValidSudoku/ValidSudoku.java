@@ -47,7 +47,13 @@ public class ValidSudoku
     }
 
     
-    static int[][] 
+    static int[][] loadFile(File file) throws FileNotFoundException
+    {
+        int N = getSize(file);
+        int[][] grid = new int[N][N];
+
+        return grid;
+    }
 
     static void printBoard(int[][] board) 
     {
