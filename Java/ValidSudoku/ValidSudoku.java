@@ -2,37 +2,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class ValidSudoku 
+class SudokuFile
 {
-    static int[][] board;
-    static Scanner scan;
+    int[][] board;
+    Scanner scan;
 
-    public static void main(String[] args) throws FileNotFoundException 
+    public SudokuFile(File file) throws FileNotFoundException 
     {
-        File inFile = new File("valid.txt");
-        int N = getSize(inFile);
-
-        board = new int[N][N];
-        scan = new Scanner(inFile);
-
-        while(scan.hasNextLine())
-        {
-            for(int i = 0; i < N; i++) 
-            {
-                String[] line = scan.nextLine().trim().split(" ");
-                for(int j = 0; j < N; j++) 
-                {
-                    board[i][j] = Integer.parseInt(line[j]);
-                }
-            }
-        }
-
-        printBoard(board);
+        board = loadFile(file);
         scan.close();
     }
 
-
-    static int getSize(File file) throws FileNotFoundException 
+    int getSize(File file) throws FileNotFoundException 
     {
         scan = new Scanner(file);
         int N = 0;
@@ -46,16 +27,34 @@ public class ValidSudoku
         return N;
     }
 
-    
-    static int[][] loadFile(File file) throws FileNotFoundException
+    int[][] loadFile(File file) throws FileNotFoundException
     {
         int N = getSize(file);
         int[][] grid = new int[N][N];
 
+        scan = new Scanner(file);
+
+        while(scan.hasNextLine())
+        {
+            for(int i = 0; i < N; i++) 
+            {
+                String[] line = scan.nextLine().trim().split(" ");
+                for(int j = 0; j < N; j++) 
+                {
+                    grid[i][j] = Integer.parseInt(line[j]);
+                }
+            }
+        }
+
         return grid;
     }
 
-    static void printBoard(int[][] board) 
+    public int[][] getBoard() 
+    {
+        return board;
+    }
+
+    public void printBoard() 
     {
         for(int i = 0; i < board.length; i++) 
         {
@@ -66,4 +65,36 @@ public class ValidSudoku
             System.out.println();
         }
     }
+}
+
+public class ValidSudoku 
+{
+    public static void main(String[] args) throws FileNotFoundException 
+    {
+        File inFile = new File("valid.txt");
+        SudokuFile sf = new SudokuFile(inFile);
+        sf.printBoard();
+
+        for(int i = 0; i < sf.getBoard().length; i++) {
+            System.out.println(checkRow(sf.getBoard(), i));
+        }
+    }
+
+    static boolean checkRow(int[][] board, int index) {
+        boolean validRow = true;
+        for(int i = 0; i < board.length; i++)
+        {
+            for(int j = i + 1; j < board.length; j++) 
+            {
+                if(board[index][i] == board[index][j])
+                {
+                    validRow = false;
+                }
+            }
+        }
+
+        return validRow;
+    }
+
+    static 
 }
