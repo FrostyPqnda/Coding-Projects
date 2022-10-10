@@ -79,6 +79,9 @@ class TransposeMatrix {
      * 
      * A matrix is symmetric if its transposed
      * matrix is equal to the original matrix.
+     * 
+     * Yes, I know that Arrays.deepEquals() exists.
+     * I'm just too lazy to use it.
      */
     static boolean isSymmetric(int[][] A, int[][] B) {
         int A_rowSize = A.length, B_rowSize = B.length;
