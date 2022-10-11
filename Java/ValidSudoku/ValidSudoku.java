@@ -16,26 +16,14 @@
 import java.util.*; 
 import java.io.*;
 
-public class ValidSudoku 
+class CompleteSudoku 
 {
-    public static void main(String[] args) throws FileNotFoundException 
-    {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Enter a Sudoku file: ");
-        String input = scan.nextLine();
-        File inFile = new File(input);
-        SudokuFile sf = new SudokuFile(inFile);
-        sf.printBoard();
-        System.out.println("Valid Sudoku? " + checkSudoku(sf.getBoard()));
-        scan.close();
-    }
-
     /**
      * Checks if the given Sudoku board is a valid solution.
      * @param board
      * @return If the board is a valid Sudoku solution
      */
-    static boolean checkSudoku(int[][] board) 
+    boolean checkSudoku(int[][] board) 
     {
         boolean validBoard = true;
         
@@ -244,4 +232,119 @@ public class ValidSudoku
         }
         return validBox;
     }
+}
+class IncompleteSudoku
+{
+    public boolean checkSolvable(int[][] board)
+    {
+        boolean solvable = true;
+        for(int i = 0; i < board.length; i++)
+        {
+            for(int j = 0; j < board.length; j++)
+            {
+                if(!validConfiguration(board, i, j))
+                {
+                    solvable = false;
+                }
+            }
+        }
+        return solvable;
+    }
+    boolean validConfiguration(int[][] board, int row, int col)
+    {
+        boolean notInRow = notInRow(board, row);
+        boolean notInColumn = notInColumn(board, col);
+        boolean notInBox = notInBox(board, row - row % 3, col - col % 3);
+        return notInRow && notInColumn && notInBox;
+    }
+
+    boolean notInRow(int[][] board, int row)
+    {
+        HashSet<Integer> set = new HashSet<Integer>();
+        boolean notInRow = true;
+
+        for(int i = 0; i < board.length; i++)
+        {
+            if(set.contains(board[row][i]))
+            {
+                notInRow = false;
+                break;
+            }
+
+            if(board[row][i] != 0) 
+            {
+                set.add(board[row][i]);
+            }
+        }
+
+        return notInRow;
+    }
+
+    boolean notInColumn(int[][] board, int column)
+    {
+        HashSet<Integer> set = new HashSet<Integer>();    
+        boolean notInColumn = true;
+
+        for(int i = 0; i < board.length; i++)
+        {
+            if(set.contains(board[i][column]))
+            {
+                notInColumn = false;
+                break;
+            }
+
+            if(board[i][column] != 0) 
+            {
+                set.add(board[i][column]);
+            }
+        }
+
+        return notInColumn;
+    }
+
+    boolean notInBox(int[][] board, int startRow, int startColumn)
+    {
+        HashSet<Integer> set = new HashSet<Integer>();  
+        boolean notInBox = true;
+
+        for(int i = 0; i < 3; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                int num = board[i + startRow][j + startColumn];
+
+                if(set.contains(num))
+                {
+                    notInBox = false;
+                    break;
+                }
+
+                if(num != 0)
+                {
+                    set.add(num);
+                }
+            }
+        }   
+
+        return notInBox;
+    }
+}
+public class ValidSudoku 
+{
+    public static void main(String[] args) throws FileNotFoundException 
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter a Sudoku file: ");
+        String input = scan.nextLine();
+        File inFile = new File(input);
+        SudokuFile sf = new SudokuFile(inFile);
+        sf.printBoard();
+        
+        IncompleteSudoku is = new IncompleteSudoku();
+
+        System.out.println("Solvable Sudoku? " + is.checkSolvable(sf.getBoard()));
+        scan.close();
+    }
+
+    
 }
