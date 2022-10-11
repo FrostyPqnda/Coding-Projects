@@ -4,28 +4,13 @@
  * is a valid solution.
  * 
  * Description of Sudoku: A logic-based game in which players 
- * are to fill an NxN grid (N is a perfect square) with values
- * from [1, N] in a manner such that all rows, column, and grid
- * do not contain duplicate values
- * 
- * Changelog:
- * - October 10, 2022:
- *   - Started the ValidSudoku program
- *   - Created 3 checking conditions for the Sudoku board
- *     to see if the given solution is valid
- *     - checkRow(board, int rowNum)
- *     - checkColumn(board, int columnNum)
- *     - checkBox(board, int boxNum)
- *   - Created a helper function that extracts a submatrix
- *     from the original board.
- * 
- * To-Do List:
- * - Make the program work even for an incomplete Sudoku file
- * - Code compression 
+ * are to fill an 9x9 grid (N is a perfect square) with values
+ * from [1, 9] in a manner such that all rows, columns, and 
+ * boxes do not contain duplicate values
  * 
  * @author Brian Pham
  * @version 1.0
- * @since 2022-10-10;
+ * @since 2022-10-10;\
  */
 
 import java.util.*; 
