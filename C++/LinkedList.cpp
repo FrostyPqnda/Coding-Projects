@@ -72,7 +72,7 @@ LinkedList li;
 int main() {
 
     for(int i = 0; i < 10; i++) {
-        li.insert((rand() % 100) + 1);
+        li.insert(i + 1);
     }
 
     li.print();
