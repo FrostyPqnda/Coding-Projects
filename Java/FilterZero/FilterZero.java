@@ -1,9 +1,8 @@
 import java.util.*;
-
-public class FilterZero 
+class FilterZero 
 {
     public static void main(String[] args) {
-        int[] arr = {0, 1};
+        int[] arr = {1, 0, 0, 0, 4, 5, 0, 0};
         System.out.println(Arrays.toString(arr));
         int[] filter = filterZero(arr);
         System.out.println(Arrays.toString(filter));
@@ -49,10 +48,10 @@ public class FilterZero
         boolean flag = true;
 
         for(int i = 0; i < arr.length; i++) {
-        if(arr[i] != 0) {
-            flag = false;
-            break;
-        }
+            if(arr[i] != 0) {
+                flag = false;
+                break;
+            }
         }
 
         return flag;
