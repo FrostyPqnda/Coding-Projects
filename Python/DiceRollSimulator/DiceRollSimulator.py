@@ -57,17 +57,20 @@ def generateGraph():
 
     ax.set_xlim(0)
 
-    plot_canvas.get_tk_widget().pack()
+    #plot_canvas.get_tk_widget().pack()
+    plot_canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.NONE, expand=0)
     #toolbar = NavigationToolbar2Tk(plot_canvas, app)
     #toolbar.update()
     #plot_canvas.get_tk_widget().pack()
 
+    app.after(1000, None)
+    """
     for key, value in bucket.items():
         str += 'Frequency of Dice #' + (f'{key}: {value}') + '\n'
 
     freq.config(text = str)
     freq.pack(pady = 10)
-
+    """
 # Return a list of dice rolls
 def rollDie():
     return [randint(1, 6) for _ in range(int(entry.get()))]
