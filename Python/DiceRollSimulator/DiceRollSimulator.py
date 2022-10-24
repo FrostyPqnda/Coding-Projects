@@ -5,6 +5,11 @@ import tkinter as tk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, 
 NavigationToolbar2Tk)
+import os
+import base64
+from icon import iconImg
+from logo import logoImg
+from PIL import Image, ImageTk
 
 app = tk.Tk()
 title = tk.Label(app, font = ('Oswald', 40, 'bold'), background = '#283140', foreground = '#fff', text='Dice Roll Simulator')
@@ -12,14 +17,43 @@ canvas = tk.Canvas(app, width = 600, height = 600, bg = '#1d4d80')
 entry = tk.Entry(canvas, width = 10, font=('Oswald 24'), justify = tk.CENTER)
 fig = Figure(figsize = (6, 5), dpi = 100)
 plot_canvas = None
-freq = tk.Label(canvas, font = ('Oswald', 15, 'bold'), width = 50, height = 10, background = '#283140', foreground = '#fff')
+freq = tk.Label(canvas, font = ('Oswald', 15, 'bold'), width = 25, height = 7, background = '#283140', foreground = '#fff')
 btn = tk.Button(canvas, width = 10, height = 1, font=('Oswald 12'), text = 'Generate')
 colors = [
     '#14262B', '#25575B', '#408873',
     '#88A986', '#DFDFAF', '#425768',
 ]
+personalLogo = tk.Label(canvas, bg = '#1d4d80')
+
+# Creates the icon existing in the top left corner of the application
+def createIcon():
+    tmpIcon = open('tempIcon.ico','wb+')
+    tmpIcon.write(base64.b64decode(iconImg))
+    tmpIcon.close()
+
+    app.iconbitmap('tempIcon.ico')
+    os.remove('tempIcon.ico')
+
+# Add my logo to the bottom left of my app.
+def createLogo():
+    tmpLogo = open('tempLogo.ico', 'wb+')
+    tmpLogo.write(base64.b64decode(logoImg))
+    tmpLogo.close()
+
+    image = Image.open('tempLogo.ico')
+    image = image.resize((30, 30))
+    logo = ImageTk.PhotoImage(image)    
+
+    personalLogo.config(image = logo)
+    personalLogo.image = logo # Keep a reference to the logo.
+    personalLogo.pack(anchor='w', side = tk.BOTTOM, padx = 7, pady = 7)
+
+    os.remove('tempLogo.ico')
 
 def drawApp():
+    #createIcon()
+    createLogo()
+
     app.title('Dice Roll Simulator')
     title.pack(fill = tk.X)
     minWidth = int(app.winfo_screenwidth() * 0.40)
@@ -57,7 +91,7 @@ def generateGraph():
 
     ax.set_xlim(0)
 
-    #plot_canvas.get_tk_widget().pack()
+    plot_canvas.get_tk_widget().pack()
     plot_canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.NONE, expand=0)
     #toolbar = NavigationToolbar2Tk(plot_canvas, app)
     #toolbar.update()
@@ -68,8 +102,8 @@ def generateGraph():
     for key, value in bucket.items():
         str += 'Frequency of ' + (f'{key}: {value}') + '\n'
 
-    freq.config(text = str)
-    freq.pack(pady = 10)
+    #freq.config(text = str)
+    #freq.pack(side = tk.TOP, anchor = 'w', pady = 20)
 
 # Return a list of dice rolls
 def rollDie():
