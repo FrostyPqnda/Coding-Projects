@@ -9,11 +9,11 @@ NavigationToolbar2Tk)
 app = tk.Tk()
 title = tk.Label(app, font = ('Oswald', 40, 'bold'), background = '#283140', foreground = '#fff', text='Dice Roll Simulator')
 canvas = tk.Canvas(app, width = 600, height = 600, bg = '#1d4d80')
-entry = tk.Entry(canvas, width = 20, font=('Oswald 24'))
+entry = tk.Entry(canvas, width = 10, font=('Oswald 24'), justify = tk.CENTER)
 fig = Figure(figsize = (6, 5), dpi = 100)
 plot_canvas = None
-freq = tk.Label(canvas, font = ('Oswald', 15, 'bold'), width = 50, height = 5, background = '#283140', foreground = '#fff')
-
+freq = tk.Label(canvas, font = ('Oswald', 15, 'bold'), width = 50, height = 10, background = '#283140', foreground = '#fff')
+btn = tk.Button(canvas, width = 10, height = 1, font=('Oswald 12'), text = 'Generate')
 colors = [
     '#14262B', '#25575B', '#408873',
     '#88A986', '#DFDFAF', '#425768',
@@ -27,16 +27,15 @@ def drawApp():
     app.minsize(minWidth, minHeight)
     app.geometry('%dx%d' % (app.winfo_screenwidth(), app.winfo_screenheight()))
     canvas.pack(expand=True, fill='both')
-    app.unbind_all('<<PrevWindow>>')
-    app.unbind_all('<<NextWindow>>')
     app.state('zoomed')
     entry.pack(pady = 10)
-    btn = tk.Button(canvas, width = 10, height = 1, font=('Oswald 12'), text = 'Generate', command = generateGraph)
+    btn.configure(command = generateGraph)
     btn.pack(pady = 20)
     app.mainloop()
 
 def generateGraph():
     global plot_canvas
+    global btn
     
     if plot_canvas:
         plot_canvas.get_tk_widget().destroy()
@@ -46,7 +45,8 @@ def generateGraph():
     str = ''
 
     plot_canvas = FigureCanvasTkAgg(fig, canvas)
-    ax = fig.add_subplot(111)
+    ax = fig.add_subplot(1,1,1)
+    ax.set_title('Dice Roll Frequency\n# of Rolls: ' + entry.get())
     barplot = ax.barh(*zip(*bucket.items()), color = colors, align = 'center', ec = 'black')
     ax.invert_yaxis()
     ax.set_ylabel('Dice #')
@@ -64,13 +64,13 @@ def generateGraph():
     #plot_canvas.get_tk_widget().pack()
 
     app.after(1000, None)
-    """
+    
     for key, value in bucket.items():
-        str += 'Frequency of Dice #' + (f'{key}: {value}') + '\n'
+        str += 'Frequency of ' + (f'{key}: {value}') + '\n'
 
     freq.config(text = str)
     freq.pack(pady = 10)
-    """
+
 # Return a list of dice rolls
 def rollDie():
     return [randint(1, 6) for _ in range(int(entry.get()))]
