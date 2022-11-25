@@ -1,18 +1,24 @@
-from typing import Union, Sequence
-
+from __future__ import annotations
 
 class Matrix:
+    # Constructor for the Matrix class
     def __init__(self, board: list[float] = [[]]):
         self.mat = board
 
+    # Checks if the matrix is a square matrix.
+    # No. of rows = No. of columns.
     def isSquare(self):
-        return len(self.mat) == len(self.mat[0])
+        return len(self.getMatrix()) == len(self.getMatrix()[0])
 
+    # Return the matrix as a 2D list
     def getMatrix(self):
         return self.mat
 
+    # Returns the transposed matrix of the original matrix.
+    # A transposed matrix is matrix in which the rows and 
+    # columns of the matrix are swapped with each other.
     def transpose(self):
-        a = self.mat
+        a = self.getMatrix()
         col = len(a[0])
         row = len(a)
         T = [[None for _ in range(row)] for _ in range(col)]
@@ -33,7 +39,7 @@ class Matrix:
         if not self.isSquare():
             return None
         
-        a = self.mat
+        a = self.getMatrix()
         temp = [0] * len(a)
         total = 1
         det = 1
@@ -69,10 +75,88 @@ class Matrix:
 
         return int(det / total)
 
+    # Checks if the matrix is the identity matrix
+    def isIdentity(self):
+        A = self.getMatrix()
+        if not self.isSquare():
+            return False
+
+        for i in range(len(A)):
+            for j in range(len(A)):
+                if i == j:
+                    if A[i][j] != 1:
+                        return False
+                else:
+                    if A[i][j] != 0:
+                        return False
+        
+        return True
+
+    # Returns the N - 1 cofactor of the Matrix
+    # given the row and col indices
+    def cofactor(self, p: int, q: int):
+        if not self.isSquare():
+            return None
+        
+        i = 0 
+        j = 0
+        A = self.getMatrix()
+        cof = [[0 for _ in range(len(A) - 1)] for _ in range(len(A) - 1)]
+
+        for r in range(len(A)):
+            for c in range(len(A)):
+                if r != p and c != q:
+                    cof[i][j] = A[r][c]
+                    j += 1
+
+                    if j == len(A) - 1:
+                        j = 0
+                        i += 1
+
+        return Matrix(cof)
+
+    # Returns the cofactor matrix of the matrix
+    def cof(self):
+        if not self.isSquare():
+            return None
+
+        A = self.getMatrix()
+        cofMat = [[0 for _ in range(len(A))] for _ in range(len(A))]
+
+        sign = 1
+        for i in range(len(A)):
+            for j in range(len(A)):
+                cof = self.cofactor(i, j)
+                sign = [1, -1][(i + j) % 2]
+                cofMat[i][j] = (sign) * cof.det()
+
+        return Matrix(cofMat)
+        
+    # Returns the transpose of the cofactor matrix
+    def adj(self):
+        return self.cof().transpose()
+
+    # Returns the inverse of the matrix
+    def inv(self):
+        det = self.det()
+        if not self.isSquare() or det == 0:
+            return None
+
+        A = self.getMatrix()
+
+        inverse = [[0 for _ in range(len(A))] for _ in range(len(A))]
+        adj = self.adj().getMatrix()
+
+        for i in range(len(A)):
+            for j in range(len(A)):
+                inverse[i][j] = round(adj[i][j] / det, 3)
+
+        return Matrix(inverse)
+                
     # Returns the sum of two matrices
-    def __add__(self, other):
-        a = self.mat
-        b = other.mat
+    def __add__(self, other: Matrix):
+        a = self.getMatrix()
+        b = other.getMatrix()
         if len(a) == len(b) and len(a[0]) == len(b[0]):
             res = [[0 for _ in range(len(a))] for _ in range(len(a[0]))]
             for r in range(len(res)):
@@ -83,10 +167,14 @@ class Matrix:
         else:
             return None
 
+    # Return the sum of this matrix and the other matrix
+    def __iadd__(self, other: Matrix):
+        return self + other
+
     # Returns the difference of two matrices
-    def __sub__(self, other):
-        a = self.mat
-        b = other.mat
+    def __sub__(self, other: Matrix):
+        a = self.getMatrix()
+        b = other.getMatrix()
         if len(a) == len(b) and len(a[0]) == len(b[0]):
             res = [[0 for _ in range(len(a))] for _ in range(len(a[0]))]
             for r in range(len(res)):
@@ -96,11 +184,15 @@ class Matrix:
             return Matrix(res) 
         else:
             return None
+
+    # Return the difference of this matrix and the other matrix
+    def __isub__(self, other: Matrix):
+        return self - other
     
     # Returns the product of two matrices
-    def __mul__(self, other):
-        a = self.mat
-        b = other.mat
+    def __mul__(self, other: Matrix):
+        a = self.getMatrix()
+        b = other.getMatrix()
 
         if len(a[0]) == len(b):
             res = [[0 for _ in range(len(b[0]))] for _ in range(len(a))]
@@ -117,26 +209,46 @@ class Matrix:
         else:
             return None
 
+    # Return the product of this matrix and the other matrix
+    def __imul__(self, other: Matrix):
+        return self * other
+
+    # Returns a matrix times itself N times
+    def __pow__(self, exp: int):
+        if exp <= 1:
+            return self
+
+        for i in range(exp):
+            B = self * self
+
+        return B
+
+    # Returns the inverse of the matrix. Symbol is the ~
+    # Ex: ~C
+    def __invert__(self):
+        return self.inv()
+
+    # Returns the Object representation of the Matrix class
+    def __repr__(self):
+        return f'Matrix({self.mat})'
+
+    # Returns the string representation of the Matrix class
     def __str__(self):
         res = ''
 
-        for arr in self.mat:
+        for arr in self.getMatrix():
             res += str(arr) + '\n'
 
         return res.replace(',', ' ')[:len(res) - 1]
 
+# Only called within the file itself. 
+# Cannot be called if it is imported.
+if __name__ == '__main__':
+    arr = [
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1]
+    ]
 
-board = [
-    [45]
-]
-
-mat = [
-    [4,5,6],
-    [7,8,9],
-    [1,2,5]
-]
-
-a = Matrix(mat)
-b = Matrix(mat)
-c = a * b
-print(a)
+    I = Matrix(arr)
+    print(I)
