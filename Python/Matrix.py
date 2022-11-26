@@ -1,10 +1,11 @@
 from __future__ import annotations
+from typing import List
 
 class Matrix:
     # Constructor for the Matrix class
-    def __init__(self, board: list[float] = [[]]):
+    def __init__(self, board: List[List[float]]):
         self.mat = board
-
+        
     # Checks if the matrix is a square matrix.
     # No. of rows = No. of columns.
     def isSquare(self):
@@ -33,6 +34,20 @@ class Matrix:
                     r += 1
 
         return Matrix(T)
+
+    def isSymmetric(self):
+        if not self.isSquare():
+            return False
+
+        A = self.getMatrix()
+        B = A.transpose().getMatrix()
+
+        for i in range(len(A)):
+            for j in range(len(B)):
+                if A[i][j] != B[i][j]:
+                    return False
+
+        return True
 
     # Calculates the determinant. Code taken from [https://www.geeksforgeeks.org/determinant-of-a-matrix/]
     def det(self) -> int:
@@ -77,10 +92,9 @@ class Matrix:
 
     # Checks if the matrix is the identity matrix
     def isIdentity(self):
-        A = self.getMatrix()
         if not self.isSquare():
             return False
-
+        A = self.getMatrix()
         for i in range(len(A)):
             for j in range(len(A)):
                 if i == j:
@@ -89,6 +103,16 @@ class Matrix:
                 else:
                     if A[i][j] != 0:
                         return False
+        
+        return True
+
+    def isZero(self):
+        A = self.getMatrix()
+
+        for i in range(len(A)):
+            for j in range(len(A[i])):
+                if A[i][j] != 0:
+                    return False
         
         return True
 
@@ -142,19 +166,37 @@ class Matrix:
         if not self.isSquare() or det == 0:
             return None
 
-        A = self.getMatrix()
+        A = self
+        print('Original\n')
+        print(self)
+        #inverse = [[0 for _ in range(len(A))] for _ in range(len(A))]
+        adj = self.adj()
+        print('Adjoint\n')
+        print(adj)
 
-        inverse = [[0 for _ in range(len(A))] for _ in range(len(A))]
-        adj = self.adj().getMatrix()
-
+        """
         for i in range(len(A)):
             for j in range(len(A)):
-                inverse[i][j] = round(adj[i][j] / det, 3)
+                inverse[i][j] = ((1/det) * adj[i][j])
+                print('i, j = {}'.format(i, j), '=', inverse[i][j])
+        """
 
-        return Matrix(inverse)
+        #return Matrix(inverse)
+    
+    # Returns the projection matrix
+    def proj(self):
+        A = self
+        B = A.transpose()
+        C = B * A
+
+        return A * ~C * B
                 
     # Returns the sum of two matrices
     def __add__(self, other: Matrix):
+        if not isinstance(other, Matrix):
+            print('Variable:', other, 'is of type {}'.format(type(other)))
+            return None
+
         a = self.getMatrix()
         b = other.getMatrix()
         if len(a) == len(b) and len(a[0]) == len(b[0]):
@@ -173,6 +215,10 @@ class Matrix:
 
     # Returns the difference of two matrices
     def __sub__(self, other: Matrix):
+        if not isinstance(other, Matrix):
+            print('Variable:', other, 'is of type {}'.format(type(other)))
+            return None
+
         a = self.getMatrix()
         b = other.getMatrix()
         if len(a) == len(b) and len(a[0]) == len(b[0]):
@@ -191,6 +237,10 @@ class Matrix:
     
     # Returns the product of two matrices
     def __mul__(self, other: Matrix):
+        if not isinstance(other, Matrix):
+            print('Variable:', other, 'is of type {}'.format(type(other)))
+            return None
+
         a = self.getMatrix()
         b = other.getMatrix()
 
@@ -215,11 +265,17 @@ class Matrix:
 
     # Returns a matrix times itself N times
     def __pow__(self, exp: int):
-        if exp <= 1:
-            return self
+        if not isinstance(exp, int):
+            print('Variable:', exp, 'is of type {}'.format(type(exp)))
+            return None
+            
+        if exp <= 0:
+            return None
+
+        B = self
 
         for i in range(exp):
-            B = self * self
+            B *= B
 
         return B
 
@@ -230,7 +286,7 @@ class Matrix:
 
     # Returns the Object representation of the Matrix class
     def __repr__(self):
-        return f'Matrix({self.mat})'
+        return f'Matrix = ({self.getMatrix()})'
 
     # Returns the string representation of the Matrix class
     def __str__(self):
@@ -244,11 +300,11 @@ class Matrix:
 # Only called within the file itself. 
 # Cannot be called if it is imported.
 if __name__ == '__main__':
-    arr = [
-        [1, 0, 0],
-        [0, 1, 0],
-        [0, 0, 1]
+    A = [
+        [1, 0, 2],
+        [2, 1, 4],
+        [5, 5, 9]
     ]
-
-    I = Matrix(arr)
-    print(I)
+    
+    P = Matrix(A)
+    print(~P)
