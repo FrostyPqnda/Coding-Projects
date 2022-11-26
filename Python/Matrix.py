@@ -1,10 +1,12 @@
 from __future__ import annotations
 from typing import List
+import copy
 
 class Matrix:
     # Constructor for the Matrix class
     def __init__(self, board: List[List[float]]):
         self.mat = board
+
         
     # Checks if the matrix is a square matrix.
     # No. of rows = No. of columns.
@@ -54,7 +56,7 @@ class Matrix:
         if not self.isSquare():
             return None
         
-        a = self.getMatrix()
+        a = copy.deepcopy(self.getMatrix())
         temp = [0] * len(a)
         total = 1
         det = 1
@@ -106,6 +108,7 @@ class Matrix:
         
         return True
 
+    # Checks if the matrix is the zero matrix
     def isZero(self):
         A = self.getMatrix()
 
@@ -116,11 +119,39 @@ class Matrix:
         
         return True
 
-    # Returns the N - 1 cofactor of the Matrix
-    # given the row and col indices
-    def cofactor(self, p: int, q: int):
-        if not self.isSquare():
+    def scalar_mult(self, k):
+        if not isinstance(k, (int, float)):
             return None
+
+        A = copy.deepcopy(self.getMatrix())
+
+        for i in range(len(A)):
+            for j in range(len(A[i])):
+                A[i][j] = k * A[i][j]
+
+        return Matrix(A)
+
+
+    # Swaps two rows in the Matrix. Done via 1-based indexing
+    def row_swap(self, row_i: int, row_j: int):
+        if not all(isinstance(k, int) for k in [row_i, row_j]):
+            return 'Invalid type'
+
+        if row_i >= row_j:
+            row_i, row_j = row_j, row_i
+
+        if row_i - 1 < 0 or row_j - 1 > 2:
+            return 'Invalid row'
+
+        A = copy.deepcopy(self.getMatrix())
+        A[row_i - 1], A[row_j - 1] = A[row_j - 1], A[row_i - 1]
+        return Matrix(A)
+
+    # Returns the N - 1 submatrix of the Matrix
+    # given the row and col indices
+    def cof_sub(self, p: int, q: int):
+        if not self.isSquare():
+            return 'Not a square matrix'
         
         i = 0 
         j = 0
@@ -142,7 +173,7 @@ class Matrix:
     # Returns the cofactor matrix of the matrix
     def cof(self):
         if not self.isSquare():
-            return None
+            return 'Not a square matrix'
 
         A = self.getMatrix()
         cofMat = [[0 for _ in range(len(A))] for _ in range(len(A))]
@@ -150,7 +181,7 @@ class Matrix:
         sign = 1
         for i in range(len(A)):
             for j in range(len(A)):
-                cof = self.cofactor(i, j)
+                cof = self.cof_sub(i, j)
                 sign = [1, -1][(i + j) % 2]
                 cofMat[i][j] = (sign) * cof.det()
 
@@ -164,32 +195,35 @@ class Matrix:
     def inv(self):
         det = self.det()
         if not self.isSquare() or det == 0:
-            return None
+            return 'Not invertible'
 
-        A = self
-        print('Original\n')
-        print(self)
-        #inverse = [[0 for _ in range(len(A))] for _ in range(len(A))]
-        adj = self.adj()
-        print('Adjoint\n')
-        print(adj)
+        A = copy.deepcopy(self.getMatrix())
+        inverse = [[0 for _ in range(len(A))] for _ in range(len(A))]
+        adj = copy.deepcopy(self.adj().getMatrix())
 
-        """
         for i in range(len(A)):
             for j in range(len(A)):
                 inverse[i][j] = ((1/det) * adj[i][j])
-                print('i, j = {}'.format(i, j), '=', inverse[i][j])
-        """
 
-        #return Matrix(inverse)
+                if inverse[i][j].is_integer():
+                    inverse[i][j] = int(inverse[i][j])
+                else:
+                    inverse[i][j] = round(inverse[i][j], 3)
+
+        return Matrix(inverse)
     
     # Returns the projection matrix
+    # Might need to modify/fix
     def proj(self):
-        A = self
+        A = copy.deepcopy(self)
         B = A.transpose()
         C = B * A
 
-        return A * ~C * B
+        if C.det() == 0:
+            return None
+
+        K = A * ~C
+        return K * B
                 
     # Returns the sum of two matrices
     def __add__(self, other: Matrix):
@@ -252,6 +286,9 @@ class Matrix:
                 for c in range(len(res[r])):
                     for i in range(len(a[0])):
                         sum += (a[r][i] * b[i][c])
+                    sum = round(sum, 3)
+                    if float(sum).is_integer():
+                        sum = int(sum)
                     res[r][c] = sum
                     sum = 0
 
@@ -272,10 +309,11 @@ class Matrix:
         if exp <= 0:
             return None
 
-        B = self
-
+        B = copy.deepcopy(self)
+        C = copy.deepcopy(B)
         for i in range(exp):
-            B *= B
+            B = self * self
+            B *= C
 
         return B
 
@@ -301,10 +339,25 @@ class Matrix:
 # Cannot be called if it is imported.
 if __name__ == '__main__':
     A = [
-        [1, 0, 2],
+        [1, 5, 6],
         [2, 1, 4],
-        [5, 5, 9]
+        [9, 3, 7]
+    ]
+
+    B = [
+        [0],
+        [0],
+        [0]
+    ]
+
+    C = [
+        [0, 1],
+        [1, 0]
     ]
     
     P = Matrix(A)
-    print(~P)
+    Q = Matrix(B)
+    R = Matrix(C)
+    print(P)
+    print('\n')
+    print(R ** 4)
