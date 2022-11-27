@@ -90,7 +90,12 @@ class Matrix:
         for i in range(len(a)):
             det *= a[i][i]
 
-        return int(det / total)
+        det = det / total
+
+        if det.is_integer():
+            det = round(det)
+
+        return det
 
     # Checks if the matrix is the identity matrix
     def isIdentity(self):
@@ -131,6 +136,74 @@ class Matrix:
 
         return Matrix(A)
 
+    # Returns the LU decomposition of the matrix as a dictonary. Code take from
+    # [https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/]
+    def LU_decomp(self):
+        if not self.isSquare():
+            return None
+
+        A = copy.deepcopy(self.getMatrix())
+        upper = [[0 for _ in range(len(A))] for _ in range(len(A))]
+        lower = [[0 for _ in range(len(A))] for _ in range(len(A))]
+
+        for i in range(len(A)):
+            for j in range(i, len(A)):
+                sum = 0
+                for k in range(i):
+                    sum += (lower[i][k] * upper[k][j])
+                upper[i][j] = A[i][j] - sum
+
+            for j in range(i, len(A)):
+                if i == j:
+                    lower[i][i] = 1
+                else:
+                    sum = 0
+                    for k in range(i):
+                        sum += (lower[j][k] * upper[k][i])
+                    
+                    lower[j][i] = (A[j][i] - sum) / upper[i][i]
+                    if lower[j][i].is_integer():
+                        lower[j][i] = round(lower[j][i])
+
+        dict = {
+            'L': Matrix(lower),
+            'U': Matrix(upper)
+        }
+        return dict
+
+    def LDU_decomp(self):
+        lower = copy.deepcopy(self.lower())
+        diagonal = copy.deepcopy(self.diagonal())
+        upper = copy.deepcopy(self.upper())
+
+        dict = {
+            'L': lower,
+            'D': diagonal,
+            'U': upper
+        }
+        return dict
+
+    # Return the upper triangular form of the matrix
+    def upper(self):
+        dict = self.LU_decomp()
+        return dict['U']
+
+    # Return the lower triangular form of the matrix
+    def lower(self):
+        dict = self.LU_decomp()
+        return dict['L']
+
+
+    def diagonal(self):
+        U = copy.deepcopy(self.upper().getMatrix())
+        D = [[0 for _ in range(len(U))] for _ in range(len(U))]
+
+        for i in range(len(U)):
+            for j in range(len(U)):
+                if i == j:
+                    D[i][j] = U[i][j]
+
+        return Matrix(D)
 
     # Swaps two rows in the Matrix. Done via 1-based indexing
     def row_swap(self, row_i: int, row_j: int):
@@ -146,6 +219,35 @@ class Matrix:
         A = copy.deepcopy(self.getMatrix())
         A[row_i - 1], A[row_j - 1] = A[row_j - 1], A[row_i - 1]
         return Matrix(A)
+    
+    # Swaps two columns in the Matrix. Done via 1-based indexing
+    def col_swap(self, col_i: int, col_j: int):
+        if not all(isinstance(k, int) for k in [col_i, col_j]):
+            return 'Invalid type'
+
+        if col_i >= col_j:
+            col_i, col_j = col_j, col_i
+
+        if col_i - 1 < 0 or col_j - 1 > 2:
+            return 'Invalid column'
+
+        A = copy.deepcopy(self.getMatrix())
+
+        for i in range(len(A)):
+            A[i][col_i - 1], A[i][col_j - 1] = A[i][col_j - 1], A[i][col_i - 1]
+
+        return Matrix(A)
+
+    # Swaps the rows/columns of a matrix depending on the type given (r, c)
+    def swap(self, i: int, j: int, type: str):
+        if type[0].lower() != ('r' or 'c'):
+            return 'Invalid type'
+
+        if type[0].lower() == 'r':
+            return self.row_swap(i, j)
+        else:
+            return self.col_swap(i, j)
+
 
     # Returns the N - 1 submatrix of the Matrix
     # given the row and col indices
@@ -277,7 +379,7 @@ class Matrix:
 
         a = self.getMatrix()
         b = other.getMatrix()
-
+                                                                     
         if len(a[0]) == len(b):
             res = [[0 for _ in range(len(b[0]))] for _ in range(len(a))]
             sum = 0
@@ -286,9 +388,9 @@ class Matrix:
                 for c in range(len(res[r])):
                     for i in range(len(a[0])):
                         sum += (a[r][i] * b[i][c])
-                    sum = round(sum, 3)
+                    sum = round(sum, 1)
                     if float(sum).is_integer():
-                        sum = int(sum)
+                        sum = round(sum)
                     res[r][c] = sum
                     sum = 0
 
@@ -338,26 +440,16 @@ class Matrix:
 # Only called within the file itself. 
 # Cannot be called if it is imported.
 if __name__ == '__main__':
-    A = [
-        [1, 5, 6],
-        [2, 1, 4],
-        [9, 3, 7]
-    ]
+    A = [[2, -1, -2],
+       [-4, 6, 3],
+       [-4, -2, 8]]
 
     B = [
-        [0],
-        [0],
-        [0]
-    ]
-
-    C = [
-        [0, 1],
-        [1, 0]
+        [1, 3, 2],
+        [3, 7, 5],
+        [2, 5, 8]
     ]
     
-    P = Matrix(A)
-    Q = Matrix(B)
-    R = Matrix(C)
-    print(P)
-    print('\n')
-    print(R ** 4)
+    P = Matrix(B)
+
+    print(P.LDU_decomp())
