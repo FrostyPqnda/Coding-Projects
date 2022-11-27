@@ -5,8 +5,12 @@ import copy
 class Matrix:
     # Constructor for the Matrix class
     def __init__(self, board: List[List[float]]):
-        self.mat = board
-
+        if isinstance(board[0], (float, int)):
+            self.mat = [[0 for _ in range(1)] for _ in range(len(board))]
+            for i in range(len(board)):
+                self.mat[i][0] = board[i]
+        else:
+            self.mat = board
         
     # Checks if the matrix is a square matrix.
     # No. of rows = No. of columns.
@@ -36,20 +40,6 @@ class Matrix:
                     r += 1
 
         return Matrix(T)
-
-    def isSymmetric(self):
-        if not self.isSquare():
-            return False
-
-        A = self.getMatrix()
-        B = A.transpose().getMatrix()
-
-        for i in range(len(A)):
-            for j in range(len(B)):
-                if A[i][j] != B[i][j]:
-                    return False
-
-        return True
 
     # Calculates the determinant. Code taken from [https://www.geeksforgeeks.org/determinant-of-a-matrix/]
     def det(self) -> int:
@@ -112,7 +102,53 @@ class Matrix:
                         return False
         
         return True
+    
+    # Checks if the matrix is symmetric.
+    # That is A = the transpose of A
+    def isSymmetric(self):
+        if not self.isSquare():
+            return False
 
+        A = self.getMatrix()
+        B = A.transpose().getMatrix()
+
+        for i in range(len(A)):
+            for j in range(len(B)):
+                if A[i][j] != B[i][j]:
+                    return False
+
+        return True
+
+    # Checks if matrix is skew-symmetric. A = -A^T
+    def isSkew(self):
+        if not self.isSquare():
+            return False
+        
+        skew = copy.deepcopy(self.transpose().scalar_mult(-1)).getMatrix()
+        A = self.getMatrix()
+
+        for i in range(len(A)):
+            for j in range(len(A)):
+                if A[i][j] != skew[i][j]:
+                    return False
+
+        return True
+
+    # Checks if the matrix is idempotent. A^2 = A
+    def isIdempotent(self):
+        if not self.isSquare():
+            return False
+
+        A = self.getMatrix()
+        A_Squared = copy.deepcopy(self ** 2).getMatrix()
+
+        for i in range(len(A)):
+            for j in range(len(A)):
+                if A[i][j] != A_Squared[i][j]:
+                    return False
+
+        return True
+    
     # Checks if the matrix is the zero matrix
     def isZero(self):
         A = self.getMatrix()
@@ -171,15 +207,25 @@ class Matrix:
         }
         return dict
 
+    # Return the LDU decomposition of the matrix
     def LDU_decomp(self):
         lower = copy.deepcopy(self.lower())
         diagonal = copy.deepcopy(self.diagonal())
         upper = copy.deepcopy(self.upper())
 
+        upperMat = upper.getMatrix()
+
+        for i in range(len(upperMat)):
+            for j in range(len(upperMat)):
+                upperMat[i][j] = (upperMat[i][j] / diagonal.getMatrix()[i][i])
+                if upperMat[i][j].is_integer():
+                    upperMat[i][j] = round(upperMat[i][j])
+
+        newUpper = Matrix(upperMat)
         dict = {
             'L': lower,
             'D': diagonal,
-            'U': upper
+            'U': newUpper
         }
         return dict
 
@@ -193,7 +239,6 @@ class Matrix:
         dict = self.LU_decomp()
         return dict['L']
 
-
     def diagonal(self):
         U = copy.deepcopy(self.upper().getMatrix())
         D = [[0 for _ in range(len(U))] for _ in range(len(U))]
@@ -205,18 +250,30 @@ class Matrix:
 
         return Matrix(D)
 
+    # Solves the linear system of equation. inv(A) * b = x
+    # Only works if matrix A is invertible (as of now).
+    def solve(self, b: list):
+        if self.inv() == None:
+            return None
+
+        inv = copy.deepcopy(~self)
+        bMat = Matrix(b)
+
+        return inv * bMat
+
     # Swaps two rows in the Matrix. Done via 1-based indexing
     def row_swap(self, row_i: int, row_j: int):
         if not all(isinstance(k, int) for k in [row_i, row_j]):
             return 'Invalid type'
 
+        A = copy.deepcopy(self.getMatrix())
         if row_i >= row_j:
             row_i, row_j = row_j, row_i
 
-        if row_i - 1 < 0 or row_j - 1 > 2:
-            return 'Invalid row'
 
-        A = copy.deepcopy(self.getMatrix())
+        if row_i - 1 < 0 or row_j - 1 > len(A) - 1:
+            return 'Invalid row'
+        
         A[row_i - 1], A[row_j - 1] = A[row_j - 1], A[row_i - 1]
         return Matrix(A)
     
@@ -225,13 +282,13 @@ class Matrix:
         if not all(isinstance(k, int) for k in [col_i, col_j]):
             return 'Invalid type'
 
+        A = copy.deepcopy(self.getMatrix())
+
         if col_i >= col_j:
             col_i, col_j = col_j, col_i
 
-        if col_i - 1 < 0 or col_j - 1 > 2:
+        if col_i - 1 < 0 or col_j - 1 > len(A[0]) - 1:
             return 'Invalid column'
-
-        A = copy.deepcopy(self.getMatrix())
 
         for i in range(len(A)):
             A[i][col_i - 1], A[i][col_j - 1] = A[i][col_j - 1], A[i][col_i - 1]
@@ -299,7 +356,7 @@ class Matrix:
         if not self.isSquare() or det == 0:
             return 'Not invertible'
 
-        A = copy.deepcopy(self.getMatrix())
+        A = self.getMatrix()
         inverse = [[0 for _ in range(len(A))] for _ in range(len(A))]
         adj = copy.deepcopy(self.adj().getMatrix())
 
@@ -326,6 +383,48 @@ class Matrix:
 
         K = A * ~C
         return K * B
+
+    # Returns the value at the specified indices.
+    # Done via 1-based indexing
+    def get(self, i: int, j: int):
+        if not all(isinstance(k, int) for k in [i, j]):
+            return 'Invalid type'
+        A = self.getMatrix()
+
+        if i - 1 < 0 or i - 1 > len(A) - 1:
+            return 'Invalid row'
+
+        if j - 1 < 0 or j - 1 > len(A[0]) - 1:
+            return 'Invalid column'
+
+        return A[i - 1][j - 1]
+
+    def getRow(self, row: int):
+        if not isinstance(row, int):
+            return 'Invalid type'
+
+        A = self.getMatrix()
+
+        if row - 1 < 0 or row - 1 > len(A) - 1:
+            return 'Invalid row'
+
+        return A[row - 1]
+
+    def getColumn(self, col: int):
+        if not isinstance(col, int):
+            return 'Invalid type'
+
+        A = self.getMatrix()
+
+        if col - 1 < 0 or col - 1 > len(A[0]) - 1:
+            return 'Invalid column'
+
+        column = []
+
+        for i in range(len(A)):
+            column.append(A[i][col - 1])
+
+        return column
                 
     # Returns the sum of two matrices
     def __add__(self, other: Matrix):
@@ -391,6 +490,7 @@ class Matrix:
                     sum = round(sum, 1)
                     if float(sum).is_integer():
                         sum = round(sum)
+                    
                     res[r][c] = sum
                     sum = 0
 
@@ -440,16 +540,20 @@ class Matrix:
 # Only called within the file itself. 
 # Cannot be called if it is imported.
 if __name__ == '__main__':
-    A = [[2, -1, -2],
-       [-4, 6, 3],
-       [-4, -2, 8]]
+    A = [
+        [1, 0, 2],
+        [2, 1, 4],
+        [5, 5, 9]
+    ]
 
     B = [
-        [1, 3, 2],
-        [3, 7, 5],
-        [2, 5, 8]
+        [0, 2, 4],
+        [-2, 0, 3],
+        [-4, -3, 0]
     ]
-    
-    P = Matrix(B)
 
-    print(P.LDU_decomp())
+    P = Matrix(A)
+    print('Original')
+    print(P)
+    print('Inverse')
+    print(~P)
