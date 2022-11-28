@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import List
+from typing import List, Union
 import copy
 
 class Matrix:
@@ -389,6 +389,7 @@ class Matrix:
     def get(self, i: int, j: int):
         if not all(isinstance(k, int) for k in [i, j]):
             return 'Invalid type'
+
         A = self.getMatrix()
 
         if i - 1 < 0 or i - 1 > len(A) - 1:
@@ -398,6 +399,23 @@ class Matrix:
             return 'Invalid column'
 
         return A[i - 1][j - 1]
+
+    def set(self, i: int, j: int, num: Union[int, float]):
+        if not all(isinstance(k, int) for k in [i, j]) or not isinstance(num, (int, float)):
+            print('Invalid type')
+            return
+
+        A = self.getMatrix()
+
+        if i - 1 < 0 or i - 1 > len(A) - 1:
+            print('Invalid type')
+            return
+
+        if j - 1 < 0 or j - 1 > len(A[0]) - 1:
+            print('Invalid type')
+            return
+
+        A[i - 1][j - 1] = num
 
     def getRow(self, row: int):
         if not isinstance(row, int):
@@ -409,6 +427,28 @@ class Matrix:
             return 'Invalid row'
 
         return A[row - 1]
+
+    def setRow(self, row: int, newRow: list):
+        A = self.getMatrix()
+
+        if len(newRow) != len(A[0]):
+            print('Invalid size')
+            return
+
+        if not isinstance(row, int) or not isinstance(newRow, list):
+            print('Invalid type')
+            return
+
+        if not all(isinstance(k, (int, float)) for k in newRow):
+            print('Invalid data')
+            return
+    
+        if row - 1 < 0 or row - 1 > len(A) - 1:
+            print('Invalid row')
+            return
+
+        
+        A[row - 1] = newRow        
 
     def getColumn(self, col: int):
         if not isinstance(col, int):
@@ -425,7 +465,77 @@ class Matrix:
             column.append(A[i][col - 1])
 
         return column
-                
+    
+    def setColumn(self, col: int, newCol: list):
+        A = self.getMatrix()
+
+        if len(newCol) != len(A):
+            print('Invalid size')
+            return
+
+        if not isinstance(col, int) or not isinstance(newCol, list):
+            print('Invalid type')
+            return
+
+        if not all(isinstance(k, (int, float)) for k in newCol):
+            print('Invalid data')
+            return
+    
+        if col - 1 < 0 or col - 1 > len(A) - 1:
+            print('Invalid column')
+
+        for i in range(len(A)):
+            A[i][col - 1] = newCol[i]
+
+    def getDiagonal(self):
+        if not self.isSquare():
+            return 'Not a square matrix'
+
+        A = self.getMatrix()
+        diag = []
+
+        for i in range(len(A)):
+            diag.append(A[i][i])
+
+        return diag
+
+    def setDiagonal(self, newDiag: list):
+        A = self.getMatrix()
+        if not self.isSquare() or len(A) != len(newDiag):
+            print('Invalid dimension/size')
+            return
+
+        if not all(isinstance(k, (int, float)) for k in newDiag):
+            print('Invalid type')
+            return
+
+        for i, num in enumerate(newDiag):
+            A[i][i] = num
+
+    def getDimension(self):
+        A = self.getMatrix()
+        return f'Dim = {len(A)} x {len(A[0])}'
+
+    def update(self, row: int, col: int):
+        if not all(isinstance(k, int) for k in [row, col]):
+            return 'Invalid data'
+
+        A = self.getMatrix()
+        A_list = [k for sub in A for k in sub]
+        k = 0
+
+        if (row * col) != (len(A) * len(A[0])):
+            return 'Invalid dimension'
+
+        B = [[0 for _ in range(col)] for _ in range(row)]
+        
+        for i in range(len(B)):
+            for j in range(len(B[0])):
+                B[i][j] = A_list[k]
+                k += 1
+
+        return Matrix(B)
+
     # Returns the sum of two matrices
     def __add__(self, other: Matrix):
         if not isinstance(other, Matrix):
@@ -543,7 +653,7 @@ if __name__ == '__main__':
     A = [
         [1, 0, 2],
         [2, 1, 4],
-        [5, 5, 9]
+        [5, 5, 9],
     ]
 
     B = [
@@ -552,8 +662,15 @@ if __name__ == '__main__':
         [-4, -3, 0]
     ]
 
+    K = [
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 1]
+    ]
+
     P = Matrix(A)
-    print('Original')
     print(P)
-    print('Inverse')
-    print(~P)
+    print()
+    print(P.cof())
+    print()
+    print(P.adj())
