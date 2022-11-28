@@ -10,6 +10,6 @@ def findEuler(n):
         fac = factorial(i)
         e += (1/fac)
     
-    return e
+    return round(e, 3)
 
 print(findEuler(500))
