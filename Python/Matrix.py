@@ -621,6 +621,9 @@ class Matrix:
         if exp <= 0:
             return None
 
+        if exp == 1:
+            return self
+
         B = copy.deepcopy(self)
         C = copy.deepcopy(B)
         for i in range(exp):
@@ -634,9 +637,26 @@ class Matrix:
     def __invert__(self):
         return self.inv()
 
+    def __eq__(self, other: Matrix):
+        if not isinstance(other, Matrix):
+            return False
+
+        A = self.getMatrix()
+        B = other.getMatrix()
+
+        if len(A) != len(B) or len(A[0]) != len(B[0]):
+            return False
+
+        for i in range(len(A)):
+            for j in range(len(B)):
+                if A[i][j] != B[i][j]:
+                    return False
+
+        return True
+
     # Returns the Object representation of the Matrix class
     def __repr__(self):
-        return f'Matrix = ({self.getMatrix()})'
+        return f'Matrix("{self.mat}")'
 
     # Returns the string representation of the Matrix class
     def __str__(self):
@@ -669,8 +689,6 @@ if __name__ == '__main__':
     ]
 
     P = Matrix(A)
-    print(P)
-    print()
-    print(P.cof())
-    print()
-    print(P.adj())
+    Q = Matrix(B)
+
+    print(id(P))
