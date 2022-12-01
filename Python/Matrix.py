@@ -106,18 +106,7 @@ class Matrix:
     # Checks if the matrix is symmetric.
     # That is A = the transpose of A
     def isSymmetric(self):
-        if not self.isSquare():
-            return False
-
-        A = self.getMatrix()
-        B = A.transpose().getMatrix()
-
-        for i in range(len(A)):
-            for j in range(len(B)):
-                if A[i][j] != B[i][j]:
-                    return False
-
-        return True
+        return self == self.transpose()
 
     # Checks if matrix is skew-symmetric. A = -A^T
     def isSkew(self):
@@ -172,13 +161,13 @@ class Matrix:
 
         return Matrix(A)
 
-    # Returns the LU decomposition of the matrix as a dictonary. Code take from
+    # Returns the LU decomposition of the matrix as a dictonary. Code taken from
     # [https://www.geeksforgeeks.org/doolittle-algorithm-lu-decomposition/]
     def LU_decomp(self):
         if not self.isSquare():
             return None
 
-        A = copy.deepcopy(self.getMatrix())
+        A = self.getMatrix()
         upper = [[0 for _ in range(len(A))] for _ in range(len(A))]
         lower = [[0 for _ in range(len(A))] for _ in range(len(A))]
 
@@ -688,7 +677,10 @@ if __name__ == '__main__':
         [0, 0, 1]
     ]
 
-    P = Matrix(A)
-    Q = Matrix(B)
+    F = [
+        [2, 3, 6],
+        [3, 4, 5],
+        [6, 5, 9]
+    ]
 
-    print(id(P))
+    print(~Matrix(A))
