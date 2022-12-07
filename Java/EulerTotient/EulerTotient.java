@@ -1,6 +1,10 @@
 /**
  * A Java program that calculates Euler's Totient, which is the number of 
  * integers from [1, n] that are relatively co-prime to n -> GCD = 1.
+ * 
+ * Formula:
+ * n times the product of 1 - all prime factors of n
+ * Φ(n) = n * ∏(1 - 1/pᵢ) where pᵢ is the prime factors of n
  */
 import java.util.ArrayList;
 import java.util.Scanner;
