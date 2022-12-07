@@ -104,7 +104,7 @@ class Matrix:
         return True
     
     # Checks if the matrix is symmetric.
-    # That is A = the transpose of A
+    # That is A = the transpose of A 
     def isSymmetric(self):
         return self == self.transpose()
 
@@ -123,7 +123,7 @@ class Matrix:
 
         return True
 
-    # Checks if the matrix is idempotent. A^2 = A
+    # Checks if the matrix is idempotent. A² = A
     def isIdempotent(self):
         if not self.isSquare():
             return False
