@@ -3,7 +3,7 @@
  * integers from [1, n] that are relatively co-prime to n -> GCD = 1.
  * 
  * Formula:
- * n times the product of 1 - all prime factors of n
+ * n times the product of 1 - 1 / all prime factors of n
  * Φ(n) = n * ∏(1 - 1/pᵢ) where pᵢ is the prime factors of n
  */
 import java.util.ArrayList;
