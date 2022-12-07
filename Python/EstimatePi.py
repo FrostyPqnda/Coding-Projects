@@ -14,6 +14,7 @@ p / q = π / 4 = Sum of points in circle / Sum of points in square
 
 from random import uniform
 
+# Estimate the value of π given a sample size n
 def estimatePi(n: int) -> float:
     numInCircle = 0 # Number of points in the circle
     numTotal = 0 # Number of points total 
