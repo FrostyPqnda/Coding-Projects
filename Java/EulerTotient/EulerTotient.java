@@ -10,14 +10,14 @@ class EulerTotient {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter a number: ");
         int n = scan.nextInt();
-        int e = eulerTotient(n);
+        int e = phi(n);
         System.out.println("The number of integers relatively co-prime to " + n + " = " + e);
         scan.close();
     }
 
     // Calculate Euler's Totient -> the number of integers relatively
     // co-prime to n -> GCD(a, n) = 1
-    static int eulerTotient(int n) {
+    static int phi(int n) {
         double k = 1;
         ArrayList<Integer> primes = primeFactor(n);
         filter(primes);
@@ -31,9 +31,9 @@ class EulerTotient {
 
     // Removes all duplicates from the prime factor list
     static void filter(ArrayList<Integer> arrList) {
-        for(int i = 0; i < arrList.size() - 1; i++) {
-            if(arrList.get(i) == arrList.get(i + 1)) {
-                arrList.remove(i + 1);
+        for(int i = arrList.size() - 1; i > 0; i--) {
+            if(arrList.get(i) == arrList.get(i - 1)) {
+                arrList.remove(i - 1);
             }
         }
         return;
