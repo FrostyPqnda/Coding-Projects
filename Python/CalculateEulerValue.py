@@ -10,6 +10,6 @@ def findEuler(n):
         fac = factorial(i)
         e += (1/fac)
     
-    return round(e, 3)
+    return e 
 
-print(findEuler(500))
+print(f'Estimated value of e = {findEuler(500)}')
