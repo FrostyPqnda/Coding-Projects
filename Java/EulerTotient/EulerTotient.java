@@ -33,7 +33,8 @@ class EulerTotient {
         return (int)(n * k);
     }
 
-    // Removes all duplicates from the prime factor list
+    // Removes all duplicates from the prime factor list.
+    // Only works assuming that the list is already sorted.
     static void filter(ArrayList<Integer> arrList) {
         for(int i = arrList.size() - 1; i > 0; i--) {
             if(arrList.get(i) == arrList.get(i - 1)) {
