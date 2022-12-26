@@ -10,7 +10,7 @@
  * 
  * @author Brian Pham
  * @version 1.0
- * @since 2022-10-10;\
+ * @since 2022-10-10
  */
 
 import java.util.*; 
@@ -250,6 +250,7 @@ class IncompleteSudoku
         }
         return solvable;
     }
+
     boolean validConfiguration(int[][] board, int row, int col)
     {
         boolean notInRow = notInRow(board, row);
@@ -344,7 +345,5 @@ public class ValidSudoku
 
         System.out.println("Solvable Sudoku? " + is.checkSolvable(sf.getBoard()));
         scan.close();
-    }
-
-    
+    }  
 }
