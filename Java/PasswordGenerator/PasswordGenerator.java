@@ -2,6 +2,12 @@ import java.security.SecureRandom;
 
 public class PasswordGenerator extends PasswordChecker
 {
+    static final String UPPER_ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    static final String LOWER_ALPHA = UPPER_ALPHA.toLowerCase();
+    static final String SPECIAL_CHARS = "\"\"'`~_=|({[.<>,/+#?!@$%^&*-]})";
+    static final String NUMBER = "0123456789"; 
+    static final String randString = UPPER_ALPHA + LOWER_ALPHA + SPECIAL_CHARS + NUMBER;
+
     public static void main(String[] args)
     {
         System.out.println(generatePassword(10));
@@ -10,13 +16,7 @@ public class PasswordGenerator extends PasswordChecker
     // Creates a randomized password with uppercase and lowercase letters, numbers, and special characters
     static String generatePassword(int passwordLength)
     {
-        final String UPPER_ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        final String LOWER_ALPHA = UPPER_ALPHA.toLowerCase();
-        final String SPECIAL_CHARS = "\"\"'`~_=|({[.<>,/+#?!@$%^&*-]})";
-        final String NUMBER = "0123456789"; 
-        final String randString = UPPER_ALPHA + LOWER_ALPHA + SPECIAL_CHARS + NUMBER;
-        final SecureRandom secRand = new SecureRandom();
-
+        SecureRandom secRand = new SecureRandom();
         String passwordStr = "";
         
         // Sets the length between 8 - 20 if it is out of bound
@@ -34,15 +34,6 @@ public class PasswordGenerator extends PasswordChecker
             passwordStr += randString.charAt(randCharIndex);
         }
 
-        if(checkPassword(passwordStr))
-        {
-            // Returns the password only if it is alpha-numeric and has at least 1 special character.
-            return passwordStr; 
-        }
-        else
-        {
-            // If checkPassword is false, then run the function again until it is true.
-            return generatePassword(passwordLength); 
-        }
+        return (checkPassword(passwordStr)) ? passwordStr : generatePassword(passwordLength);
     }
 }

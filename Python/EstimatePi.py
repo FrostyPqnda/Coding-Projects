@@ -1,5 +1,5 @@
 """
-Python program that estimates the value of pi
+Python program that estimates the value of π
 using Monte Carlo.
 
 Formula:
@@ -20,8 +20,8 @@ def estimatePi(n: int) -> float:
     numTotal = 0 # Number of points total 
 
     for i in range(n):
-        # Random (x, y) point in the range [-1, 1]
-        x, y = uniform(-1, 1), uniform(-1, 1) 
+        # Uniformly distributed random (x, y) point in the range [0, 1]
+        x, y = uniform(0, 1), uniform(0, 1) 
         
         # Distance from origin to the current (x, y) 
         dist = (x ** 2) + (y ** 2)

@@ -683,4 +683,6 @@ if __name__ == '__main__':
         [6, 5, 9]
     ]
 
-    print(~Matrix(A))
+    K = [1, 2, 3, 4]
+
+    print(Matrix(F))
