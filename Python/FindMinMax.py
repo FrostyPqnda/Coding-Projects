@@ -14,7 +14,6 @@ Bubble Sort: a simple sorting algorithm that swaps
 the adjacent elements repeatedly until they are in
 the right order.
 """
-
 # Finds the minimum value of a list
 def findMin(arr):
     length = len(arr)

@@ -18,7 +18,7 @@ def count_occurrences(word, string):
             print ("found " + string + "!")
         else:
             print ("Word not found.")
-        return word
+    return word
 count_occurrences(word, string)
 
 

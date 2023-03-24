@@ -41,7 +41,7 @@ class Hangman:
     def __updateDashes(self, word, dashes, guess):    
         for i in range(len(word)):
             if word[i] == guess:
-                new = dashes[:i]+guess+dashes[i+1:]
+                new = dashes[:i] + guess + dashes[i+1:]
                 dashes = new
         return dashes
         
