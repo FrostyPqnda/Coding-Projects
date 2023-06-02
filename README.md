@@ -1,3 +1,3 @@
 # Coding-Projects
 
-Repository for my subpar coding projects.
+Repository for my coding projects.
