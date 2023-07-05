@@ -1,5 +1,4 @@
 from __future__ import annotations
-from random import randint
 
 class Node:
     # Constructor for Node
@@ -24,7 +23,7 @@ class LinkedList:
     # as the memory address during runtime
     def __repr__(self) -> str:
         address = hex(id(self)).upper()
-        rep = f'LinkedList({address})'
+        rep = f'LinkedList<{address}>'
         return rep
 
     # Return the linked list as a string
@@ -90,7 +89,7 @@ class LinkedList:
             counter += 1
             ptr = ptr.next
 
-    # Appends either a linked list or list to the linked list
+    # Appends a linked list to the current linked list
     def append(self, link: LinkedList):
         if not isinstance(link, LinkedList):
             raise TypeError('Invalid type')
@@ -156,8 +155,26 @@ class LinkedList:
         curr.next = curr.next.next
         return value
     
+    # Remove a specified node from the linked list
     def remove(self, data):
-        pass
+        index = self.search(data)
+        if index < 0:
+            raise ValueError('Item not found!')
+        
+        self.delete(index)
+        return
+    
+    def removeAll(self, data):
+        """
+        index = self.search(data)   
+        if index < 0:
+            raise ValueError('Item not found!')
+        """
+        for i in range(self.size() - 1, -1, -1):
+            if self.get(i) == data:
+                self.delete(i)
+
+        return
 
     # Remove all nodes from linked list
     def clear(self):
@@ -224,7 +241,7 @@ class LinkedList:
             temp = temp.next
     
     # Search item in linked list
-    def search(self, item):
+    def search(self, item, start: int = 0) -> int:
         # Search using binary search, best if sorted
         def binarySearch(item, left: int, right: int):
             mid = left + (right - left) // 2
@@ -239,26 +256,25 @@ class LinkedList:
                 return -1
         
         # Search using linear search
-        def linearSearch(item):
-            curr = self.head
-            n = 0
-            while curr is not None:
-                if curr.data == item:
-                    return n
-                n += 1
-                curr = curr.next
+        def linearSearch(item, startIndex: int = 0):
+            if startIndex < 0 or startIndex >= self.size():
+                return -1
+
+            for i in range(startIndex, self.size()):
+                if self.get(i) == item:
+                    return i
+                
             return -1
 
         sorted = all(a <= b for a, b in zip(self.get(), self.get()[1:]))
-
-        # If linked list is already sorted, we want to use the most efficient search -> binary
+        same = all(a == b for a, b in zip(self.get(), self.get()[1:]))
+        # If linked list is already sorted, we want to use the most efficient search -> binary search
         # Otherwise, we will use linear search
-        index = binarySearch(item, 0, self.size() - 1) if sorted else linearSearch(item)
+        index = binarySearch(item, start, self.size() - 1) if sorted and not same else linearSearch(item, start)
         return index
 
     # Sort the array using Insertion Sort
     def sort(self, reversed = False):
-        
         def sortedInsert(head: Node, node: Node):
             curr = None
             if head is None or head.data >= node.data:
@@ -322,18 +338,5 @@ class LinkedList:
         print()
 
 if __name__ == '__main__':
-    data = []
-    for i in range(10):
-        data.append(randint(1, 10))
-
-    li = LinkedList(data)
-    li.sort()
-
-    li.insert(400, 6)
+    li = LinkedList()
     print(li)
-
-    print()
-
-    #li.remove(400)
-    #print(li)
-
