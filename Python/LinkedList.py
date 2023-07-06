@@ -215,11 +215,11 @@ class LinkedList:
         return value
     
     # Return the head of linked list
-    def head(self):
+    def first(self):
         return self.get(0)
     
     # Return the tail of linked list
-    def tail(self):
+    def last(self):
         return self.get(self.size() - 1)
         
     # Sets a specific node data to a new value
@@ -342,4 +342,5 @@ if __name__ == '__main__':
     li = LinkedList()
     for i in range(10):
         li.insert(i + 1)
-    print(li)
+    
+    print(li.first())
