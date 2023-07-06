@@ -15,7 +15,7 @@ class LinkedList:
             if not isinstance(data, list):
                 raise TypeError('Must be of type <list>')
             
-            self.head = Node(data[0])
+            self.head = Node(data[0]) if len(data) >= 1 else None
             for i in range(1, len(data)):
                 self.insert(data[i])
 
@@ -164,6 +164,7 @@ class LinkedList:
         self.delete(index)
         return
     
+    # Remove all occurence of a node from the linked list
     def removeAll(self, data):
         """
         index = self.search(data)   
@@ -339,4 +340,6 @@ class LinkedList:
 
 if __name__ == '__main__':
     li = LinkedList()
+    for i in range(10):
+        li.insert(i + 1)
     print(li)
