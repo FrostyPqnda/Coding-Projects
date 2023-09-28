@@ -5,6 +5,7 @@ sudoku text file and solves it.
 
 from os.path import exists, getsize
 from math import sqrt
+import sys
 
 # Checks if the number is perfect square.
 def isPerfectSquare(num):
@@ -174,24 +175,29 @@ def solve(board):
     # Return False by default
     return False
 
-inFile = input('Enter the filename: ')
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print('usage: Python SudokuSolver.py <text file>')
+        sys.exit()
+    
+    inFile = sys.argv[1]
 
-if exists(inFile) and getsize(inFile) > 0:
-    size = readFile(inFile)
+    if exists(inFile) and getsize(inFile) > 0:
+        size = readFile(inFile)
 
-    if size != -1:
-        board = [[None for _ in range(size)] for _ in range(size)]
+        if size != -1:
+            board = [[None for _ in range(size)] for _ in range(size)]
 
-        if loadFile(board, inFile):
-            printBoard(board) 
-            print()
-            if solve(board):
-                printBoard(board)
+            if loadFile(board, inFile):
+                printBoard(board) 
+                print()
+                if solve(board):
+                    printBoard(board)
+                else:
+                    print('Puzzle could not be solved.')
             else:
-                print('Puzzle could not be solved.')
+                print('Board could not be loaded.')
         else:
-            print('Board could not be loaded.')
+            print('Error reading size.')
     else:
-        print('Error reading size.')
-else:
-    print('Error reading file.') 
+        print('Error reading file.') 
