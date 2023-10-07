@@ -156,8 +156,7 @@ def solve(board):
     row, col = findEmpty(board)
     
     # There are no more empty cell, so return True
-    if row is None:
-        return True
+    if row is None: return True
 
     # Fill the board with values from [1, size]
     for num in range(1, size + 1):
@@ -165,10 +164,7 @@ def solve(board):
         # set that cell to a value from [1, size]
         if isSafe(board, row, col, num):
             board[row][col] = num
-
-            if solve(board):
-                return True
-        
+            if solve(board): return True
         # Set the cell back to 0, if there are no safe cell spotted.
         board[row][col] = 0
 
