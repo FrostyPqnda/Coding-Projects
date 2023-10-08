@@ -1,100 +1,158 @@
+interface Iterator<E> {
+    boolean hasNext();
+    E next();
+    void remove();
+}
 
+class LinkedList<E> {
+    static class Node<E> {
+        E data;
+        Node<E> prev;
+        Node<E> next;
 
-class LinkedList {
-    Node head;
-
-    static class Node {
-        Node next;
-        int data;
-        Node(int data) {
+        public Node(E data, Node<E> prev, Node<E> next) {
             this.data = data;
-            next = null;
+            this.prev = prev;
+            this.next = next;
         }
-        
     }
 
-    LinkedList() {
-        head = null;
+    Node<E> start, end;
+    int size;
+    int modCount = 0;
+
+    public LinkedList() {
+        clear();
     }
 
-    // Insert a node into a linked list
-    // Insertion will be appended to the end of the linked list
-    void insert(int data) {
-        Node newNode = new Node(data);
-        newNode.next = null;
+    public boolean add(E data) {
+        add(size(), data);
+        return true;
+    }
 
-        if(head != null) {
-            Node next = head;
-            while(next.next != null) {
-                next = next.next;
-            }
-            next.next = newNode;
+    public void add(int idx, E data) {
+        if(idx < 0 || idx > size) throw new IndexOutOfBoundsException();
+        addBefore(getNode(idx, 0, size()), data);
+    }
+
+    void addBefore(Node<E> p, E data) {
+        Node<E> newNode = new Node<>(data, p.prev, p);
+        newNode.prev.next = newNode;
+        p.prev = newNode;
+        size++;
+        modCount++;
+    }
+
+    public E get(int idx) {
+        return getNode(idx).data;
+    }
+
+    Node<E> getNode(int idx) {
+        return getNode(idx, 0, size() - 1);
+    }
+
+    Node<E> getNode(int idx, int low, int high) {
+        if(idx < low || idx > high) throw new IndexOutOfBoundsException();
+
+        Node<E> p;
+
+        if(idx < size() / 2) {
+            p = start.next;
+            for(int i = 0; i < idx; i++) p = p.next;
         } else {
-            head = newNode;
+            p = end;
+            for(int i = size(); i > 0; i--) p = p.prev;
         }
 
-        return;
+        return p;
     }
 
-    int search(int item) {
-        Node n = head;
-        int it = 0;
-        int idx = -1;
+    public E set(int idx, E data) {
+        Node<E> p = getNode(idx);
+        E old = p.data;
+        p.data = data;
+        return old;
+    }
 
-        while(n != null) {
-            if(n.data == item) {
-                idx = it;
-                break;
-            } else {
-                it++;
-            }
-            n = n.next;
+    public E remove(int idx) {
+        return remove(getNode(idx));
+    }
+
+    E remove(Node<E> p) {
+        p.next.prev = p.prev;
+        p.prev.next = p.next;
+        size--;
+        modCount++;
+        return p.data;
+    }
+
+    public void clear() {
+        size = 0;
+        start = new Node<E>(null, null, null);
+        end = new Node<E>(null, start, null);
+        modCount++;
+    }
+
+    public boolean isEmpty() {
+        return size <= 0;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public String toString() {
+        if(isEmpty()) return "[]";
+        String res = "";
+        ListIterator it = iterator();
+        while(it.hasNext()) 
+            res += (it.next().toString() + " ");
+        return res;
+    }
+
+    public ListIterator iterator() {
+        return new ListIterator();
+    }
+
+    class ListIterator implements Iterator<E> {
+        int expectedModCount = modCount;
+        Node<E> current = start.next;
+        boolean okToRemove = false;
+
+        @Override
+        public boolean hasNext() {
+            return current != end;
         }
 
-        return idx;
-    }
+        @Override
+        public E next() {
+            if(!hasNext()) throw new java.util.NoSuchElementException();
+            if(modCount != expectedModCount) throw new java.util.ConcurrentModificationException();
+            E item = current.data;
+            current = current.next;
+            okToRemove = true;
+            return item;
+        }
 
-    // Reverses the linked list
-    void reverse() {
-        Node currNode = head;
-        Node prevNode = null;
-        Node nextNode = null;
-
-        while(currNode != null) {
-            nextNode = currNode.next;
-            currNode.next = prevNode;
+        @Override
+        public void remove() {
+            if(modCount != expectedModCount) throw new java.util.ConcurrentModificationException();
+            if(!okToRemove) throw new IllegalStateException();
             
-            prevNode = currNode;
-            currNode = nextNode;
+            LinkedList.this.remove(current.prev);
+            expectedModCount++;
+            okToRemove = false;
         }
-
-        head = prevNode;
-        return;
-    }
-
-    void print() {
-        Node n = head;
-        while(n != null) {
-            System.out.print(n.data + " ");
-            n = n.next;
-        }
-    }
+    }    
 }
 
 class Main {
-    
     public static void main(String[] args) {
-        LinkedList li = new LinkedList();
-        for(int i = 0; i < 10; i++) {
-            li.insert(i + 1);
+        LinkedList<Character> ll = new LinkedList<>();
+
+        for(char i = 65; i <= 90; i++) {
+            ll.add(i);
         }
-
-        System.out.println("Linked List");
-        li.print();
-
-        System.out.println("\n\nReverse Linked List");
-        li.reverse();
-        li.print();
+        System.out.println(ll);
     }
-    
 }
