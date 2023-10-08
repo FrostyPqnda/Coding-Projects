@@ -2,3 +2,5 @@
 *.pyc
 *.class
 Python/DrawingApp/tempCodeRunnerFile.py
+*.pickle
+*.json
