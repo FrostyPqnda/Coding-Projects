@@ -76,5 +76,5 @@ if __name__ == '__main__':
         sys.exit()
     
     value = bin(int(sys.argv[1]))
-    print(value)
-    print(complement(value))
+    print(f'Binary value of {sys.argv[1]}: {value}')
+    print(f'Two\'s Complement of {sys.argv[1]}: {complement(value)}')
