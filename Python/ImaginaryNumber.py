@@ -1,5 +1,5 @@
 from math import *
-
+import sys
 # Function to check if n is perfect square.
 def isPerfectSquare(n):
     sqrtNum = sqrt(n)
@@ -7,40 +7,30 @@ def isPerfectSquare(n):
 
 """
 Returns the root of a negative number.
-
-If n is greater than 0, the function will
-just return the root value of n.
 """
 def getImaginaryNumber(n):
+    if n >= 0:
+        print('n must be less than 0!')
+        sys.exit()
+
     imgNum = ''
     
     """
     If n is less than 0, return the root value
     of n but with an 'i' attached. 
-
-    Otherwise, return the root value of n.
     """
     num = sqrt(abs(n))
-    if(n < 0):
-        if(isPerfectSquare(abs(n))):
+    if(isPerfectSquare(abs(n))):
             intNum = int(num)
             if(n == -1):
                 imgNum += 'i'
             else:
                 imgNum += str(intNum) + 'i'
-        else:
-            roundedNum = float(round(num * 100)) / 100 # Rounds the number to the nearest hundredth place.
-            imgNum += str(roundedNum) + 'i'
     else:
-        num = sqrt(n)
-        if(isPerfectSquare(n)):
-            intNum = int(num)
-            imgNum += str(intNum)
-        else:
-            roundedNum = float(round(num * 100)) / 100 # Rounds the number to the nearest hundredth place.
-            imgNum += str(roundedNum)
+        roundedNum = float(round(num * 100)) / 100 # Rounds the number to the nearest hundredth place.
+        imgNum += str(roundedNum) + 'i'
 
     return '\u00B1 ' + imgNum
 
 negNum = int(input('Enter a negative number: '))
-print('The square root of', negNum, 'is', getImaginaryNumber(negNum))
+print(f'The square root of {negNum} is {getImaginaryNumber(negNum)}')
