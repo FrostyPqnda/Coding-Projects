@@ -2,9 +2,7 @@ import sys
 
 # Convert decimal to binary
 def bin(value: int):
-    if value < 0:
-        print('Value must be at least 0')
-        sys.exit()
+    if value < 0: sys.exit('Value must be at least 0')
     
     s = ''
     while value > 0:
@@ -22,14 +20,10 @@ def sign(b: str) -> str:
 # Format to make length of binary string divisible by 4 
 # and add spacing every 4 digits
 def format(a: str) -> str:
-    flag = len(a) % 4 != 0
-    if flag:
-        i = 1
-        while flag:
+    i = 1
+    while len(a) % 4 != 0:
             a = a.rjust(i, '0')
             i += 1
-            flag = len(a) % 4 != 0 
-    
     a = ' '.join(a[i: i + 4] for i in range(0, len(a), 4))
     return a
 
@@ -47,6 +41,8 @@ def invert(bin: str):
 
 # Returns two's complement of a binary number
 def complement(bin: str):
+    if bin in ['0000']: return bin # Two's complement of 0 is 0
+
     inv = invert(bin)
     a = '1'.zfill(len(inv))
 
@@ -60,26 +56,17 @@ def complement(bin: str):
         res = ('1' if r % 2 == 1 else '0') + res
         carry = 0 if r < 2 else 1
     
-    if carry != 0:
-        res = '1' + res
-    
-    res = format(res)
-    
-
-    return res
+    if carry != 0: res = '1' + res
+    return format(res)
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         file = __file__
         file = file[file.rfind('\\') + 1:]
-        print(f'Usage {file} <decimal value>')
-        sys.exit()
+        sys.exit(f'Usage: python {file} <decimal value>')
 
-    try:
-        value = bin(int(sys.argv[1]))
-    except ValueError:
-        print('Must be of type <int>')
-        sys.exit()
+    try: value = bin(int(sys.argv[1]))
+    except ValueError: sys.exit('Must be of type <int>')
 
     print(f'Binary value of {sys.argv[1]}: {value}')
     print(f'Two\'s Complement of {sys.argv[1]}: {complement(value)}')
