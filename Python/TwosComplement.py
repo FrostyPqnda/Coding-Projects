@@ -74,7 +74,12 @@ if __name__ == '__main__':
         file = file[file.rfind('\\') + 1:]
         print(f'Usage {file} <decimal value>')
         sys.exit()
-    
-    value = bin(int(sys.argv[1]))
+
+    try:
+        value = bin(int(sys.argv[1]))
+    except ValueError:
+        print('Must be of type <int>')
+        sys.exit()
+
     print(f'Binary value of {sys.argv[1]}: {value}')
     print(f'Two\'s Complement of {sys.argv[1]}: {complement(value)}')
