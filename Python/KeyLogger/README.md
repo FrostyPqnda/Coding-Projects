@@ -2,7 +2,10 @@ A barebones key logger designed to collect keyboard inputs from the user. The ty
  
 NOTE: Upper and lowercase letters will be treated the same for simplicity sake. 
 
-DISCLAIMER: Do note that this code is merely barebone version of an executable application that I plan to release later in the future. Until then, come back later to see the release of the KeyLogger application.
+~~DISCLAIMER: Do note that this code is merely barebone version of an executable application that I plan to release later in the future. Until then, come back later to see the release of the KeyLogger application.~~
+
+RELEASE VERSION  
+https://github.com/FrostyPqnda/Applications/releases/tag/keylogger
 
 HOW TO USE:
 - Install pynput (for keyboard monitoring)  
