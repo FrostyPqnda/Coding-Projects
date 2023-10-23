@@ -160,7 +160,7 @@ public class QuadraticProbingHashTable<E> implements HashTable<E> {
         int idx = hu.find(x); // Find available spot to insert x
         if(hu.isActive(idx)) return; // End if spot is not aviable
         table[idx] = x; // Set table[idx] to x
-        numItems++; // Increment nummItems;
+        numItems++; // Increment nummItems
         return;
     }
 
