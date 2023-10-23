@@ -8,7 +8,5 @@ public class Hashing {
         for(String fruit : fruits)
             ht.insert(fruit);
         ht.display();
-        ht.remove("APPLE");
-        ht.display();
     }
 }
