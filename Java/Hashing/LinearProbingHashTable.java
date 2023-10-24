@@ -180,6 +180,28 @@ public class LinearProbingHashTable<E> implements HashTable<E> {
     }
 
     /**
+     * contains(E x)
+     * 
+     * @param x Item to be searched
+     * @return True if x exists
+     */
+    @Override
+    public boolean contains(E x) {
+        return hu.isActive(hu.find(x));
+    }
+
+    /**
+     * clear()
+     * 
+     * Removes all items in the table
+     */
+    @Override
+    public void clear() {
+        table = (E[]) new Object[table.length];
+        numItems = 0;
+    }
+
+    /**
      * display()
      * 
      * Print the table

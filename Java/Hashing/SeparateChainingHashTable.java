@@ -166,6 +166,17 @@ public class SeparateChainingHashTable<E> implements HashTable<E> {
     }
 
     /**
+     * contains(E x)
+     * 
+     * @param x Item to be searched
+     * @return True if x exists
+     */
+    @Override
+    public boolean contains(E x) {
+        return table[hu.hash(x)].contains(x);
+    }
+
+    /**
      * count()
      * 
      * @return No. of items in the table
@@ -173,6 +184,18 @@ public class SeparateChainingHashTable<E> implements HashTable<E> {
     @Override
     public int count() {
         return numItems;
+    }
+
+    /**
+     * clear()
+     * 
+     * Removes all items in the table
+     */
+    @Override
+    public void clear() {
+        for(int i = 0; i < table.length; i++)
+            table[i].clear();
+        numItems = 0;
     }
 
     /**

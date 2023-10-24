@@ -188,6 +188,28 @@ public class QuadraticProbingHashTable<E> implements HashTable<E> {
     }
 
     /**
+     * clear()
+     * 
+     * Removes all items in the table
+     */
+    @Override
+    public void clear() {
+        table = (E[]) new Object[table.length];
+        numItems = 0;
+    }
+
+    /**
+     * contains(E x)
+     * 
+     * @param x Item to be searched
+     * @return True if x exists
+     */
+    @Override
+    public boolean contains(E x) {
+        return hu.isActive(hu.find(x));
+    }
+
+    /**
      * display()
      * 
      * Print the table
