@@ -4,10 +4,9 @@ public class Hashing {
             "APPLE", "KIWI", "PEAR", "ORANGE", "GRAPE", "WATERMELON",
             "LIME", "LEMON", "BANANA", "COCONUT", "STRAWBERRY"
         };
-        HashTable<String> ht = new LinearProbingHashTable<>(fruits.length);
+        HashTable<String> ht = new SeparateChainingHashTable<>(fruits.length);
         for(String fruit : fruits)
             ht.insert(fruit);
         ht.display();
-        System.out.println(ht.contains("APPLE"));
     }
 }
