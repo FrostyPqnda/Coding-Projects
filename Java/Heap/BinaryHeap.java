@@ -113,9 +113,9 @@ public class BinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
      */
     @Override
     public void print() {
-        for(int i = 0; i < heap.length; i++) {
-            System.out.print(heap[i] + " ");
-        }
+        for(E item : heap) 
+            if(item != null)
+                System.out.print(item + " ");
     }
 
     /**

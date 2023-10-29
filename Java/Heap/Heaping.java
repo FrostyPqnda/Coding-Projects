@@ -6,9 +6,6 @@ public class Heaping {
         for(int item : data)
             hp.insert(item);
 
-
-        System.out.println(hp); 
-        hp.deleteMin();
         System.out.println(hp);
     }
 }
