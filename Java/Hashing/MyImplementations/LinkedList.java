@@ -1,14 +1,6 @@
-interface MyIterator<E> {
-    boolean hasNext();
-    E next();
-}
+package MyImplementations;
 
-interface MyIterable<E> {
-    MyIterator<E> iterator();
-}
-
-
-class LinkedList<E> implements MyIterable<E> {
+public class LinkedList<E> implements MyIterable<E> {
     /**
      * Private inner class that will be the node contained in the
      * SinglyLinkedList class
@@ -218,22 +210,4 @@ class LinkedList<E> implements MyIterable<E> {
             return value; // Return the retrieved value
         }  
     }
-}
-
-/**
- * Command:
- * javac LinkedList.java
- * java LinkedListMain
- */
-class LinkedListMain {
-    public static void main(String[] args) {
-        LinkedList<Character> ll = new LinkedList<>();
-        for(char c = 65; c <= 90; c++)
-            ll.insert(c);
-        
-        
-        System.out.println(ll);
-        ll.remove('H');
-        System.out.println(ll);
-    } 
 }

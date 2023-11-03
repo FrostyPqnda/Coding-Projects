@@ -1,3 +1,5 @@
+import MyImplementations.*;
+
 /**
  * class SeparateChainingHashTable
  * 
