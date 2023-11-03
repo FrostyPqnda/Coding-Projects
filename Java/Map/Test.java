@@ -6,7 +6,6 @@ public class Test {
             int value = (int)(Math.random() * c) + 65;
             map.put(key, value);
         }
-
-        System.out.println(map.keySet());
+        System.out.println(map.entrySet());
     }
 }

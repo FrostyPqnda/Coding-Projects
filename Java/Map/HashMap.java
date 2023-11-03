@@ -2,35 +2,38 @@ import MyImplementations.*;
 
 @SuppressWarnings("unchecked")
 public class HashMap<K, V> implements Map<K, V> {
-    class MapEntry {
+    class HashEntry implements Map.Entry<K, V> {
         K key;
         V value;
-        MapEntry next;
+        HashEntry next;
 
-        public MapEntry(K key, V value) {
+        public HashEntry(K key, V value) {
             this.key = key;
             this.value = value;
             next = null;
         }
 
+        @Override
         public K getKey() {
             return key;
         }
 
+        @Override
         public V getValue() {
             return value;
+        }
+
+        @Override
+        public boolean equals(Map.Entry<K, V> o) {
+            return key.equals(o.getKey()) && value.equals(o.getValue());
         }
 
         public String toString() {
             return key + "=" + value;
         }
-
-        public boolean equals(MapEntry o) {
-            return key.equals(o.key) && value.equals(o.value);
-        }
     }
     
-    MapEntry[] map;
+    HashEntry[] map;
     int numItems;
     int prime;
     static final int DEFAULT_SIZE = 101;
@@ -41,7 +44,7 @@ public class HashMap<K, V> implements Map<K, V> {
 
     public HashMap(int initCapacity) {
         numItems = 0;
-        map = new HashMap.MapEntry[nextPrime(2 * initCapacity)];
+        map = new HashMap.HashEntry[nextPrime(2 * initCapacity)];
     }
 
     @Override
@@ -69,9 +72,10 @@ public class HashMap<K, V> implements Map<K, V> {
         return false;
     }
 
-    public Set<HashMap<K, V>.MapEntry> entrySet() {
-        Set<HashMap<K, V>.MapEntry> set = new Set<>();
-        for(MapEntry me : map)
+    @Override
+    public Set<Entry<K, V>> entrySet() {
+        Set<Entry<K, V>> set = new Set<>();
+        for(HashEntry me : map)
             if(me != null)
                 set.add(me);
         return set;
@@ -91,7 +95,7 @@ public class HashMap<K, V> implements Map<K, V> {
     @Override 
     public Set<K> keySet() {
         Set<K> keys = new Set<>();
-        for(MapEntry me : map)
+        for(HashEntry me : map)
             if(me != null)
                 keys.add(me.getKey());
         return keys;
@@ -102,7 +106,7 @@ public class HashMap<K, V> implements Map<K, V> {
         rehash();
         int idx = find(key);
         V val = map[idx] != null ? map[idx].getValue() : null;
-        MapEntry e = new MapEntry(key, value);
+        HashEntry e = new HashEntry(key, value);
         e.next = map[idx];
         map[idx] = e;
         numItems++;
@@ -139,7 +143,7 @@ public class HashMap<K, V> implements Map<K, V> {
             return "{}";
         
         String str = "";
-        for(MapEntry me : map)
+        for(HashEntry me : map)
             if(me != null)
                 str += (me + " ");
         return '{' + str.trim().replaceAll(" ", ", ") + '}';
@@ -184,10 +188,10 @@ public class HashMap<K, V> implements Map<K, V> {
 
     private final void rehash() {
         if(numItems < map.length) return;
-        MapEntry[] old = map;
-        map = new HashMap.MapEntry[nextPrime(2 * old.length)];
+        HashEntry[] old = map;
+        map = new HashMap.HashEntry[nextPrime(2 * old.length)];
 
-        for(MapEntry me : old)
+        for(HashEntry me : old)
             if(me != null)
                 put(me.getKey(), me.getValue());
         
