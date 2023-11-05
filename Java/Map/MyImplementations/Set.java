@@ -284,28 +284,3 @@ public class Set<E> implements MyIterable<E> {
         }
     }
 }
-
-class Main {
-    public static void main(String[] args) {
-        Set<Integer> set = new Set<>();
-        java.util.Scanner scan = new java.util.Scanner(System.in);
-
-        System.out.print("Enter size: ");
-        int size = scan.nextInt();
-
-        for(int i = 0; i < size; i++) {
-            System.out.print("Enter value: ");
-            set.add(scan.nextInt());
-        }
-
-        System.out.println(set);
-
-        MyIterator<Integer> it = set.iterator();
-        while(it.hasNext()) 
-            if(it.next() % 2 == 0)
-                it.remove();
-
-        scan.close();
-        System.out.println(set);
-    }
-}
