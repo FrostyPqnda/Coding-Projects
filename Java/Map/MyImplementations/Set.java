@@ -23,7 +23,7 @@ interface MyIterator<E> {
      * 
      * @return Removed item in the iterator.
      */ 
-    E remove();
+    void remove();
 }
 
 /**
@@ -67,6 +67,7 @@ public class Set<E> implements MyIterable<E> {
     }
 
     Node head; // Head of the linked list used by the Set class
+    Node tail;
     int numItems; // Number of items in the set
     int modCount = 0; // Number of modifications made to the Set
 
@@ -98,7 +99,9 @@ public class Set<E> implements MyIterable<E> {
             head = newNode; // Set head to newNode
         } else {
             Node curr = head; // Get a temporary reference to the head
-            while(curr.next != null) curr = curr.next; // Go to the last node
+            // Go to the last node
+            while(curr.next != null)  
+                curr = curr.next; 
             curr.next = newNode; // Set the last node to newNode
         }
         return true; // Item was successfully added to the set.
@@ -111,6 +114,7 @@ public class Set<E> implements MyIterable<E> {
      */
     public void clear() {
         head = null; // Set head to null to unlink all nodes in the linked list
+        tail = head;
         numItems = 0; // Set numItems back to 0
         modCount++; // Increment modCount
     }
@@ -159,6 +163,10 @@ public class Set<E> implements MyIterable<E> {
      */
     public boolean remove(E x) {
         if(!contains(x)) return false; // Item does not exist in the set.
+       
+        numItems--; // Decrement numItems
+        modCount++; // Increment modCount
+
         // Set head to the next node to remove x from the linked list
         // if it is stored at the head.
         if(head.data.equals(x)) {
@@ -170,8 +178,6 @@ public class Set<E> implements MyIterable<E> {
         while(!del.next.data.equals(x)) 
             del = del.next;
         del.next = del.next.next; // Unlink node storing x by linking previous node to the next node after
-        numItems--; // Decrement numItems
-        modCount++; // Increment modCount
         return true; // Item was successfully removed from the set
     } 
 
@@ -220,11 +226,11 @@ public class Set<E> implements MyIterable<E> {
      * Private inner class that implements the MyIterator interface
      */
     private class SetIterator implements MyIterator<E> {
-        Node ptr = head; // Get a reference to the head
+        Node ptr = head; // Reference to the head
         int expectedModCount = modCount; // Expected number of modification made to the set
-        boolean canRemove = false; // Flag checking if an item can be removed by the SetIterator
         E removed = null; // Item set in next() and to be used by remove()
-
+        boolean canRemove = false;
+        
         /**
          * hasNext()
          * 
@@ -244,15 +250,15 @@ public class Set<E> implements MyIterable<E> {
          */
         @Override
         public E next() {
-            if(modCount != expectedModCount) 
+            if(modCount != expectedModCount)          
                 throw new java.util.ConcurrentModificationException();
-
+            
             if(!hasNext())
                 throw new java.util.NoSuchElementException();
                 
             E value = removed = ptr.data; // Current item in the iteration
             ptr = ptr.next; // Go the next node in the iteration
-            canRemove = true; // Set canRemove to true
+            canRemove = true;
             return value; // Return the current item in the iteration
         }
         
@@ -264,19 +270,17 @@ public class Set<E> implements MyIterable<E> {
          * @throws IllegalStateException If canRemove is false
          */
         @Override 
-        public E remove() {
-            System.out.printf("Mod count = %d, Expected mod count = %d\n", modCount, expectedModCount);
+        public void remove() {
             if(modCount != expectedModCount) 
                 throw new java.util.ConcurrentModificationException();
             
             if(!canRemove)
                 throw new IllegalStateException();
 
-            Set.this.remove(removed); // Call Set.remove() to remove the current item
-            //expectedModCount++;
-            System.out.printf("Updated mod count = %d, Updated expected mod count = %d\n", modCount, expectedModCount);
-            canRemove = false; // Set canRemove to false
-            return removed; // Return the item that was removed
+            Set.this.remove(removed);
+            expectedModCount++;
+            canRemove = false;
+            return;
         }
     }
 }
@@ -284,7 +288,6 @@ public class Set<E> implements MyIterable<E> {
 class Main {
     public static void main(String[] args) {
         Set<Integer> set = new Set<>();
-
         java.util.Scanner scan = new java.util.Scanner(System.in);
 
         System.out.print("Enter size: ");
@@ -301,7 +304,7 @@ class Main {
         while(it.hasNext()) 
             if(it.next() % 2 == 0)
                 it.remove();
-        //System.out.println(it.next());
+
         scan.close();
         System.out.println(set);
     }
