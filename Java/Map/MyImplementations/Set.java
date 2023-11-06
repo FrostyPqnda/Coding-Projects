@@ -67,7 +67,6 @@ public class Set<E> implements MyIterable<E> {
     }
 
     Node head; // Head of the linked list used by the Set class
-    Node tail;
     int numItems; // Number of items in the set
     int modCount = 0; // Number of modifications made to the Set
 
@@ -114,7 +113,6 @@ public class Set<E> implements MyIterable<E> {
      */
     public void clear() {
         head = null; // Set head to null to unlink all nodes in the linked list
-        tail = head;
         numItems = 0; // Set numItems back to 0
         modCount++; // Increment modCount
     }
