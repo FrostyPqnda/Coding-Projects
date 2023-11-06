@@ -343,4 +343,4 @@ if __name__ == '__main__':
     for i in range(10):
         li.insert(i + 1)
     
-    print(li.first())
+    print(li)
