@@ -1,44 +1,6 @@
 package MyImplementations;
 
 /**
- * MyIterator interface
- */
-interface MyIterator<E> {
-    /**
-     * hasNext()
-     * 
-     * @return True if there are more items to iterate over.
-     */
-    boolean hasNext();
-
-    /**
-     * next()
-     * 
-     * @return The current item in the iterator.
-     */
-    E next();
-
-    /**
-     * remove()
-     * 
-     * @return Removed item in the iterator.
-     */ 
-    void remove();
-}
-
-/**
- * MyIterable interface
- */
-interface MyIterable<E> {
-    /**
-     * iterator()
-     * 
-     * @return A MyIterator object.
-     */
-    MyIterator<E> iterator();
-}
-
-/**
  * Set
  * 
  * This implementation uses a singly Linked List implementation to perform
