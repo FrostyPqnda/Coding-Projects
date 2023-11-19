@@ -30,6 +30,7 @@ public interface Map<K, V> {
          */
         boolean equals(Entry<K, V> o);
     }
+    
     /**
      * clear()
      * 

@@ -249,8 +249,8 @@ public class HashMap<K, V> implements Map<K, V> {
         String str = "";
         for(HashEntry me : map)
             if(me != null)
-                str += (me + " ");
-        return '{' + str.trim().replaceAll(" ", ", ") + '}';
+                str += (me + ", ");
+        return '{' + str.substring(0, str.length() - 2) + '}';
     }
 
     /**
