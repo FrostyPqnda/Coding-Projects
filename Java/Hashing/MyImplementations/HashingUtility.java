@@ -1,4 +1,5 @@
-interface HashingUtility<E> {
+package MyImplementations;
+public interface HashingUtility<E> {
     int find(E x);
     boolean isActive(int idx);
     int hash(E x);
