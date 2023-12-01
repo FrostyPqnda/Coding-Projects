@@ -62,7 +62,7 @@ public class SeparateChainingHashTable<E> implements HashTable<E> {
             // Iterate over the original table and copy into a
             // bigger table
             for(int i = 0; i < old.length; i++) {
-                MyIterator<E> it = old[i].iterator();
+                MyIterator<E> it = (MyIterator<E>) old[i].iterator();
                 while(it.hasNext())
                     insert(it.next());
             }
