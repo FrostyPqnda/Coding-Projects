@@ -127,9 +127,9 @@ public class BinaryHeap<E extends Comparable<? super E>> implements Heap<E> {
         if(isEmpty()) 
             return "[]";
         String res = "";
-        for(E item : heap) 
-            if(item != null)
-                res += (item + " ");
+        for(int i = 1; i <= numItems; i++) 
+            if(heap[i] != null)
+                res += (heap[i] + " ");
         return '[' + res.trim() + ']';
     }
 
