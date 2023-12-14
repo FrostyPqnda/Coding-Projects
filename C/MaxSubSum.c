@@ -6,7 +6,7 @@
 
 int nums[MAXLEN];
 
-int solve(int nums[MAXLEN], int left, int right) {
+int solve(int *nums, int left, int right) {
     if(left == right)
         return (nums[left] > 0) ? nums[left] : 0;
 
@@ -29,9 +29,10 @@ int solve(int nums[MAXLEN], int left, int right) {
     return max(max(leftMax, rightMax), maxLeftBorder + maxRightBorder);
 }
 
-int main(int argc, char *argv[]) {
-    int a[100] = {4, -3, 5, -2, -1, 2, 6, -2};
-    int result = solve(a, 0, 6);
+int main() {
+    int a[] = {4, -3, 5, -2, -1, 2, 6, -2};
+    int len = sizeof(a) / sizeof(a[0]);
+    int result = solve(a, 0, len - 1);
     printf("Solution = %d", result);
     return 0;
 }
