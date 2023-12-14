@@ -7,9 +7,8 @@
 int nums[MAXLEN];
 
 int solve(int nums[MAXLEN], int left, int right) {
-    if(left == right) {
+    if(left == right)
         return (nums[left] > 0) ? nums[left] : 0;
-    }
 
     int center = (left + right) / 2;
     int leftMax = solve(nums, left, center);
@@ -31,11 +30,7 @@ int solve(int nums[MAXLEN], int left, int right) {
 }
 
 int main(int argc, char *argv[]) {
-    char line[MAXLEN], *token;
-    FILE* fp = fopen(argv[1], "r");
-    fgets(line, MAXLEN, fp);
-
-    int a[100] = {-2, 11, -4, 2, -3, -10};
+    int a[100] = {4, -3, 5, -2, -1, 2, 6, -2};
     int result = solve(a, 0, 6);
     printf("Solution = %d", result);
     return 0;
