@@ -1,18 +1,25 @@
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
-        Graph<Character> g = new Graph<Character>();
-        g.addEdge('A', 'B');
-        g.addEdge('B', 'C');
-        g.addEdge('B', 'D');
-        g.addEdge('C', 'E');
-        g.addEdge('D', 'E');
-        g.addEdge('E', 'F');
+        DirectedGraph<Integer> graph = new DirectedGraph<>();
 
-        System.out.println(g + "\n");
-        g.printAdjacencyMatrix();
+        graph.addEdge(1, 2);
+        graph.addEdge(1, 3);
+        graph.addEdge(1, 4);
 
+        graph.addEdge(2, 4);
+        graph.addEdge(2, 5);
 
+        graph.addEdge(3, 6);
+
+        graph.addEdge(4, 3);  
+        graph.addEdge(4, 6);
+        graph.addEdge(4, 7);  
+
+        graph.addEdge(5, 4);
+        graph.addEdge(5, 7);
+
+        graph.addEdge(7, 6);
+
+        graph.topsort();
     }   
 }
