@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        DirectedGraph<Integer> graph = new DirectedGraph<>();
+        MyGraph<Integer> graph = new UndirectedGraph<>();
 
         graph.addEdge(1, 2);
         graph.addEdge(1, 3);
@@ -20,6 +20,6 @@ public class Main {
 
         graph.addEdge(7, 6);
 
-        graph.topsort();
+       graph.print();
     }   
 }
