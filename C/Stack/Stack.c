@@ -47,6 +47,6 @@ void expand(struct Stack *s) {
     int currSize = count(s);
     if(currSize < sizeof(s->array) / sizeof(s->array[0]))
         return;
-    
+     
     s->array = (int *)realloc(s->array, sizeof(int) * currSize);
 }
