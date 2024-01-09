@@ -1,52 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include "Stack.h"
 
-#define DEFAULT_SIZE 100
-
-struct Stack* Stack() {
-    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
-    stack->top = -1;
-    stack->array = (int*)malloc(DEFAULT_SIZE * sizeof(int));
-    return stack;
+Stack* newNode(int data) {
+    Stack* stackNode = (Stack*)malloc(sizeof(Stack));
+    stackNode->data = data;
+    stackNode->next = NULL;
+    return stackNode;
 }
 
-int isEmpty(struct Stack *s) {
-    return s->top == -1;
+int isEmpty(Stack* head) {
+    return !head;
 }
 
-int count(struct Stack *s) {
-    return s->top + 1;
+void push(Stack** head, int data) {
+    Stack* stackNode = newNode(data);
+    stackNode->next = *head;
+    *head = stackNode;
 }
 
-void push(struct Stack *s, int value) {
-    expand(s);
-    s->array[++s->top] = value;
-}
-
-int pop(struct Stack *s) {
-    if(isEmpty(s)) {
+int pop(Stack** head) {
+    if(isEmpty(*head)) {
         fprintf(stderr, "Empty stack\n");
         exit(1);
     }
 
-    return s->array[s->top--];
+    Stack* tmp = *head;
+    *head = (*head)->next;
+    int popped = tmp->data;
+    free(tmp);
+    return popped;
 }
 
-int peek(struct Stack *s) {
-    if(isEmpty(s)) {
+int peek(Stack* head) {
+    if(isEmpty(head)) {
         fprintf(stderr, "Empty stack\n");
         exit(1);
     }
     
-    return s->array[s->top];
-}
-
-void expand(struct Stack *s) {
-    int currSize = count(s);
-    if(currSize < sizeof(s->array) / sizeof(s->array[0]))
-        return;
-     
-    s->array = (int *)realloc(s->array, sizeof(int) * currSize);
+    return head->data;
 }

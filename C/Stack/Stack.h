@@ -1,22 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 #ifndef STACK_H_INCLUDED
 #define STACK_H_INCLUDED
 
-struct Stack {
-    int top;
-    unsigned capacity;
-    int* array;
-};
+typedef struct Stack {
+    int data;
+    struct Stack* next;
+} Stack;
 
-struct Stack* Stack();
-int isEmpty(struct Stack *s);
-int count(struct Stack *s);
-void push(struct Stack *s, int value);
-int pop(struct Stack *s);
-int peek(struct Stack *s);
-void expand(struct Stack *s);
+int isEmpty(Stack* head);
+void push(Stack** head, int data);
+int pop(Stack** head);
+int peek(Stack* head);
+int size(Stack* head);
 
 #endif
