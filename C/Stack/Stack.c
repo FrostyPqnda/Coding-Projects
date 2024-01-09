@@ -40,3 +40,16 @@ int peek(Stack* head) {
     
     return head->data;
 }
+
+int count(Stack* head) {
+    if(isEmpty(head))
+        return 0;
+
+    Stack* tmp = head;
+    int numItems = 0;
+    while(tmp) {
+        numItems++;
+        tmp = tmp->next;
+    }
+    return numItems;
+}
