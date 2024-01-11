@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define MAXLEN 1000000
+#define MAXLEN 10000
 #define max(a, b) (((a) >= (b)) ? (a) : (b))
 
 int nums[MAXLEN];
 
-int solve(int *nums, int left, int right) {
+int solve(int nums[MAXLEN], int left, int right) {
     if(left == right)
         return (nums[left] > 0) ? nums[left] : 0;
 
@@ -30,7 +30,7 @@ int solve(int *nums, int left, int right) {
 }
 
 int main() {
-    int a[] = {4, -3, 5, -2, -1, 2, 6, -2};
+    int a[MAXLEN] = {4, -3, 5, -2, -1, 2, 6, -2};
     int len = sizeof(a) / sizeof(a[0]);
     int result = solve(a, 0, len - 1);
     printf("Solution = %d", result);
