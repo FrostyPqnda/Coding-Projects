@@ -4,5 +4,5 @@
 *.pickle
 *.json
 *.exe
-bin*
-obj*
+bin/
+obj/
