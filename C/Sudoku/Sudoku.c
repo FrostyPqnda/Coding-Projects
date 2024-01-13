@@ -184,20 +184,27 @@ int main(int argc, char *argv[]) {
     PrintBoard(puzzle);
     printf("\n");
     int flag;
+    
+    int num = atoi(argv[3]);
+    if(num < 1 || num > 9) {
+        fprintf(stderr, "Invalid range\n");
+        fprintf(stderr, "Acceptable range: [1, 9]\n");
+        exit(1);
+    }
 
     if(argc == 2) {
         flag = CheckPuzzle();
-        printf("Is a valid sudoku puzzle? %s\n", flag ? "true" : "false");
+        printf("Is a valid sudoku puzzle? %s\n", flag ? "yes" : "no");
     } else if(argc == 4) {
         if(strcmp(argv[2], "row") == 0) {
-            flag = CheckRow(atoi(argv[3]));
-            printf("Is a valid row? %s\n", flag ? "true" : "false");
+            flag = CheckRow(num);
+            printf("Is row %d valid? %s\n", num, flag ? "yes" : "no");
         } else if(strcmp(argv[2], "column") == 0) {
-            flag = CheckColumn(atoi(argv[3]));
-            printf("Is a valid column? %s\n", flag ? "true" : "false");
+            flag = CheckColumn(num);
+            printf("Is column %d valid? %s\n", num, flag ? "yes" : "no");
         } else if(strcmp(argv[2], "box") == 0) {
-            flag = CheckBox(atoi(argv[3]));
-            printf("Is a valid box? %s\n", flag ? "true" : "false");
+            flag = CheckBox(num);
+            printf("Is box %d valid? %s\n", num, flag ? "yes" : "no");
         }
     }
 
