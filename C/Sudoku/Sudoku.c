@@ -5,6 +5,7 @@
 int **puzzle, size;
 char **output;
 
+// Print puzzle matrix
 void PrintBoard(int** matrix) {
     for(int i = 0; i < size; i++) {
         for(int j = 0; j < size; j++) {
@@ -14,6 +15,7 @@ void PrintBoard(int** matrix) {
     }
 }
 
+// Print output matrix
 void PrintOutput(char** matrix) {
     for(int i = 0; i < size; i++) {
         for(int j = 0; j < size; j++) {
@@ -23,6 +25,7 @@ void PrintOutput(char** matrix) {
     }
 }
 
+// Load the content of a file into a 2D array
 int LoadFile(char* file) {
     FILE *fp = fopen(file, "r");
     if(!fp) {
@@ -54,6 +57,7 @@ int LoadFile(char* file) {
     return 1;
 }
 
+// Check if given row number in the puzzle is valid
 int CheckRow(int rowPos) {
     for(int i = 0; i < size; i++)
         for(int j = 0; j < size; j++) 
@@ -67,6 +71,7 @@ int CheckRow(int rowPos) {
     return 1;
 }
 
+// Check if the given column number in the puzzle is valid
 int CheckColumn(int colPos) {
     for(int i = 0; i < size; i++)
         for(int j = 0; j < size; j++) 
@@ -80,6 +85,7 @@ int CheckColumn(int colPos) {
     return 1;
 }
 
+// Check if the given box number in the puzzle is valid
 int CheckBox(int boxNum) {
     int* box = (int*)malloc(size * sizeof(int));
     int k = 0;
@@ -119,6 +125,7 @@ int CheckBox(int boxNum) {
     return 1;
 }
 
+// Check if the puzzle is valid
 int CheckPuzzle() {
     for(int i = 0; i < size; i++) 
         for(int j = 0; j < size; j++) 
