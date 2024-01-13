@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-int **puzzle, size;
-char **output;
+int **puzzle, size; // puzzle array and size of puzzle
+char **output; // Output array
 
 // Print puzzle matrix
 void PrintBoard(int** matrix) {
