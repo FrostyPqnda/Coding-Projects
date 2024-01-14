@@ -35,12 +35,10 @@ def loadFile(inFile) -> int:
 # Checks if it is possible to assign
 # a number to the given cell (row, col)
 def isSafe(board, row, col, num):
-    safe = True
-
     # Check if the row / column is safe
     for i in range(len(board)):
         if board[row][i] == num or board[i][col] == num:
-            safe = False
+            return False
 
     # Check if the sub-grid is safe
     subSize = int(sqrt(len(board)))
@@ -50,9 +48,9 @@ def isSafe(board, row, col, num):
     for r in range(subSize):
         for c in range(subSize):
             if board[r + startRow][c + startCol] == num:
-                safe = False
+                return False
 
-    return safe 
+    return True 
 
 # Finds an empty cell
 # returns a tuple row, col if there is one.
