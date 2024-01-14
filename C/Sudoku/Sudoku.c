@@ -157,9 +157,10 @@ int CheckPuzzle() {
             output[i][j] = puzzle[i][j] + '0';
 
     // Attempt to find a failure in the row, column, or box
-    for(int i = 0; i < size; i++) 
-        if(!(CheckRow(i) && CheckColumn(i) && CheckBox(i)))
+    for(int i = 1; i <= size; i++) 
+        if(!CheckRow(i) || !CheckColumn(i) || !CheckBox(i))
             return 0;
+
     
     // Valid sudoku puzzle
     return 1;
@@ -184,18 +185,17 @@ int main(int argc, char *argv[]) {
     PrintBoard(puzzle);
     printf("\n");
     int flag;
-    
-    int num = atoi(argv[3]);
-    if(num < 1 || num > 9) {
-        fprintf(stderr, "Invalid range\n");
-        fprintf(stderr, "Acceptable range: [1, 9]\n");
-        exit(1);
-    }
 
     if(argc == 2) {
         flag = CheckPuzzle();
         printf("Is a valid sudoku puzzle? %s\n", flag ? "yes" : "no");
     } else if(argc == 4) {
+        int num = atoi(argv[3]);
+        if(num < 1 || num > 9) {
+            fprintf(stderr, "Invalid range\n");
+            fprintf(stderr, "Acceptable range: [1, 9]\n");
+            exit(1);
+        }
         if(strcmp(argv[2], "row") == 0) {
             flag = CheckRow(num);
             printf("Is row %d valid? %s\n", num, flag ? "yes" : "no");
