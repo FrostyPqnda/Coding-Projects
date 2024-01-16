@@ -230,21 +230,20 @@ MyString* split_MyString(MyString myStr, MyString delim) {
         return arr;
     }
 
-    int k = 0;
     int idx = index_MyString(myStr, delim, 0);
-    while(idx != -1) {
-        k++;
+    while(idx != -1) 
         idx = index_MyString(myStr, delim, idx + 1);
-    }
 
     int pos = 0, offset = 0;
     idx = index_MyString(myStr, delim, 0);
+
     while(idx != -1) {
         arr[pos++] = substr(myStr, offset, idx);
-        offset = idx = length(delim);
+        offset = idx + length(delim);
         idx = index_MyString(myStr, delim, idx + 1);
     }
-    arr[pos - 1] = substr(myStr, offset, length(myStr));
+    arr[pos] = substr(myStr, offset, length(myStr));
+
 
     return arr;
 }
@@ -272,14 +271,12 @@ MyString lower(MyString* myStr) {
     return *myStr;
 }
 
-// Converts myStr to all uppercase
 MyString upper(MyString* myStr) {
     for(int i = 0; i < length(*myStr); i++) 
         myStr->str[i] = toupper(myStr->str[i]);
     return *myStr;
 }
 
-// Remove all leading and trailing whitespaces from myStr
 MyString trim(MyString* myStr) {
     int start = 0;
     while(charAt(*myStr, start++) == ' ');
@@ -291,7 +288,6 @@ MyString trim(MyString* myStr) {
     return *myStr;
 }
 
-// Return myStr as char* object
 char* toString(MyString myStr) {
     return myStr.str;
 }
