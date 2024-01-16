@@ -155,12 +155,10 @@ int length(MyString myStr) {
     return strlen(myStr.str);
 }
 
-int split_length(MyString* myStr) {
-    MyString* dup = myStr;
+int split_length(MyString myStr[MAX]) {
     int i = 0;
-
-    while(dup && (dup + i++)->str);
-    return i - 1;
+    while(myStr[i].str) i++;
+    return i;
 }
 
 MyString replace_char(MyString* myStr, char oldChar, char newChar) {
@@ -188,10 +186,18 @@ MyString replace_MyString(MyString* myStr, MyString oldStr, MyString newStr) {
 
 MyString* split_char(MyString myStr, char delim) {
     MyString* arr = (MyString*)malloc(MAX * sizeof(MyString));
+    for(int i = 0; i < MAX; i++)
+        arr[i].str = NULL;
 
     if(delim == 0) {
         for(int i = 0; i < length(myStr); i++)
             arr[i] = substr(myStr, i, i + 1);
+        return arr;
+    }
+
+    int index = index_char(myStr, delim, 0);
+    if(index == -1) {
+        arr[0] = init(myStr.str);
         return arr;
     }
 
@@ -201,7 +207,7 @@ MyString* split_char(MyString myStr, char delim) {
             k++;
     
     int size = k + 1;
-    int pos = 0, offset = 0, index = index_char(myStr, delim, 0);
+    int pos = 0, offset = 0;
     while(index != -1) {
         arr[pos++] = substr(myStr, offset, index);
         offset = index + 1;
@@ -223,6 +229,8 @@ MyString* split_char(MyString myStr, char delim) {
 
 MyString* split_MyString(MyString myStr, MyString delim) {
     MyString* arr = (MyString*)malloc(MAX * sizeof(MyString));
+    for(int i = 0; i < MAX; i++)
+        arr[i].str = NULL;
 
     if(!length(delim)) {
         for(int i = 0; i < length(myStr); i++) 
@@ -235,9 +243,6 @@ MyString* split_MyString(MyString myStr, MyString delim) {
         arr[0] = init(myStr.str);
         return arr;
     }
-
-    while(idx != -1) 
-        idx = index_MyString(myStr, delim, idx + 1);
 
     int pos = 0, offset = 0;
     idx = index_MyString(myStr, delim, 0);
