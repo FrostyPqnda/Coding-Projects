@@ -1,6 +1,8 @@
 #ifndef MYSTRING_H_INCLUDED
 #define MYSTRING_H_INCLUDED
 
+#define MAX 1000
+
 typedef struct MyString {
     char* str;
 } MyString;
@@ -41,14 +43,14 @@ int last_index_MyString(MyString myStr, MyString item, int index);
 // Return the length of myStr
 int length(MyString myStr);
 
+// Return the length of MyString array
+int split_length(MyString myStr[MAX]);
+
 // Replace every occurence of oldChar with newChar in myStr
 MyString replace_char(MyString* myStr, char oldChar, char newChar);
 
 // Replace every occurence of oldString with newString in myStr
 MyString replace_MyString(MyString* myStr, MyString oldStr, MyString newStr);
-
-// Return the length of MyString array
-int split_length(MyString* myStr);
 
 // Split myStr into an array of MyString separated by the char delimiter
 MyString* split_char(MyString myStr, char delim);
