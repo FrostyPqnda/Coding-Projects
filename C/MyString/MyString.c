@@ -231,6 +231,11 @@ MyString* split_MyString(MyString myStr, MyString delim) {
     }
 
     int idx = index_MyString(myStr, delim, 0);
+    if(idx == -1) {
+        arr[0] = init(myStr.str);
+        return arr;
+    }
+
     while(idx != -1) 
         idx = index_MyString(myStr, delim, idx + 1);
 
@@ -243,7 +248,6 @@ MyString* split_MyString(MyString myStr, MyString delim) {
         idx = index_MyString(myStr, delim, idx + 1);
     }
     arr[pos] = substr(myStr, offset, length(myStr));
-
 
     return arr;
 }
