@@ -5,55 +5,33 @@ Created on Sept 28, 2020
 '''
 
 """
-Python project that uses the a Bubble Sorting
-algorithm to sort the array in order of least to
-greatest or the reverse in order to find the
-minimum or maximum value of a list
-
-Bubble Sort: a simple sorting algorithm that swaps 
-the adjacent elements repeatedly until they are in
-the right order.
+Python program that uses a Divide and Conquer algorithm
+to find the minimum and maximum of a list
 """
+
 # Finds the minimum value of a list
-def findMin(arr):
-    length = len(arr)
-    if length == 1:
-        return arr[0]
-    """
-    Sorts the list from least to greatest.
-    """
-    for x in range(length - 1):
-        for y in range(length - x - 1):
-            if arr[y] > arr[y + 1]:
-                arr[y], arr[y + 1] = arr[y + 1], arr[y]
-    # Removes the last elements of the array until only the minimum value is left
-    for i in range(length - 1):
-        arr.pop()
-    return findMin(arr)
+def findMin(data: list, left: int, right: int) -> int:
+    if left >= right:
+        return data[left - 1]
+    
+    mid = (left + right) // 2
+    leftMin = findMin(data, left, mid)
+    rightMin = findMin(data, mid + 1, right)
+    return min(leftMin, rightMin)
 
 # Finds the maximum value of list
-def findMax(arr):
-    length = len(arr)
-    if length == 1:
-        return arr
-    """
-    Sorts the list from greatest to least.
-    """
-    for x in range(length - 1):
-        for y in range(length - x - 1):
-            if arr[y] < arr[y + 1]: 
-                arr[y], arr[y + 1] = arr[y + 1], arr[y]
-    # Removes the last elements of the array until only the maximum value is left
-    for i in range(length - 1):
-        arr.pop()
-    return findMax(arr)
+def findMax(data: list, left: int, right: int) -> int:
+    if left >= right:
+        return data[left - 1]
+    
+    mid = (left + right) // 2
+    leftMin = findMax(data, left, mid)
+    rightMin = findMax(data, mid + 1, right)
+    return max(leftMin, rightMin)
 
-numbers = []
-
-while True:
-    try:
-        numbers.append(int(input('Enter a number [Enter a non-Integer value to quit]: ')))
-    except ValueError:
-        break
-
-print('Maximum:', findMax(numbers))
+if __name__ == '__main__':
+    data = [6, 4, 3, 2, 7, 8, 5]
+    
+    min = findMin(data, 0, len(data))
+    max = findMax(data, 0, len(data))
+    print(f'Data: {data}\nMinimum: {min}\nMaximum: {max}')
