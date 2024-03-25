@@ -20,6 +20,6 @@ public class Main {
 
         graph.addEdge(7, 6);
 
-       graph.print();
+        graph.print();
     }   
 }
