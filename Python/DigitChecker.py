@@ -10,11 +10,8 @@ the user's input to check if a number
 exists in it
 """
 def digit_checker(text):
-    isDigit = False
-    for char in text:
-        if char.isdigit():
-            isDigit = True
-    return isDigit
+    return any(c.isdigit() for c in text)
 
-print(digit_checker("h3llo"))
+print(digit_checker("h3ll0"))
+print(digit_checker("hello"))
 
