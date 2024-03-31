@@ -32,7 +32,7 @@ def findSafe(n: list[list[int]], v: list[int]):
     return -1
 
 # Check if the resource is safe from deadlock
-def safeState(c: list[list[int]], a: list[list[int]], r: list[int], v: list[int]) -> bool:
+def safeState(c: list[list[int]], a: list[list[int]], v: list[int]) -> bool:
     n = subMat(c, a)
     if(isSafe(n)): 
         return True
@@ -45,7 +45,7 @@ def safeState(c: list[list[int]], a: list[list[int]], r: list[int], v: list[int]
     c[index] = [0 for i in range(len(c[0]))]
     a[index] = [0 for i in range(len(a[0]))]
     print(f'Process P{index + 1} runs to completion')
-    return safeState(c, a, r, v)
+    return safeState(c, a, v)
 
 claim = [
     [3, 2, 2],
@@ -59,8 +59,8 @@ allocation = [
     [2, 1, 1],
     [0, 0, 2]
 ]
-resource = [9, 3, 6]
+#resource = [9, 3, 6]
 available = [0, 1, 1]
 
-safe = safeState(claim, allocation, resource, available)
+safe = safeState(claim, allocation, available)
 print(safe)
