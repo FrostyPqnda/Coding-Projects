@@ -6,7 +6,7 @@ Matrix is a magic square if:
 
 Precondition: row size is equal to column size
 """
-def magicSquare(square):
+def magicSquare(square: list[list[int]]) -> bool:
     isMagic = True
     diagOne = getDiagonal(square)[0]
     diagTwo = getDiagonal(square)[1]
@@ -31,20 +31,21 @@ def magicSquare(square):
     return isMagic
 
 # Gets the sum of the array
-def getSum(arr):
+def getSum(arr: list[int]) -> int:
     sum = 0
     for item in arr:
         sum += item
     return sum
 
 # Gets the column array of the matrix
-def getColumn(mat, col):
+def getColumn(mat: list[list[int]], col: int) -> list[int]:
     colArr = [None for _ in range(len(mat))]
     for i in range(len(colArr)):
         colArr[i] = mat[i][col]
     return colArr
 
-def getDiagonal(mat):
+# Get the diagonals of the matrix
+def getDiagonal(mat: list[list[int]]) -> tuple:
     # Gets the forward diagonal array of the matrix
     diagOneArr = [None for _ in range(len(mat))]
     index = 0
@@ -54,7 +55,6 @@ def getDiagonal(mat):
                 diagOneArr[index] = mat[r][c]
                 index += 1
 
-    
     # Gets the backward diagonal array of the matrix
     diagTwoArr = [None for _ in range(len(mat))]
     index = 0
