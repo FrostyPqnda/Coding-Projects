@@ -5,8 +5,8 @@ def subMat(a: list[list[int]], b: list[list[int]]) -> list[list[int]]:
     
     return [[a[i][j] - b[i][j] for j in range(len(a[0]))] for i in range(len(a))]
 
-# Subtract two list
-def subList(a: list[int], b: list[int]) -> list[int]:
+# Add two list
+def addList(a: list[int], b: list[int]) -> list[int]:
     if len(a) != len(b):
         raise Exception('Size do not match!')
     
@@ -41,7 +41,10 @@ def safeState(c: list[list[int]], a: list[list[int]], r: list[int], v: list[int]
     if index == -1:
         return False
 
-    v = subList(v, a[index])
+    v = addList(v, a[index])
+    if not safeVector(v, r):
+        return False
+    
     c[index] = [0 for i in range(len(c[0]))]
     a[index] = [0 for i in range(len(a[0]))]
     print(f'Process P{index + 1} runs to completion')
