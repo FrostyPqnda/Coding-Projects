@@ -31,7 +31,7 @@ def findSafe(n: list[list[int]], v: list[int]):
             return i
     return -1
 
-# Check if the resource is safe from deadlock
+# Check if processes are safe from deadlock
 def safeState(c: list[list[int]], a: list[list[int]], r: list[int], v: list[int]) -> bool:
     n = subMat(c, a)
     if(isSafe(n)): 
