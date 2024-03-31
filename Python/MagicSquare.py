@@ -8,8 +8,8 @@ Precondition: row size is equal to column size
 """
 def magicSquare(square):
     isMagic = True
-    diagOne = getDiagOne(square)
-    diagTwo = getDiagTwo(square)
+    diagOne = getDiagonal(square)[0]
+    diagTwo = getDiagonal(square)[1]
 
     for r in range(len(square)):
         for c in range(len(square) - 1):
@@ -44,8 +44,8 @@ def getColumn(mat, col):
         colArr[i] = mat[i][col]
     return colArr
 
-# Gets the forward diagonal array of the matrix
-def getDiagOne(mat):
+def getDiagonal(mat):
+    # Gets the forward diagonal array of the matrix
     diagOneArr = [None for _ in range(len(mat))]
     index = 0
     for r in range(len(mat)):
@@ -53,18 +53,18 @@ def getDiagOne(mat):
             if r == c:
                 diagOneArr[index] = mat[r][c]
                 index += 1
-    return diagOneArr
 
-# Gets the backward diagonal array of the matrix
-def getDiagTwo(mat):
+    
+    # Gets the backward diagonal array of the matrix
     diagTwoArr = [None for _ in range(len(mat))]
     index = 0
-    for r in range(len(mat)):
+    for r in range(len(mat)):   
         for c in range(len(mat[r])):
             if (r + c) == (len(mat) - 1):
                 diagTwoArr[index] = mat[r][c]
                 index += 1
-    return diagTwoArr
+
+    return (diagOneArr, diagTwoArr)
 
 mat = [
     [7, 2, 3],
