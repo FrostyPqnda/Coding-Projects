@@ -11,7 +11,6 @@ Otherwise, submatrix will be created with values of the original
 matrix from [0, row] and [0, col].
 """
 def extractSubmatrix(mat, row, col, endRow = None, endCol = None):
-    
     if endRow is not None and endCol is not None:
         rowSize = endRow - row
         colSize = endCol - col
