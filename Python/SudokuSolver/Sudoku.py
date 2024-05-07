@@ -90,7 +90,7 @@ def solve(board):
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print('usage: Python Sudoku.py <text file>')
+        print('usage: python Sudoku.py <text file>')
         sys.exit()
     
     inFile = sys.argv[1]
