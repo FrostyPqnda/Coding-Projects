@@ -11,12 +11,12 @@ def fetch(url: str, file: str):
             f.write(soup.prettify())
         print(f'Successfully written to {file}')
     else:
-        print(f'Failed to parse {url}')
+        print(f'Failed to scrape {url}')
         sys.exit()
     
 if __name__ == '__main__':
     if len(sys.argv) != 3:
-        print('Usage: python WebScraper <URL> <output file>')
+        print('Usage: python WebScraper.py <URL> <output file>')
         sys.exit()
     
     url = sys.argv[1]
