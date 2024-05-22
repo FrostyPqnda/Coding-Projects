@@ -23,6 +23,7 @@ class Wordle:
         
         self.list_of_words = [word.decode().upper() for word in response.content.splitlines()]
         self.invalid_chars = []
+        self.valid_chars = []
         self.secret_word = random.choice(self.list_of_words)
         
 
@@ -45,7 +46,14 @@ class Wordle:
     """
     def __guess(self, secret_word, guess_word):
         for i in range(len(secret_word)):
-            if guess_word[i] in secret_word and guess_word[i] != secret_word[i]:
+            if guess_word[i] == secret_word[i]:
+                if guess_word[i] not in self.valid_chars:
+                    self.valid_chars.append(guess_word[i].upper())
+                    self.valid_chars.sort()
+            elif guess_word[i] in secret_word and guess_word[i] != secret_word[i]:
+                if guess_word[i] not in self.valid_chars:
+                    self.valid_chars.append(guess_word[i].upper())
+                    self.valid_chars.sort()
                 guess_word = guess_word[:i] + '+' + guess_word[i + 1:]
             elif guess_word[i] not in secret_word:
                 if guess_word[i] not in self.invalid_chars:
@@ -80,6 +88,8 @@ class Wordle:
                 b = ' '.join(line).split(',')
                 print(b)
 
+            print()
+            print(f'Valid: {self.valid_chars}')
             print(f'Invalid: {self.invalid_chars}')
 
             if word == guess:
@@ -90,6 +100,9 @@ class Wordle:
             print(f'Secret Word = {self.secret_word}')
         else:
             print(f'Score = {score}')
+            for line in board:
+                b = ' '.join(line).split(',')
+                print(b)
 
 if __name__ == '__main__':
     wordle = Wordle()
