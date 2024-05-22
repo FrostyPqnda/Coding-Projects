@@ -26,7 +26,6 @@ class Wordle:
         self.valid_chars = []
         self.secret_word = random.choice(self.list_of_words)
         
-
     # Get a 5-letter input from the user
     def __getWord(self):
         while True:
