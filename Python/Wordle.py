@@ -21,8 +21,7 @@ class Wordle:
             print('HTTP Error')
             print(errh.args[0])
         
-        self.list_of_words = response.content.splitlines()
-        self.list_of_words = [word.decode().upper() for word in self.list_of_words]
+        self.list_of_words = [word.decode().upper() for word in response.content.splitlines()]
         self.invalid_chars = []
         self.secret_word = random.choice(self.list_of_words)
         
