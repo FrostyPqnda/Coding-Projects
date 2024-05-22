@@ -33,7 +33,7 @@ class Wordle:
 
             if len(s) == 5 and s.upper() in self.list_of_words:
                 return s
-
+                
     """
     Update the user's guess with the following character:
     - A '+' means that a character from the user's input 
@@ -72,7 +72,7 @@ class Wordle:
                 print(b)
 
         for i, j in zip(range(len(board)), range(len(board), -1, -1)):
-            word = self.__getWord()
+            word = self.__getWord().upper()
             guess = self.__guess(self.secret_word, word)
 
             if word != '':
@@ -87,7 +87,7 @@ class Wordle:
                 b = ' '.join(line).split(',')
                 print(b)
 
-            print()
+            print(f'Previous Guess: {word}')
             print(f'Valid: {self.valid_chars}')
             print(f'Invalid: {self.invalid_chars}')
 
