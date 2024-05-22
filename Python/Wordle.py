@@ -14,7 +14,6 @@ class Wordle:
     # Read a list of 5-letter words from an online text file
     def __init__(self):
         self.url = 'https://www-cs-faculty.stanford.edu/~knuth/sgb-words.txt'
-        response = requests.get(self.url)
         
         try:
             response = requests.get(self.url)
@@ -51,7 +50,7 @@ class Wordle:
                 guess_word = guess_word[:i] + '+' + guess_word[i + 1:]
             elif guess_word[i] not in secret_word:
                 if guess_word[i] not in self.invalid_chars:
-                    self.invalid_chars.append(guess_word[i])
+                    self.invalid_chars.append(guess_word[i].upper())
                     self.invalid_chars.sort()
                 guess_word = guess_word[:i] + '-' + guess_word[i + 1:]
 
