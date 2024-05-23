@@ -2,6 +2,7 @@ import requests
 import random
 from os import system, name
 import json
+import sys
 
 """
 Author: Brian Pham
@@ -34,12 +35,13 @@ class Wordle:
             self.__current_streak = data['game_data']['streak']['current_streak']
             self.__highest_streak = data['game_data']['streak']['highest_streak']       
 
-        print(self.__secret_word)
-
     # Get a 5-letter input from the user
     def __getWord(self):
         while True:
-            s = input('Enter a 5-letter word: ')
+            s = input('Enter a 5-letter word (Enter -1 to quit): ')
+
+            if s == '-1':
+                sys.exit()
 
             if len(s) == 5 and s.upper() in self.__list_of_words:
                 return s
@@ -95,8 +97,17 @@ class Wordle:
         print(f'Current Streak: {self.__current_streak}')
         print(f'Highest Streak: {self.__highest_streak}')
 
-    # Play the Wordle game
+    # Clear the console
+    def __clear_console(self):
+        if name == 'nt':
+            system('cls')
+        else:
+            system('clear')
+
+    # Play a single Wordle game
     def play(self):
+        self.__clear_console()
+        
         board = [['_' for _ in range(5)] for _ in range(6)]
         score = 0
 
@@ -109,10 +120,7 @@ class Wordle:
             guess = self.__guess(self.__secret_word, word)
 
             if word != '':
-                if name == 'nt':
-                    system('cls')
-                else:
-                    system('clear')
+                self.__clear_console()
 
             board[i] = [*guess]
 
@@ -147,3 +155,4 @@ class Wordle:
 if __name__ == '__main__':
     wordle = Wordle()
     wordle.play()
+    
