@@ -30,10 +30,15 @@ class Wordle:
     def __load_state(self):
         with open('state.json', 'r') as f:
             data = json.loads(f.read())
+            
+            # Load board
             self.__secret_word = bytes.fromhex(data['state']['secret_word']).decode('UTF-8') if data['state']['secret_word'] else random.choice(self.__list_of_words)
             self.__valid_chars = data['state']['valid']
             self.__invalid_chars = data['state']['invalid']
             self.__board = data['state']['board']
+            self.__last_input = data['state']['last_input']
+            
+            # Load score
             self.__current_score = data['state']['score']['current_score']
             self.__high_score = data['state']['score']['high_score']
             self.__current_streak = data['state']['streak']['current_streak']
@@ -87,6 +92,7 @@ class Wordle:
         self.__invalid_chars.clear()
         self.__secret_word = random.choice(self.__list_of_words)
         self.__board = [['_' for _ in range(5)] for _ in range(6)]
+        self.__last_input = [[] for _ in range(6)]
 
     # Reset the game
     def __reset(self):
@@ -111,6 +117,7 @@ class Wordle:
                 'valid': self.__valid_chars,
                 'invalid': self.__invalid_chars,
                 'board': self.__board,
+                'last_input': self.__last_input,
                 'score': {
                     'current_score': self.__current_score,
                     'high_score': self.__high_score
@@ -129,6 +136,8 @@ class Wordle:
     def play(self):
         while True:
             board = self.__board
+            last_input = self.__last_input
+
             correct = False
             score = self.__current_score
             print(f'Score: {score}')
@@ -146,12 +155,13 @@ class Wordle:
 
                 print(f'Score: {score}')
                 board[i] = [*guess]
+                last_input[i] = [*word]
 
-                for line in board:
-                    b = ' '.join(line).split(',')
-                    print(b)
+                for (a, b) in zip(board, last_input):
+                    p = ' '.join(a).split(',')
+                    q = ' '.join(b).split(',')
+                    print(f'{p} => {q}')
 
-                print(f'Previous Guess: {word}')
                 print(f'Valid: {self.__valid_chars}')
                 print(f'Invalid: {self.__invalid_chars}')
 

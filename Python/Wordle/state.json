@@ -1,6 +1,6 @@
 {
     "state": {
-        "secret_word": "",
+        "secret_word": "424153494c",
         "valid": [],
         "invalid": [],
         "board": [
@@ -46,6 +46,14 @@
                 "_",
                 "_"
             ]
+        ],
+        "last_input": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
         ],
         "score": {
             "current_score": 0,
