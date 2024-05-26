@@ -14,7 +14,7 @@ class PascalTriangle:
                 self.__pascal[i][j] = 1 if j == 0 or j == i else self.__pascal[i - 1][j - 1] + self.__pascal[i - 1][j]
 
     # If n is not defined: return the entire Pascal's Triangle.
-    # Otherwise, return specified row of the Pascal's Triangle.
+    # Otherwise, return the nth row of the Pascal's Triangle.
     # 
     # Uses 1-based indexing
     def get(self, n: int = None) -> list:
