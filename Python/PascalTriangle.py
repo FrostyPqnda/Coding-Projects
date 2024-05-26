@@ -7,9 +7,7 @@ class PascalTriangle:
         if not isinstance(n, int):
             raise TypeError('n must be an integer value')
         
-        self.__pascal = [[] for _ in range(n)]
-        for i in range(n):
-            self.__pascal[i] = [0 for _ in range(i + 1)]
+        self.__pascal = [[0 for _ in range(i + 1)] for i in range(n)]
 
         for i in range(n):
             for j in range(i + 1):
