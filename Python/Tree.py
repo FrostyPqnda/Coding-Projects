@@ -154,9 +154,19 @@ class Tree:
 
         return findPaths(self.root, [], 0, [])
 
-    # Check if an item exists in a tree using BFS
+    # Check if an item exists in a tree
     def find(self, item: int) -> bool:
-        return item in self.BFS()
+        def search(root, item):
+            if not root: 
+                return False
+            if item < root.data:
+                return search(root.left, item)
+            elif item > root.data:
+                return search(root.right, item)
+            else:
+                return True 
+        
+        return search(self.root, item)
 
     # Delete the tree
     def clear(self) -> None:
