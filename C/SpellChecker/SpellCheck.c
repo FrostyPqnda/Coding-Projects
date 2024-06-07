@@ -62,9 +62,10 @@ Dictionary readDictionary(char* file) {
  */
 Dictionary possibleWords(char* word) {
     Dictionary dict = readDictionary("dictionary.txt");
-    int idx = search(dict, word);
-    if(idx != -1) 
+    if(search(dict, word) != -1) {
+        fprintf(stdout, "\"%s\" is spelled correctly\n", word);
         exit(1);
+    }
 
     dict.edits = (int*)malloc(MAXWORD * sizeof(int));
     for(int i = 0; i < dict.length; i++)
