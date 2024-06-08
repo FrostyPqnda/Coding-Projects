@@ -42,8 +42,7 @@ namespace JaggedSorter
         // Sorts the rows of arrays in the 2D Jagged Array
         // using the Insertion Sort algorithm.
         //
-        // The sort the 2D Jagged Array by length using the
-        // Insertion Sort algorithm again.
+        // Then, sort the 2D Jagged Array by length.
         static void jaggedSort(int[][] arr)
         {
             foreach(int[] row in arr)
