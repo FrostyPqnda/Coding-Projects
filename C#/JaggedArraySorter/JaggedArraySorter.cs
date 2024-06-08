@@ -40,12 +40,23 @@ namespace JaggedSorter
         }
 
         // Sorts the rows of arrays in the 2D Jagged Array
-        // using the Insertion Sort algorithm
+        // using the Insertion Sort algorithm.
+        //
+        // The sort the 2D Jagged Array by length using the
+        // Insertion Sort algorithm again.
         static void jaggedSort(int[][] arr)
         {
             foreach(int[] row in arr)
-            {
                 insertionSort(row);
+
+            for(int i = 1; i < arr.Length; i++) {
+                int[] key = arr[i];
+                int x = i - 1;
+                while(x >= 0 && arr[x].Length > key.Length) {
+                    arr[x + 1] = arr[x];
+                    x--;
+                }
+                arr[x + 1] = key;
             }
         }
         
