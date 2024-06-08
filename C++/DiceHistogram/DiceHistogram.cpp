@@ -143,11 +143,13 @@ void error(int argc, char* argv[]) {
         exit(1);
     } 
 
-    if(atoi(argv[1]) <= 0)
-        cerr << "No. of die cannot be less than 1!" << endl;
+    if(atoi(argv[1]) <= 0 || atoi(argv[2]) <= 0) {
+        if(atoi(argv[1]) <= 0)
+            cerr << "No. of die cannot be less than 1!" << endl;
 
-    if(atoi(argv[2]) <= 0)
-        cerr << "No. of rolls cannot be less than 1!" << endl;
+        if(atoi(argv[2]) <= 0)
+            cerr << "No. of rolls cannot be less than 1!" << endl;
 
-    exit(1);    
+        exit(1);
+    }      
 }   
