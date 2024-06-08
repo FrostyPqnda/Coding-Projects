@@ -2,14 +2,17 @@
 
 class LongestCommonSubsequence {
     public static void Main(string[] args) {
-        Console.Write("Enter first word: ");
-        string x = Console.ReadLine() ?? String.Empty;  
-        
-        Console.Write("Enter second word: ");
-        string y = Console.ReadLine() ?? String.Empty;
+        string x;
+        do {
+            Console.Write("Enter first word: ");
+            x = Console.ReadLine() ?? string.Empty;
+        } while(string.IsNullOrEmpty(x));
 
-        if(string.IsNullOrEmpty(x) || string.IsNullOrEmpty(y))
-            Environment.Exit(-1);
+        string y;
+        do {
+            Console.Write("Enter second word: ");
+            y = Console.ReadLine() ?? string.Empty;
+        } while(string.IsNullOrEmpty(y));
 
         int lcs = LCS(x, y);
         Console.WriteLine($"The longest common subsequence between {x} and {y} is {lcs}");
