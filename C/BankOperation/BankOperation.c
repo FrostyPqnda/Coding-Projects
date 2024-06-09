@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
-#include "Bank.h"
+#include "Bank.c"
 
 void printData(BankAccount user) {
     printf("%s %d %.2lf\n", user.name, user.accountID, user.balance);
