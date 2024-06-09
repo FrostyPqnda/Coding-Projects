@@ -67,7 +67,7 @@ class PlaylistExtractor:
     # Retrieves the user's playlist.
     # Return True if successful.
     def extract_playlist(self) -> bool:
-        if self.youtube is None:
+        if not self.youtube:
             print('Failed to connect to the YouTube API!')
             return False
 
@@ -77,7 +77,7 @@ class PlaylistExtractor:
             maxResults=50
         )
     
-        while request is not None:
+        while request:
             try:
                 response = request.execute()
             except google_errors.HttpError as e:
