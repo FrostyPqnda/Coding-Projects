@@ -1,13 +1,15 @@
-
 # Calculate the nth Fibonacci number using dynamic programming
 # Time complexity: O(n)
-def Memoized_Fibonaccci(n: int) -> int:
-    F = [None for i in range(n + 2)]
-    if n <= 1: return n
-    if F[n] is None:
-        F[n] = Memoized_Fibonaccci(n - 1) + Memoized_Fibonaccci(n - 2)
+def Fibonacci(n: int) -> int:
+    F = [0 for i in range(n + 2)]
+    F[0] = 0
+    F[1] = 1
+
+    for i in range(2, n + 1): 
+        F[i] = F[i - 1] + F[i - 2]
+
     return F[n]
 
-num = int(input("Enrter an integer value: "))
-fib = Memoized_Fibonaccci(num)
+num = int(input("Enter an integer value: "))
+fib = Fibonacci(num)
 print(f'The fibonacci of {num} is {fib}')

@@ -6,17 +6,13 @@ of the array, it will search for the target in the lower
 half. Otherwise, it will search for it in the upper half.
 """
 def binarySearch(arr, left, right, target):
-    if(right >= left):
-        mid = int(left + (right - left) / 2)
-        # Element is at the middle itself
-        if arr[mid] == target:
-            return mid
-        # Element is smaller than mid
-        if arr[mid] > target:
-            return binarySearch(arr, left, mid - 1, target)
-        # Element is greater than mid
-        return binarySearch(arr, mid + 1, right, target)
-    return -1
+    if left >= right: return -1
+
+    mid = (left + right) // 2
+    if arr[mid] > target: return binarySearch(arr, left, mid - 1, target)
+    elif arr[mid] < target: return binarySearch(arr, mid + 1, right, target)
+    else: return mid
+
 
 # Prints all elements of list in one line
 def printList(arr):
@@ -24,7 +20,5 @@ def printList(arr):
         print(arr[i], end = " ")
 
 arr = [1, 2, 3, 5, 5, 8, 10, 15, 19, 19]
-
 printList(arr)
-
-print("\nThe index was found at position " + str(binarySearch(arr, 0, len(arr) - 1, 5)) + "\n")
+print(f'{5} was found at index {binarySearch(arr, 0, len(arr) - 1, 5)}')
