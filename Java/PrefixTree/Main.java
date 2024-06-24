@@ -10,10 +10,5 @@ public class Main {
         for(String word : args)
             pt.insert(word);
         pt.print();
-
-        pt.remove("train"); 
-
-        System.out.println();
-        pt.print();
     }
 }
