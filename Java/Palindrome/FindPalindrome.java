@@ -9,11 +9,14 @@ public class FindPalindrome
 {
 	public static boolean palindrome(String text)
 	{
-		String palin = "";
-		
-		for(int i = text.length() - 1; i >= 0; i--)
-			palin += text.charAt(i);
-		
-		return palin.equalsIgnoreCase(text);
+		int left = 0, right = text.length() - 1;
+		while(left <= right) {
+			if(text.charAt(left) != text.charAt(right))
+				return false;
+			left++;
+			right--;
+		}
+
+		return true;
 	}
 }
