@@ -19,7 +19,7 @@ public class Trie {
      * @param word String object to be inserted into the prefix tree
      */
     public void insert(String word) {
-        TrieNode currNode = root;
+        TrieNode currNode = root; 
         for(char ch : word.toCharArray()) {
             if(!currNode.children.containsKey(ch)) {
                 currNode.children.put(ch, new TrieNode(ch));
@@ -27,6 +27,31 @@ public class Trie {
             currNode = currNode.children.get(ch);
         }
         currNode.isLeaf = true;
+    }
+
+    /**
+     * remove(String word)
+     * 
+     * @param word String object to be removed from the prefix tree
+     */
+    public void remove(String word) {
+        TrieNode currNode = root; // 
+        TrieNode[] branch = new TrieNode[word.length()];
+        int n = branch.length;
+        int index = 0;
+
+        for(char ch : word.toCharArray()) {
+            currNode = currNode.children.get(ch);
+            branch[index++] = currNode;
+        }
+        currNode.isLeaf = false;
+        for(int i = n - 2; i >= 0; i--) {
+            int j = i + 1;
+            if(branch[j].children.isEmpty()) {
+                branch[i].children.remove(branch[j].data);
+            }
+        }
+    
     }
 
     /**
