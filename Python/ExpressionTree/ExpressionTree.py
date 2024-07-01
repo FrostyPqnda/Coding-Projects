@@ -29,6 +29,9 @@ class ExpressionTree:
     decides to put in parantheses in the expression.
     This is because the shell / terminal has higher
     priority than the compiler.
+
+    To-dos:
+    1. Finish the print() method
     """
     class _Symbol:
         """
