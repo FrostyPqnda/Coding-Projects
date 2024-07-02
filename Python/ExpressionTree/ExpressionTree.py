@@ -27,13 +27,8 @@ class ExpressionTree:
     Known Errors:
     1. Command-Line argument does not work if the user
     decides to put in parantheses in the expression.
-    This is because the shell / terminal has higher
-    priority than the compiler.
-
-    To-dos:
-    1. Finish the print() method
     """
-    class _Symbol:
+    class __Symbol:
         """
         A class used to represent the symbol (operand / operator) of an
         Expression Tree
@@ -61,10 +56,10 @@ class ExpressionTree:
     
     def __init__(self, expr: str | list[str]) -> ExpressionTree:
         if not expr:
-            raise ValueError('<expr> cannot be null!')
+            raise _ExpressionTreeError('The expression cannot be null!')
 
-        self.root: ExpressionTree._Symbol = self.__buildTree(expr)
-        self.solvable: bool = not any(re.search('[a-zA-Z]', s) for s in expr)
+        self.__root: ExpressionTree._Symbol = self.__buildTree(expr)
+        self.__solvable: bool = not any(re.search('[a-zA-Z]', s) for s in expr)
     
     def __buildTree(self, expr: str | list[str]) -> ExpressionTree._Symbol:
         """
@@ -130,7 +125,7 @@ class ExpressionTree:
             ExpressionTree._Symbol
                 The new node for the expression tree
             """
-            return self._Symbol(symbol, node1, node2)
+            return self.__Symbol(symbol, node1, node2)
        
         def tokenize(expr: str | list[str]) -> list[str]:
             """
@@ -144,7 +139,7 @@ class ExpressionTree:
             list[str]
                 A list of tokens parsed from the expression
             """
-            expr = ''.join(expr) \
+            expr: str = ''.join(expr) \
             .replace('(-', '(0-') \
             .replace('+-', '-') \
             .replace('-+', '-') \
@@ -156,9 +151,8 @@ class ExpressionTree:
             if expr.startswith('-'):
                 expr = '0' + expr
 
-            formatted = ''
-            i = 0  
-
+            formatted: str = ''
+            i: int = 0
             while i < len(expr):
                 c = expr[i]
                 if isOperator(c):
@@ -170,30 +164,47 @@ class ExpressionTree:
                     formatted += f' {c} '
                 else:
                     formatted += f'{c}'
-                
+
                 i += 1
-            
-            formatted = re.sub(r'\s+', ' ', formatted).strip()
-            tokens = formatted.split()
+
+    
+            formatted: str = ' '.join(formatted.split()).strip()
+            for i in range(len(formatted) - 2):
+                curr = formatted[i]
+                next = formatted[i + 2]
+
+                if (re.search(r'[-+]?[A-Za-z0-9]+', curr) and next == '(') or (curr == ')' and re.search(r'[-+]?[A-Za-z0-9]+', next)):
+                    formatted = formatted[:i+1] + ' *' + formatted[i+1:]
+            tokens: list[str] = formatted.split()
+
             numOperators: int = 0
             numOperands: int = 0
+            numOpenParen: int = 0
+            numClosedParen: int = 0
 
             for token in tokens:
                 if isOperator(token):
                     numOperators += 1
                 elif re.search(r'[-+]?[A-Za-z0-9]+', token):
                     numOperands += 1
+                elif token == '(':
+                    numOpenParen += 1
+                elif token == ')':
+                    numClosedParen += 1
 
             if numOperators == 0:
-                raise ValueError('No arithmetic operators detected')
+                raise _ExpressionTreeError('No arithmetic operators detected')
 
             if numOperators >= numOperands:
-                raise ValueError('Operator count >= Operand count')
+                raise _ExpressionTreeError('Operator count >= Operand count')
             
-            print(f'T = {tokens}')
+            if numOpenParen != numClosedParen:
+                raise _ExpressionTreeError('All parantheses must be closed!')
+
             return tokens
         
         tokens: list[str] = tokenize(expr)
+        
         operands: list[ExpressionTree._Symbol] = []
         operators: list[str] = []
 
@@ -209,7 +220,7 @@ class ExpressionTree:
                     operands.append(buildNode(operands.pop(), operands.pop(), operators.pop()))
                 operators.pop()
             else:
-                operands.append(self._Symbol(token.upper()))
+                operands.append(self.__Symbol(token.upper()))
 
         while operators:
             if operators[-1] == '(':
@@ -231,8 +242,8 @@ class ExpressionTree:
         float | int
             An evaluation of the expression tree
         """
-        if not self.solvable:
-            raise TypeError('Failed to evaluate the expression tree!')
+        if not self.__solvable:
+            raise _ExpressionTreeError('Failed to evaluate the expression tree!')
         
         def eval(root: ExpressionTree._Symbol) -> float | int:
             """
@@ -263,7 +274,7 @@ class ExpressionTree:
                     return int(value) if value.is_integer() else value
                 case '/':
                     if right == 0:
-                        raise ArithmeticError('Cannot divide by 0!')
+                        raise ZeroDivisionError()
                     value = left / right
                     return int(value) if value.is_integer() else value
                 case '+':
@@ -273,7 +284,7 @@ class ExpressionTree:
                     value = left - right
                     return int(value) if value.is_integer() else value
         
-        return eval(self.root)
+        return eval(self.__root)
 
     def DFS(self, traversal: str = 'inorder') -> list[str]:
         """
@@ -378,7 +389,7 @@ class ExpressionTree:
         if traversal.lower() not in traversals:
             raise KeyError(f'Key {traversal} is not a valid traversal type')
 
-        return traversals[traversal](self.root)
+        return traversals[traversal](self.__root)
     
     
     def BFS(self) -> list[list[str]]:
@@ -426,7 +437,7 @@ class ExpressionTree:
 
             return levels
 
-        return levelOrder(self.root)
+        return levelOrder(self.__root)
     
     def height(self) -> int:
         """
@@ -457,18 +468,90 @@ class ExpressionTree:
             rightHeight: int = treeHeight(root.right)
             return 1 + max(leftHeight, rightHeight)
         
-        return treeHeight(self.root)
+        return treeHeight(self.__root)
     
-    """
-    Print the tree representation of the expression tree
-    """
     def print(self) -> None:
-        def printTree(root: ExpressionTree._Symbol) -> None:
+        """
+        Print the tree representation of the expression tree
+        """
+        if not self.__root:
+            return
+        
+        def depth(root: ExpressionTree.__Symbol) -> int:
+            """
+            Return the depth of current root in the tree.
+
+            Parameters
+            root : ExpressionTree.__Symbol
+                The root of the tree
+
+            Returns
+            int
+                The depth of the tree
+            """
+            if not root:
+                return 0
+            leftDepth = depth(root.left)
+            rightDepth = depth(root.right)
+            return 1 + max(leftDepth, rightDepth)
+        
+        def getColumn(h: int) -> int:
+            """
+            Get the current column of h
+
+            Parameters:
+            h : int
+                Specified height value
+
+            Returns:
+            int 
+                The specified column of h
+            """
+            if h == 1:
+                return 1
+            return (2 * getColumn(h - 1)) + 1
+        
+        def buildTreeStructure(root: ExpressionTree.__Symbol, col: int, row: int, height: int) -> None:
+            """
+            Build the expression tree as a tree structure using preorder depth-first
+            search.
+
+            Parameters:
+            root : ExpressionTree.__Symbol
+                The root of the tree
+            col : int
+                The column value
+            row : int
+                The row value
+            height:
+                The height value
+            """
             if not root:
                 return
-            
-            print(root.symbol)
-            printTree(root.left)
-            printTree(root.right)
+            T[row][col] = root.symbol
+            buildTreeStructure(
+                root.left, col - pow(2, height - 2), row + 1, height - 1
+            )
+            buildTreeStructure(
+                root.right, col + pow(2, height - 2), row + 1, height - 1
+            )
 
-        pass
+        h = depth(self.__root)
+        c = getColumn(h)
+        T = [[None for _ in range(c)] for _ in range(h)]
+        buildTreeStructure(self.__root, c // 2, 0, h)
+        for i in range(h):
+            for j in range(c):
+                if T[i][j]:
+                    print(f'{T[i][j]} ', end = ' ')
+                else:
+                    print('  ', end = ' ')
+            print()
+
+
+class _ExpressionTreeError(Exception):
+    """
+    Class used to represent any errors that are detected
+    due to faulty logic with the Expression Tree class.
+    """
+    pass
