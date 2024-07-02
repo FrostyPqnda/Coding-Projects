@@ -37,19 +37,19 @@ class ExpressionTree:
         symbol : str
             A string representing an operand / operator of a node in
             the expression tree
-        left : ExpressionTree._Symbol
+        left : ExpressionTree.__Symbol
             The left child of the node (default is None)
-        right : ExpressionTree._Symbol
+        right : ExpressionTree.__Symbol
             The right child of the node (default is None) 
 
         Methods:
         __str__(self):
             Return the symbol (operand / operator) of the node
         """
-        def __init__(self, symbol: str, left: ExpressionTree._Symbol = None, right: ExpressionTree._Symbol = None):
+        def __init__(self, symbol: str, left: ExpressionTree.__Symbol = None, right: ExpressionTree.__Symbol = None):
             self.symbol: str = symbol
-            self.left: ExpressionTree._Symbol = left
-            self.right: ExpressionTree._Symbol = right
+            self.left: ExpressionTree.__Symbol = left
+            self.right: ExpressionTree.__Symbol = right
 
         def __str__(self):
             return self.symbol
@@ -58,10 +58,10 @@ class ExpressionTree:
         if not expr:
             raise _ExpressionTreeError('The expression cannot be null!')
 
-        self.__root: ExpressionTree._Symbol = self.__buildTree(expr)
-        self.__solvable: bool = not any(re.search('[a-zA-Z]', s) for s in expr)
+        self.__root: ExpressionTree.__Symbol = self.__buildTree(expr)
+        self.__solvable: bool = not any(re.search('[a-zA-Z]+', s) for s in expr)
     
-    def __buildTree(self, expr: str | list[str]) -> ExpressionTree._Symbol:
+    def __buildTree(self, expr: str | list[str]) -> ExpressionTree.__Symbol:
         """
         Construct the expression tree
 
@@ -70,8 +70,7 @@ class ExpressionTree:
             An arithmetic (infix) expression
 
         Return:
-        ExpressionTree._Symbol
-            The root of the expression tree
+        The root of the expression tree
         """
         def isOperator(op: str) -> bool:
             """
@@ -82,8 +81,7 @@ class ExpressionTree:
                 The string to be tested
 
             Return:
-            bool
-                True if op is a valid operator
+            True if op is a valid operator
             """
             return op in ['+', '-', '*', '/', '^']
         
@@ -96,8 +94,7 @@ class ExpressionTree:
                 The string to set the precedence
 
             Return:
-            int
-                The precedence of the operator
+            The precedence of the operator
             """
             match op:
                 case '^':
@@ -109,21 +106,20 @@ class ExpressionTree:
                 case default:
                     return -1
                 
-        def buildNode(node2: ExpressionTree._Symbol, node1: ExpressionTree._Symbol, symbol: str) -> ExpressionTree._Symbol:
+        def buildNode(node2: ExpressionTree.__Symbol, node1: ExpressionTree.__Symbol, symbol: str) -> ExpressionTree.__Symbol:
             """
             Construct a new node for the expression tree
 
             Parameters:
-            node2 : ExpressionTree._Symbol
+            node2 : ExpressionTree.__Symbol
                 The right child of the node
-            node1 : ExpressionTree._Symbol
+            node1 : ExpressionTree.__Symbol
                 The left child of the node
             symbol : str
                 The operand / operator of the node
 
             Return:
-            ExpressionTree._Symbol
-                The new node for the expression tree
+            The new node for the expression tree
             """
             return self.__Symbol(symbol, node1, node2)
        
@@ -136,8 +132,7 @@ class ExpressionTree:
                 The arithmetic expression to be tokenized
 
             Return:
-            list[str]
-                A list of tokens parsed from the expression
+            A list of tokens parsed from the expression
             """
             expr: str = ''.join(expr) \
             .replace('(-', '(0-') \
@@ -164,7 +159,6 @@ class ExpressionTree:
                     formatted += f' {c} '
                 else:
                     formatted += f'{c}'
-
                 i += 1
 
     
@@ -204,8 +198,7 @@ class ExpressionTree:
             return tokens
         
         tokens: list[str] = tokenize(expr)
-        
-        operands: list[ExpressionTree._Symbol] = []
+        operands: list[ExpressionTree.__Symbol] = []
         operators: list[str] = []
 
         for token in tokens:
@@ -239,24 +232,22 @@ class ExpressionTree:
             of type float | int.
 
         Return:
-        float | int
-            An evaluation of the expression tree
+        An evaluation of the expression tree
         """
         if not self.__solvable:
             raise _ExpressionTreeError('Failed to evaluate the expression tree!')
         
-        def eval(root: ExpressionTree._Symbol) -> float | int:
+        def eval(root: ExpressionTree.__Symbol) -> float | int:
             """
             Performs an arithmetic evaluation starting at 
             the root of the tree
 
             Parameters:
-            root : ExpressionTree._Symbol
+            root : ExpressionTree.__Symbol
                 The root of the tree
 
             Return:
-            float | int
-                The arithmetic evaluation of the tree
+            The arithmetic evaluation of the tree
             """
             if root.left == root.right == None:
                 return float(root.symbol)
@@ -304,27 +295,25 @@ class ExpressionTree:
             If traversal is not a valid traversal type
 
         Return:
-        list[str]
-            A list of symbols after performing depth-first search
-            on the expression tree.
+        A list of symbols after performing depth-first search
+        on the expression tree.
         """
         if not isinstance(traversal, str):
             raise TypeError('<traversal> must be of type <str>')
         
-        def preorder(root: ExpressionTree._Symbol, symbols: list[str] = []) -> list[str]:
+        def preorder(root: ExpressionTree.__Symbol, symbols: list[str] = []) -> list[str]:
             """
             Get a list of symbols after performing preorder traversal on
             the tree
 
             Parameters:
-            root : ExpressionTree._Symbol
+            root : ExpressionTree.__Symbol
                 The root of the tree
             symbols : list[str]
                 A list of symbols (default is [])
             
             Return:
-            list[str]
-                A list of symbols
+            A list of symbols
             """
             if not root:
                 return []
@@ -334,20 +323,19 @@ class ExpressionTree:
             preorder(root.right)
             return symbols
 
-        def postorder(root: ExpressionTree._Symbol, symbols: list[str] = []) -> list[str]:
+        def postorder(root: ExpressionTree.__Symbol, symbols: list[str] = []) -> list[str]:
             """
             Get a list of symbols after performing postorder traversal on
             the tree
 
             Parameters:
-            root : ExpressionTree._Symbol
+            root : ExpressionTree.__Symbol
                 The root of the tree
             symbols : list[str]
                 A list of symbols (default is [])
             
             Return:
-            list[str]
-                A list of symbols
+            A list of symbols
             """
             if not root:
                 return []
@@ -357,20 +345,19 @@ class ExpressionTree:
             symbols.append(root.symbol)     
             return symbols
         
-        def inorder(root: ExpressionTree._Symbol, symbols: list[str] = []) -> list[str]:
+        def inorder(root: ExpressionTree.__Symbol, symbols: list[str] = []) -> list[str]:
             """
             Get a list of symbols after performing inorder traversal on
             the tree
 
             Parameters:
-            root : ExpressionTree._Symbol
+            root : ExpressionTree.__Symbol
                 The root of the tree
             symbols : list[str]
                 A list of symbols (default is [])
             
             Return:
-            list[str]
-                A list of symbols
+            A list of symbols
             """
             if not root:
                 return []
@@ -399,27 +386,25 @@ class ExpressionTree:
         the expression tree.
 
         Return:
-        list[list[str]]
-            A list of symbols at each level of the expression tree
-            from left to right
+        A list of symbols at each level of the expression tree
+        from left to right
         """ 
-        def levelOrder(root: ExpressionTree._Symbol) -> list[list[str]]:
+        def levelOrder(root: ExpressionTree.__Symbol) -> list[list[str]]:
             """
             Helper function to retrieve a list of symbols after performing 
             Breadth-First Search (Level-Order) traversal on
             the expression tree.
 
             Parameters:
-            root : ExpressionTree._Symbol
+            root : ExpressionTree.__Symbol
                 The root of the expression tree
 
             Return:
-            list[list[str]]
-                A list of symbols at each level of the expression tree
-                from left to right
+            A list of symbols at each level of the expression tree
+            from left to right
             """
             levels: list[list[str]] = []
-            queue: list[ExpressionTree._Symbol] = [root]
+            queue: list[ExpressionTree.__Symbol] = [root]
 
             while queue:
                 numChild = len(queue)
@@ -444,22 +429,20 @@ class ExpressionTree:
         Get the height of the expression tree
 
         Return:
-        int
-            The height of the expression tree
+        The height of the expression tree
         """
-        def treeHeight(root: ExpressionTree._Symbol) -> int:
+        def treeHeight(root: ExpressionTree.__Symbol) -> int:
             """
             Get the height of a specified root in the 
             expression tree
 
             Parameters:
-            root : ExpressionTree._Symbol
+            root : ExpressionTree.__Symbol
                 The root of the expression tree
 
             Return:
-            int
-                The height of a specified root in the
-                expression tree
+            The height of a specified root in the
+            expression tree
             """
             if not root:
                 return -1
@@ -481,13 +464,12 @@ class ExpressionTree:
             """
             Return the depth of current root in the tree.
 
-            Parameters
+            Parameters:
             root : ExpressionTree.__Symbol
                 The root of the tree
 
-            Returns
-            int
-                The depth of the tree
+            Return:
+            The depth of the tree
             """
             if not root:
                 return 0
@@ -503,9 +485,8 @@ class ExpressionTree:
             h : int
                 Specified height value
 
-            Returns:
-            int 
-                The specified column of h
+            Return:
+            The specified column of h
             """
             if h == 1:
                 return 1
