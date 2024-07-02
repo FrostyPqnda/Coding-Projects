@@ -7,7 +7,7 @@ class ExpressionTree:
 
     Attributes:
     expr : str | list[str]
-        A formatted string that represents an arithmetic expression
+        An arithmetic expression
 
     Methods:
     evaluate()
@@ -27,6 +27,8 @@ class ExpressionTree:
     Known Errors:
     1. Command-Line argument does not work if the user
     decides to put in parantheses in the expression.
+    The only work-around would be to use [] in
+    place of ().
     """
     class __Symbol:
         """
@@ -57,9 +59,44 @@ class ExpressionTree:
     def __init__(self, expr: str | list[str]) -> ExpressionTree:
         if not expr:
             raise _ExpressionTreeError('The expression cannot be null!')
+        
+        if not isinstance(expr, str | list) or not all(isinstance(item, str) for item in expr):
+            raise _ExpressionTreeError('The expression could not parsed!')
 
         self.__root: ExpressionTree.__Symbol = self.__buildTree(expr)
         self.__solvable: bool = not any(re.search('[a-zA-Z]+', s) for s in expr)
+
+    def __str__(self) -> str:
+        """
+        Return the arithmetic expression of the tree
+        """
+        return self.__expr
+    
+    def __repr__(self) -> str:
+        """
+        Return the object representation of the Expression
+        Tree class.
+        """
+        return f'ExpressionTree(\'{self.__expr}\')'
+    
+    def __eq__(self, other: ExpressionTree) -> bool:
+        if not isinstance(other, ExpressionTree):
+            return False
+        
+        def sameTree(rootA: ExpressionTree.__Symbol, rootB: ExpressionTree.__Symbol):
+            if not (rootA or rootB):
+                return True
+            if not (rootA and rootB):
+                return False
+            if rootA.symbol != rootB.symbol:
+                return False
+            
+            leftTree = sameTree(rootA.left, rootB.left)
+            rightTree = sameTree(rootA.right, rootB.right)
+            return leftTree and rightTree
+        
+        return sameTree(self.__root, other.__root)
+
     
     def __buildTree(self, expr: str | list[str]) -> ExpressionTree.__Symbol:
         """
@@ -135,6 +172,8 @@ class ExpressionTree:
             A list of tokens parsed from the expression
             """
             expr: str = ''.join(expr) \
+            .replace('[', '(') \
+            .replace(']', ')') \
             .replace('(-', '(0-') \
             .replace('+-', '-') \
             .replace('-+', '-') \
@@ -170,6 +209,7 @@ class ExpressionTree:
                 if (re.search(r'[-+]?[A-Za-z0-9]+', curr) and next == '(') or (curr == ')' and re.search(r'[-+]?[A-Za-z0-9]+', next)):
                     formatted = formatted[:i+1] + ' *' + formatted[i+1:]
             tokens: list[str] = formatted.split()
+            self.__expr = formatted
 
             numOperators: int = 0
             numOperands: int = 0
@@ -222,20 +262,15 @@ class ExpressionTree:
 
         return operands.pop()
     
-    def evaluate(self) -> float | int:
+    def evaluate(self) -> float | int | None:
         """
         Performs arithmetic evaluation on the expression tree
-
-        Raises:
-        TypeError
-            If the operands used for the expression tree is not
-            of type float | int.
 
         Return:
         An evaluation of the expression tree
         """
         if not self.__solvable:
-            raise _ExpressionTreeError('Failed to evaluate the expression tree!')
+            return None
         
         def eval(root: ExpressionTree.__Symbol) -> float | int:
             """
