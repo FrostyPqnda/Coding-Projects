@@ -80,10 +80,33 @@ class ExpressionTree:
         return f'ExpressionTree(\'{self.__expr}\')'
     
     def __eq__(self, other: ExpressionTree) -> bool:
+        """
+        Check if two trees are equal
+
+        Parameters:
+        other : ExpressionTree
+            The tree to be compared to
+
+        Return
+        True if the two trees are equal
+        """
         if not isinstance(other, ExpressionTree):
             return False
         
         def sameTree(rootA: ExpressionTree.__Symbol, rootB: ExpressionTree.__Symbol):
+            """
+            Check if every node in rootA and rootB are
+            equal.
+
+            Paramaters:
+            rootA | ExpressionTree.__Symbol
+                The root of ExpressionTree A
+            rootB | ExpressionTree.__Symbol
+                The root of ExpressionTree B
+
+            Return
+            True if every node in rootA and rootB are equal
+            """
             if not (rootA or rootB):
                 return True
             if not (rootA and rootB):
