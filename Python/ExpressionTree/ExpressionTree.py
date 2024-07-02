@@ -91,7 +91,7 @@ class ExpressionTree:
 
             Parameters:
             op : str
-                The string to set the precedence
+                An arithmetic operator
 
             Return:
             The precedence of the operator
