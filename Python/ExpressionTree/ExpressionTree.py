@@ -60,11 +60,14 @@ class ExpressionTree:
         if not expr:
             raise _ExpressionTreeError('The expression cannot be null!')
         
-        if not isinstance(expr, str | list) or not all(isinstance(item, str) for item in expr):
+        if not isinstance(expr, str | list) or not all(isinstance(item, str) for item in expr): 
             raise _ExpressionTreeError('The expression could not parsed!')
+        
+    
 
         self.__root: ExpressionTree.__Symbol = self.__buildTree(expr)
         self.__solvable: bool = not any(re.search('[a-zA-Z]+', s) for s in expr)
+        
 
     def __str__(self) -> str:
         """
@@ -197,7 +200,6 @@ class ExpressionTree:
             expr: str = ''.join(expr) \
             .replace('[', '(') \
             .replace(']', ')') \
-            .replace('(-', '(0-') \
             .replace('+-', '-') \
             .replace('-+', '-') \
             .replace('--', '+') \
@@ -205,49 +207,44 @@ class ExpressionTree:
             .replace('//', '/') \
             .replace(')(', ")*(")
 
-            if expr.startswith('-'):
-                expr = '0' + expr
-
-            formatted: str = ''
-            i: int = 0
-            while i < len(expr):
-                c = expr[i]
-                if isOperator(c):
-                    formatted += f' {c} '
-                    if i + 1 < len(expr) and expr[i + 1] == '-':
-                        formatted += f'{expr[i + 1]}'
-                        i += 1
-                elif c == '(' or c == ')':
-                    formatted += f' {c} '
-                else:
-                    formatted += f'{c}'
-                i += 1
-
-    
-            formatted: str = ' '.join(formatted.split()).strip()
-            for i in range(len(formatted) - 2):
-                curr = formatted[i]
-                next = formatted[i + 2]
-
-                if (re.search(r'[-+]?[A-Za-z0-9]+', curr) and next == '(') or (curr == ')' and re.search(r'[-+]?[A-Za-z0-9]+', next)):
-                    formatted = formatted[:i+1] + ' *' + formatted[i+1:]
-            tokens: list[str] = formatted.split()
-            self.__expr = formatted
-
             numOperators: int = 0
             numOperands: int = 0
             numOpenParen: int = 0
             numClosedParen: int = 0
 
-            for token in tokens:
-                if isOperator(token):
+            tokens = []
+            i = 0
+            while i < len(expr):
+                curr = expr[i]
+                if isOperator(curr):
                     numOperators += 1
-                elif re.search(r'[-+]?[A-Za-z0-9]+', token):
-                    numOperands += 1
-                elif token == '(':
+                    tokens.append(curr)
+                elif curr == '(':
                     numOpenParen += 1
-                elif token == ')':
+                    if tokens and re.search(r'[+-]?([A-Za-z0-9]+([.][A-Za-z0-9]*)?|[.][A-Za-z0-9]+)', tokens[-1]):
+                        numOperators += 1
+                        tokens.append('*')
+                    tokens.append(curr)
+                elif curr == ')':
                     numClosedParen += 1
+                    tokens.append(curr)
+                else:
+                    numOperands += 1
+                    while i + 1 < len(expr) and not isOperator(expr[i + 1]) and expr[i + 1] != '(' and expr[i + 1] != ')':
+                        curr += expr[i + 1]
+                        i += 1
+                    
+                    # First item in token is a '-'
+                    if len(tokens) == 1 and tokens[-1] == '-':
+                        numOperators -= 1
+                        tokens[-1] = f'-{curr}'
+                    # The token before the last token is either an operator or '('
+                    elif len(tokens) >= 2 and (isOperator(tokens[-2]) or tokens[-2] == '(') and tokens[-1] == '-':
+                        numOperators -= 1
+                        tokens[-1] = f'-{curr}'
+                    else:
+                        tokens.append(curr)
+                i += 1
 
             if numOperators == 0:
                 raise _ExpressionTreeError('No arithmetic operators detected')
@@ -256,10 +253,11 @@ class ExpressionTree:
                 raise _ExpressionTreeError('Operator count >= Operand count')
             
             if numOpenParen != numClosedParen:
-                raise _ExpressionTreeError('All parantheses must be closed!')
+                raise _ExpressionTreeError('Unbalanced expression!')
 
+            self.__expr = ' '.join(tokens)
             return tokens
-        
+           
         tokens: list[str] = tokenize(expr)
         operands: list[ExpressionTree.__Symbol] = []
         operators: list[str] = []
@@ -279,12 +277,10 @@ class ExpressionTree:
                 operands.append(self.__Symbol(token.upper()))
 
         while operators:
-            if operators[-1] == '(':
-                raise ValueError('Imbalanced expression found!')
             operands.append(buildNode(operands.pop(), operands.pop(), operators.pop()))
 
         return operands.pop()
-    
+
     def evaluate(self) -> float | int | None:
         """
         Performs arithmetic evaluation on the expression tree
