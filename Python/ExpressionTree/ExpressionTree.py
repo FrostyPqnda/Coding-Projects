@@ -230,6 +230,7 @@ class ExpressionTree:
                     tokens.append(curr)
                 else:
                     numOperands += 1
+                    # Extract the values
                     while i + 1 < len(expr) and not isOperator(expr[i + 1]) and expr[i + 1] != '(' and expr[i + 1] != ')':
                         curr += expr[i + 1]
                         i += 1
