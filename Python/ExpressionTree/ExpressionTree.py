@@ -579,9 +579,9 @@ class ExpressionTree:
         for i in range(h):
             for j in range(c):
                 if T[i][j]:
-                    print(f'{T[i][j]} ', end = ' ')
+                    print(f'[{T[i][j]}]', end = ' ')
                 else:
-                    print('  ', end = ' ')
+                    print('   ', end = ' ')
             print()
 
 
