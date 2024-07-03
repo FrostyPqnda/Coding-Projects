@@ -58,12 +58,10 @@ class ExpressionTree:
     
     def __init__(self, expr: str | list[str]) -> ExpressionTree:
         if not expr:
-            raise _ExpressionTreeError('The expression cannot be null!')
+            raise ExpressionTreeError('The expression cannot be null!')
         
         if not isinstance(expr, str | list) or not all(isinstance(item, str) for item in expr): 
-            raise _ExpressionTreeError('The expression could not parsed!')
-        
-    
+            raise ExpressionTreeError('The expression could not parsed!')
 
         self.__root: ExpressionTree.__Symbol = self.__buildTree(expr)
         self.__solvable: bool = not any(re.search('[a-zA-Z]+', s) for s in expr)
@@ -235,6 +233,9 @@ class ExpressionTree:
                         curr += expr[i + 1]
                         i += 1
                     
+                    if curr.count('.') > 1:
+                        raise ExpressionTreeError('Failed to parse operand!')
+                    
                     # First item in token is a '-'
                     if len(tokens) == 1 and tokens[-1] == '-':
                         numOperators -= 1
@@ -248,13 +249,13 @@ class ExpressionTree:
                 i += 1
 
             if numOperators == 0:
-                raise _ExpressionTreeError('No arithmetic operators detected')
+                raise ExpressionTreeError('No arithmetic operators detected')
 
             if numOperators >= numOperands:
-                raise _ExpressionTreeError('Operator count >= Operand count')
+                raise ExpressionTreeError('Operator count >= Operand count')
             
             if numOpenParen != numClosedParen:
-                raise _ExpressionTreeError('Unbalanced expression!')
+                raise ExpressionTreeError('Unbalanced expression!')
 
             self.__expr = ' '.join(tokens)
             return tokens
@@ -585,7 +586,7 @@ class ExpressionTree:
             print()
 
 
-class _ExpressionTreeError(Exception):
+class ExpressionTreeError(Exception):
     """
     Class used to represent any errors that are detected
     due to faulty logic with the Expression Tree class.
