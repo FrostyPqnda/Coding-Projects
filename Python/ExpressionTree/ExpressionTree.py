@@ -203,7 +203,10 @@ class ExpressionTree:
             .replace('--', '+') \
             .replace('**', '^') \
             .replace('//', '/') \
-            .replace(')(', ")*(")
+            .replace(')(', ")*(") \
+            .upper()
+
+            pattern = r'^[+-]?([A-Z]+|([0-9]+([.][0-9]+)?|[.][0-9]+))$'
 
             numOperators: int = 0
             numOperands: int = 0
@@ -219,7 +222,7 @@ class ExpressionTree:
                     tokens.append(curr)
                 elif curr == '(':
                     numOpenParen += 1
-                    if tokens and re.search(r'[+-]?([A-Za-z0-9]+([.][A-Za-z0-9]*)?|[.][A-Za-z0-9]+)', tokens[-1]):
+                    if tokens and re.search(pattern, tokens[-1]):
                         numOperators += 1
                         tokens.append('*')
                     tokens.append(curr)
@@ -233,7 +236,7 @@ class ExpressionTree:
                         curr += expr[i + 1]
                         i += 1
                     
-                    if curr.count('.') > 1:
+                    if not re.match(pattern, curr) or curr.count('.') > 1:
                         raise ExpressionTreeError('Failed to parse operand!')
                     
                     # First item in token is a '-'
