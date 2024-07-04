@@ -67,13 +67,13 @@ public class Infix {
                 res = (double)Math.Round((b - a) * 10) / 10;
                 break;
             case '*':
-                res = (double)Math.Round((a * b) * 10) / 10;
+                res = (double)Math.Round(a * b * 10) / 10;
                 break;
             case '/':
                 if(a == 0) 
                     throw new DivideByZeroException("Cannot divide by 0!");
 
-                res = (double)Math.Round((b / a) * 10) / 10;
+                res = (double)Math.Round(b / a * 10) / 10;
                 break;
             case '^':
                 res = (double)Math.Round(Math.Pow(b, a) * 10) / 10;
