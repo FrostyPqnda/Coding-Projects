@@ -94,7 +94,7 @@ class ExpressionTree:
         if not isinstance(other, ExpressionTree):
             return False
         
-        def sameTree(rootA: ExpressionTree.__Symbol, rootB: ExpressionTree.__Symbol):
+        def sameTree(rootA: ExpressionTree.__Symbol, rootB: ExpressionTree.__Symbol) -> bool:
             """
             Check if every node in rootA and rootB are
             equal.
