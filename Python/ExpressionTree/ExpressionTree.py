@@ -265,7 +265,6 @@ class ExpressionTree:
             return tokens
            
         tokens: list[str] = tokenize(expr)
-        print(tokens)
         operands: list[ExpressionTree.__Symbol] = []
         operators: list[str] = []
 
