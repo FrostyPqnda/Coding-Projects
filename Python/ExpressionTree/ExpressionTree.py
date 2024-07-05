@@ -48,7 +48,7 @@ class ExpressionTree:
         __str__(self):
             Return the symbol (operand / operator) of the node
         """
-        def __init__(self, symbol: str, left: ExpressionTree.__Symbol = None, right: ExpressionTree.__Symbol = None):
+        def __init__(self, symbol: str, left: ExpressionTree.__Symbol = None, right: ExpressionTree.__Symbol = None) -> ExpressionTree.__Symbol:
             self.symbol: str = symbol
             self.left: ExpressionTree.__Symbol = left
             self.right: ExpressionTree.__Symbol = right
