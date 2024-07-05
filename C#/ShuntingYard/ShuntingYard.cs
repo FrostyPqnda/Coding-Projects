@@ -47,7 +47,7 @@ public class ShuntingYard {
             postfix += $" {st.Pop()} ";
         }
 
-        postfix = Regex.Replace(postfix, @"\s\s+", " ");
+        postfix = Regex.Replace(postfix, @"\s\s+", " ").Trim();
         return postfix;
     }
 

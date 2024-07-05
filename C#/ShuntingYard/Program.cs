@@ -1,8 +1,12 @@
 ﻿class Program {
     public static void Main(string[] args) {
-        ShuntingYard s = new ShuntingYard("12 + 3 * (3 ^ 2 - 3) ^ (4 + 10 * 5) - 5");
-        string k = s.ToPostfix();
-        Console.WriteLine(k);
+        string expr;
+        do {
+            Console.Write("Enter infix notation: ");
+            ShuntingYard s = new ShuntingYard(expr = Console.ReadLine());
+            string k = s.ToPostfix();
+            Console.WriteLine(k);
+        } while(!String.IsNullOrEmpty(expr));
         Console.ReadKey();
     }
 }
