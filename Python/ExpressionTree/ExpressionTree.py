@@ -195,7 +195,7 @@ class ExpressionTree:
             Return:
             A list of tokens parsed from the expression
             """
-            expr: str = ''.join(expr) \
+            expr: str = re.sub(r'\s+', '', ''.join(expr)) \
             .replace('[', '(') \
             .replace(']', ')') \
             .replace('+-', '-') \
@@ -206,8 +206,10 @@ class ExpressionTree:
             .replace(')(', ")*(") \
             .upper()
 
-            pattern = r'^[+-]?([A-Z]+|([0-9]+([.][0-9]+)?|[.][0-9]+))$'
+            if expr.startswith('-('):
+                expr = '0' + expr
 
+            pattern = r'^[+-]?([A-Z]+|([0-9]+([.][0-9]+)?|[.][0-9]+))$'
             numOperators: int = 0
             numOperands: int = 0
             numOpenParen: int = 0
@@ -236,7 +238,7 @@ class ExpressionTree:
                         curr += expr[i + 1]
                         i += 1
 
-                    curr = curr.strip()
+                    curr = re.sub(r'\s+', '', curr)
                     if not re.match(pattern, curr):
                         raise ExpressionTreeError('Failed to parse operand!')
                     
