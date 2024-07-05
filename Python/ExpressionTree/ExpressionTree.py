@@ -115,8 +115,8 @@ class ExpressionTree:
             if rootA.symbol != rootB.symbol:
                 return False
             
-            leftTree = sameTree(rootA.left, rootB.left)
-            rightTree = sameTree(rootA.right, rootB.right)
+            leftTree: bool = sameTree(rootA.left, rootB.left)
+            rightTree: bool = sameTree(rootA.right, rootB.right)
             return leftTree and rightTree
         
         return sameTree(self.__root, other.__root)
@@ -235,8 +235,9 @@ class ExpressionTree:
                     while i + 1 < len(expr) and not isOperator(expr[i + 1]) and expr[i + 1] != '(' and expr[i + 1] != ')':
                         curr += expr[i + 1]
                         i += 1
-                    
-                    if not re.match(pattern, curr) or curr.count('.') > 1:
+
+                    curr = curr.strip()
+                    if not re.match(pattern, curr):
                         raise ExpressionTreeError('Failed to parse operand!')
                     
                     # First item in token is a '-'
@@ -260,10 +261,11 @@ class ExpressionTree:
             if numOpenParen != numClosedParen:
                 raise ExpressionTreeError('Unbalanced expression!')
 
-            self.__expr = ' '.join(tokens)
+            self.__expr = ' '.join(tokens).strip()
             return tokens
            
         tokens: list[str] = tokenize(expr)
+        print(tokens)
         operands: list[ExpressionTree.__Symbol] = []
         operators: list[str] = []
 
@@ -279,7 +281,7 @@ class ExpressionTree:
                     operands.append(buildNode(operands.pop(), operands.pop(), operators.pop()))
                 operators.pop()
             else:
-                operands.append(self.__Symbol(token.upper()))
+                operands.append(self.__Symbol(token))
 
         while operators:
             operands.append(buildNode(operands.pop(), operands.pop(), operators.pop()))
