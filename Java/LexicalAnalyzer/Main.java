@@ -5,11 +5,6 @@ public class Main {
             System.err.println("java Main <Java file>");
             System.exit(-1);
         } 
-        
-        if(!args[0].endsWith(".java")) {
-            System.err.println("The file must have the .java extension!");
-            System.exit(-1);
-        }
 
         LexicalAnalyzer lex = new LexicalAnalyzer(args[0]);
         lex.analyze();
