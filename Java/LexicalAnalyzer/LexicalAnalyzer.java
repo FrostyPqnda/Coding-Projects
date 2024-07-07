@@ -19,9 +19,10 @@ public class LexicalAnalyzer {
 
     public LexicalAnalyzer(String file) {
         this.file = file;
-        keywords = scanFile("keywords.txt");
-        operators = scanFile("operators.txt");
-        separators = scanFile("separators.txt");
+        // Scan the files stored in the Java_Specification folder
+        keywords = scanFile("Java_Specification/keywords.txt");
+        operators = scanFile("Java_Specification/operators.txt");
+        separators = scanFile("Java_Specification/separators.txt");
 
         parsedKeywords = new ArrayList<>();
         parsedOperators = new ArrayList<>();
