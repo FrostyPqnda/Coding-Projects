@@ -154,7 +154,7 @@ public class LexicalAnalyzer {
             return;
         
         String numericalRegex = "[+-]?([0-9]+([.][0-9]+)?|[.][0-9]+)";
-        String booleanRegex = "(true|false)";
+        String booleanRegex = "(true|false|null)";
         String stringRegex = "\"([^\"]*)\"";
         String charRegex = "\'.{1}\'";
         String litRegex = String.format("(%s|%s|%s|%s)", numericalRegex, booleanRegex, stringRegex, charRegex);
