@@ -11,6 +11,12 @@ class Round {
         for(int i = 0; i < 1000; i++) {
             
         }
+
+        if(true);
+        else if(false);
+        else;
+
+        Object obj = null;
     }
 }
 
