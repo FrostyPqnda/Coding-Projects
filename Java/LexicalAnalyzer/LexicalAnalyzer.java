@@ -322,11 +322,16 @@ public class LexicalAnalyzer {
         .replaceAll("!\s+=", "!=")
         .replaceAll("<\s+=", "<=")
         .replaceAll(">\s+=", ">=")
+        .replaceAll("<\s+<\s+=", "<<=")
         .replaceAll("<\s+<", "<<")
+        .replaceAll(">\s+>\s+>\s+=", ">>>=")
         .replaceAll(">\s+>\s+>", ">>>")
+        .replaceAll(">\s+>\s+=", ">>=")
         .replaceAll(">\s+>", ">>")
         .replaceAll("\\|\s+\\|", "||")
-        .replaceAll("&\s+&", "&&");
+        .replaceAll("&\s+&", "&&")
+        .replaceAll("\\.\s{0,}\\.\s{0,}\\.", "...")
+        .replace(":\s+:", "::");
         
         return line;
     }

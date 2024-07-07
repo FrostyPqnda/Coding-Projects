@@ -1,5 +1,5 @@
 interface Test3 {
-    void method1(String name);
+    void method1(String... names);
 }
 
 class Round {
@@ -17,6 +17,8 @@ class Round {
         else;
 
         Object obj = null;
+        int n = 10;
+        n >>>= 12 >>> 1;
     }
 }
 
