@@ -14,11 +14,10 @@ public class LexicalAnalyzer {
     private List<String> parsedLiterals; // Parsed literals, i.e. true
     private List<String> parsedidentifiers; // Parsed variables, i.e. maxHeight
     private List<String> parsedSeparators; // Parsed delimiters., i.e. {} and ;
-    //private List<String> parsedComments; // Parsed comments
 
     private List<String> extractedLiterals; // Extract the literals from the original file
 
-    public LexicalAnalyzer(String file) throws FileNotFoundException {
+    public LexicalAnalyzer(String file) {
         this.file = file;
         keywords = scanFile("keywords.txt");
         operators = scanFile("operators.txt");
@@ -29,41 +28,50 @@ public class LexicalAnalyzer {
         parsedLiterals = new ArrayList<>();
         parsedidentifiers = new ArrayList<>();
         parsedSeparators = new ArrayList<>();
-        //parsedComments = new ArrayList<>();
     }
 
     public void analyze() {
         try {
-            System.out.printf("Lexical Analysis of %s\n", file);
-            Scanner sc = new Scanner(new File(file));
-            while(sc.hasNextLine()) {
-                parseLine(sc.nextLine());
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line = null;
+            while((line = br.readLine()) != null) {
+                // Skip multi-line comments
+                if(line.trim().startsWith("/*")) {
+                    while(!line.trim().endsWith("*/")) {
+                        line = br.readLine();
+                    }
+                    if(line.trim().endsWith("*/")) {
+                        line = br.readLine();
+                    }
+                }
+                parseLine(line);
             }
-            
+
+            System.out.printf("Lexical Analysis of %s\n", file);
+
             System.out.println("Extracted keywords:");
-            //System.out.printf("\t%s\n", parsedKeywords);
             parsedKeywords.forEach(keyword -> System.out.printf("\t%s\n", keyword));
 
             System.out.println("Extracted operators:");
-            //System.out.printf("\t%s\n", parsedOperators);
             parsedOperators.forEach(operator -> System.out.printf("\t%s\n", operator));
 
             System.out.println("Extracted identifiers:");
-            //System.out.printf("\t%s\n", parsedidentifiers);
             parsedidentifiers.forEach(identifier -> System.out.printf("\t%s\n", identifier));
 
             System.out.println("Extracted literals:");
-            //System.out.printf("\t%s\n", parsedLiterals);
             parsedLiterals.forEach(literal -> System.out.printf("\t%s\n", literal));
             
             System.out.println("Extracted separators:");
-            //System.out.printf("\t%s\n", parsedSeparators);
             parsedSeparators.forEach(separator -> System.out.printf("\t%s\n", separator));
 
-            sc.close();
-        } catch(FileNotFoundException f) {
+            br.close();
+        } catch(IOException f) {
             f.printStackTrace();
         }
+    }
+
+    public void analyze(int lineNum) {
+        System.out.printf("Lexical Analysis of %s, Line %d\n", file, lineNum);
     }
 
     public List<String> getKeywords() {
@@ -89,15 +97,15 @@ public class LexicalAnalyzer {
     private void parseLine(String line) {
         if(line.trim().equals(""))
             return;
-
-        String[] tokens = tokenize(line);
+        
         String numericalRegex = "[+-]?([0-9]+([.][0-9]+)?|[.][0-9]+)";
         String booleanRegex = "(true|false)";
-        String stringRegex = "\".*\"";
+        String stringRegex = "\"([^\"]*)\"";
         String charRegex = "\'.{1}\'";
         String regex = String.format("(%s|%s|%s|%s)", numericalRegex, booleanRegex, stringRegex, charRegex);
         Pattern pattern = Pattern.compile(regex);
 
+        String[] tokens = tokenize(line);
         for(String token : tokens) {
             if(keywords.contains(token)) {
                 if(!parsedKeywords.contains(token))
@@ -112,7 +120,7 @@ public class LexicalAnalyzer {
                 if(!parsedLiterals.contains(token))
                     parsedLiterals.add(token);
             } else {
-                if(!parsedidentifiers.contains(token))
+                if(!parsedidentifiers.contains(token) && token.matches("^[_$]?[A-Za-z]+"))
                     parsedidentifiers.add(token);
             }
         }
@@ -142,7 +150,7 @@ public class LexicalAnalyzer {
             index = f.indexOf(" ", index + 1);
         }
 
-        String[] sp = new String[N + extractedLiterals.size()];
+        String[] sp = new String[N + 1 + extractedLiterals.size()];
         int pos = 0, offset = 0, idx = f.indexOf(" ");
 
         while(idx != -1) {
@@ -150,18 +158,20 @@ public class LexicalAnalyzer {
             offset = idx + 1;
             idx = f.indexOf(" ", offset);
         }
+        sp[pos++] = f.substring(offset);
 
         for(String s : extractedLiterals) 
             sp[pos++] = s;
 
-        return sp;
+        return sp;  
     }
 
     private String formatLine(String line) {
         String numericalRegex = "[-]?([0-9]+([.][0-9]+)?|[.][0-9]+)";
-        String booleanRegex = "(true|false)";
-        String stringRegex = "\".*\"";
+        String booleanRegex = "(true|false|null)";
+        String stringRegex = "\"([^\"]*)\"";
         String charRegex = "\'.{1}\'";
+        
         String regex = String.format("(%s|%s|%s|%s)", numericalRegex, booleanRegex, stringRegex, charRegex);    
         
         Pattern p = Pattern.compile(regex);
@@ -172,40 +182,41 @@ public class LexicalAnalyzer {
             extractedLiterals.add(m.group());
         }
 
-        String commentRegex = "//(.*)";
+        String singleLine = "//(.*)";
+        String multiLine = "\\/\\*(.|)*?\\*\\/";
+        String commentRegex = String.format("(%s|%s)", singleLine, multiLine);
 
         line = line.replaceAll(regex, " ");
-        line = line.replaceAll(commentRegex, "");
         line = line.replaceAll("\\s+", " ").trim();
+        line = line.replaceAll(commentRegex, "");
         String f = "";
         for(int i = 0; i < line.length(); i++) {
-            char c = line.charAt(i);
-            if(separators.contains(""+c) || operators.contains(""+c)) {
-                f += String.format(" %c ", c);
+            String c = String.format("%c", line.charAt(i));
+            if(separators.contains(c) || operators.contains(c)) {
+                f += String.format(" %s ", c);
             } else {
                 f += c;
             }
         }
 
-        // Fix any char literals that were modified 
-        // Fix any operators that were modified
-        f = f.replace("+  +", "++")
-        .replace("-  -", "--")
-        .replace("+  =", "+=")
-        .replace("-  =", "-=")
-        .replace("*  =", "*=")
-        .replace("/  =", "/=")
-        .replace("%  =", "%=")
-        .replace("|  =", "|=")
-        .replace("^  =", "^=")
-        .replace("&  =", "&=")
-        .replace("=  =", "==")
-        .replace("!  =", "!=")
-        .replace("<  =", "<=")
-        .replace(">  =", ">=")
-        .replace("<  <", "<<")
-        .replace(">  >  >", ">>>")
-        .replace(">  >", ">>");
+        // Fix any non-arithmetic operators that were modified
+        f = f.replaceAll("\\+\s+\\+", "++")
+        .replaceAll("-\s+-", "--")
+        .replaceAll("\\+\s+=", "+=")
+        .replaceAll("-\s+=", "-=")
+        .replaceAll("\\*\s+=", "*=")
+        .replaceAll("/\s+=", "/=")
+        .replaceAll("%\s+=", "%=")
+        .replaceAll("\\|\s+=", "|=")
+        .replaceAll("\\^\s+=", "^=")
+        .replaceAll("&\s+=", "&=")
+        .replaceAll("=\s+=", "==")
+        .replaceAll("!\s+=", "!=")
+        .replaceAll("<\s+=", "<=")
+        .replaceAll(">\s+=", ">=")
+        .replaceAll("<\s+<", "<<")
+        .replaceAll(">\s+>\s+>", ">>>")
+        .replaceAll(">\s+>", ">>");
 
         f = f.replaceAll("\\s+", " ").trim();
         return f;
