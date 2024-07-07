@@ -120,7 +120,7 @@ public class LexicalAnalyzer {
                 if(!parsedLiterals.contains(token))
                     parsedLiterals.add(token);
             } else {
-                if(!parsedidentifiers.contains(token) && token.matches("^[_$]?[A-Za-z]+"))
+                if(!parsedidentifiers.contains(token) && token.matches("([_$]?[A-Za-z]+[0-9]+|[_$]+[A-Za-z0-9]+)"))
                     parsedidentifiers.add(token);
             }
         }
@@ -167,12 +167,12 @@ public class LexicalAnalyzer {
     }
 
     private String formatLine(String line) {
-        String numericalRegex = "[-]?([0-9]+([.][0-9]+)?|[.][0-9]+)";
+        String negNumRegex = "[-]([0-9]+([.][0-9]+)?|[.][0-9]+)";
         String booleanRegex = "(true|false|null)";
         String stringRegex = "\"([^\"]*)\"";
         String charRegex = "\'.{1}\'";
         
-        String regex = String.format("(%s|%s|%s|%s)", numericalRegex, booleanRegex, stringRegex, charRegex);    
+        String regex = String.format("(%s|%s|%s|%s)", booleanRegex, stringRegex, charRegex, negNumRegex);    
         
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(line);
