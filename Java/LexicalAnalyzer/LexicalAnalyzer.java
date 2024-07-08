@@ -21,6 +21,8 @@ public class LexicalAnalyzer {
     private List<String> parsedLiterals; // Parsed literals, i.e. true
     private List<String> parsedidentifiers; // Parsed variables, i.e. maxHeight
     private List<String> parsedSeparators; // Parsed delimiters., i.e. {} and ;
+    
+    ArrayList<String> negLine;
 
     /**
      * Initializes a newly created LexicalAnalyzer object
@@ -252,14 +254,35 @@ public class LexicalAnalyzer {
         }
  
         line = removeLiteralsAndComments(line);
-        
+        negLine = new ArrayList<>();
         String f = "";
+        boolean isNeg = false;
+        int j = 0;
         for(int i = 0; i < line.length(); i++) {
             String c = String.format("%c", line.charAt(i));
             if(separators.contains(c) || operators.contains(c)) {
-                f += String.format(" %s ", c);
+                if(i - 1 >= 0 && c.equals("-") && i + 1 < line.length()) {
+                    char prev = line.charAt(i - 1);
+                    char next = line.charAt(i + 1);
+                    
+                    boolean checkPrev = Character.isWhitespace(prev) || operators.contains("" + prev) || separators.contains("" + c);
+                    boolean checkNext = Character.isDigit(next);
+                    if(checkPrev && checkNext) {
+                        isNeg = true;
+                        j++;
+                    } else {
+                        f += String.format(" %s ", c);
+                    }
+                } else {
+                    f += String.format(" %s ", c);
+                }
             } else {
-                f += c;
+                if(isNeg && c.matches("[0-9]")) {
+                    isNeg = !isNeg;
+                    f += "-" + c;
+                } else {
+                    f += c;
+                }
             }
         }
 
@@ -281,11 +304,11 @@ public class LexicalAnalyzer {
         String commentRegex = String.format("(%s|%s)", singleLine, multiLine); // XOR regex for single-line regex and multi-line regex
         line = line.replaceAll(commentRegex, ""); // Remove comments
         
-        String negNumRegex = "[-]([0-9]+([.][0-9]+)?|[.][0-9]+)"; // Regex for negative values
+        //String negNumRegex = "[-]([0-9]+([.][0-9]+)?|[.][0-9]+)"; // Regex for negative values
         String booleanRegex = "(true|false|null)"; // Regex for boolean values
         String stringRegex = "\"([^\"]*)\""; // Regex for String values
         String charRegex = "\'.{1}\'"; // Regex for character values
-        String litRegex = String.format("(%s|%s|%s|%s)", booleanRegex, stringRegex, charRegex, negNumRegex); 
+        String litRegex = String.format("(%s|%s|%s)", booleanRegex, stringRegex, charRegex); 
         Pattern p = Pattern.compile(litRegex);
         Matcher m = p.matcher(line);
         extractedLiterals = new ArrayList<>();
