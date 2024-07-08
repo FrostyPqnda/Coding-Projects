@@ -257,7 +257,6 @@ public class LexicalAnalyzer {
         negLine = new ArrayList<>();
         String f = "";
         boolean isNeg = false;
-        int j = 0;
         for(int i = 0; i < line.length(); i++) {
             String c = String.format("%c", line.charAt(i));
             if(separators.contains(c) || operators.contains(c)) {
@@ -269,7 +268,6 @@ public class LexicalAnalyzer {
                     boolean checkNext = Character.isDigit(next);
                     if(checkPrev && checkNext) {
                         isNeg = true;
-                        j++;
                     } else {
                         f += String.format(" %s ", c);
                     }
