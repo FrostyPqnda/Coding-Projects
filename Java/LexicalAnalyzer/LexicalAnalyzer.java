@@ -39,10 +39,10 @@ public class LexicalAnalyzer {
         this.file = file;
 
         // Scan the files stored in the Java_Specification folder
-        keywords = scanFile("Java_Specification/keywords.txt");
-        operators = scanFile("Java_Specification/operators.txt");
-        separators = scanFile("Java_Specification/separators.txt");
-
+        keywords = readFile("Java_Specification/keywords.txt");
+        operators = readFile("Java_Specification/operators.txt");
+        separators = readFile("Java_Specification/separators.txt");
+    
         // Initialized parsed list objects
         parsedKeywords = new ArrayList<>();
         parsedOperators = new ArrayList<>();
@@ -190,12 +190,12 @@ public class LexicalAnalyzer {
      * @param file File to be rrad
      * @return A List object containing data extracted from the file
      */
-    private final List<String> scanFile(String file) {
+    private final List<String> readFile(String file) {
         List<String> tokens = new ArrayList<>();
         try {
             Scanner sc = new Scanner(new File(file)); 
             while(sc.hasNextLine())
-                tokens.add(sc.nextLine());
+                tokens.add(sc.nextLine().trim());
             sc.close();
         } catch(FileNotFoundException f) {
             f.printStackTrace();
@@ -252,32 +252,48 @@ public class LexicalAnalyzer {
         if(line.trim().startsWith("import") && line.trim().contains("*")) {
             line = line.replace("*", "");
         }
- 
-        line = removeLiteralsAndComments(line);
-        negLine = new ArrayList<>();
+        
+        line = filter(line);
         String f = "";
         boolean isNeg = false;
+        boolean isFloat = false;
         for(int i = 0; i < line.length(); i++) {
             String c = String.format("%c", line.charAt(i));
             if(separators.contains(c) || operators.contains(c)) {
-                if(i - 1 >= 0 && c.equals("-") && i + 1 < line.length()) {
-                    char prev = line.charAt(i - 1);
-                    char next = line.charAt(i + 1);
-                    
-                    boolean checkPrev = Character.isWhitespace(prev) || operators.contains("" + prev) || separators.contains("" + c);
-                    boolean checkNext = Character.isDigit(next);
-                    if(checkPrev && checkNext) {
-                        isNeg = true;
-                    } else {
-                        f += String.format(" %s ", c);
+                if(c.equals("-")) {
+                    boolean inBound = i - 1 >= 0 && i + 1 < line.length();
+                    isNeg = inBound && !Character.isLetterOrDigit(line.charAt(i - 1)) && Character.isDigit(line.charAt(i + 1));
+                }
+                
+                if(c.equals(".")) {
+                    boolean inBound = i - 2 >= 0 && i + 1 < line.length();
+                    if(inBound) {
+                        char prev1 = line.charAt(i - 1);
+                        char prev2 = line.charAt(i - 2);
+                        char next = line.charAt(i + 1);
+
+                        isFloat = Character.isDigit(next);
+                        if(prev1 == '-' && !Character.isLetterOrDigit(prev2)) {
+                            f = f.substring(0, f.lastIndexOf(prev1));
+                            isNeg = true;
+                        }
                     }
-                } else {
+                } 
+
+                if(!isNeg && !isFloat) {
                     f += String.format(" %s ", c);
                 }
             } else {
-                if(isNeg && c.matches("[0-9]")) {
+                if(isNeg && isFloat) {
                     isNeg = !isNeg;
-                    f += "-" + c;
+                    isFloat = !isFloat;
+                    f += String.format("-.%s", c);
+                } else if(isFloat) {
+                    isFloat = !isFloat;
+                    f += String.format(".%s", c);
+                } else if(isNeg) {
+                    isNeg = !isNeg;
+                    f += String.format("-%s", c);
                 } else {
                     f += c;
                 }
@@ -286,38 +302,38 @@ public class LexicalAnalyzer {
 
         // Fix any non-arithmetic operators that were modified and remove excess whitespaces
         f = fixOperators(f).replaceAll("\\s+", " ").trim();
+        //System.out.println("F = " + f);
         return f;
     }
 
     /**
-     * Remove the every Java literals and comments from the
-     * given String object.
+     * Filters out any String / Character literals and comments (single-line and multi-line on single line).
+     * The filtered out literals will be sent a List object to be tokenized. Comments will be discared.
+     * 
      * 
      * @param line The string object to be modified
      * @return The string object after removing all literals
      */
-    private String removeLiteralsAndComments(String line) {
+    private String filter(String line) {
         String singleLine = "//(.*)"; // Regex for single line comments such as // 
         String multiLine = "\\/\\*(.|)*?\\*\\/"; // Regex for multi-line comments on a single line such /* */
         String commentRegex = String.format("(%s|%s)", singleLine, multiLine); // XOR regex for single-line regex and multi-line regex
         line = line.replaceAll(commentRegex, ""); // Remove comments
         
-        //String negNumRegex = "[-]([0-9]+([.][0-9]+)?|[.][0-9]+)"; // Regex for negative values
-        String booleanRegex = "(true|false|null)"; // Regex for boolean values
         String stringRegex = "\"([^\"]*)\""; // Regex for String values
         String charRegex = "\'.{1}\'"; // Regex for character values
-        String litRegex = String.format("(%s|%s|%s)", booleanRegex, stringRegex, charRegex); 
+        String litRegex = String.format("(%s|%s)", stringRegex, charRegex); 
         Pattern p = Pattern.compile(litRegex);
         Matcher m = p.matcher(line);
-        extractedLiterals = new ArrayList<>();
+        
         // Move the literals into a List object 
+        extractedLiterals = new ArrayList<>();
         while(m.find()) {
             extractedLiterals.add(m.group());
         }
         
         line = line.replaceAll(litRegex, " "); // Remove literals
         line = line.replaceAll("\\s+", " ").trim(); // Remove all excess whitespaces
-
         return line;
     }
 

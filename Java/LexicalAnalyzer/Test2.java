@@ -6,11 +6,16 @@ public class Test2 {
         boolean b = true;
         double d = 2.2;
         i++;
-        d-=10;
+        d-=25;
+        int j = -1000;
         i &= 1;
+        double k = -.05;
+        double z = -5.6;
+        double y = 5.2 - .2;
         int r = i |= 2;
+        System.out.println();
         String str = "";
-        int k = 10>>>1, t = 50 << 1, p = 100 >> 2;
+        int m = 10>>>1, t = 50 << 1, p = 100 >> 2;
         int[] a = {1, 2, 3, 5};
         String[] l = {"apple", "fritter"};
         Character[] punc = {'[', ']', '(', ')', '{', '}', ';', ',', '.'};
