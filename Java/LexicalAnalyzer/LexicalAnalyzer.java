@@ -367,7 +367,7 @@ public class LexicalAnalyzer {
         .replaceAll(">\s+>", ">>")
         .replaceAll("\\|\s+\\|", "||")
         .replaceAll("&\s+&", "&&")
-        .replaceAll("\\.\s{0,}\\.\s{0,}\\.", "...")
+        .replaceAll("\\.\s+\\.\s+\\.", "...")
         .replace(":\s+:", "::");
         
         return line;
