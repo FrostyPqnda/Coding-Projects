@@ -157,7 +157,7 @@ public class LexicalAnalyzer {
         
         String numericalRegex = "[+-]?([0-9]+([.][0-9]+)?|[.][0-9]+)";
         String booleanRegex = "(true|false|null)";
-        String stringRegex = "\"(?<=\").*(?=\")\""; //"\"[^\"\\]*(?:\\.[^\"\\]*)*\"";
+        String stringRegex = "\"[^\"\\]*(?:\\.[^\"\\]*)*\"";
         String charRegex = "\'.{1}\'";
         String litRegex = String.format("(%s|%s|%s|%s)", numericalRegex, booleanRegex, stringRegex, charRegex);
 
@@ -327,21 +327,13 @@ public class LexicalAnalyzer {
         String commentRegex = String.format("(%s|%s)", singleLine, multiLine); // XOR regex for single-line regex and multi-line regex
         line = line.replaceAll(commentRegex, ""); // Remove comments
         
-        String stringRegex = "\"(?<=\").*(?=\")\""; // Regex for String values
+        String stringRegex = "\"[^\"\\]*(?:\\.[^\"\\]*)*\""; // Regex for String values
         String charRegex = "\'.{1}\'"; // Regex for character values
         String regex = String.format("(%s|%s)", stringRegex, charRegex);
         Pattern pattern = Pattern.compile(regex);
         Matcher m = pattern.matcher(line);
         while(m.find()) {
-            String k = m.group();
-            // Might have to test later
-            if(k.contains("\", \"")) {
-                String[] sp = k.split(", ");
-                for(String s : sp)
-                    extractedLiterals.add(s);
-            } else {
-                extractedLiterals.add(k);
-            }
+            extractedLiterals.add(m.group());
         }
             
         line = line.replaceAll(regex, "") // Remove the literals
