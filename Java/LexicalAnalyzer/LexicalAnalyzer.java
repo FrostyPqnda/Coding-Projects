@@ -157,13 +157,17 @@ public class LexicalAnalyzer {
         
         String numericalRegex = "[+-]?([0-9]+([.][0-9]+)?|[.][0-9]+)";
         String booleanRegex = "(true|false|null)";
-        String stringRegex = "\"([^\"]*)\"";
+        String stringRegex = "\"(?<=\").*(?=\")\""; //"\"[^\"\\]*(?:\\.[^\"\\]*)*\"";
         String charRegex = "\'.{1}\'";
         String litRegex = String.format("(%s|%s|%s|%s)", numericalRegex, booleanRegex, stringRegex, charRegex);
-        Pattern pattern = Pattern.compile(litRegex);
 
         String[] tokens = tokenize(line);
+        if(tokens.length == 1 && tokens[0].trim().length() == 0)
+            return;
+
         for(String token : tokens) {
+            token = token.trim();
+
             if(keywords.contains(token)) {
                 if(!parsedKeywords.contains(token))
                     parsedKeywords.add(token);
@@ -173,11 +177,11 @@ public class LexicalAnalyzer {
             } else if(separators.contains(token)) {
                 if(!parsedSeparators.contains(token))
                     parsedSeparators.add(token);
-            } else if(pattern.matcher(token).matches()) {
+            } else if(token.matches(litRegex)) {
                 if(!parsedLiterals.contains(token))
                     parsedLiterals.add(token);
-            } else {
-                if(!parsedidentifiers.contains(token) && token.matches("([_$]{0,}[A-Za-z]+[0-9]{0,}|[_$]+[A-Za-z0-9]+)"))
+            } else  {
+                if(!parsedidentifiers.contains(token))
                     parsedidentifiers.add(token);
             }
         }
@@ -238,6 +242,7 @@ public class LexicalAnalyzer {
         for(String lit : extractedLiterals)
             tokens[index++] = lit;
 
+        extractedLiterals.clear();
         return tokens;
     }
 
@@ -257,6 +262,7 @@ public class LexicalAnalyzer {
         String f = "";
         boolean isNeg = false;
         boolean isFloat = false;
+
         for(int i = 0; i < line.length(); i++) {
             String c = String.format("%c", line.charAt(i));
             if(separators.contains(c) || operators.contains(c)) {
@@ -302,7 +308,6 @@ public class LexicalAnalyzer {
 
         // Fix any non-arithmetic operators that were modified and remove excess whitespaces
         f = fixOperators(f).replaceAll("\\s+", " ").trim();
-        //System.out.println("F = " + f);
         return f;
     }
 
@@ -315,25 +320,32 @@ public class LexicalAnalyzer {
      * @return The string object after removing all literals
      */
     private String filter(String line) {
-        String singleLine = "//(.*)"; // Regex for single line comments such as // 
+        line = line.trim();
+        extractedLiterals = new ArrayList<>();
+        String singleLine = "\\/\\/(.*)"; // Regex for single line comments such as // 
         String multiLine = "\\/\\*(.|)*?\\*\\/"; // Regex for multi-line comments on a single line such /* */
         String commentRegex = String.format("(%s|%s)", singleLine, multiLine); // XOR regex for single-line regex and multi-line regex
         line = line.replaceAll(commentRegex, ""); // Remove comments
         
-        String stringRegex = "\"([^\"]*)\""; // Regex for String values
+        String stringRegex = "\"(?<=\").*(?=\")\""; // Regex for String values
         String charRegex = "\'.{1}\'"; // Regex for character values
-        String litRegex = String.format("(%s|%s)", stringRegex, charRegex); 
-        Pattern p = Pattern.compile(litRegex);
-        Matcher m = p.matcher(line);
+        String regex = String.format("(%s|%s)", stringRegex, charRegex);
         
-        // Move the literals into a List object 
-        extractedLiterals = new ArrayList<>();
+        Pattern pattern = Pattern.compile(regex);
+        Matcher m = pattern.matcher(line);
         while(m.find()) {
-            extractedLiterals.add(m.group());
+            String k = m.group();
+            if(k.contains(", ")) {
+                String[] sp = k.split(", ");
+                for(String s : sp)
+                    extractedLiterals.add(s);
+            } else {
+                extractedLiterals.add(k);
+            }
         }
-        
-        line = line.replaceAll(litRegex, " "); // Remove literals
-        line = line.replaceAll("\\s+", " ").trim(); // Remove all excess whitespaces
+            
+        line = line.replaceAll(regex, "") // Remove the literals
+        .replaceAll("\\s+", " ").trim(); // Remove all excess whitespaces*
         return line;
     }
 
@@ -345,7 +357,7 @@ public class LexicalAnalyzer {
      * @return The modified String object
      */
     private String fixOperators(String line) {
-        line = line.replaceAll("\\+\s+\\+", "++")
+        return line.replaceAll("\\+\s+\\+", "++")
         .replaceAll("-\s+-", "--")
         .replaceAll("\\+\s+=", "+=")
         .replaceAll("-\s+=", "-=")
@@ -369,7 +381,5 @@ public class LexicalAnalyzer {
         .replaceAll("&\s+&", "&&")
         .replaceAll("\\.\s+\\.\s+\\.", "...")
         .replace(":\s+:", "::");
-        
-        return line;
     }
 }

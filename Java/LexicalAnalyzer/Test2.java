@@ -1,6 +1,5 @@
 public class Test2 {
     public static void main(String[] args) {
-        String s = "apple";
         int i = 10+2;
         char c = 'c';
         boolean b = true;
