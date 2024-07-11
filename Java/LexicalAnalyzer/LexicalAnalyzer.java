@@ -315,6 +315,9 @@ public class LexicalAnalyzer {
      * Filters out any String / Character literals and comments (single-line and multi-line on single line).
      * The filtered out literals will be sent a List object to be tokenized. Comments will be discared.
      * 
+     * MUST FIX
+     * 
+     * PROBLEM: Regex not compiling correctly for String literals
      * 
      * @param line The string object to be modified
      * @return The string object after removing all literals
