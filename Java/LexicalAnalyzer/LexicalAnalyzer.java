@@ -330,12 +330,12 @@ public class LexicalAnalyzer {
         String stringRegex = "\"(?<=\").*(?=\")\""; // Regex for String values
         String charRegex = "\'.{1}\'"; // Regex for character values
         String regex = String.format("(%s|%s)", stringRegex, charRegex);
-        
         Pattern pattern = Pattern.compile(regex);
         Matcher m = pattern.matcher(line);
         while(m.find()) {
             String k = m.group();
-            if(k.contains(", ")) {
+            // Might have to test later
+            if(k.contains("\", \"")) {
                 String[] sp = k.split(", ");
                 for(String s : sp)
                     extractedLiterals.add(s);
