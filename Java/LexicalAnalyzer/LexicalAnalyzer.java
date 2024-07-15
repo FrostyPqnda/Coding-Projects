@@ -22,7 +22,8 @@ public class LexicalAnalyzer {
     private List<String> parsedidentifiers; // Parsed variables, i.e. maxHeight
     private List<String> parsedSeparators; // Parsed delimiters., i.e. {} and ;
     
-    ArrayList<String> negLine;
+    private String[] regexes; // Stores the regexes used to parse the literals
+
 
     /**
      * Initializes a newly created LexicalAnalyzer object
@@ -42,7 +43,10 @@ public class LexicalAnalyzer {
         keywords = readFile("Java_Specification/keywords.txt");
         operators = readFile("Java_Specification/operators.txt");
         separators = readFile("Java_Specification/separators.txt");
-    
+
+        regexes = new String[6];
+        readRegex(regexes);
+
         // Initialized parsed list objects
         parsedKeywords = new ArrayList<>();
         parsedOperators = new ArrayList<>();
@@ -155,10 +159,10 @@ public class LexicalAnalyzer {
         if(line.trim().equals(""))
             return;
         
-        String numericalRegex = "[+-]?([0-9]+([.][0-9]+)?|[.][0-9]+)";
-        String booleanRegex = "(true|false|null)";
-        String stringRegex = "\"[^\"\\]*(?:\\.[^\"\\]*)*\"";
-        String charRegex = "\'.{1}\'";
+        String numericalRegex = regexes[0];
+        String booleanRegex = regexes[1];
+        String stringRegex = regexes[2];
+        String charRegex = regexes[3];
         String litRegex = String.format("(%s|%s|%s|%s)", numericalRegex, booleanRegex, stringRegex, charRegex);
 
         String[] tokens = tokenize(line);
@@ -286,9 +290,9 @@ public class LexicalAnalyzer {
                     }
                 } 
 
-                if(!isNeg && !isFloat) {
+                if(!(isNeg || isFloat))
                     f += String.format(" %s ", c);
-                }
+
             } else {
                 if(isNeg && isFloat) {
                     isNeg = !isNeg;
@@ -323,17 +327,13 @@ public class LexicalAnalyzer {
      * @return The string object after removing all literals
      */
     private String filter(String line) {
-        line = line.trim();
+        line = removeComment(line.trim());
         extractedLiterals = new ArrayList<>();
-        String singleLine = "\\/\\/(.*)"; // Regex for single line comments such as // 
-        String multiLine = "\\/\\*(.|)*?\\*\\/"; // Regex for multi-line comments on a single line such /* */
-        String commentRegex = String.format("(%s|%s)", singleLine, multiLine); // XOR regex for single-line regex and multi-line regex
-        line = line.replaceAll(commentRegex, ""); // Remove comments
-        
-        String stringRegex = "\"[^\"\\]*(?:\\.[^\"\\]*)*\""; // Regex for String values
-        String charRegex = "\'.{1}\'"; // Regex for character values
+
+        String stringRegex = regexes[2]; // Regex for String values
+        String charRegex = regexes[3]; // Regex for character values
         String regex = String.format("(%s|%s)", stringRegex, charRegex);
-        Pattern pattern = Pattern.compile(regex);
+        Pattern pattern = Pattern.compile(stringRegex);
         Matcher m = pattern.matcher(line);
         while(m.find()) {
             extractedLiterals.add(m.group());
@@ -376,5 +376,34 @@ public class LexicalAnalyzer {
         .replaceAll("&\s+&", "&&")
         .replaceAll("\\.\s+\\.\s+\\.", "...")
         .replace(":\s+:", "::");
+    }
+
+    private void readRegex(String[] arr) {
+        try {
+            Scanner sc = new Scanner(new File("Java_Specification/regex.txt"));
+            for(int i = 0; i < arr.length && sc.hasNextLine(); i++) {
+                arr[i] = sc.nextLine().split(" ")[1];
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String removeComment(String line) {        
+        int single = line.indexOf("//");
+        int multi = line.indexOf("/*");
+
+        if(single == -1 && multi == -1)
+            return line;
+
+        if(single >= 0 && multi == -1) {
+            return line.substring(0, single);
+        } else if(multi >= 0 && single == -1) {
+            return line.substring(0, multi);
+        } else {
+            return line.substring(0, Math.min(single, multi));
+        }
+        
     }
 }
