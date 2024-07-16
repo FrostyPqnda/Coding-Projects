@@ -42,7 +42,7 @@ public class LexicalAnalyzer {
         keywords = readFile("Java_Specification/keywords.txt");
         operators = readFile("Java_Specification/operators.txt");
         separators = readFile("Java_Specification/separators.txt");
-        literals = readFile("Java_Specification/literals.txt");
+        literals = readFile("Java_Specification/regexes.txt");
 
         // Initialized parsed list objects
         parsedKeywords = new ArrayList<>();
@@ -182,7 +182,7 @@ public class LexicalAnalyzer {
             } else if(token.matches(litRegex)) {
                 if(!parsedLiterals.contains(token))
                     parsedLiterals.add(token);
-            } else  {
+            } else if(token.matches(literals.get(6)))  {
                 if(!parsedidentifiers.contains(token))
                     parsedidentifiers.add(token);
             }
