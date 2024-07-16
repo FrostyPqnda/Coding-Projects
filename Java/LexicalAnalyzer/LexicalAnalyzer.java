@@ -11,20 +11,19 @@ import java.io.*;
  */
 public class LexicalAnalyzer {
     String file; // The file to be analyzed
+    private List<String> extractedLiterals; // List of literals extracted from the file
+
     private List<String> keywords; // A list of Java keywords
     private List<String> operators; // A list of Java operators
     private List<String> separators; // A list of Java separators
-    private List<String> extractedLiterals; // List of literals extracted from the file
-
+    private List<String> literals; // A list of regexes for Java literals
+    
     private List<String> parsedKeywords; // Parsed keywords, i.e class
     private List<String> parsedOperators; // Parsed operators, i.e +
     private List<String> parsedLiterals; // Parsed literals, i.e. true
     private List<String> parsedidentifiers; // Parsed variables, i.e. maxHeight
     private List<String> parsedSeparators; // Parsed delimiters., i.e. {} and ;
     
-    private String[] regexes; // Stores the regexes used to parse the literals
-
-
     /**
      * Initializes a newly created LexicalAnalyzer object
      * 
@@ -43,9 +42,7 @@ public class LexicalAnalyzer {
         keywords = readFile("Java_Specification/keywords.txt");
         operators = readFile("Java_Specification/operators.txt");
         separators = readFile("Java_Specification/separators.txt");
-
-        regexes = new String[6];
-        readRegex(regexes);
+        literals = readFile("Java_Specification/literals.txt");
 
         // Initialized parsed list objects
         parsedKeywords = new ArrayList<>();
@@ -159,13 +156,14 @@ public class LexicalAnalyzer {
         if(line.trim().equals(""))
             return;
         
-        String numericalRegex = regexes[0];
-        String booleanRegex = regexes[1];
-        String stringRegex = regexes[2];
-        String charRegex = regexes[3];
+        String numericalRegex = literals.get(0);
+        String booleanRegex = literals.get(1);
+        String stringRegex = literals.get(2);
+        String charRegex = literals.get(3);
         String litRegex = String.format("(%s|%s|%s|%s)", numericalRegex, booleanRegex, stringRegex, charRegex);
 
         String[] tokens = tokenize(line);
+        
         if(tokens.length == 1 && tokens[0].trim().length() == 0)
             return;
 
@@ -245,7 +243,8 @@ public class LexicalAnalyzer {
         // Add all of the extracted literals into the tokens
         for(String lit : extractedLiterals)
             tokens[index++] = lit;
-
+        
+        
         extractedLiterals.clear();
         return tokens;
     }
@@ -321,27 +320,30 @@ public class LexicalAnalyzer {
      * 
      * MUST FIX
      * 
-     * PROBLEM: Regex not compiling correctly for String literals
+     * PROBLEM: Regex not compiling correctly for char literals
      * 
      * @param line The string object to be modified
      * @return The string object after removing all literals
      */
     private String filter(String line) {
-        line = removeComment(line.trim());
+        line = line.replaceAll(literals.get(4), "").replaceAll(literals.get(5), "");
         extractedLiterals = new ArrayList<>();
 
-        String stringRegex = regexes[2]; // Regex for String values
-        String charRegex = regexes[3]; // Regex for character values
-        String regex = String.format("(%s|%s)", stringRegex, charRegex);
-        Pattern pattern = Pattern.compile(stringRegex);
-        Matcher m = pattern.matcher(line);
-        while(m.find()) {
-            extractedLiterals.add(m.group());
-        }
-            
-        line = line.replaceAll(regex, "") // Remove the literals
-        .replaceAll("\\s+", " ").trim(); // Remove all excess whitespaces*
-        return line;
+        String strReg = literals.get(2);
+        Pattern strPattern = Pattern.compile(strReg); // Regex for String values
+        Matcher strMatch = strPattern.matcher(line);
+        while(strMatch.find())
+            extractedLiterals.add(strMatch.group());
+        line = line.replaceAll(strReg, "");
+        
+        String charReg = literals.get(3);
+        Pattern charPattern = Pattern.compile(charReg); // Regex for character values
+        Matcher charMatch = charPattern.matcher(line);
+        while(charMatch.find())
+            extractedLiterals.add(charMatch.group());
+        line = line.replaceAll(charReg, "");
+
+        return line.replaceAll("\\s+", " ").trim(); // Remove all excess whitespaces*
     }
 
     /**
@@ -376,34 +378,5 @@ public class LexicalAnalyzer {
         .replaceAll("&\s+&", "&&")
         .replaceAll("\\.\s+\\.\s+\\.", "...")
         .replace(":\s+:", "::");
-    }
-
-    private void readRegex(String[] arr) {
-        try {
-            Scanner sc = new Scanner(new File("Java_Specification/regex.txt"));
-            for(int i = 0; i < arr.length && sc.hasNextLine(); i++) {
-                arr[i] = sc.nextLine().split(" ")[1];
-            }
-            sc.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private String removeComment(String line) {        
-        int single = line.indexOf("//");
-        int multi = line.indexOf("/*");
-
-        if(single == -1 && multi == -1)
-            return line;
-
-        if(single >= 0 && multi == -1) {
-            return line.substring(0, single);
-        } else if(multi >= 0 && single == -1) {
-            return line.substring(0, multi);
-        } else {
-            return line.substring(0, Math.min(single, multi));
-        }
-        
     }
 }
