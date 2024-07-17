@@ -12,6 +12,7 @@ import java.io.*;
 public class LexicalAnalyzer {
     String file; // The file to be analyzed
     private List<String> extractedLiterals; // List of literals extracted from the file
+    private List<String> miscRegexes; // List of regexes used for the filtering process
 
     private List<String> keywords; // A list of Java keywords
     private List<String> operators; // A list of Java operators
@@ -37,6 +38,8 @@ public class LexicalAnalyzer {
         }
 
         this.file = file;
+        extractedLiterals = new ArrayList<>();
+        miscRegexes = readFile("Java_Specification/filter_regexes.txt");
 
         // Scan the files stored in the Java_Specification folder
         keywords = readFile("Java_Specification/keywords.txt");
@@ -153,8 +156,8 @@ public class LexicalAnalyzer {
      * @param line The line specified in a Java program will be parsed
      */
     private void parseLine(String line) {
-        line = line.replaceAll(literals.get(4), "")
-        .replaceAll(literals.get(5), "")
+        line = line.replaceAll(miscRegexes.get(0), "")
+        .replaceAll(miscRegexes.get(1), "")
         .trim();
 
         if(line.equals(""))
@@ -320,8 +323,6 @@ public class LexicalAnalyzer {
      * @return The string object after removing all literals
      */
     private String filter(String line) {
-        extractedLiterals = new ArrayList<>();
-
         // Extract String literals
         String strReg = literals.get(2);
         Pattern strPattern = Pattern.compile(strReg); // Regex for String values
