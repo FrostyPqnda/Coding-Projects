@@ -42,7 +42,7 @@ public class LexicalAnalyzer {
         keywords = readFile("Java_Specification/keywords.txt");
         operators = readFile("Java_Specification/operators.txt");
         separators = readFile("Java_Specification/separators.txt");
-        literals = readFile("Java_Specification/regexes.txt");
+        literals = readFile("Java_Specification/literals.txt");
 
         // Initialized parsed list objects
         parsedKeywords = new ArrayList<>();
@@ -97,8 +97,8 @@ public class LexicalAnalyzer {
         System.out.println("Extracted literals:");
         parsedLiterals.forEach(literal -> System.out.printf("\t%s\n", literal));
         
-        System.out.println("Extracted separators:");
-        parsedSeparators.forEach(separator -> System.out.printf("\t%s\n", separator));
+        //System.out.println("Extracted separators:");
+        //parsedSeparators.forEach(separator -> System.out.printf("\t%s\n", separator));
     }
 
     /**
@@ -153,9 +153,13 @@ public class LexicalAnalyzer {
      * @param line The line specified in a Java program will be parsed
      */
     private void parseLine(String line) {
-        if(line.trim().equals(""))
+        line = line.replaceAll(literals.get(4), "")
+        .replaceAll(literals.get(5), "")
+        .trim();
+
+        if(line.equals(""))
             return;
-        
+
         String numericalRegex = literals.get(0);
         String booleanRegex = literals.get(1);
         String stringRegex = literals.get(2);
@@ -163,10 +167,6 @@ public class LexicalAnalyzer {
         String litRegex = String.format("(%s|%s|%s|%s)", numericalRegex, booleanRegex, stringRegex, charRegex);
 
         String[] tokens = tokenize(line);
-        
-        if(tokens.length == 1 && tokens[0].trim().length() == 0)
-            return;
-
         for(String token : tokens) {
             token = token.trim();
 
@@ -182,10 +182,10 @@ public class LexicalAnalyzer {
             } else if(token.matches(litRegex)) {
                 if(!parsedLiterals.contains(token))
                     parsedLiterals.add(token);
-            } else if(token.matches(literals.get(6)))  {
+            } else if(token.matches("([_$]*[A-Za-z]+[0-9]*|[_$]+[A-Za-z0-9]+)"))  {
                 if(!parsedidentifiers.contains(token))
                     parsedidentifiers.add(token);
-            }
+            } 
         }
     }
 
@@ -193,7 +193,7 @@ public class LexicalAnalyzer {
      * Scan the file and extract its content into a 
      * List object.
      * 
-     * @param file File to be rrad
+     * @param file File to be read
      * @return A List object containing data extracted from the file
      */
     private final List<String> readFile(String file) {
@@ -244,7 +244,6 @@ public class LexicalAnalyzer {
         for(String lit : extractedLiterals)
             tokens[index++] = lit;
         
-        
         extractedLiterals.clear();
         return tokens;
     }
@@ -272,7 +271,7 @@ public class LexicalAnalyzer {
                 if(c.equals("-")) {
                     boolean inBound = i - 1 >= 0 && i + 1 < line.length();
                     isNeg = inBound && !Character.isLetterOrDigit(line.charAt(i - 1)) && Character.isDigit(line.charAt(i + 1));
-                }
+                } 
                 
                 if(c.equals(".")) {
                     boolean inBound = i - 2 >= 0 && i + 1 < line.length();
@@ -287,11 +286,10 @@ public class LexicalAnalyzer {
                             isNeg = true;
                         }
                     }
-                } 
-
+                }
+                
                 if(!(isNeg || isFloat))
                     f += String.format(" %s ", c);
-
             } else {
                 if(isNeg && isFloat) {
                     isNeg = !isNeg;
@@ -318,17 +316,13 @@ public class LexicalAnalyzer {
      * Filters out any String / Character literals and comments (single-line and multi-line on single line).
      * The filtered out literals will be sent a List object to be tokenized. Comments will be discared.
      * 
-     * MUST FIX
-     * 
-     * PROBLEM: Regex not compiling correctly for char literals
-     * 
      * @param line The string object to be modified
      * @return The string object after removing all literals
      */
     private String filter(String line) {
-        line = line.replaceAll(literals.get(4), "").replaceAll(literals.get(5), "");
         extractedLiterals = new ArrayList<>();
 
+        // Extract String literals
         String strReg = literals.get(2);
         Pattern strPattern = Pattern.compile(strReg); // Regex for String values
         Matcher strMatch = strPattern.matcher(line);
@@ -336,12 +330,19 @@ public class LexicalAnalyzer {
             extractedLiterals.add(strMatch.group());
         line = line.replaceAll(strReg, "");
         
+        // Extract character literals
         String charReg = literals.get(3);
         Pattern charPattern = Pattern.compile(charReg); // Regex for character values
         Matcher charMatch = charPattern.matcher(line);
         while(charMatch.find())
             extractedLiterals.add(charMatch.group());
         line = line.replaceAll(charReg, "");
+
+        // Remove the angular bracket from Collection types
+        Pattern angularPattern = Pattern.compile("<+(.*?)>+");
+        Matcher angularMatch = angularPattern.matcher(line);
+        if(angularMatch.find())
+            line = line.replaceAll("<+(.*?)>+", String.format(" %s ", angularMatch.group(1)));
 
         return line.replaceAll("\\s+", " ").trim(); // Remove all excess whitespaces*
     }
@@ -377,6 +378,7 @@ public class LexicalAnalyzer {
         .replaceAll("\\|\s+\\|", "||")
         .replaceAll("&\s+&", "&&")
         .replaceAll("\\.\s+\\.\s+\\.", "...")
-        .replace(":\s+:", "::");
+        .replaceAll(":\s+:", "::")
+        .replaceAll("-\s+>", "->");
     }
 }
