@@ -254,10 +254,6 @@ public class LexicalAnalyzer {
      * @return The formatted String
      */
     private String formatLine(String line) {
-        if(line.trim().startsWith("import") && line.trim().contains("*")) {
-            line = line.replace("*", "");
-        }
-        
         String f = "";
         boolean isNeg = false;
         boolean isFloat = false;
@@ -332,6 +328,11 @@ public class LexicalAnalyzer {
         while(charMatch.find())
             extractedLiterals.add(charMatch.group());
         line = line.replaceAll(charReg, "");
+        
+        // Don't count the * in the import keyword as an operator
+        if(line.trim().startsWith("import") && line.trim().contains("*")) {
+            line = line.replace("*", "");
+        }
 
         // Remove comments
         line = line.replaceAll("//.*", "")
