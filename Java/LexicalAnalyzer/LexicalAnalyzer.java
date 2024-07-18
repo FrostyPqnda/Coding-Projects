@@ -12,7 +12,6 @@ import java.io.*;
 public class LexicalAnalyzer {
     String file; // The file to be analyzed
     private List<String> extractedLiterals; // List of literals extracted from the file
-    private List<String> miscRegexes; // List of regexes used for the filtering process
 
     private List<String> keywords; // A list of Java keywords
     private List<String> operators; // A list of Java operators
@@ -39,7 +38,6 @@ public class LexicalAnalyzer {
 
         this.file = file;
         extractedLiterals = new ArrayList<>();
-        miscRegexes = readFile("Java_Specification/filter_regexes.txt");
 
         // Scan the files stored in the Java_Specification folder
         keywords = readFile("Java_Specification/keywords.txt");
@@ -156,10 +154,7 @@ public class LexicalAnalyzer {
      * @param line The line specified in a Java program will be parsed
      */
     private void parseLine(String line) {
-        line = line.replaceAll(miscRegexes.get(0), "")
-        .replaceAll(miscRegexes.get(1), "")
-        .trim();
-
+        line = filter(line);
         if(line.equals(""))
             return;
 
@@ -263,7 +258,6 @@ public class LexicalAnalyzer {
             line = line.replace("*", "");
         }
         
-        line = filter(line);
         String f = "";
         boolean isNeg = false;
         boolean isFloat = false;
@@ -338,6 +332,10 @@ public class LexicalAnalyzer {
         while(charMatch.find())
             extractedLiterals.add(charMatch.group());
         line = line.replaceAll(charReg, "");
+
+        line = line.replaceAll("//.*", "")
+        .replaceAll("/\\\\*.*\\\\*/", "")
+        .trim();
 
         // Remove the angular bracket from Collection types
         Pattern angularPattern = Pattern.compile("<+(.*?)>+");
