@@ -333,6 +333,7 @@ public class LexicalAnalyzer {
             extractedLiterals.add(charMatch.group());
         line = line.replaceAll(charReg, "");
 
+        // Remove comments
         line = line.replaceAll("//.*", "")
         .replaceAll("/\\\\*.*\\\\*/", "")
         .trim();
