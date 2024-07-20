@@ -97,8 +97,8 @@ public class LexicalAnalyzer {
         System.out.println("Extracted literals:");
         parsedLiterals.forEach(literal -> System.out.printf("\t%s\n", literal));
         
-        //System.out.println("Extracted separators:");
-        //parsedSeparators.forEach(separator -> System.out.printf("\t%s\n", separator));
+        System.out.println("Extracted separators:");
+        parsedSeparators.forEach(separator -> System.out.printf("\t%s\n", separator));
     }
 
     /**
