@@ -62,15 +62,16 @@ public class LexicalAnalyzer {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = null;
             while((line = br.readLine()) != null) {
-                // Skip multi-line comments
+                // Skip multi-line comments and comments
                 if(line.trim().startsWith("/*")) {
                     while(!line.trim().endsWith("*/")) {
                         line = br.readLine();
                     }
-                    if(line.trim().endsWith("*/")) {
-                        line = br.readLine();
-                    }
+                    line = br.readLine();
+                } else if(line.trim().startsWith("//")) {
+                    line = br.readLine();
                 }
+
                 parseLine(line);
             }
 
