@@ -251,6 +251,9 @@ class ExpressionTree:
                         numOperators -= 1
                         tokens[-1] = f'-{curr}'
                     else:
+                        if tokens and tokens[-1] == ')':
+                            tokens.append('*')
+                            numOperators += 1
                         tokens.append(curr)
                 i += 1
 

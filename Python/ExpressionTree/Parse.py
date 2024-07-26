@@ -6,3 +6,4 @@ if __name__ == '__main__':
     tree = ExpressionTree(expr)
     tree.print()
     print(tree.evaluate())
+    print(tree)
