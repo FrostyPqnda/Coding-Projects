@@ -15,17 +15,16 @@ class AutoSuggest:
         Print all possible suggested words
     """
     def __init__(self, word: str):
-        url = 'https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt'
-        self.word = word
+        self.word = word.lower()
 
         try:
-            response = requests.get(url)
+            response = requests.get('https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt')
         except requests.exceptions.HTTPError as errh:
             print('HTTP Error')
             print(errh.args[0])
         
         words = [word.decode().lower() for word in response.content.splitlines()]
-        
+    
         self.trie = Trie()
         for word in words:
             self.trie.insert(word)
@@ -37,6 +36,7 @@ class AutoSuggest:
         Parameters:
         limit : int
             The size of the suggestion pool
+            A limit size less than 1 means get all suggestions
         """
         def suggest(node: Trie.TrieNode, word: str):
             """
@@ -65,8 +65,8 @@ class AutoSuggest:
             return
 
         suggest(node, self.word)
-        if limit:
-            suggestions = suggestions[:min(int(limit), len(suggestions))]
+        limit = int(limit) if limit else None
+        suggestions = suggestions[:min(limit, len(suggestions)) if limit and limit > 0 else None]
         
         for suggestion in suggestions:
             print(suggestion)
