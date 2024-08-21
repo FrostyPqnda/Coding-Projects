@@ -339,10 +339,10 @@ public class LexicalAnalyzer {
         .trim();
 
         // Remove the angular bracket from Collection types
-        Pattern angularPattern = Pattern.compile("<+(.*?)>+");
+        Pattern angularPattern = Pattern.compile("<{1}([_$]*[A-Za-z]+[0-9]*|[_$]+[A-Za-z0-9]+)>+");
         Matcher angularMatch = angularPattern.matcher(line);
         if(angularMatch.find())
-            line = line.replaceAll("<+(.*?)>+", String.format(" %s ", angularMatch.group(1)));
+            line = line.replaceAll("<{1}([_$]*[A-Za-z]+[0-9]*|[_$]+[A-Za-z0-9]+)>+", String.format(" %s ", angularMatch.group(1)));
 
         return line.replaceAll("\\s+", " ").trim(); // Remove all excess whitespaces*
     }
