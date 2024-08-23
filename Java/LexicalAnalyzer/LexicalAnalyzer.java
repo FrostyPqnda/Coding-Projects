@@ -2,6 +2,8 @@ import java.util.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Represents a LexicalAnalyzer that will be used 
@@ -40,10 +42,10 @@ public class LexicalAnalyzer {
         extractedLiterals = new ArrayList<>();
 
         // Scan the files stored in the Java_Specification folder
-        keywords = readFile("Java_Specification/keywords.txt");
-        operators = readFile("Java_Specification/operators.txt");
-        separators = readFile("Java_Specification/separators.txt");
-        literals = readFile("Java_Specification/literals.txt");
+        keywords = readFile("https://raw.githubusercontent.com/Brian-Pham02/public-files/main/java_keywords.txt");
+        operators = readFile("https://raw.githubusercontent.com/Brian-Pham02/public-files/main/java_operators.txt");
+        separators = readFile("https://raw.githubusercontent.com/Brian-Pham02/public-files/main/java_separators.txt");
+        literals = readFile("https://raw.githubusercontent.com/Brian-Pham02/public-files/main/java_literals.txt");
 
         // Initialized parsed list objects
         parsedKeywords = new ArrayList<>();
@@ -196,16 +198,23 @@ public class LexicalAnalyzer {
      * 
      * @param file File to be read
      * @return A List object containing data extracted from the file
+     * @throws IOException 
      */
     private final List<String> readFile(String file) {
         List<String> tokens = new ArrayList<>();
         try {
-            Scanner sc = new Scanner(new File(file)); 
-            while(sc.hasNextLine())
-                tokens.add(sc.nextLine().trim());
-            sc.close();
-        } catch(FileNotFoundException f) {
-            f.printStackTrace();
+            URL url = new URL(file);
+            Scanner sc;
+            try {
+                sc = new Scanner(url.openStream());
+                while(sc.hasNextLine())
+                    tokens.add(sc.nextLine().trim());
+                sc.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } 
+        } catch(MalformedURLException e) {
+            e.printStackTrace();
         }
         return tokens;
     }
