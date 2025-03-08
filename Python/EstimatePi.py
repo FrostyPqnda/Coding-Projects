@@ -38,4 +38,4 @@ def estimatePi(n: int) -> float:
 
 if __name__ == '__main__':
     n = int(input('Enter sample size: '))
-    print(f'Estimated value of π: {estimatePi(n)}')
+    print(f'Estimated value of pi: {estimatePi(n)}')

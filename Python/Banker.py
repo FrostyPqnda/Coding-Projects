@@ -24,31 +24,32 @@ def isSafe(need: list[list[int]]) -> bool:
     return True
 
 # Find the index of the process that can run to completion
-def findSafe(n: list[list[int]], v: list[int]):
+def findSafe(n: list[list[int]], v: list[int], completed: list[bool]):
     for i in range(len(n)):
         # Check if n[i] is a safe vector and that it is not yet completed
-        if safeVector(n[i], v) and not all(p == 0 for p in n[i]):
+        if safeVector(n[i], v) and not completed[i]:
             return i
     return -1
 
 # Check if processes are safe from deadlock
 def safeState(c: list[list[int]], a: list[list[int]], r: list[int], v: list[int]) -> bool:
     n = subMat(c, a)
-    if(isSafe(n)): 
-        return True
+    num_processes = len(c)
+    completed = [False] * num_processes
+    safe_sequence = []
 
-    index = findSafe(n, v)
-    if index == -1:
-        return False
+    while len(safe_sequence) < num_processes:
+        index = findSafe(n, v, completed)
+        if index == -1:
+            print("System is in a deadlock state!")
+            return False, []
+        
+        print(f'Process P{index + 1} runs to completion')
+        v = addList(v, a[index])
+        completed[index] = True
+        safe_sequence.append(index + 1)
 
-    v = addList(v, a[index])
-    if not safeVector(v, r):
-        return False
-    
-    c[index] = [0 for i in range(len(c[0]))]
-    a[index] = [0 for i in range(len(a[0]))]
-    print(f'Process P{index + 1} runs to completion')
-    return safeState(c, a, r, v)
+    return True, safe_sequence
 
 claim = [
     [3, 2, 2],
@@ -65,5 +66,5 @@ allocation = [
 resource = [9, 3, 6]
 available = [0, 1, 1]
 
-safe = safeState(claim, allocation, resource, available)
+_, safe = safeState(claim, allocation, resource, available)
 print(safe)
