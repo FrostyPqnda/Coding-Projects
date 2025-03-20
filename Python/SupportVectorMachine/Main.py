@@ -1,5 +1,6 @@
 from SVM import SVM
 import numpy as np
+import sys
 
 def generate(num_samples: int, num_features: int, noise: float = 0.1):
     X = np.random.randn(num_samples, num_features)
@@ -10,11 +11,12 @@ def generate(num_samples: int, num_features: int, noise: float = 0.1):
     return X, y
     
 if __name__ == '__main__':
-    X, y = generate(500, 2)
-
-
-    svm = SVM(c=1)
+    if len(sys.argv) != 4:
+        print('python Main.py <X> <y> <c>')
+        exit(-1)
+    
+    X, y = generate(int(sys.argv[1]), int(sys.argv[2]))
+    svm = SVM(c=float(sys.argv[3]))
     svm.fit(X, y)
-
-    svm.plot(X, y, mode='2d')
+    svm.plot()
     
