@@ -314,7 +314,7 @@ class ExpressionTree:
             Return:
             The arithmetic evaluation of the tree
             """
-            if root.left == root.right == None:
+            if root.left is root.right is None:
                 return float(root.symbol)
             
             left: float | int = eval(root.left)
