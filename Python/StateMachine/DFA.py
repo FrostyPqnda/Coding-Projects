@@ -83,7 +83,7 @@ class DFA(FSM):
 
         self.transitions[(src, letter)] = dest
 
-    def validate(self, inputStr: str, debug=False) -> bool:
+    def validate(self, inputStr: str, debug: bool = False) -> bool:
         """
         Validate if the input string is accepted
         by the DFA machine.

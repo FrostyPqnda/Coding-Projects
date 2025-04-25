@@ -24,7 +24,7 @@ class NFA(FSM):
         Check if the given input string passes the NFA machine
     """
 
-    def __init__(self, states: set, alphabet: set, startState: str):
+    def __init__(self, states: set, alphabet: set, startState: str, isEps: bool = True):
         """
         Instantiate the NFA with a set of states,
         a set of alphabet, and the start state
@@ -34,12 +34,14 @@ class NFA(FSM):
         states: set[str]
             A set of states in the finite automaton
         alphabet: set[str]
-            A set of inputs joined with 'ε' in the finite automaton
+            A set of inputs in the finite automaton
         startState: str
-            The starting state of the FSM"
+            The starting state of the FSM
+        isEps: bool
+            The NFA is an ε-NFA. Default value is True
         """
         
-        super().__init__(states, alphabet, startState)
+        super().__init__(states, alphabet + ['ε'] if isEps else alphabet, startState)
 
     def addTransition(self, src: str, dest: str, letter: str = 'ε'):
         """
@@ -71,11 +73,11 @@ class NFA(FSM):
             raise ValueError('src state and dest state must exist in the states')
 
         if (src, letter) not in self.transitions:
-            self.transitions[(src, letter)] = []
-
-        self.transitions[(src, letter)].append(dest)
+            self.transitions[(src, letter)] = [dest]
+        else:
+            self.transitions[(src, letter)].append(dest)
     
-    def validate(self, inputStr: str) -> bool:
+    def validate(self, inputStr: str, debug: bool = False) -> bool:
         """
         Uses a variation of Breadth-First Search
         to validate if the input string is accepted
@@ -87,46 +89,38 @@ class NFA(FSM):
             An input string to be read by the NFA
         """
 
-        def epsilonClosure(states: set[str]):
+        def epsilonClosure(states: set[str]) -> set[str]:
             """
             Create a set of states that have an
             ε-transitions
-            """
+            """            
             closure = set(states)
-            queue = deque(states)
-
+            queue = list(states)
             while queue:
-                state = queue.popleft()
+                state = queue.pop()
                 if (state, 'ε') in self.transitions:
-                    for nextState in self.transitions[(state, 'ε')]:
-                        if nextState not in closure:
-                            closure.add(nextState)
-                            queue.append(nextState)
-
+                    for next_state in self.transitions[(state, 'ε')]:
+                        if next_state not in closure:
+                            print(f'{state} -> {next_state} on ε')
+                            closure.add(next_state)
+                            queue.append(next_state)
             return closure
-            
-        queue = deque([(epsilonClosure([self.startState]), 0)])
 
-        while queue:
-            currStates, index = queue.popleft()
-
-            if index == len(inputStr):
-                for state in currStates:
-                    if state in self.finalStates:
-                        return True
-                continue
-                
-            letter = inputStr[index]
-            
+        currStates = epsilonClosure({self.startState})
+        for symbol in inputStr:
             nextStates = set()
             for state in currStates:
-                if (state, letter) in self.transitions:
-                    nextStates.update(self.transitions[(state, letter)])
-                
-            nextStates = epsilonClosure(nextStates)
-
-            if nextStates:
-                queue.append((nextStates, index + 1))
-
-        return False
-    
+                if (state, symbol) in self.transitions:
+                    targets = self.transitions[(state, symbol)]
+                    nextStates.update(targets)
+                    if debug:
+                        print(f'{state} -> {targets} on {symbol}')
+            
+            prevState = currStates
+            currStates = epsilonClosure(nextStates)
+            print(f'{prevState} -> {nextStates} on ε')
+            if not currStates:
+                return False
+        
+        return any(state in self.finalStates for state in currStates)
+        
