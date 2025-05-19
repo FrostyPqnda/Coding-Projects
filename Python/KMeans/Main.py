@@ -1,5 +1,6 @@
 import numpy as np
 from KMeans import KMeans
+import sys
 
 def make_blobs(n_samples:int=100, n_features:int=2, centers:int=3, cluster_std:float=1, random_state:int=None):
     if random_state:
@@ -25,13 +26,20 @@ def make_blobs(n_samples:int=100, n_features:int=2, centers:int=3, cluster_std:f
     return X, y
 
 if __name__ == '__main__':
-    X, y = make_blobs(n_samples=500, n_features=50, centers=5)
-    kmeans = KMeans(k=5, tol=1e-10)
+    if not sys.argv or len(sys.argv) < 3:
+        sys.exit('python Main.py <No. of samples> <No. of features> <No. of clusters> <Tolerance>')
+        
+    n_samples = int(sys.argv[1])
+    n_features = int(sys.argv[2])
+    k = int(sys.argv[3])
+    tol = float(sys.argv[4]) if len(sys.argv) == 5 else 1e-10
+        
+    X, y = make_blobs(n_samples=n_samples, n_features=n_features, centers=k)
+    kmeans = KMeans(k=k, tol=tol)
     kmeans.fit(X)
     print(f'Silhouette Score: {kmeans.silhouette_score()}')
     print(f'Inertia: {kmeans.inertia()}')
     print(f'ARI: {kmeans.adjusted_rand_index(y)}')
     kmeans.plot(mode='2d')
     kmeans.plot(mode='3d')
-    #kmeans.elbow_plot([10, 20, 30, 36, 40])
     
