@@ -24,7 +24,7 @@ class NFA(FSM):
         Check if the given input string passes the NFA machine
     """
 
-    def __init__(self, states: set, alphabet: set, startState: str, isEps: bool = True):
+    def __init__(self, states: set[str], alphabet: set[str], startState: str, finalStates: set[str], isEps: bool = True):
         """
         Instantiate the NFA with a set of states,
         a set of alphabet, and the start state
@@ -41,7 +41,7 @@ class NFA(FSM):
             The NFA is an ε-NFA. Default value is True
         """
         
-        super().__init__(states, alphabet + ['ε'] if isEps else alphabet, startState)
+        super().__init__(states, alphabet + ['ε'] if isEps else alphabet, startState, finalStates)
 
     def addTransition(self, src: str, dest: str, letter: str = 'ε'):
         """

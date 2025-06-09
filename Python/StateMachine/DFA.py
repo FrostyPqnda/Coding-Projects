@@ -24,7 +24,7 @@ class DFA(FSM):
     """
 
     
-    def __init__(self, states: set[str], alphabet: set[str], startState: str):
+    def __init__(self, states: set[str], alphabet: set[str], startState: str, finalStates: set[str]):
         """
         Instantiate the DFA with a set of states,
         a set of alphabet, and the start state
@@ -47,7 +47,7 @@ class DFA(FSM):
         if 'ε' in alphabet:
             raise ValueError('ε is invalid for a DFA')
 
-        super().__init__(states, alphabet, startState)
+        super().__init__(states, alphabet, startState, finalStates)
 
     def addTransition(self, src: str, dest: str, letter: str):
         """

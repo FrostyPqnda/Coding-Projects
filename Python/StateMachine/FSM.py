@@ -26,7 +26,7 @@ class FSM:
         the start state, and the set of final states
     """
 
-    def __init__(self, states: set[str], alphabet: set[str], startState: str) -> None:
+    def __init__(self, states: set[str], alphabet: set[str], startState: str, finalStates: set[str]) -> None:
         """
         Instantiate the FSM with a set of states,
         a set of alphabet, and the start state
@@ -53,15 +53,22 @@ class FSM:
         
         if not alphabet:
             raise ValueError('The set of input alphabet cannot be null')
+        
+        if not finalStates:
+            raise ValueError('The set of final states cannot be null')
 
         if startState not in states:
             raise ValueError('Start state must exist in the set of states')
+        
+        for state in finalStates:
+            if state not in states:
+                raise ValueError('State must exist in the set of states')
 
         self.states = set(states)
         self.alphabet = set(alphabet)
         self.transitions = {}
         self.startState = startState
-        self.finalStates = set()
+        self.finalStates = finalStates
     
     @abstractmethod
     def addTransition(self):
@@ -76,26 +83,6 @@ class FSM:
         """
 
         raise NotImplementedError('Call the method from DFA or NFA')
-    
-    def addFinal(self, state: str):
-        """
-        Add a state to the set of final states
-
-        Parameters
-        ----------
-        state: str
-            A FSM state to be added to the set of final state
-
-        Raises
-        ------
-        ValueError
-            The state does not exist in the set of states
-        """
-
-        if state not in self.states:
-            raise ValueError('state must exist in the set of states')
-        
-        self.finalStates.add(state)
 
     @abstractmethod
     def validate(self) -> bool:
