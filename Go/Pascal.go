@@ -28,6 +28,7 @@ func main() {
 	}
 }
 
+// Generates a pascal triangle of n rows
 func generate(numRows int) [][]int {
 	var pascal = [][]int{}
 
@@ -42,6 +43,7 @@ func generate(numRows int) [][]int {
 	return pascal
 }
 
+// Gets the coefficent value at row n, column k
 func getCoefficient(n, k int) int {
 	var res int = 1
 	if k > n-k {
