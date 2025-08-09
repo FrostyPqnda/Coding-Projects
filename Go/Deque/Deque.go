@@ -1,7 +1,7 @@
 package main
 
 import (
-	ll "deque/myimplementations"
+	ll "github.com/Brian-Pham02/Go-Linked-List"
 )
 
 /*
