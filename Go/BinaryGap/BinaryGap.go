@@ -10,7 +10,7 @@ import (
 func main() {
 	args := os.Args[1:]
 	if len(args) != 1 {
-		fmt.Fprintf(os.Stderr, "Expected: go run Pascal.go <no. of rows>\n")
+		fmt.Fprintf(os.Stderr, "Expected: go run BinaryGap.go <n>\n")
 		os.Exit(1)
 	}
 
