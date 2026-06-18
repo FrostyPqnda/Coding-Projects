@@ -1,0 +1,6 @@
+C C C O T T
+C C C O O T
+C R C C O O
+R R R P P O
+R R B P P P
+R R B B P P
