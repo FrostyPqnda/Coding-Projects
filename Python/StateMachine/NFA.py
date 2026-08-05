@@ -41,7 +41,7 @@ class NFA(FSM):
             The NFA is an ε-NFA. Default value is True
         """
         
-        super().__init__(states, alphabet + ['ε'] if isEps else alphabet, startState, finalStates)
+        super().__init__(states, alphabet.union('ε') if isEps else alphabet, startState, finalStates)
 
     def addTransition(self, src: str, dest: str, letter: str = 'ε'):
         """

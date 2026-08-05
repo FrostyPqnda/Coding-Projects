@@ -65,7 +65,7 @@ func printBoard() {
 func main() {
 	args := os.Args[1:]
 	if len(args) != 1 {
-		fmt.Fprintf(os.Stderr, "Expected: go run Pascal.go <no. of rows>\n")
+		fmt.Fprintf(os.Stderr, "Expected: go run NQueens.go <no. of rows>\n")
 		os.Exit(1)
 	}
 

@@ -23,8 +23,8 @@ class Point {
             return sqrt(xDist + yDist);
         }
 
-        ostream& operator<<(ostream& os) {
-            os << "[" << x << ", " << y << "]";
+        friend ostream& operator<<(ostream& os, const Point& p) {
+            os << "[" << p.x << ", " << p.y << "]";
             return os;
         }
 };
