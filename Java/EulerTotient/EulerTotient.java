@@ -22,42 +22,20 @@ class EulerTotient {
     // Calculate Euler's Totient -> the number of integers relatively
     // co-prime to n -> GCD(a, n) = 1
     static int phi(int n) {
-        double k = 1;
-        ArrayList<Integer> primes = primeFactor(n);
-        filter(primes);
-
-        for(int prime : primes) {
-            k *= (1 - (1.0 / prime));
-        }
-
-        return (int)(n * k);
-    }
-
-    // Removes all duplicates from the prime factor list.
-    // Only works assuming that the list is already sorted.
-    static void filter(ArrayList<Integer> arrList) {
-        for(int i = arrList.size() - 1; i > 0; i--) {
-            if(arrList.get(i) == arrList.get(i - 1)) {
-                arrList.remove(i - 1);
-            }
-        }
-        return;
-    }
-
-    // Returns ArrayList of the prime factor of n
-    static ArrayList<Integer> primeFactor(int n) {
-        if(n < 1) {
-            return null;
-        }
-
-        ArrayList<Integer> primeList = new ArrayList<Integer>();
-        for(int i = 2; i <= n; i++) {
-            while(n % i == 0) {
-                primeList.add(i);
-                n /= i;
+        int res = n;
+        for(int p = 2; p * p <= n; p++) {
+            if (n % p == 0) {
+                while (n % p == 0) {
+                    n /= p;
+                }
+                res -= res / p;
             }
         }
 
-        return primeList;
+        if (n > 1) {
+            res -= res / n;
+        }
+
+        return res;
     }
 }
